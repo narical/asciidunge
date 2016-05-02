@@ -9,28 +9,43 @@
 
 Field::Field() :enemy("no enemy!"),
 		item("no item!"),
-		mana(5),
-		hp(7),
+		mana(1),
+		HP(1),
 		visible(false)
 { }
 
 
 void Field::SpawnEnemy()
 {
-   this->enemy = "goblin";
+	this->enemy = "goblin";
 }
 
 void Field::SpawnItem()
 {
-   this->item = "item";
+	this->item = "item";
 }
 
 
 void Field::MakeVisible()
 {
-   this->visible = true;
+	this->visible = true;
 }
 
+int Field::GetMana()
+{
+	int res = this->mana;
+	this->mana = 0;
+	return res;
+}
+
+
+int Field::GetHP()
+{
+	int res = this->HP;
+	this->HP = 0;
+	return res;
+}
+								
 
 void Field::Show() {
 	if (this->visible == false) printw ("x");

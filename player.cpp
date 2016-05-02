@@ -7,7 +7,7 @@
 
 #include "player.h"
 
-Player::Player () : level(1), exp(0), damage(5), HP(7), mana(6), maxHP(10), maxMana(7),
+Player::Player () : level(1), exp(0), damage(5), HP(0), mana(0), maxHP(100), maxMana(70),
 					sightRadius(2), coordRow(10), coordCol(10), name("Nameless")
 {
 
@@ -64,11 +64,72 @@ void Player::LookAround(Battlefield *btl)
 
 	for (int i = Xmin; i <= Xmax; ++i)
 		for (int j = Ymin; j <= Ymax; ++j)
-			if ( (X-i)*(X-i)+(Y-j)*(Y-j) <= R*R ) btl->GetField(j,i)->MakeVisible();
+			if ( (X-i)*(X-i)+(Y-j)*(Y-j) <= R*R )
+			{
+				Field *field = btl->GetField(j,i);
+				field->MakeVisible();
+				this->AddMana(field->GetMana());
+				this->AddHP(field->GetHP());
+			}
 }
 
 
+void Player::SetMana(int newQuantity)
+{
+	this->mana = newQuantity;
+	//TODO: добавить проверку
+}
 
+
+void Player::SetManaFull()
+{
+	this->mana = this->maxMana;
+}
+
+
+void Player::AddMana(int delta)
+{
+	int mana = this->mana;
+	int maxMana = this->maxMana;
+	this->mana = (mana + delta > maxMana ? maxMana : mana + delta);
+}
+
+
+void Player::LoseMana(int delta)
+{
+	int mana = this->mana;
+	this->mana = (mana - delta < 0 ? 0 : mana - delta);
+}
+
+
+void Player::SetHP(int newQuantity)
+{
+	this->HP = newQuantity;
+	//TODO: добавить проверку
+}
+
+
+void Player::SetHpFull()
+{
+	this->HP = this->maxHP;
+}
+
+
+void Player::AddHP(int delta)
+{
+	int HP = this->HP;
+	int maxHP = this->maxHP;
+	this->HP = (HP + delta > maxHP ? maxHP : HP + delta);
+}
+
+
+void Player::LoseHP(int delta)
+{
+	int HP = this->HP;
+	this->HP = (HP - delta < 0 ? 0 : HP - delta);
+	//if (this->HP == 0) this->kill();
+	//TODO: Game Over
+}
 
 
 /*void Show();

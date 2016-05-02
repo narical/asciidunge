@@ -36,7 +36,6 @@ void Game::Run_RNG()
 // Главный игровой цикл
 void Game::Run (Battlefield *btl, Player *plr) {
 	int input_key;
-
 	while (true)
 	{
 		plr->LookAround(btl);

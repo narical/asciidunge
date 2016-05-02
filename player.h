@@ -20,19 +20,23 @@ public:
 	Player();
 	void Show();
 	void LookAround(Battlefield *);
-	void Move(Battlefield *, int); 
+	void Move(Battlefield *, int);
+	void SetMana(int);
+	void SetManaFull();
+	void AddMana(int);
+	void LoseMana(int);
+	void SetHP(int);
+	void SetHpFull();
+	void AddHP(int);
+	void LoseHP(int);
 
 /*	TODO: реализовать оставшиеся методы класса Player
 	std::string GetName();
-
-
-	void SetMana();
-	void AddMana();
-	void LoseMana();
-	 
 	void SetHP();
 	void AddHP();
 	void LoseHP();
+				
+	void NextLevelExp();
 	 
 	void Kill();*/
 	 

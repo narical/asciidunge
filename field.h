@@ -21,12 +21,14 @@ class Field
 		void MakeVisible();
 		void SpawnEnemy();
 		void SpawnItem();
+		int GetHP();
+		int GetMana();
 		
 	private:
 		std::string enemy;
 		std::string item;
 		int mana;
-		int hp;
+		int HP;
 		bool visible;
 };
 
