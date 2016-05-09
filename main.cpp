@@ -16,7 +16,6 @@ void ncurses_off();
 int main()
 {
 	ncurses_init();
-	
 	Battlefield btl;
 	Player plr;
 	Game game;

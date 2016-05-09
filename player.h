@@ -29,15 +29,12 @@ public:
 	void SetHpFull();
 	void AddHP(int);
 	void LoseHP(int);
+	void SetTarget(Field *);
+	Field* GetTarget();
 
 /*	TODO: реализовать оставшиеся методы класса Player
 	std::string GetName();
-	void SetHP();
-	void AddHP();
-	void LoseHP();
-				
 	void NextLevelExp();
-	 
 	void Kill();*/
 	 
 private:
@@ -49,6 +46,7 @@ private:
 	int sightRadius;
 	int coordRow;
 	int coordCol;
+	Field *target = NULL;
 	std::string name;
 	
 };

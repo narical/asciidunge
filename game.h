@@ -20,6 +20,7 @@ class Game {
 public:
 	Game ();
 	void Run (Battlefield *, Player *);
+	void GetPlayerInput( Battlefield *, Player *);
 	static std::string ShowBar (int, int);
 	static void Run_RNG();
 };

@@ -33,9 +33,27 @@ void Game::Run_RNG()
 }
 
 
+void Game::GetPlayerInput( Battlefield * btl, Player * plr)
+{
+	int input_key;
+	input_key = getch();
+	switch(input_key)
+	{
+		case 'r':
+		case 'l':
+		case 'u':
+		case 'd':
+			plr->Move(btl, input_key);
+			break;
+		case 'q':
+			exit(0);
+	}
+}
+
+
 // Главный игровой цикл
 void Game::Run (Battlefield *btl, Player *plr) {
-	int input_key;
+
 	while (true)
 	{
 		plr->LookAround(btl);
@@ -43,11 +61,7 @@ void Game::Run (Battlefield *btl, Player *plr) {
 		btl->Show ();
 		plr->Show ();
 		refresh();
-		input_key = getch();
-
-
-		plr->Move(btl, input_key);
-		if (input_key == 27) break;
+		this->GetPlayerInput(btl, plr);
 	}
 }
 

@@ -131,19 +131,19 @@ void Player::LoseHP(int delta)
 	//TODO: Game Over
 }
 
+void Player::SetTarget(Field * rTarget)
+{
+				this->target = rTarget;
+}
 
-/*void Show();
+Field * Player::GetTarget()
+{
+	return 	this->target;
+}
+
+/*
+void Show();
 std::string GetName();
-
-void SetMana();
-void AddMana();
-void LoseMana();
- 
-void SetHP();
-void AddHP();
-void LoseHP();
- 
-void Kill();*/
-
-
+void Kill();
+*/
 
