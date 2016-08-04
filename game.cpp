@@ -39,10 +39,10 @@ void Game::GetPlayerInput( Battlefield * btl, Player * plr)
 	input_key = getch();
 	switch(input_key)
 	{
-		case 'r':
-		case 'l':
-		case 'u':
-		case 'd':
+		case KEY_RIGHT:
+		case KEY_LEFT:
+		case KEY_UP:
+		case KEY_DOWN:
 			plr->Move(btl, input_key);
 			break;
 		case 'q':
