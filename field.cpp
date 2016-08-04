@@ -7,51 +7,81 @@
 
 #include "field.h"
 
-Field::Field() :enemy("no enemy!"),
-		item("no item!"),
-		mana(1),
-		HP(1),
-		visible(false)
+Field::Field(int row, int col) :
+	m_coordCol(col),
+	m_coordRow(row),
+	m_enemy(NULL),
+	m_item("no item!"),
+	m_mana(MANA_PER_FIELD),
+	m_HP(HP_PER_FIELD),
+	m_visible(false)
 { }
 
 
-void Field::SpawnEnemy()
+int Field::GetRow()
 {
-	this->enemy = "goblin";
+	return m_coordRow;
+}
+
+int Field::GetCol()
+{
+	return m_coordCol;
+}
+
+void Field::SpawnEnemy(Monster * nextEnemyFromPool)
+{
+   m_enemy = nextEnemyFromPool;
+}
+
+Monster * Field::GetEnemy()
+{
+   return m_enemy;
+}
+
+bool Field::HaveEnemy()
+{
+ return ((m_enemy != NULL) && m_enemy->IsAlive());
 }
 
 void Field::SpawnItem()
 {
-	this->item = "item";
+   m_item = "item";
 }
 
+std::string Field::GetItem()
+{
+   return m_item;
+}
+
+bool Field::HaveItem()
+{
+ return (GetItem() != "no item!");
+}
 
 void Field::MakeVisible()
 {
-	this->visible = true;
+   m_visible = true;
+}
+
+bool Field::IsVisible()
+{
+ return m_visible;
 }
 
 int Field::GetMana()
 {
-	int res = this->mana;
-	this->mana = 0;
+	int res = m_mana;
+	m_mana = 0;
 	return res;
 }
 
 
 int Field::GetHP()
 {
-	int res = this->HP;
-	this->HP = 0;
+	int res = m_HP;
+	m_HP = 0;
 	return res;
 }
-								
+		
 
-void Field::Show() {
-	if (this->visible == false) printw ("x");
-	else {
-		if (this->enemy != "no enemy!") printw ("e");
-		else if (this->item != "no item!") printw ("*");
-		else printw (".");
-	}
-}
+

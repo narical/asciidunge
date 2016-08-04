@@ -8,6 +8,7 @@
 #include "game.h"
 #include "battlefield.h"
 #include "player.h"
+#include "display.h"
 
 void ncurses_init();
 void ncurses_off();
@@ -15,26 +16,12 @@ void ncurses_off();
 
 int main()
 {
-	ncurses_init();
-	Battlefield btl;
-	Player plr;
+	Display::NcursesInit();
 	Game game;
-	game.Run(&btl, &plr);
-	ncurses_off();
+
+	while (true) game.Run();
+
+	Display::NcursesShutdown();
 	return 0;
 }
 
-
-inline void ncurses_init() {
-	initscr();
-	cbreak();
-	noecho();
-	curs_set(0);
-	keypad(stdscr, TRUE);
-}
-
-
-inline void ncurses_off() {
-	clear();
-	endwin();
-}

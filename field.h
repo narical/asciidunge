@@ -8,28 +8,40 @@
 #ifndef _FIELD_H_
 #define _FIELD_H_
 
-#include "ncurses.h"
+class Monster;
+class Battlefield;
 #include <iostream>
 #include <string>
-
+#include "monster.h"
 
 class Field
 {
+	static const unsigned int HP_PER_FIELD = 2;
+	static const unsigned int MANA_PER_FIELD = 2;
+	
 	public:
-		Field ();
-		void Show();
+		Field (int, int);
 		void MakeVisible();
-		void SpawnEnemy();
+		void SpawnEnemy(Monster *);
 		void SpawnItem();
 		int GetHP();
 		int GetMana();
+		bool HaveEnemy();
+		bool HaveItem();
+		bool IsVisible();
+		Monster * GetEnemy();
+		std::string GetItem();
+		int GetCol();
+		int GetRow();
 		
 	private:
-		std::string enemy;
-		std::string item;
-		int mana;
-		int HP;
-		bool visible;
+		int m_coordCol;
+		int m_coordRow;
+		Monster * m_enemy;
+		std::string m_item;
+		int m_mana;
+		int m_HP;
+		bool m_visible;
 };
 
 #endif // _FIELD_H_

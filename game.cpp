@@ -7,33 +7,36 @@
 
 #include "ncurses.h"
 #include "game.h"
-static const int BARWIDTH = 20;
 
 
 Game::Game ()
+{ }
+
+
+void Game::Run ()   //TODO: move all input to Input class
 {
-  std::cout << "Game created!" << std::endl;
+	Run_RNG();
+
+	Battlefield *btl = new Battlefield();
+	Player *plr = new Player(btl);
+	Display *display = new Display(btl, plr);
+
+	while ( plr->IsAlive() )
+	{
+		plr->LookAround();
+		display->ShowCurrentFrame();
+		GetPlayerInput(plr);
+	 	if (CheckVictory()) break;
+	}
+	CheckVictory() ? Victory() : Defeat();
+
+	delete(plr);
+	delete(btl);
+	delete(display);
 }
 
 
-std::string Game::ShowBar(int current, int max) {
-	int num;
-	std::string result = "[";
-	num = (current != 0 ? (int)( (double)current / max * BARWIDTH) : 0);
-	for (int i = 0; i < num; ++i) result += '#';
-	for (int i = 0; i < BARWIDTH - num; ++i) result += '.';
-	result += ']';
-	return result;
-}
-
-
-void Game::Run_RNG()
-{
-	srand( time(0) );
-}
-
-
-void Game::GetPlayerInput( Battlefield * btl, Player * plr)
+void Game::GetPlayerInput(Player * plr) //TODO: move all input to Input class
 {
 	int input_key;
 	input_key = getch();
@@ -43,25 +46,43 @@ void Game::GetPlayerInput( Battlefield * btl, Player * plr)
 		case KEY_LEFT:
 		case KEY_UP:
 		case KEY_DOWN:
-			plr->Move(btl, input_key);
+			plr->Act(input_key);
 			break;
 		case 'q':
+			Display::NcursesShutdown();
 			exit(0);
 	}
 }
 
 
-// Главный игровой цикл
-void Game::Run (Battlefield *btl, Player *plr) {
-
-	while (true)
-	{
-		plr->LookAround(btl);
-		clear();
-		btl->Show ();
-		plr->Show ();
-		refresh();
-		this->GetPlayerInput(btl, plr);
-	}
+bool Game::CheckVictory()
+{
+	return !Monster::s_Quantity;
 }
 
+
+void Game::Victory()
+{
+	Display::ShowVictoryScreen();
+	getch();
+}
+
+
+void Game::Defeat()
+{
+	Display::ShowDefeatScreen();
+	getch();
+}
+
+
+void Game::Run_RNG()
+{
+	srand( time(0) );
+}
+
+void Game::Test(std::string testString)
+{
+	std::cout << testString;
+	int num;
+	std::cin >> num;
+}

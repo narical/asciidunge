@@ -8,21 +8,28 @@
 #ifndef _GAME_H_
 #define _GAME_H_
 
+class Battlefield;
 class Player;
+class Display;
 #include <iostream>
 #include <string>
 #include <cstdlib>
 #include <ctime>
+#include <iterator>
 #include "battlefield.h"
 #include "player.h"
+#include "display.h"
 
 class Game {
 public:
 	Game ();
-	void Run (Battlefield *, Player *);
-	void GetPlayerInput( Battlefield *, Player *);
-	static std::string ShowBar (int, int);
+	void Run();
+	void GetPlayerInput(Player *);
+	bool CheckVictory();
+	void Victory();
+	void Defeat();
 	static void Run_RNG();
+	static void Test(std::string);
 };
 
 #endif // _GAME_H_
