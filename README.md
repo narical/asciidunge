@@ -20,3 +20,16 @@ Small ascii roguelike game
 * player (@) have hp/mana bars, sight radius, can move around with arrow keys, opening hidden tiles
 * generating dungeon with size of 20x20, with initially hidden tiles, generic enemies (e) and items (*)
 * exit with ESQ key
+
+## Development Roadmap:
+
+### 0.4a
+* added animation
+* added animated fight result calculation
+* powerups give health / mana / damage bonuses
+* victory condition - killing the boss
+
+### 0.5a
+* different monster types have different properties
+* different player classes have different properties
+* added inventory and pickable/dropable items
