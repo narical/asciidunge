@@ -7,7 +7,8 @@
 
 
 #include "display.h"
-
+Frametype Display::s_currentFrame = ODD;
+unsigned int Display::s_levelUpCounter = 0;
 
 Display::Display(Battlefield * btl, Player * plr) : m_battlefield(btl), m_player(plr), m_enemy(NULL)
 {
@@ -21,15 +22,18 @@ Display::Display(Battlefield * btl, Player * plr) : m_battlefield(btl), m_player
 void Display::DrawBattlefield()
 {
 	unsigned int bf_size = m_battlefield->GetSize();
-
+	attron(A_BOLD);
 	mvprintw(BF_ROW, BF_MARGIN, HORIZ_WALL.c_str());
 	for (unsigned int rowIndex = 0; rowIndex < bf_size; ++rowIndex)
 	{
 		mvprintw(BF_ROW + rowIndex + 1, BF_MARGIN, "#");
+		attroff(A_BOLD);
 		for (unsigned int colIndex = 0; colIndex < bf_size; ++colIndex) DrawField(rowIndex, colIndex);
+		attron(A_BOLD);
 		printw("#");
 	}
 	mvprintw(BF_ROW + bf_size + 1, BF_MARGIN, HORIZ_WALL.c_str());
+	attroff(A_BOLD);
 }
 
 
@@ -52,7 +56,9 @@ void Display::DrawPlayerInfo()
 
 	mvprintw(PLAYER_ROW + 0, INFO_MARGIN, "Exp   %d / %d", exp, expMax);
 	mvprintw(PLAYER_ROW + 1, INFO_MARGIN, "Mana  %d / %d", mana, maxMana);
+	if (s_currentFrame == ODD && s_levelUpCounter > 0) attron(A_BOLD);
 	mvprintw(PLAYER_ROW + 5, INFO_MARGIN, "%s - level %d", name.c_str(), level);
+	attroff(A_BOLD);
 	mvprintw(PLAYER_ROW + 7, INFO_MARGIN, " [+]  %d / %d", HP, maxHP);
 	mvprintw(PLAYER_ROW + 9, INFO_MARGIN, " [*]    %d   ", damage);
 
@@ -87,18 +93,26 @@ char Display::DrawField(int rowIndex, int colIndex)
 {
 	Field *playerField = m_player->GetPosition();
 	Field *field = m_battlefield->GetField(rowIndex, colIndex);
+	Field *playerTarget = m_player->GetTarget();
 
-	if (field == playerField) printw("@");
-	else if (!field->IsVisible()) printw(".");
+	if (!field->IsVisible()) printw(".");
 	else
 	{
 		if (field->HaveEnemy())
 	 	{
+			if (field == playerTarget) attron(A_BOLD);
 	 	 	if (field->GetEnemy()->GetLevel() == 10) printw("Z");
 	 	 	else printw("%d", field->GetEnemy()->GetLevel());
+			attroff(A_BOLD);
 	 	}
 		else if (field != m_player->GetPosition() && field->HaveItem()) printw("*");
-		else if (field == m_player->GetPosition() && field->HaveItem()) printw("@");
+		else if (field == m_player->GetPosition() && !field->HaveItem()) printw("@");
+		else if (field == m_player->GetPosition() && field->HaveItem())
+		{
+			attron(A_BOLD);
+			printw("@");
+			attroff(A_BOLD);
+		}
 		else printw(" ");
 	}
 	return 0;
@@ -113,6 +127,29 @@ void Display::ShowCurrentFrame()
 	DrawPlayerInfo();
 	if (m_player->HaveTarget()) DrawEnemyInfo();
 	refresh();
+	SwitchFrames();
+	ReduceCounters();
+}
+
+
+
+void Display::SwitchFrames()
+{
+	switch (s_currentFrame)
+	{
+		case ODD:
+			s_currentFrame = EVEN;
+			break;
+		case EVEN:
+			s_currentFrame = ODD;
+	}
+}
+
+
+
+void Display::ReduceCounters()
+{
+	if (s_levelUpCounter > 0) --s_levelUpCounter; 
 }
 
 
@@ -126,6 +163,13 @@ std::string Display::ShowBar(int current, int max) const
 	for (int i = 0; i < BARWIDTH - num; ++i) result += '.';
 	result += ']';
 	return result;
+}
+
+
+
+void Display::PlayerLevelUp()
+{
+	s_levelUpCounter = 6;
 }
 
 
@@ -155,6 +199,7 @@ void Display::NcursesInit()
 	noecho();
 	curs_set(0);
 	keypad(stdscr, TRUE);
+	halfdelay(5);
 }
 
 

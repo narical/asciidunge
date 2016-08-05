@@ -24,8 +24,8 @@ Small ascii roguelike game
 ## Development Roadmap:
 
 ### 0.4a
-* added animation
-* added animated fight result calculation
+* added animation and some color eye-candy
+* added fight result calculation
 * powerups give health / mana / damage bonuses
 * victory condition - killing the boss
 

@@ -64,14 +64,20 @@ bool Game::CheckVictory()
 void Game::Victory()
 {
 	Display::ShowVictoryScreen();
-	getch();
+	while (true)
+	{
+		if (getch() != ERR) break;
+	}
 }
 
 
 void Game::Defeat()
 {
 	Display::ShowDefeatScreen();
-	getch();
+	while (true)
+	{
+		if (getch() != ERR) break;
+	}
 }
 
 

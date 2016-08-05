@@ -138,16 +138,17 @@ void Player::GainExp(Monster *enemy)
 
 void Player::LevelUp()
 {
-	 	while (m_exp >= m_expMax)
-	 	{
-	 	 	m_level++;
-	 	 	m_exp -= m_expMax;
-	 	 	m_expMax *= EXP_TO_NEXT_LVL_MULTIPLIER;
-	 	 	m_maxHP += ADD_MAXHP_PER_LVL;
-	 	 	m_damage += ADD_DAMAGE_PER_LVL;
-	 	 	SetHpFull();
-	 	 	SetManaFull();
-	 	}
+ 	while (m_exp >= m_expMax)
+ 	{
+ 	 	m_level++;
+ 	 	m_exp -= m_expMax;
+ 	 	m_expMax *= EXP_TO_NEXT_LVL_MULTIPLIER;
+ 	 	m_maxHP += ADD_MAXHP_PER_LVL;
+ 	 	m_damage += ADD_DAMAGE_PER_LVL;
+ 	 	SetHpFull();
+ 	 	SetManaFull();
+ 	}
+	Display::PlayerLevelUp();
 }
 
 

@@ -18,7 +18,9 @@ class Field;
 #include <cstdlib>
 #include <algorithm>
 #include <ncurses.h>
+#include <unistd.h>
 #include "field.h"
+enum Frametype {ODD, EVEN};
 
 class Display
 {
@@ -37,20 +39,28 @@ class Display
 		static void ShowDefeatScreen();
 		static void NcursesInit();
 		static void NcursesShutdown();
+		static void PlayerLevelUp();
 
 
 	private:
-		void ClearFrames();
+		static unsigned int s_levelUpCounter;
+		static Frametype s_currentFrame;
+
+		void SwitchFrames();
+		void ReduceCounters();
 		void DrawBattlefield();
 		void DrawPlayerInfo();
 		void DrawEnemyInfo();
 		char DrawField(int, int);
+
 		std::string HORIZ_WALL;
 		std::string ShowBar(int, int) const;
 
 		Battlefield * m_battlefield;
 		Player * m_player;
 		Monster * m_enemy;
+
+
 };
 
 #endif // _DISPLAY_H_
