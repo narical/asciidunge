@@ -21,6 +21,7 @@ class Field;
 #include <unistd.h>
 #include "field.h"
 enum Frametype {ODD, EVEN};
+enum EventType {LVLUP};
 
 class Display
 {
@@ -34,33 +35,29 @@ class Display
 
 	public:
 		Display ( Battlefield * btl, Player * plr );
-		void ShowCurrentFrame();
+		void ShowFrame();
+		void SendEvent(EventType);
+
 		static void ShowVictoryScreen();
 		static void ShowDefeatScreen();
 		static void NcursesInit();
 		static void NcursesShutdown();
-		static void PlayerLevelUp();
-
 
 	private:
-		static unsigned int s_levelUpCounter;
-		static Frametype s_currentFrame;
+		unsigned int m_levelUpCounter;
+		Battlefield * m_battlefield;
+		Player * m_player;
+		Monster * m_enemy;
+		std::string HORIZ_WALL;
 
-		void SwitchFrames();
+		std::string ShowBar(int, int) const;
 		void ReduceCounters();
+		void CheckEvent(EventType);
+		void EndCheck();
 		void DrawBattlefield();
 		void DrawPlayerInfo();
 		void DrawEnemyInfo();
 		char DrawField(int, int);
-
-		std::string HORIZ_WALL;
-		std::string ShowBar(int, int) const;
-
-		Battlefield * m_battlefield;
-		Player * m_player;
-		Monster * m_enemy;
-
-
 };
 
 #endif // _DISPLAY_H_

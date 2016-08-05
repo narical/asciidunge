@@ -7,14 +7,18 @@
 
 
 #include "display.h"
-Frametype Display::s_currentFrame = ODD;
-unsigned int Display::s_levelUpCounter = 0;
 
-Display::Display(Battlefield * btl, Player * plr) : m_battlefield(btl), m_player(plr), m_enemy(NULL)
+
+Display::Display(Battlefield * btl, Player * plr) :
+m_levelUpCounter(0),
+m_battlefield(btl),
+m_player(plr),
+m_enemy(NULL)
 {
 	HORIZ_WALL = "";
 	unsigned int wallSize = m_battlefield->GetSize() + 2;
 	for (unsigned int i = 0; i < wallSize; ++i) HORIZ_WALL += "#";
+	m_player->SetDisplay(this);
 }
 
 
@@ -56,9 +60,9 @@ void Display::DrawPlayerInfo()
 
 	mvprintw(PLAYER_ROW + 0, INFO_MARGIN, "Exp   %d / %d", exp, expMax);
 	mvprintw(PLAYER_ROW + 1, INFO_MARGIN, "Mana  %d / %d", mana, maxMana);
-	if (s_currentFrame == ODD && s_levelUpCounter > 0) attron(A_BOLD);
+	CheckEvent(LVLUP);
 	mvprintw(PLAYER_ROW + 5, INFO_MARGIN, "%s - level %d", name.c_str(), level);
-	attroff(A_BOLD);
+	EndCheck();
 	mvprintw(PLAYER_ROW + 7, INFO_MARGIN, " [+]  %d / %d", HP, maxHP);
 	mvprintw(PLAYER_ROW + 9, INFO_MARGIN, " [*]    %d   ", damage);
 
@@ -105,8 +109,13 @@ char Display::DrawField(int rowIndex, int colIndex)
 	 	 	else printw("%d", field->GetEnemy()->GetLevel());
 			attroff(A_BOLD);
 	 	}
-		else if (field != m_player->GetPosition() && field->HaveItem()) printw("*");
-		else if (field == m_player->GetPosition() && !field->HaveItem()) printw("@");
+		else if (field != playerField && field->HaveItem()) printw("*");
+		else if (field == playerField && !field->HaveItem())
+		{
+			CheckEvent(LVLUP);
+			printw("@");
+			EndCheck();
+		}
 		else if (field == m_player->GetPosition() && field->HaveItem())
 		{
 			attron(A_BOLD);
@@ -120,36 +129,21 @@ char Display::DrawField(int rowIndex, int colIndex)
 
 
 
-void Display::ShowCurrentFrame()
+void Display::ShowFrame()
 {
 	clear();
 	DrawBattlefield();
 	DrawPlayerInfo();
 	if (m_player->HaveTarget()) DrawEnemyInfo();
 	refresh();
-	SwitchFrames();
 	ReduceCounters();
-}
-
-
-
-void Display::SwitchFrames()
-{
-	switch (s_currentFrame)
-	{
-		case ODD:
-			s_currentFrame = EVEN;
-			break;
-		case EVEN:
-			s_currentFrame = ODD;
-	}
 }
 
 
 
 void Display::ReduceCounters()
 {
-	if (s_levelUpCounter > 0) --s_levelUpCounter; 
+	if (m_levelUpCounter > 0) --m_levelUpCounter; 
 }
 
 
@@ -167,9 +161,35 @@ std::string Display::ShowBar(int current, int max) const
 
 
 
-void Display::PlayerLevelUp()
+void Display::SendEvent(EventType event)
 {
-	s_levelUpCounter = 6;
+	switch (event)
+	{
+		case LVLUP:
+			m_levelUpCounter = 6;
+			break;
+		
+	}
+}
+
+
+
+void Display::CheckEvent(EventType event)
+{
+	switch (event)
+	{
+		case LVLUP:
+			if (m_levelUpCounter > 0 && m_levelUpCounter % 2) attron(A_BOLD);
+			break;
+		
+	}
+}
+
+
+
+void Display::EndCheck()
+{
+	attroff(A_BOLD);
 }
 
 

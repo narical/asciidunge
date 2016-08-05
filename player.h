@@ -46,6 +46,7 @@ class Player
 		void GainExp(Monster *);
 		void LevelUp();
 		void SetTarget(Field *);
+		void SetDisplay(Display *);
 
 		Field* GetTarget() const;
 		Field* GetPosition() const;
@@ -65,6 +66,7 @@ class Player
 
 		 
 	private:
+		std::string m_name;
 		int m_level;
 		int m_exp;
 		int m_expMax;
@@ -72,10 +74,13 @@ class Player
 		int m_HP, m_maxHP;
 		int m_mana, m_maxMana;
 		int m_sightRadius;
+
 		Battlefield *m_battlefield;
 		Field *m_position;
 		Field *m_target;
-		std::string m_name;
+		Display *m_display;
+
+
 		bool InSightRadius(int, int);
 };
 

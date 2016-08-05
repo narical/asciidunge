@@ -9,6 +9,7 @@
 
 
 Player::Player (Battlefield *btl) :
+m_name( "Nameless hero" ),
 m_level( START_LEVEL ),
 m_exp( START_EXP ), m_expMax( START_MAX_EXP ),
 m_damage( START_DAMAGE ),
@@ -17,7 +18,7 @@ m_mana( START_MAX_MANA ), m_maxMana( START_MAX_MANA ),
 m_sightRadius( SIGHT_RADIUS ),
 m_battlefield( btl ),
 m_target( NULL ),
-m_name( "Nameless hero" )
+m_display( NULL )
 {
 	m_battlefield->SetPlayer(this);
 	Field *tempField = NULL;
@@ -148,7 +149,7 @@ void Player::LevelUp()
  	 	SetHpFull();
  	 	SetManaFull();
  	}
-	Display::PlayerLevelUp();
+	m_display->SendEvent(LVLUP);
 }
 
 
@@ -205,6 +206,12 @@ void Player::LoseHP(int delta)
 void Player::SetTarget(Field * fld)
 {
 	m_target = fld;
+}
+
+
+void Player::SetDisplay(Display * dspl)
+{
+	m_display = dspl;
 }
 
 

@@ -24,7 +24,7 @@ void Game::Run ()   //TODO: move all input to Input class
 	while ( plr->IsAlive() )
 	{
 		plr->LookAround();
-		display->ShowCurrentFrame();
+		display->ShowFrame();
 		GetPlayerInput(plr);
 	 	if (CheckVictory()) break;
 	}

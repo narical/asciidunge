@@ -102,3 +102,12 @@ void Battlefield::CreateEnemy(int level, int quantity)
 	 for (int i = 0; i < quantity; ++i) m_enemies.push_back(Monster(level));
 }
 
+Battlefield::~Battlefield()
+{
+	for (int row = 0; row < BF_SIZE; ++row)
+		for (int column = 0; column < BF_SIZE; ++column)
+			delete(m_field[row][column]);
+
+	//for (unsigned int i = 0; i < m_enemies.size(); ++i) delete(m_enemies[i]); Ask A1eks what to to
+}
+

@@ -22,6 +22,7 @@ class Battlefield {
 
 	public:
 		Battlefield();
+		~Battlefield();
 	 	void CreateEnemy(int, int);
 		Field * GetField(int, int) const;
 		Field * GetNextField(Field *, direction) const;
