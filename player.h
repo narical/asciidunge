@@ -47,6 +47,7 @@ class Player
 		void LevelUp();
 		void SetTarget(Field *);
 		void SetDisplay(Display *);
+		void Fight();
 
 		Field* GetTarget() const;
 		Field* GetPosition() const;

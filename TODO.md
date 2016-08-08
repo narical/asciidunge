@@ -9,5 +9,6 @@ Small ascii roguelike game
 + make Display::LevelUpCheck() and Display::LevelUpCheckEnd() functions with attron/off
 + make class destructors
 - make player and enemy colors depend of %HP remaining (poor color support in ncurses)
-* move fight to standalone function
++ move fight to standalone Player::Fight() function
++ add first strike priority based on level comparison
 

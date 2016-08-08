@@ -58,25 +58,16 @@ void Player::Act(int input_key)
 	{
 		if (nextField == targetField) //where our target is
 		{
-			Monster *targetEnemy = targetField->GetEnemy();
-			targetEnemy->Attack(this);
-			if (IsAlive())
-			{
-				targetEnemy->TakeDamage(this);
-				if (targetEnemy->IsDead())
-				{
-					GainExp(targetEnemy);
-					SetTarget(NULL);
-				}
-			}
+			Fight(); //Kill'em!
 		}
 		else //if target was somewhere else
 		{
-			SetTarget(NULL);
-			if (nextField->HaveEnemy()) SetTarget(nextField); //new target?
+			SetTarget(NULL); //forget about it
+
+			if (nextField->HaveEnemy()) SetTarget(nextField); //and select new target if any
 			else
 			{
-				m_position = nextField; //move and look around
+				m_position = nextField; //if not - move there and look around
 				LookAround();
 			}
 		}
@@ -116,15 +107,41 @@ void Player::LookAround()
 }
 
 
-bool Player::InSightRadius(int testRow, int testColumn)
+void Player::Fight()
 {
-	int column  = m_position->GetCol();
-	int row		= m_position->GetRow();
-	int radius  = m_sightRadius;
-	int deltaRow	= testRow - row;
-	int deltaColumn = testColumn - column;
+	Monster *enemy = GetTarget()->GetEnemy();
+	Player *player = this;
+	unsigned int monsterLevel = enemy->GetLevel();
+	unsigned int playerLevel = player->GetLevel();
 
-	return (deltaRow * deltaRow + deltaColumn * deltaColumn <= radius * radius);
+	if (monsterLevel >= playerLevel)
+	{
+		enemy->Attack(player);
+
+		if (player->IsAlive())
+		{
+			enemy->TakeDamage(player);
+
+			if (enemy->IsDead())
+			{
+				player->GainExp(enemy);
+				player->SetTarget(NULL);
+			}
+		}
+	}
+	else
+	{
+		enemy->TakeDamage(player);
+		if (enemy->IsDead())
+		{
+			player->GainExp(enemy);
+			player->SetTarget(NULL);
+		}
+		else
+		{
+			enemy->Attack(player);			
+		}
+	}
 }
 
 
@@ -150,6 +167,18 @@ void Player::LevelUp()
  	 	SetManaFull();
  	}
 	m_display->SendEvent(LVLUP);
+}
+
+
+bool Player::InSightRadius(int testRow, int testColumn)
+{
+	int column  = m_position->GetCol();
+	int row		= m_position->GetRow();
+	int radius  = m_sightRadius;
+	int deltaRow	= testRow - row;
+	int deltaColumn = testColumn - column;
+
+	return (deltaRow * deltaRow + deltaColumn * deltaColumn <= radius * radius);
 }
 
 
