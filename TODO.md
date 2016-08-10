@@ -3,12 +3,15 @@ Small ascii roguelike game
 *ncurses-based console "Desktop Dungeon" clone*
 
 ## Internal TO-DO list:
+* implement copy/assignment operator for Player and Enemy classes
+* make fight prediction
+* change all unsigned int to uint8
 
-+ make Player::m_display property to get access to display instance
-+ make Display::SendEvent(EventType) method where EventType = {LVLUP,MONSTER_DEATH, ...}
-+ make Display::LevelUpCheck() and Display::LevelUpCheckEnd() functions with attron/off
-+ make class destructors
-- make player and enemy colors depend of %HP remaining (poor color support in ncurses)
-+ move fight to standalone Player::Fight() function
-+ add first strike priority based on level comparison
+## Latest changes
++ Player::m_display property is used to get access to display instance
++ Display::SendEvent(EventType) {LVLUP,MONSTER_DEATH, ...} implemented
++ Display::LevelUpCheck() / Display::LevelUpCheckEnd() functions implemented
++ added class destructors
++ Implemented separate Player::Fight() function
++ added first strike priority based on level comparison
 

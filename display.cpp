@@ -16,8 +16,8 @@ m_player(plr),
 m_enemy(NULL)
 {
 	HORIZ_WALL = "";
-	unsigned int wallSize = m_battlefield->GetSize() + 2;
-	for (unsigned int i = 0; i < wallSize; ++i) HORIZ_WALL += "#";
+	uint8_t wallSize = m_battlefield->GetSize() + 2;
+	for (uint8_t i = 0; i < wallSize; ++i) HORIZ_WALL += "#";
 	m_player->SetDisplay(this);
 }
 
@@ -25,14 +25,14 @@ m_enemy(NULL)
 
 void Display::DrawBattlefield()
 {
-	unsigned int bf_size = m_battlefield->GetSize();
+	uint8_t bf_size = m_battlefield->GetSize();
 	attron(A_BOLD);
 	mvprintw(BF_ROW, BF_MARGIN, HORIZ_WALL.c_str());
-	for (unsigned int rowIndex = 0; rowIndex < bf_size; ++rowIndex)
+	for (uint8_t rowIndex = 0; rowIndex < bf_size; ++rowIndex)
 	{
 		mvprintw(BF_ROW + rowIndex + 1, BF_MARGIN, "#");
 		attroff(A_BOLD);
-		for (unsigned int colIndex = 0; colIndex < bf_size; ++colIndex) DrawField(rowIndex, colIndex);
+		for (uint8_t colIndex = 0; colIndex < bf_size; ++colIndex) DrawField(rowIndex, colIndex);
 		attron(A_BOLD);
 		printw("#");
 	}
@@ -45,14 +45,14 @@ void Display::DrawBattlefield()
 void Display::DrawPlayerInfo()
 {
 	std::string name = m_player->GetName();
-	int level = m_player->GetLevel();
-	int damage = m_player->GetDamage();
-	int HP = m_player->GetHP();
-	int maxHP = m_player->GetMaxHP();
-	int mana = m_player->GetMana();
-	int maxMana = m_player->GetMaxMana();
-	int exp = m_player->GetExp();
-	int expMax = m_player->GetExpMax();
+	uint8_t level = m_player->GetLevel();
+	uint8_t damage = m_player->GetDamage();
+	uint8_t HP = m_player->GetHP();
+	uint8_t maxHP = m_player->GetMaxHP();
+	uint8_t mana = m_player->GetMana();
+	uint8_t maxMana = m_player->GetMaxMana();
+	uint8_t exp = m_player->GetExp();
+	uint8_t expMax = m_player->GetExpMax();
 
 	std::string healthBar = ShowBar(HP, maxHP);
 	std::string manaBar = ShowBar(mana, maxMana);
@@ -77,10 +77,10 @@ void Display::DrawEnemyInfo()
 {
 	Monster * targetEnemy = m_player->GetTarget()->GetEnemy();
 	std::string name = targetEnemy->GetName();
-	int level = targetEnemy->GetLevel();
-	int damage = targetEnemy->GetDamage();
-	int HP = targetEnemy->GetHP();
-	int maxHP = targetEnemy->GetMaxHP();
+	uint8_t level = targetEnemy->GetLevel();
+	uint8_t damage = targetEnemy->GetDamage();
+	uint8_t HP = targetEnemy->GetHP();
+	uint8_t maxHP = targetEnemy->GetMaxHP();
 
 	std::string healthBar = ShowBar(HP, maxHP);
 
@@ -93,7 +93,7 @@ void Display::DrawEnemyInfo()
 
 
 
-char Display::DrawField(int rowIndex, int colIndex)
+char Display::DrawField(uint8_t rowIndex, uint8_t colIndex)
 {
 	Field *playerField = m_player->GetPosition();
 	Field *field = m_battlefield->GetField(rowIndex, colIndex);
@@ -148,13 +148,13 @@ void Display::ReduceCounters()
 
 
 
-std::string Display::ShowBar(int current, int max) const
+std::string Display::ShowBar(uint8_t current, uint8_t max) const
 {
-	int num;
+	uint8_t num;
 	std::string result = "[";
-	num = (current != 0 ? (int)( (double)current / max * BARWIDTH) : 0);
-	for (int i = 0; i < num; ++i) result += '#';
-	for (int i = 0; i < BARWIDTH - num; ++i) result += '.';
+	num = (current != 0 ? (uint8_t)( (double)current / max * BARWIDTH) : 0);
+	for (uint8_t i = 0; i < num; ++i) result += '#';
+	for (uint8_t i = 0; i < BARWIDTH - num; ++i) result += '.';
 	result += ']';
 	return result;
 }

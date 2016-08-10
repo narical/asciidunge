@@ -24,8 +24,8 @@ m_display( NULL )
 	Field *tempField = NULL;
 	while (true)
 	{
-		int row = rand() % m_battlefield->GetSize();
-		int col = rand() % m_battlefield->GetSize();
+		uint8_t row = rand() % m_battlefield->GetSize();
+		uint8_t col = rand() % m_battlefield->GetSize();
 		tempField = m_battlefield->GetField(row, col);
 		if (!tempField->HaveEnemy() && !tempField->HaveItem()) break;
 	}
@@ -77,17 +77,17 @@ void Player::Act(int input_key)
 
 void Player::LookAround()
 {
-	int radius	= m_sightRadius;
-	int column	= m_position->GetCol();
-	int row		= m_position->GetRow();
+	uint8_t radius	= m_sightRadius;
+	uint8_t column	= m_position->GetCol();
+	uint8_t row		= m_position->GetRow();
 
-	int leftBorder		= column;
-	int rightBorder		= column;
-	int topBorder		= row;
-	int bottomBorder	= row;
-	int maxCoord		= m_battlefield->GetSize() - 1;
+	uint8_t leftBorder		= column;
+	uint8_t rightBorder		= column;
+	uint8_t topBorder		= row;
+	uint8_t bottomBorder	= row;
+	uint8_t maxCoord		= m_battlefield->GetSize() - 1;
 
-	for (int delta = 1; delta <= radius; ++delta)   // Crop sight rectangle to battlefield
+	for (uint8_t delta = 1; delta <= radius; ++delta)   // Crop sight rectangle to battlefield
 	{
 		if (leftBorder - delta <= 0) leftBorder = 0; else --leftBorder;
 		if (rightBorder + delta >= maxCoord) rightBorder = maxCoord; else ++rightBorder;
@@ -95,8 +95,8 @@ void Player::LookAround()
 		if (bottomBorder + delta >= maxCoord) bottomBorder = maxCoord; else ++bottomBorder;
 	}
 
-	for (int tempRow = topBorder; tempRow <= bottomBorder; ++tempRow)
-		for (int tempColumn = leftBorder; tempColumn <= rightBorder; ++tempColumn)
+	for (uint8_t tempRow = topBorder; tempRow <= bottomBorder; ++tempRow)
+		for (uint8_t tempColumn = leftBorder; tempColumn <= rightBorder; ++tempColumn)
 			if ( InSightRadius(tempRow, tempColumn) )
 			{
 				Field *field = m_battlefield->GetField(tempRow, tempColumn);
@@ -111,8 +111,8 @@ void Player::Fight()
 {
 	Monster *enemy = GetTarget()->GetEnemy();
 	Player *player = this;
-	unsigned int monsterLevel = enemy->GetLevel();
-	unsigned int playerLevel = player->GetLevel();
+	uint8_t monsterLevel = enemy->GetLevel();
+	uint8_t playerLevel = player->GetLevel();
 
 	if (monsterLevel >= playerLevel)
 	{
@@ -170,11 +170,11 @@ void Player::LevelUp()
 }
 
 
-bool Player::InSightRadius(int testRow, int testColumn)
+bool Player::InSightRadius(uint8_t testRow, uint8_t testColumn)
 {
-	int column  = m_position->GetCol();
-	int row		= m_position->GetRow();
-	int radius  = m_sightRadius;
+	uint8_t column  = m_position->GetCol();
+	uint8_t row		= m_position->GetRow();
+	uint8_t radius  = m_sightRadius;
 	int deltaRow	= testRow - row;
 	int deltaColumn = testColumn - column;
 
@@ -182,7 +182,7 @@ bool Player::InSightRadius(int testRow, int testColumn)
 }
 
 
-void Player::SetMana(int newQuantity)
+void Player::SetMana(uint8_t newQuantity)
 {
 	m_mana = newQuantity;
 	//TODO: добавить проверку
@@ -195,19 +195,19 @@ void Player::SetManaFull()
 }
 
 
-void Player::AddMana(int delta)
+void Player::AddMana(uint8_t delta)
 {
 	m_mana = (m_mana + delta > m_maxMana ? m_maxMana : m_mana + delta);
 }
 
 
-void Player::LoseMana(int delta)
+void Player::LoseMana(uint8_t delta)
 {
 	m_mana = (m_mana - delta < 0 ? 0 : m_mana - delta);
 }
 
 
-void Player::SetHP(int newQuantity)
+void Player::SetHP(uint8_t newQuantity)
 {
 	m_HP = newQuantity;
 	//TODO: добавить проверку
@@ -220,13 +220,13 @@ void Player::SetHpFull()
 }
 
 
-void Player::AddHP(int delta)
+void Player::AddHP(uint8_t delta)
 {
 	m_HP = (m_HP + delta > m_maxHP ? m_maxHP : m_HP + delta);
 }
 
 
-void Player::LoseHP(int delta)
+void Player::LoseHP(uint8_t delta)
 {
 	m_HP = (m_HP - delta < 0 ? 0 : m_HP - delta);
 }
@@ -273,49 +273,49 @@ std::string Player::GetName() const
 }
 
 
-int Player::GetLevel() const
+uint8_t Player::GetLevel() const
 {
 	return m_level;
 }
 
 
-int Player::GetExp() const
+uint8_t Player::GetExp() const
 {
 	return m_exp;
 }
 
 
-int Player::GetExpMax() const
+uint8_t Player::GetExpMax() const
 {
 	return m_expMax;
 }
 
 
-int Player::GetDamage() const
+uint8_t Player::GetDamage() const
 {
 	return m_damage;
 }
 
 
-int Player::GetHP() const
+uint8_t Player::GetHP() const
 {
 	return m_HP;
 }
 
 
-int Player::GetMaxHP() const
+uint8_t Player::GetMaxHP() const
 {
 	return m_maxHP;
 }
 
 
-int Player::GetMana() const
+uint8_t Player::GetMana() const
 {
 	return m_mana;
 }
 
 
-int Player::GetMaxMana() const
+uint8_t Player::GetMaxMana() const
 {
 	return m_maxMana;
 }

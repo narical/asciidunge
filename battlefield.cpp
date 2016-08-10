@@ -10,11 +10,11 @@
 
 Battlefield::Battlefield()
 {
-	unsigned int maxItemsCount = rand() % 5 + 5;
+	uint8_t maxItemsCount = rand() % 5 + 5;
 	m_enemies.reserve(MAX_ENEMY_COUNT);
 
-	for (int row = 0; row < BF_SIZE; ++row)
-		for (int column = 0; column < BF_SIZE; ++column)
+	for (uint8_t row = 0; row < BF_SIZE; ++row)
+		for (uint8_t column = 0; column < BF_SIZE; ++column)
 			m_field[row][column] = new Field(row, column); //TODO: free memory in destructor
 
 	CreateEnemy(1,10);
@@ -28,20 +28,20 @@ Battlefield::Battlefield()
 	CreateEnemy(9,2);
 	CreateEnemy(10,1);
     
-  unsigned int enemiesToSpawn = MAX_ENEMY_COUNT;
+  uint8_t enemiesToSpawn = MAX_ENEMY_COUNT;
   while (enemiesToSpawn > 0)
 	{
-		int row = rand() % BF_SIZE;
-		int col = rand() % BF_SIZE;
+		uint8_t row = rand() % BF_SIZE;
+		uint8_t col = rand() % BF_SIZE;
 		if ( m_field[row][col]->HaveEnemy() ) continue;
     m_field[row][col]->SpawnEnemy( &this->m_enemies[ --enemiesToSpawn ] );
 	}
 
 
-	for (unsigned int i = 0; i < maxItemsCount; ++i)
+	for (uint8_t i = 0; i < maxItemsCount; ++i)
 	{
-		int row = rand() % BF_SIZE;
-		int col = rand() % BF_SIZE;
+		uint8_t row = rand() % BF_SIZE;
+		uint8_t col = rand() % BF_SIZE;
 		m_field[row][col]->SpawnItem();
 	}
 }
@@ -49,10 +49,10 @@ Battlefield::Battlefield()
 
 Field * Battlefield::GetNextField(Field * currentField, direction dir) const
 {
-	int currentCol = currentField->GetCol();
-	int currentRow = currentField->GetRow();
-	int nextCol = currentCol;
-	int nextRow = currentRow;
+	uint8_t currentCol = currentField->GetCol();
+	uint8_t currentRow = currentField->GetRow();
+	uint8_t nextCol = currentCol;
+	uint8_t nextRow = currentRow;
 
 	switch (dir)
 	{
@@ -73,7 +73,7 @@ Field * Battlefield::GetNextField(Field * currentField, direction dir) const
 }
 
 
-Field * Battlefield::GetField(int row, int col) const
+Field * Battlefield::GetField(uint8_t row, uint8_t col) const
 {
 	return m_field[row][col];
 }
@@ -85,7 +85,7 @@ void Battlefield::SetPlayer(Player * plr)
 }
 
 
-unsigned int Battlefield::GetSize() const
+uint8_t Battlefield::GetSize() const
 {
 	return BF_SIZE;
 }
@@ -97,15 +97,15 @@ std::vector<Monster> * Battlefield::GetEnemies()
 }
 
 
-void Battlefield::CreateEnemy(int level, int quantity)
+void Battlefield::CreateEnemy(uint8_t level, uint8_t quantity)
 {
-	 for (int i = 0; i < quantity; ++i) m_enemies.push_back(Monster(level));
+	 for (uint8_t i = 0; i < quantity; ++i) m_enemies.push_back(Monster(level));
 }
 
 Battlefield::~Battlefield()
 {
-	for (int row = 0; row < BF_SIZE; ++row)
-		for (int column = 0; column < BF_SIZE; ++column)
+	for (uint8_t row = 0; row < BF_SIZE; ++row)
+		for (uint8_t column = 0; column < BF_SIZE; ++column)
 			delete(m_field[row][column]);
 
 	//for (unsigned int i = 0; i < m_enemies.size(); ++i) delete(m_enemies[i]); Ask A1eks what to to

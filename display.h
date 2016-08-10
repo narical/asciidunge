@@ -25,13 +25,13 @@ enum EventType {LVLUP};
 
 class Display
 {
-	static const unsigned int BARWIDTH = 20;
-	static const unsigned int BF_ROW = 1;
-	static const unsigned int PLAYER_ROW = 1;
-	static const unsigned int ENEMY_ROW = 14;
-	static const unsigned int BF_MARGIN = 2;
-	static const unsigned int INFO_MARGIN = 26;
-	static const unsigned int BAR_MARGIN = 45;
+	static const uint8_t BARWIDTH = 20;
+	static const uint8_t BF_ROW = 1;
+	static const uint8_t PLAYER_ROW = 1;
+	static const uint8_t ENEMY_ROW = 14;
+	static const uint8_t BF_MARGIN = 2;
+	static const uint8_t INFO_MARGIN = 26;
+	static const uint8_t BAR_MARGIN = 45;
 
 	public:
 		Display ( Battlefield * btl, Player * plr );
@@ -44,20 +44,20 @@ class Display
 		static void NcursesShutdown();
 
 	private:
-		unsigned int m_levelUpCounter;
+		uint8_t m_levelUpCounter;
 		Battlefield * m_battlefield;
 		Player * m_player;
 		Monster * m_enemy;
 		std::string HORIZ_WALL;
 
-		std::string ShowBar(int, int) const;
+		std::string ShowBar(uint8_t, uint8_t) const;
 		void ReduceCounters();
 		void CheckEvent(EventType);
 		void EndCheck();
 		void DrawBattlefield();
 		void DrawPlayerInfo();
 		void DrawEnemyInfo();
-		char DrawField(int, int);
+		char DrawField(uint8_t, uint8_t);
 };
 
 #endif // _DISPLAY_H_

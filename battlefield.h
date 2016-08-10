@@ -17,16 +17,16 @@ class Field;
 enum direction {LEFT, RIGHT, UP, DOWN};
 
 class Battlefield {
-	static const unsigned int BF_SIZE = 20;
-	static const unsigned int MAX_ENEMY_COUNT = 39;
+	static const uint8_t BF_SIZE = 20;
+	static const uint8_t MAX_ENEMY_COUNT = 39;
 
 	public:
 		Battlefield();
 		~Battlefield();
-	 	void CreateEnemy(int, int);
-		Field * GetField(int, int) const;
+	 	void CreateEnemy(uint8_t, uint8_t);
+		Field * GetField(uint8_t, uint8_t) const;
 		Field * GetNextField(Field *, direction) const;
-		unsigned int GetSize() const; 
+		uint8_t GetSize() const; 
 		void SetPlayer(Player *);
 		std::vector<Monster> * GetEnemies();
 		 

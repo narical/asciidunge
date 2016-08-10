@@ -20,16 +20,16 @@ class Display;
 #include "player.h"
 #include "display.h"
 
-class Game {
-public:
-	Game ();
-	void Run();
-	void GetPlayerInput(Player *);
-	bool CheckVictory();
-	void Victory();
-	void Defeat();
-	static void Run_RNG();
-	static void Test(std::string);
+class Game
+{
+	public:
+		Game ();
+		void Run();
+		void GetPlayerInput(Player *);
+		bool CheckVictory();
+		void Victory();
+		void Defeat();
+		static void Run_RNG();
 };
 
 #endif // _GAME_H_

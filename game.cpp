@@ -85,10 +85,3 @@ void Game::Run_RNG()
 {
 	srand( time(0) );
 }
-
-void Game::Test(std::string testString)
-{
-	std::cout << testString;
-	int num;
-	std::cin >> num;
-}

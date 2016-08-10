@@ -16,31 +16,31 @@ class Battlefield;
 
 class Field
 {
-	static const unsigned int HP_PER_FIELD = 2;
-	static const unsigned int MANA_PER_FIELD = 2;
+	static const uint8_t HP_PER_FIELD = 2;
+	static const uint8_t MANA_PER_FIELD = 2;
 	
 	public:
-		Field (int, int);
+		Field (uint8_t, uint8_t);
 		void MakeVisible();
 		void SpawnEnemy(Monster *);
 		void SpawnItem();
-		int GetHP();
-		int GetMana();
+		uint8_t GetHP();
+		uint8_t GetMana();
 		bool HaveEnemy();
 		bool HaveItem();
 		bool IsVisible();
 		Monster * GetEnemy();
 		std::string GetItem();
-		int GetCol();
-		int GetRow();
+		uint8_t GetCol();
+		uint8_t GetRow();
 		
 	private:
-		int m_coordCol;
-		int m_coordRow;
+		uint8_t m_coordCol;
+		uint8_t m_coordRow;
 		Monster * m_enemy;
 		std::string m_item;
-		int m_mana;
-		int m_HP;
+		uint8_t m_mana;
+		uint8_t m_HP;
 		bool m_visible;
 };
 

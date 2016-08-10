@@ -18,31 +18,31 @@ class Monster;
 
 class Player
 {
-	static const unsigned int START_LEVEL =		1;
-	static const unsigned int START_EXP =		0;
-	static const unsigned int START_MAX_EXP =	4;
-	static const unsigned int START_DAMAGE =	5;
-	static const unsigned int START_MAX_HP =	10;
-	static const unsigned int START_MAX_MANA =	10;
-	static const unsigned int SIGHT_RADIUS =	2;
+	static const uint8_t START_LEVEL =		1;
+	static const uint8_t START_EXP =		0;
+	static const uint8_t START_MAX_EXP =	4;
+	static const uint8_t START_DAMAGE =		5;
+	static const uint8_t START_MAX_HP =		10;
+	static const uint8_t START_MAX_MANA =	10;
+	static const uint8_t SIGHT_RADIUS =		2;
 
-	static const unsigned int ADD_MAXHP_PER_LVL =   10;
-	static const unsigned int ADD_DAMAGE_PER_LVL =	5;
-	static const unsigned int EXP_TO_NEXT_LVL_MULTIPLIER =	2;
+	static const uint8_t ADD_MAXHP_PER_LVL =   10;
+	static const uint8_t ADD_DAMAGE_PER_LVL =	5;
+	static const uint8_t EXP_TO_NEXT_LVL_MULTIPLIER = 2;
 
 	public:
 		Player(Battlefield *);
 		void Act(int);
 		void LookAround();
 		void Move(Field *);
-		void SetMana(int);
+		void SetMana(uint8_t);
 		void SetManaFull();
-		void AddMana(int);
-		void LoseMana(int);
-		void SetHP(int);
+		void AddMana(uint8_t);
+		void LoseMana(uint8_t);
+		void SetHP(uint8_t);
 		void SetHpFull();
-		void AddHP(int);
-		void LoseHP(int);
+		void AddHP(uint8_t);
+		void LoseHP(uint8_t);
 		void GainExp(Monster *);
 		void LevelUp();
 		void SetTarget(Field *);
@@ -52,14 +52,14 @@ class Player
 		Field* GetTarget() const;
 		Field* GetPosition() const;
 		std::string GetName() const;
-		int GetLevel() const;
-		int GetExp() const;
-		int GetExpMax() const;
-		int GetDamage() const;
-		int GetHP() const;
-		int GetMaxHP() const;
-		int GetMana() const;
-		int GetMaxMana() const;
+		uint8_t GetLevel() const;
+		uint8_t GetExp() const;
+		uint8_t GetExpMax() const;
+		uint8_t GetDamage() const;
+		uint8_t GetHP() const;
+		uint8_t GetMaxHP() const;
+		uint8_t GetMana() const;
+		uint8_t GetMaxMana() const;
 
 		bool IsAlive() const;
 		bool HaveTarget() const;
@@ -68,13 +68,13 @@ class Player
 		 
 	private:
 		std::string m_name;
-		int m_level;
-		int m_exp;
-		int m_expMax;
-		int m_damage;
-		int m_HP, m_maxHP;
-		int m_mana, m_maxMana;
-		int m_sightRadius;
+		uint8_t m_level;
+		uint8_t m_exp;
+		uint8_t m_expMax;
+		uint8_t m_damage;
+		uint8_t m_HP, m_maxHP;
+		uint8_t m_mana, m_maxMana;
+		uint8_t m_sightRadius;
 
 		Battlefield *m_battlefield;
 		Field *m_position;
@@ -82,7 +82,7 @@ class Player
 		Display *m_display;
 
 
-		bool InSightRadius(int, int);
+		bool InSightRadius(uint8_t, uint8_t);
 };
 
 #endif // _PLAYER_H_

@@ -7,7 +7,7 @@
 
 #include "field.h"
 
-Field::Field(int row, int col) :
+Field::Field(uint8_t row, uint8_t col) :
 	m_coordCol(col),
 	m_coordRow(row),
 	m_enemy(NULL),
@@ -18,12 +18,12 @@ Field::Field(int row, int col) :
 { }
 
 
-int Field::GetRow()
+uint8_t Field::GetRow()
 {
 	return m_coordRow;
 }
 
-int Field::GetCol()
+uint8_t Field::GetCol()
 {
 	return m_coordCol;
 }
@@ -68,17 +68,17 @@ bool Field::IsVisible()
  return m_visible;
 }
 
-int Field::GetMana()
+uint8_t Field::GetMana()
 {
-	int res = m_mana;
+	uint8_t res = m_mana;
 	m_mana = 0;
 	return res;
 }
 
 
-int Field::GetHP()
+uint8_t Field::GetHP()
 {
-	int res = m_HP;
+	uint8_t res = m_HP;
 	m_HP = 0;
 	return res;
 }

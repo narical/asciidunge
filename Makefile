@@ -1,7 +1,7 @@
 #compiler
 CC=g++
 #compiler options
-OPTS=-c -Wall
+OPTS=-c -Wall -ggdb
 #source files
 SOURCES=$(wildcard *.cpp )
 #object files
@@ -14,6 +14,9 @@ EXECUTABLE=asciidunge
 #$@ - is the result name (in this case =$(EXECUTABLE) )
 
 all: $(EXECUTABLE)
+
+$(OBJECTS): $(SOURCES)
+	$(CC) $(OPTS) $^
 
 $(EXECUTABLE): $(OBJECTS)
 	$(LINK.o) $^ -o $@ $(LIBS)

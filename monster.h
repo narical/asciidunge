@@ -21,33 +21,33 @@ class Field;
 class Monster
 {
 public:
-	Monster(int);
-	static int s_Quantity;
+	Monster(uint8_t);
+	static uint8_t s_Quantity;
 	void Attack(Player *);
-	void AddHP(int);
+	void AddHP(uint8_t);
 	void TakeDamage(Player *);
 	bool IsDead();
 	bool IsAlive();
 
 	std::string GetName() const;
-	int GetLevel() const;
-	int GetDamage() const;
-	int GetHP() const;
-	int GetMaxHP() const;
+	uint8_t GetLevel() const;
+	uint8_t GetDamage() const;
+	uint8_t GetHP() const;
+	uint8_t GetMaxHP() const;
 	 
 private:
 
-	int m_level;
-	int m_exp;
-	int m_damage;
-	int m_HP;
-	int m_maxHP;
+	uint8_t m_level;
+	uint8_t m_exp;
+	uint8_t m_damage;
+	uint8_t m_HP;
+	uint8_t m_maxHP;
 	Field * m_field;
 	std::string m_name;
 	bool m_isDead;
 	
-	int CalculateDamage(int);
-	int CalculateMaxHP(int);
+	uint8_t CalculateDamage(uint8_t);
+	uint8_t CalculateMaxHP(uint8_t);
 };
 
 #endif // _MONSTER_H_
