@@ -21,6 +21,7 @@ class Field
 	
 	public:
 		Field (uint8_t, uint8_t);
+//		Field (const Field &);
 		void MakeVisible();
 		void SpawnEnemy(Monster *);
 		void SpawnItem();

@@ -32,6 +32,7 @@ class Player
 
 	public:
 		Player(Battlefield *);
+//		Player(const Player &);
 		void Act(int);
 		void LookAround();
 		void Move(Field *);
@@ -47,7 +48,6 @@ class Player
 		void LevelUp();
 		void SetTarget(Field *);
 		void SetDisplay(Display *);
-		void Fight();
 
 		Field* GetTarget() const;
 		Field* GetPosition() const;
@@ -81,8 +81,9 @@ class Player
 		Field *m_target;
 		Display *m_display;
 
-
 		bool InSightRadius(uint8_t, uint8_t);
+		void CalculateFutureFight();
+		void Fight(Player *, Monster *);	//TODO: move to Game class
 };
 
 #endif // _PLAYER_H_

@@ -22,6 +22,7 @@ class Monster
 {
 public:
 	Monster(uint8_t);
+//	Monster(const Monster &);
 	static uint8_t s_Quantity;
 	void Attack(Player *);
 	void AddHP(uint8_t);

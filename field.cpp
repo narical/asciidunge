@@ -18,6 +18,20 @@ Field::Field(uint8_t row, uint8_t col) :
 { }
 
 
+/*
+Field::Field (const Field &f)
+{
+	m_coordCol = f.m_coordCol;
+	m_coordRow = f.m_coordRow;
+	m_enemy = NULL;				//new Monster(*(f.m_enemy));
+	m_item = f.m_item;			//TODO: FIX AFTER "ITEM" CLASS IMPLEMENTATION !
+	m_mana = f.m_mana;
+	m_HP = f.m_HP;
+	m_visible = f.m_visible;	
+}
+*/
+
+
 uint8_t Field::GetRow()
 {
 	return m_coordRow;

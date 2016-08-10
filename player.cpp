@@ -33,6 +33,30 @@ m_display( NULL )
 }
 
 
+
+/*
+Player::Player (const Player &p)
+{
+	m_name = p.m_name;
+	m_level = p.m_level;
+	m_exp = p.m_exp;
+	m_expMax = p.m_expMax;
+	m_damage = p.m_damage;
+	m_HP = p.m_HP;
+	m_maxHP = p.m_maxHP;
+	m_mana = p.m_mana;
+	m_maxMana = p.m_maxMana;
+	m_sightRadius = p.m_sightRadius;
+
+	m_battlefield = p.m_battlefield;
+	m_display = p.m_display;
+	m_position = p.m_position;
+	m_target = NULL;
+}
+*/
+
+
+
 void Player::Act(int input_key)
 {
 	Field *currentField = m_position;
@@ -41,33 +65,30 @@ void Player::Act(int input_key)
 
 	switch(input_key)
 	{
-		case KEY_LEFT:
-			nextField = m_battlefield->GetNextField(currentField, LEFT);
-			break;
-		case KEY_RIGHT:
-			nextField = m_battlefield->GetNextField(currentField, RIGHT);
-			break;
-		case KEY_UP:
-			nextField = m_battlefield->GetNextField(currentField, UP);
-			break;
-		case KEY_DOWN:
-			nextField = m_battlefield->GetNextField(currentField, DOWN);
+		case KEY_LEFT:  nextField = m_battlefield->GetNextField(currentField, LEFT); break;
+		case KEY_RIGHT:	nextField = m_battlefield->GetNextField(currentField, RIGHT); break;
+		case KEY_UP:	nextField = m_battlefield->GetNextField(currentField, UP); break;
+		case KEY_DOWN:  nextField = m_battlefield->GetNextField(currentField, DOWN);
 	}
 
-	if (nextField != currentField) // if we're moving somewhere
+	if (nextField != currentField) //if we're moving somewhere
 	{
 		if (nextField == targetField) //where our target is
 		{
-			Fight(); //Kill'em!
+			Fight(this, targetField->GetEnemy()); //Kill'em!
 		}
 		else //if target was somewhere else
 		{
 			SetTarget(NULL); //forget about it
 
-			if (nextField->HaveEnemy()) SetTarget(nextField); //and select new target if any
+			if (nextField->HaveEnemy()) // select new target if any
+			{
+				SetTarget(nextField); 
+				CalculateFutureFight(); // calculate future fight
+			}
 			else
 			{
-				m_position = nextField; //if not - move there and look around
+				m_position = nextField; //if there's no enemy - move there and look around
 				LookAround();
 			}
 		}
@@ -107,10 +128,8 @@ void Player::LookAround()
 }
 
 
-void Player::Fight()
+void Player::Fight(Player * player, Monster * enemy)
 {
-	Monster *enemy = GetTarget()->GetEnemy();
-	Player *player = this;
 	uint8_t monsterLevel = enemy->GetLevel();
 	uint8_t playerLevel = player->GetLevel();
 
@@ -142,6 +161,16 @@ void Player::Fight()
 			enemy->Attack(player);			
 		}
 	}
+}
+
+
+void Player::CalculateFutureFight()
+{   
+	Monster *tempEnemy = new Monster( *( GetTarget()->GetEnemy() ) );
+	Player *tempPlayer = new Player( *this );
+	tempPlayer->Fight(tempPlayer, tempEnemy);
+	delete(tempEnemy);
+	delete(tempPlayer);
 }
 
 
