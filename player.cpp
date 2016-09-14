@@ -149,7 +149,8 @@ void Player::LevelUp()
  	 	SetHpFull();
  	 	SetManaFull();
  	}
-	m_display->SendEvent(LVLUP);
+	// lvl-up animation works only if "real" player gets level-up
+	if (this == m_battlefield->GetPlayer()) m_display->SendEvent(LVLUP);
 }
 
 

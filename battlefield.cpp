@@ -135,8 +135,8 @@ void Battlefield::Fight(Player * player, Monster * enemy)
 
 void Battlefield::CalculateNextFight()
 {
-	//if (m_playerCopy != 0) delete m_playerCopy;
-	//if (m_enemyCopy != 0) delete m_enemyCopy;
+	if (m_playerCopy != 0) delete m_playerCopy;
+	if (m_enemyCopy != 0) delete m_enemyCopy;
 	m_playerCopy = new Player( *m_player );
 	m_enemyCopy = new Monster( *( m_player->GetTarget()->GetEnemy() ) );
 	
@@ -147,6 +147,12 @@ void Battlefield::CalculateNextFight()
 void Battlefield::CreateEnemy(uint8_t level, uint8_t quantity)
 {
 	 for (uint8_t i = 0; i < quantity; ++i) m_enemies.push_back(Monster(level));
+}
+
+
+Player * Battlefield::GetPlayer()
+{
+	return m_player;
 }
 
 

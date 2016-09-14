@@ -28,6 +28,7 @@ class Battlefield {
 		Field * GetNextField(Field *, direction) const;
 		uint8_t GetSize() const; 
 		void SetPlayer(Player *);
+		Player * GetPlayer();
 		Player * GetPlayerCopy();
 		Monster * GetEnemyCopy();
 		void Fight(Player *, Monster *);
