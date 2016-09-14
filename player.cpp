@@ -75,7 +75,7 @@ void Player::Act(int input_key)
 		if (nextField == targetField) //where our target is
 		{
 			m_battlefield->Fight(this, targetField->GetEnemy()); //Kill'em!
-			if ( HaveTarget() ) m_battlefield->CalculateFutureFight(); //if enemy still alive calculate next fight
+			if ( HaveTarget() ) m_battlefield->CalculateNextFight(); //if enemy still alive
 		}
 		else //if target was somewhere else
 		{
@@ -84,7 +84,7 @@ void Player::Act(int input_key)
 			if (nextField->HaveEnemy()) // select new target if any
 			{
 				SetTarget(nextField); 
-				m_battlefield->CalculateFutureFight(); // calculate future fight
+				m_battlefield->CalculateNextFight();
 			}
 			else
 			{

@@ -31,7 +31,7 @@ class Battlefield {
 		Player * GetPlayerCopy();
 		Monster * GetEnemyCopy();
 		void Fight(Player *, Monster *);
-		void CalculateFutureFight();
+		void CalculateNextFight();
 
 		std::vector<Monster> * GetEnemies();
 		 

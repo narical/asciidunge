@@ -133,7 +133,7 @@ void Battlefield::Fight(Player * player, Monster * enemy)
 }
 
 
-void Battlefield::CalculateFutureFight()
+void Battlefield::CalculateNextFight()
 {
 	//if (m_playerCopy != 0) delete m_playerCopy;
 	//if (m_enemyCopy != 0) delete m_enemyCopy;
