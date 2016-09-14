@@ -28,12 +28,23 @@ class Battlefield {
 		Field * GetNextField(Field *, direction) const;
 		uint8_t GetSize() const; 
 		void SetPlayer(Player *);
+		Player * GetPlayerCopy();
+		Monster * GetEnemyCopy();
+		void Fight(Player *, Monster *);
+		void CalculateFutureFight();
+
 		std::vector<Monster> * GetEnemies();
 		 
 	private:
 		Field *m_field[BF_SIZE][BF_SIZE];
 		Player *m_player;
 		std::vector<Monster> m_enemies;
+		
+		// to store possible fight results
+		Player *m_playerCopy;
+		Monster *m_enemyCopy;
+		
+		
 };
 
 #endif // _BATTLEFIELD_H_

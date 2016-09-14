@@ -33,7 +33,6 @@ m_display( NULL )
 }
 
 
-
 /*
 Player::Player (const Player &p)
 {
@@ -75,7 +74,7 @@ void Player::Act(int input_key)
 	{
 		if (nextField == targetField) //where our target is
 		{
-			Fight(this, targetField->GetEnemy()); //Kill'em!
+			m_battlefield->Fight(this, targetField->GetEnemy()); //Kill'em!
 		}
 		else //if target was somewhere else
 		{
@@ -84,7 +83,7 @@ void Player::Act(int input_key)
 			if (nextField->HaveEnemy()) // select new target if any
 			{
 				SetTarget(nextField); 
-				CalculateFutureFight(); // calculate future fight
+				m_battlefield->CalculateFutureFight(); // calculate future fight
 			}
 			else
 			{
@@ -125,52 +124,6 @@ void Player::LookAround()
 				AddMana(field->GetMana());
 				AddHP(field->GetHP());
 			}
-}
-
-
-void Player::Fight(Player * player, Monster * enemy)
-{
-	uint8_t monsterLevel = enemy->GetLevel();
-	uint8_t playerLevel = player->GetLevel();
-
-	if (monsterLevel >= playerLevel)
-	{
-		enemy->Attack(player);
-
-		if (player->IsAlive())
-		{
-			enemy->TakeDamage(player);
-
-			if (enemy->IsDead())
-			{
-				player->GainExp(enemy);
-				player->SetTarget(NULL);
-			}
-		}
-	}
-	else
-	{
-		enemy->TakeDamage(player);
-		if (enemy->IsDead())
-		{
-			player->GainExp(enemy);
-			player->SetTarget(NULL);
-		}
-		else
-		{
-			enemy->Attack(player);			
-		}
-	}
-}
-
-
-void Player::CalculateFutureFight()
-{   
-	Monster *tempEnemy = new Monster( *( GetTarget()->GetEnemy() ) );
-	Player *tempPlayer = new Player( *this );
-	tempPlayer->Fight(tempPlayer, tempEnemy);
-	delete(tempEnemy);
-	delete(tempPlayer);
 }
 
 

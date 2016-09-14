@@ -3,9 +3,14 @@ Small ascii roguelike game
 *ncurses-based console "Desktop Dungeon" clone*
 
 ## Internal TO-DO list:
+- make enemy spawning more sparse
+- make future fight calculations store in BF class member variables
 
 ## Latest changes
++ add switching frames with current fight state and future state
 + add future fight calculation on enemy select
++ move Fight() and CalculateFutureFight() to "Battlefield" class
++ add Battlefield.playerCopy and Battlefield.enemyCopy pointers 
 + change all unsigned int to uint8
 + added first strike priority based on level comparison
 + Implemented separate Player::Fight() function

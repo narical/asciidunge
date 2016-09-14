@@ -20,7 +20,7 @@ class Field;
 #include <ncurses.h>
 #include <unistd.h>
 #include "field.h"
-enum Frametype {ODD, EVEN};
+enum Frametype {CURRENT, FUTURE};
 enum EventType {LVLUP};
 
 class Display
@@ -48,10 +48,12 @@ class Display
 		Battlefield * m_battlefield;
 		Player * m_player;
 		Monster * m_enemy;
+		Frametype m_frame;
 		std::string HORIZ_WALL;
 
 		std::string ShowBar(uint8_t, uint8_t) const;
 		void ReduceCounters();
+		void SwitchFrameType();
 		void CheckEvent(EventType);
 		void EndCheck();
 		void DrawBattlefield();

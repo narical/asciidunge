@@ -82,8 +82,6 @@ class Player
 		Display *m_display;
 
 		bool InSightRadius(uint8_t, uint8_t);
-		void CalculateFutureFight();
-		void Fight(Player *, Monster *);	//TODO: move to Game class
 };
 
 #endif // _PLAYER_H_

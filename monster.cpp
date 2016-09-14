@@ -28,6 +28,22 @@ Monster::Monster(uint8_t monsterLevel) : m_level( monsterLevel ), m_isDead(0)
 }
 
 
+/*
+Monster::Monster(const Monster &p)
+{
+	m_level = p.m_level;
+	m_exp = p.m_exp;
+	m_damage = p.m_damage;
+	m_HP = p.m_HP;
+	m_maxHP = p.m_maxHP;	
+	m_field = NULL;
+	m_name = "111"; //p.m_name;
+	m_isDead = p.m_isDead;
+}
+*/
+
+
+
 uint8_t Monster::CalculateDamage(uint8_t monsterLevel)
 {
 	return (uint8_t)((monsterLevel * (monsterLevel + 5)) / 2);

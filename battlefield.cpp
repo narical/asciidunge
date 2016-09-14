@@ -8,7 +8,7 @@
 #include "battlefield.h"
 
 
-Battlefield::Battlefield()
+Battlefield::Battlefield() : m_playerCopy(0), m_enemyCopy(0)
 {
 	uint8_t maxItemsCount = rand() % 5 + 5;
 	m_enemies.reserve(MAX_ENEMY_COUNT);
@@ -97,10 +97,70 @@ std::vector<Monster> * Battlefield::GetEnemies()
 }
 
 
+void Battlefield::Fight(Player * player, Monster * enemy)
+{
+	uint8_t monsterLevel = enemy->GetLevel();
+	uint8_t playerLevel = player->GetLevel();
+
+	if (monsterLevel >= playerLevel)
+	{
+		enemy->Attack(player);
+
+		if (player->IsAlive())
+		{
+			enemy->TakeDamage(player);
+
+			if (enemy->IsDead())
+			{
+				player->GainExp(enemy);
+				player->SetTarget(NULL);
+			}
+		}
+	}
+	else
+	{
+		enemy->TakeDamage(player);
+		if (enemy->IsDead())
+		{
+			player->GainExp(enemy);
+			player->SetTarget(NULL);
+		}
+		else
+		{
+			enemy->Attack(player);			
+		}
+	}
+}
+
+
+void Battlefield::CalculateFutureFight()
+{
+	//if (m_playerCopy != 0) delete m_playerCopy;
+	//if (m_enemyCopy != 0) delete m_enemyCopy;
+	m_playerCopy = new Player( *m_player );
+	m_enemyCopy = new Monster( *( m_player->GetTarget()->GetEnemy() ) );
+	
+	Fight(m_playerCopy, m_enemyCopy);
+}
+
+
 void Battlefield::CreateEnemy(uint8_t level, uint8_t quantity)
 {
 	 for (uint8_t i = 0; i < quantity; ++i) m_enemies.push_back(Monster(level));
 }
+
+
+Player * Battlefield::GetPlayerCopy()
+{
+	return m_playerCopy;
+}
+
+
+Monster * Battlefield::GetEnemyCopy()
+{
+	return m_enemyCopy;
+}
+
 
 Battlefield::~Battlefield()
 {
