@@ -6,6 +6,7 @@
  */
 
 #include "player.h"
+#include "powerup.h"
 
 
 Player::Player (Battlefield *btl) :
@@ -166,6 +167,26 @@ bool Player::InSightRadius(uint8_t testRow, uint8_t testColumn)
 }
 
 
+void Player::IncreaseMaxHP(uint8_t delta)
+{
+	m_maxHP += delta;
+	AddHP(delta);
+}
+
+
+void Player::IncreaseMaxMana(uint8_t delta)
+{
+	m_maxMana += delta;
+	AddMana(delta);
+}
+
+
+void Player::IncreaseDamage(uint8_t delta)
+{
+	m_damage += delta;
+}
+
+
 void Player::SetMana(uint8_t newQuantity)
 {
 	m_mana = newQuantity;
@@ -246,10 +267,17 @@ bool Player::IsAlive() const
 }
 
 
+bool Player::IsDead() const
+{
+	return !IsAlive();
+}
+
+
 bool Player::HaveTarget() const
 {
 	return (m_target != NULL);
 }
+
 
 std::string Player::GetName() const
 {

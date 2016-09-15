@@ -45,9 +45,18 @@ void Display::DrawBattlefield()
 
 void Display::DrawPlayerInfo()
 {
+	Player * plr_copy = NULL;
 	Player * plr = NULL;
-	if (m_player->HaveTarget() && m_frame == FUTURE)
-		plr = m_battlefield->GetPlayerCopy();
+	Monster * enemy_copy = NULL;
+
+	if (m_player->HaveTarget())
+	{
+		plr_copy = m_battlefield->GetPlayerCopy();
+		enemy_copy = m_battlefield->GetEnemyCopy();
+	}
+
+	if (plr_copy != NULL && m_frame == FUTURE)
+		plr = plr_copy;
 	else
 		plr = m_player;
 		 
@@ -76,6 +85,15 @@ void Display::DrawPlayerInfo()
 	mvprintw(PLAYER_ROW + 0, BAR_MARGIN, "%s", expBar.c_str());
 	mvprintw(PLAYER_ROW + 1, BAR_MARGIN, "%s", manaBar.c_str());
 	mvprintw(PLAYER_ROW + 7, BAR_MARGIN, "%s", healthBar.c_str());
+
+	if (plr_copy != NULL)
+	{
+		std::string prediction;
+		if (plr_copy->IsAlive() && enemy_copy->IsAlive()) prediction = "SAFE";
+		else if (plr_copy->IsDead() && enemy_copy->IsAlive()) prediction = "DEATH !!!";
+		else if (plr_copy->IsAlive() && enemy_copy->IsDead()) prediction = "Victory!";
+		mvprintw(PLAYER_ROW + 9, BAR_MARGIN, "%s", prediction.c_str());
+	}
 }
 
 
@@ -122,14 +140,36 @@ char Display::DrawField(uint8_t rowIndex, uint8_t colIndex)
 	 	 	else printw("%d", field->GetEnemy()->GetLevel());
 			attroff(A_BOLD);
 	 	}
-		else if (field != playerField && field->HaveItem()) printw("*");
+	 	else if (field != playerField && field->HavePowerUp())
+	 		{
+	 			switch (field->GetPowerup()->GetType())
+	 			{
+	 				case HEALTH:
+	 					printw("+");
+	 					break;
+	 					
+	 				case MANA:
+	 					printw("x");
+	 					break;
+	 					
+	 				case DAMAGE:
+	 					printw("*");
+	 			}
+	 		}
+	 	else if (field == playerField && field->HavePowerUp())
+		{
+			attron(A_BOLD);
+			printw("@");
+			attroff(A_BOLD);
+		}	 	
+		else if (field != playerField && field->HaveItem()) printw("i");
 		else if (field == playerField && !field->HaveItem())
 		{
 			CheckEvent(LVLUP);
 			printw("@");
 			EndCheck();
 		}
-		else if (field == m_player->GetPosition() && field->HaveItem())
+		else if (field == playerField && field->HaveItem())
 		{
 			attron(A_BOLD);
 			printw("@");

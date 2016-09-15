@@ -9,10 +9,12 @@
 #define _FIELD_H_
 
 class Monster;
+class PowerUp;
 class Battlefield;
 #include <iostream>
 #include <string>
 #include "monster.h"
+#include "powerup.h"
 
 class Field
 {
@@ -25,20 +27,24 @@ class Field
 		void MakeVisible();
 		void SpawnEnemy(Monster *);
 		void SpawnItem();
+		void SpawnPowerUp(PowerUp *);
 		uint8_t GetHP();
 		uint8_t GetMana();
 		bool HaveEnemy();
+		bool HavePowerUp();
 		bool HaveItem();
 		bool IsVisible();
-		Monster * GetEnemy();
-		std::string GetItem();
-		uint8_t GetCol();
-		uint8_t GetRow();
+		Monster * GetEnemy() const;
+		PowerUp * GetPowerup() const;
+		std::string GetItem() const;
+		uint8_t GetCol() const;
+		uint8_t GetRow() const;
 		
 	private:
 		uint8_t m_coordCol;
 		uint8_t m_coordRow;
 		Monster * m_enemy;
+		PowerUp * m_powerup;
 		std::string m_item;
 		uint8_t m_mana;
 		uint8_t m_HP;

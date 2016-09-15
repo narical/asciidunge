@@ -46,6 +46,9 @@ class Player
 		void LoseHP(uint8_t);
 		void GainExp(Monster *);
 		void LevelUp();
+		void IncreaseMaxHP(uint8_t);
+		void IncreaseMaxMana(uint8_t);
+		void IncreaseDamage(uint8_t);
 		void SetTarget(Field *);
 		void SetDisplay(Display *);
 
@@ -62,6 +65,7 @@ class Player
 		uint8_t GetMaxMana() const;
 
 		bool IsAlive() const;
+		bool IsDead() const;
 		bool HaveTarget() const;
 
 

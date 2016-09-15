@@ -11,6 +11,7 @@ Field::Field(uint8_t row, uint8_t col) :
 	m_coordCol(col),
 	m_coordRow(row),
 	m_enemy(NULL),
+	m_powerup(NULL),
 	m_item("no item!"),
 	m_mana(MANA_PER_FIELD),
 	m_HP(HP_PER_FIELD),
@@ -32,12 +33,12 @@ Field::Field (const Field &f)
 */
 
 
-uint8_t Field::GetRow()
+uint8_t Field::GetRow() const
 {
 	return m_coordRow;
 }
 
-uint8_t Field::GetCol()
+uint8_t Field::GetCol() const
 {
 	return m_coordCol;
 }
@@ -47,14 +48,31 @@ void Field::SpawnEnemy(Monster * nextEnemyFromPool)
    m_enemy = nextEnemyFromPool;
 }
 
-Monster * Field::GetEnemy()
+void Field::SpawnPowerUp(PowerUp * nextPowerupFromPool)
+{
+   m_powerup = nextPowerupFromPool;
+}
+
+Monster * Field::GetEnemy() const
 {
    return m_enemy;
 }
 
+
+PowerUp * Field::GetPowerup() const
+{
+   return m_powerup;
+}
+
+
 bool Field::HaveEnemy()
 {
  return ((m_enemy != NULL) && m_enemy->IsAlive());
+}
+
+bool Field::HavePowerUp()
+{
+ return (m_powerup != NULL);
 }
 
 void Field::SpawnItem()
@@ -62,7 +80,7 @@ void Field::SpawnItem()
    m_item = "item";
 }
 
-std::string Field::GetItem()
+std::string Field::GetItem() const
 {
    return m_item;
 }
