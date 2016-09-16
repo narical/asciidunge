@@ -4,9 +4,13 @@ Small ascii roguelike game
 
 ## Internal TO-DO list:
 - make enemy spawning more sparse
-- make future fight calculations store in BF class member variables
+- refactor member functions for more name consistency
+- make all counters as single array
+- fix 100% CPU load bug!
 
 ## Latest changes
++ make powerups - hp, mana and damage!
++ make future fight calculations store in BF class member variables
 + add switching frames with current fight state and future state
 + add future fight calculation on enemy select
 + move Fight() and CalculateFutureFight() to "Battlefield" class

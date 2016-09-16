@@ -12,14 +12,16 @@ enum PowerupType {HEALTH, MANA, DAMAGE};
 class Field;
 #include <string>
 #include "field.h"
+#include "display.h"
 
 
 class PowerUp
 {
 	public:
 		PowerUp(PowerupType);
-		void TakeBy(Player *);
+		EventType TakeBy(Player *);
 		PowerupType GetType();
+		void SetPosition(Field *);
 		 
 	private:
 		PowerupType m_type;

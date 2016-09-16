@@ -51,7 +51,15 @@ void Field::SpawnEnemy(Monster * nextEnemyFromPool)
 void Field::SpawnPowerUp(PowerUp * nextPowerupFromPool)
 {
    m_powerup = nextPowerupFromPool;
+   m_powerup->SetPosition(this);
 }
+
+
+void Field::RemovePowerUp()
+{
+	m_powerup = NULL;
+}
+
 
 Monster * Field::GetEnemy() const
 {

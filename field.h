@@ -28,6 +28,7 @@ class Field
 		void SpawnEnemy(Monster *);
 		void SpawnItem();
 		void SpawnPowerUp(PowerUp *);
+		void RemovePowerUp();
 		uint8_t GetHP();
 		uint8_t GetMana();
 		bool HaveEnemy();

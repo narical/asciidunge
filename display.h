@@ -7,6 +7,8 @@
 
 #ifndef _DISPLAY_H_
 #define _DISPLAY_H_
+enum Frametype {CURRENT, FUTURE};
+enum EventType {LVLUP, HP_PWRUP, MANA_PWRUP, DMG_PWRUP};
 
 class Player;
 class Battlefield;
@@ -20,8 +22,6 @@ class Field;
 #include <ncurses.h>
 #include <unistd.h>
 #include "field.h"
-enum Frametype {CURRENT, FUTURE};
-enum EventType {LVLUP};
 
 class Display
 {
@@ -45,6 +45,10 @@ class Display
 
 	private:
 		uint8_t m_levelUpCounter;
+		uint8_t m_healthPowerupCounter;
+		uint8_t m_manaPowerupCounter;
+		uint8_t m_damagePowerupCounter;
+				
 		Battlefield * m_battlefield;
 		Player * m_player;
 		Monster * m_enemy;

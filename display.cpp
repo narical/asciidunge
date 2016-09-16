@@ -11,6 +11,9 @@
 
 Display::Display(Battlefield * btl, Player * plr) :
 m_levelUpCounter(0),
+m_healthPowerupCounter(0),
+m_manaPowerupCounter(0),
+m_damagePowerupCounter(0),
 m_battlefield(btl),
 m_player(plr),
 m_enemy(NULL),
@@ -75,12 +78,18 @@ void Display::DrawPlayerInfo()
 	std::string expBar = ShowBar(exp, expMax);
 
 	mvprintw(PLAYER_ROW + 0, INFO_MARGIN, "Exp   %d / %d", exp, expMax);
+	CheckEvent(MANA_PWRUP);
 	mvprintw(PLAYER_ROW + 1, INFO_MARGIN, "Mana  %d / %d", mana, maxMana);
+	EndCheck();
 	CheckEvent(LVLUP);
 	mvprintw(PLAYER_ROW + 5, INFO_MARGIN, "%s - level %d", name.c_str(), level);
 	EndCheck();
+	CheckEvent(HP_PWRUP);
 	mvprintw(PLAYER_ROW + 7, INFO_MARGIN, " [+]  %d / %d", HP, maxHP);
+	EndCheck();
+	CheckEvent(DMG_PWRUP);
 	mvprintw(PLAYER_ROW + 9, INFO_MARGIN, " [*]    %d   ", damage);
+	EndCheck();
 
 	mvprintw(PLAYER_ROW + 0, BAR_MARGIN, "%s", expBar.c_str());
 	mvprintw(PLAYER_ROW + 1, BAR_MARGIN, "%s", manaBar.c_str());
@@ -162,19 +171,19 @@ char Display::DrawField(uint8_t rowIndex, uint8_t colIndex)
 			printw("@");
 			attroff(A_BOLD);
 		}	 	
-		else if (field != playerField && field->HaveItem()) printw("i");
+//		else if (field != playerField && field->HaveItem()) printw("i");
 		else if (field == playerField && !field->HaveItem())
 		{
 			CheckEvent(LVLUP);
 			printw("@");
 			EndCheck();
 		}
-		else if (field == playerField && field->HaveItem())
+/*		else if (field == playerField && field->HaveItem())
 		{
 			attron(A_BOLD);
 			printw("@");
 			attroff(A_BOLD);
-		}
+		} */
 		else printw(" ");
 	}
 	return 0;
@@ -196,7 +205,10 @@ void Display::ShowFrame()
 
 void Display::ReduceCounters()
 {
-	if (m_levelUpCounter > 0) --m_levelUpCounter; 
+	if (m_levelUpCounter > 0) --m_levelUpCounter;
+	if (m_healthPowerupCounter > 0) --m_healthPowerupCounter;
+	if (m_manaPowerupCounter > 0) --m_manaPowerupCounter;
+	if (m_damagePowerupCounter > 0) --m_damagePowerupCounter;
 }
 
 
@@ -226,7 +238,17 @@ void Display::SendEvent(EventType event)
 		case LVLUP:
 			m_levelUpCounter = 6;
 			break;
-		
+			
+		case HP_PWRUP:
+			m_healthPowerupCounter = 6;
+			break;
+			
+		case MANA_PWRUP:
+			m_manaPowerupCounter = 6;
+			break;
+			
+		case DMG_PWRUP:
+			m_damagePowerupCounter = 6;
 	}
 }
 
@@ -239,7 +261,17 @@ void Display::CheckEvent(EventType event)
 		case LVLUP:
 			if (m_levelUpCounter > 0 && m_levelUpCounter % 2) attron(A_BOLD);
 			break;
-		
+			
+		case HP_PWRUP:
+			if (m_healthPowerupCounter > 0 && m_healthPowerupCounter % 2) attron(A_BOLD);
+			break;
+			
+		case MANA_PWRUP:
+			if (m_manaPowerupCounter > 0 && m_manaPowerupCounter % 2) attron(A_BOLD);
+			break;
+			
+		case DMG_PWRUP:
+			if (m_damagePowerupCounter > 0 && m_damagePowerupCounter % 2) attron(A_BOLD);
 	}
 }
 

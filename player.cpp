@@ -82,11 +82,15 @@ void Player::Act(int input_key)
 		{
 			SetTarget(NULL); //forget about it
 
-			if (nextField->HaveEnemy()) // select new target if any
+			if (nextField->HaveEnemy()) 
 			{
-				SetTarget(nextField); 
+				SetTarget(nextField); // select new target if any
 				m_battlefield->CalculateNextFight();
 			}
+			else if (nextField->HavePowerUp())
+			{
+				m_display->SendEvent( nextField->GetPowerup()->TakeBy(this) );
+			}			
 			else
 			{
 				m_position = nextField; //if there's no enemy - move there and look around
