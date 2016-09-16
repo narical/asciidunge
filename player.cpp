@@ -336,3 +336,18 @@ uint8_t Player::GetMaxMana() const
 	return m_maxMana;
 }
 
+
+
+// FOR TESTING
+
+void Player::TEST_LevelUp()
+{
+	m_exp = m_expMax;
+	LevelUp();
+}
+
+void Player::TEST_Heal()
+{
+	m_HP = m_maxHP;
+}
+

@@ -171,19 +171,14 @@ char Display::DrawField(uint8_t rowIndex, uint8_t colIndex)
 			printw("@");
 			attroff(A_BOLD);
 		}	 	
-//		else if (field != playerField && field->HaveItem()) printw("i");
-		else if (field == playerField && !field->HaveItem())
+
+		else if (field == playerField)
 		{
 			CheckEvent(LVLUP);
 			printw("@");
 			EndCheck();
 		}
-/*		else if (field == playerField && field->HaveItem())
-		{
-			attron(A_BOLD);
-			printw("@");
-			attroff(A_BOLD);
-		} */
+		
 		else printw(" ");
 	}
 	return 0;

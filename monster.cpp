@@ -10,7 +10,6 @@ uint8_t Monster::s_Quantity = 0;
 
 Monster::Monster(uint8_t monsterLevel) : m_level( monsterLevel ), m_isDead(0)
 {
-	++s_Quantity;
 	m_damage = CalculateDamage( monsterLevel );
 	m_maxHP = CalculateMaxHP( monsterLevel );
 	m_HP = m_maxHP;
@@ -72,7 +71,12 @@ void Monster::TakeDamage(Player * plr)
 {
 	uint8_t delta = plr->GetDamage();
 	m_HP = (m_HP - delta < 0 ? 0 : m_HP - delta);
-	if (m_HP == 0) {m_isDead = 1; --s_Quantity;}
+	if (m_HP == 0)
+		{
+			m_isDead = 1;
+			// if it was real monster, not a copy
+			if (plr->GetTarget()->GetEnemy() == this) --s_Quantity;
+		}
 }
 
 

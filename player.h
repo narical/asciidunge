@@ -68,13 +68,15 @@ class Player
 		bool IsDead() const;
 		bool HaveTarget() const;
 
+		void TEST_LevelUp();
+		void TEST_Heal();	
 
 		 
 	private:
 		std::string m_name;
 		uint8_t m_level;
-		uint8_t m_exp;
-		uint8_t m_expMax;
+		uint16_t m_exp;
+		uint16_t m_expMax;
 		uint8_t m_damage;
 		uint8_t m_HP, m_maxHP;
 		uint8_t m_mana, m_maxMana;

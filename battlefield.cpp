@@ -152,6 +152,7 @@ void Battlefield::CalculateNextFight()
 void Battlefield::CreateEnemy(uint8_t level, uint8_t quantity)
 {
 	 for (uint8_t i = 0; i < quantity; ++i) m_enemies.push_back(Monster(level));
+	 Monster::s_Quantity += quantity;
 }
 
 

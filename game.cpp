@@ -48,6 +48,12 @@ void Game::GetPlayerInput(Player * plr) //TODO: move all input to Input class
 		case KEY_DOWN:
 			plr->Act(input_key);
 			break;
+		case 'l':
+			plr->TEST_LevelUp();
+			break;
+		case 'h':
+			plr->TEST_Heal();
+			break;					
 		case 'q':
 			Display::NcursesShutdown();
 			exit(0);
