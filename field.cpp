@@ -48,14 +48,14 @@ void Field::SpawnEnemy(Monster * nextEnemyFromPool)
    m_enemy = nextEnemyFromPool;
 }
 
-void Field::SpawnPowerUp(PowerUp * nextPowerupFromPool)
+void Field::SpawnPowerup(Powerup * nextPowerupFromPool)
 {
    m_powerup = nextPowerupFromPool;
    m_powerup->SetPosition(this);
 }
 
 
-void Field::RemovePowerUp()
+void Field::RemovePowerup()
 {
 	m_powerup = NULL;
 }
@@ -67,7 +67,7 @@ Monster * Field::GetEnemy() const
 }
 
 
-PowerUp * Field::GetPowerup() const
+Powerup * Field::GetPowerup() const
 {
    return m_powerup;
 }
@@ -78,7 +78,7 @@ bool Field::HaveEnemy()
  return ((m_enemy != NULL) && m_enemy->IsAlive());
 }
 
-bool Field::HavePowerUp()
+bool Field::HavePowerup()
 {
  return (m_powerup != NULL);
 }

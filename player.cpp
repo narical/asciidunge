@@ -87,7 +87,7 @@ void Player::Act(int input_key)
 				SetTargetField(nextField); // select new target if any
 				m_battlefield->CalculateNextFight();
 			}
-			else if (nextField->HavePowerUp())
+			else if (nextField->HavePowerup())
 			{
 				m_display->SendEvent( nextField->GetPowerup()->TakeBy(this) );
 			}			

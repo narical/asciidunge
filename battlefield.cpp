@@ -20,9 +20,9 @@ Battlefield::Battlefield() : m_playerCopy(0), m_enemyCopy(0)
 	for (uint8_t monsterLevel = 1; monsterLevel <= 10; ++monsterLevel)
 		CreateEnemy(monsterLevel, QUANTITY_OF_LEVEL[monsterLevel]);
   
-	CreatePowerUp(HEALTH, POWERUPS_HP_COUNT);
-	CreatePowerUp(MANA, POWERUPS_MANA_COUNT);
-	CreatePowerUp(DAMAGE, POWERUPS_DAMAGE_COUNT);
+	CreatePowerup(HEALTH, POWERUPS_HP_COUNT);
+	CreatePowerup(MANA, POWERUPS_MANA_COUNT);
+	CreatePowerup(DAMAGE, POWERUPS_DAMAGE_COUNT);
     
   uint8_t enemiesToSpawn = MAX_ENEMY_COUNT, row, col;
   while (enemiesToSpawn > 0)
@@ -38,8 +38,8 @@ Battlefield::Battlefield() : m_playerCopy(0), m_enemyCopy(0)
 	{
 		row = rand() % BF_SIZE;
 		col = rand() % BF_SIZE;
-		if ( m_field[row][col]->HavePowerUp() ) continue;
-		m_field[row][col]->SpawnPowerUp( &this->m_powerups[ --powerupsToSpawn ] );
+		if ( m_field[row][col]->HavePowerup() ) continue;
+		m_field[row][col]->SpawnPowerup( &this->m_powerups[ --powerupsToSpawn ] );
 	}
 
 
@@ -156,9 +156,9 @@ void Battlefield::CreateEnemy(uint8_t level, uint8_t quantity)
 }
 
 
-void Battlefield::CreatePowerUp(PowerupType type, uint8_t quantity)
+void Battlefield::CreatePowerup(PowerupType type, uint8_t quantity)
 {
-	 for (uint8_t i = 0; i < quantity; ++i) m_powerups.push_back(PowerUp(type));
+	 for (uint8_t i = 0; i < quantity; ++i) m_powerups.push_back(Powerup(type));
 }
 
 

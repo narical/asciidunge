@@ -13,7 +13,7 @@
 #include "powerup.h"
 //class Player;
 //class Monster;
-//class PowerUp;
+//class Powerup;
 //class Game;
 //class Field;
 enum direction {LEFT, RIGHT, UP, DOWN};
@@ -25,7 +25,7 @@ class Battlefield {
 		Battlefield();
 		~Battlefield();
 	 	void CreateEnemy(uint8_t, uint8_t);
-		void CreatePowerUp(PowerupType, uint8_t);
+		void CreatePowerup(PowerupType, uint8_t);
 		Field * GetField(uint8_t, uint8_t) const;
 		Field * GetNextField(Field *, direction) const;
 		uint8_t GetSize() const; 
@@ -42,7 +42,7 @@ class Battlefield {
 		Field *m_field[BF_SIZE][BF_SIZE];
 		Player *m_player;
 		std::vector<Monster> m_enemies;
-		std::vector<PowerUp> m_powerups;
+		std::vector<Powerup> m_powerups;
 		
 		// to store possible fight results
 		Player *m_playerCopy;

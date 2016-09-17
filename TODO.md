@@ -5,11 +5,11 @@ Small ascii roguelike game
 ## Internal TO-DO list:
 - make enemy spawning more sparse
 - refactor member functions for more name consistency
-- refactor: AddHP -> HealBy, SetHpFull -> Heal, SetManaFull -> Recover
 - make all counters as single array
 - fix non-showing victory bug!
 
 ## Latest changes
++ refactor Player/Powerup classes
 + fix 100% CPU load bug!
 + make powerups - hp, mana and damage!
 + make future fight calculations store in BF class member variables

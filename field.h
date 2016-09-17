@@ -9,7 +9,7 @@
 #define _FIELD_H_
 
 class Monster;
-class PowerUp;
+class Powerup;
 class Battlefield;
 #include <iostream>
 #include <string>
@@ -27,16 +27,16 @@ class Field
 		void MakeVisible();
 		void SpawnEnemy(Monster *);
 		void SpawnItem();
-		void SpawnPowerUp(PowerUp *);
-		void RemovePowerUp();
+		void SpawnPowerup(Powerup *);
+		void RemovePowerup();
 		uint8_t GetHP();
 		uint8_t GetMana();
 		bool HaveEnemy();
-		bool HavePowerUp();
+		bool HavePowerup();
 		bool HaveItem();
 		bool IsVisible();
 		Monster * GetEnemy() const;
-		PowerUp * GetPowerup() const;
+		Powerup * GetPowerup() const;
 		std::string GetItem() const;
 		uint8_t GetCol() const;
 		uint8_t GetRow() const;
@@ -45,7 +45,7 @@ class Field
 		uint8_t m_coordCol;
 		uint8_t m_coordRow;
 		Monster * m_enemy;
-		PowerUp * m_powerup;
+		Powerup * m_powerup;
 		std::string m_item;
 		uint8_t m_mana;
 		uint8_t m_HP;

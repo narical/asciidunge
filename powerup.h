@@ -15,10 +15,10 @@ class Field;
 #include "display.h"
 
 
-class PowerUp
+class Powerup
 {
 	public:
-		PowerUp(PowerupType);
+		Powerup(PowerupType);
 		EventType TakeBy(Player *);
 		PowerupType GetType();
 		void SetPosition(Field *);

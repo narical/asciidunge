@@ -149,7 +149,7 @@ char Display::DrawField(uint8_t rowIndex, uint8_t colIndex)
 	 	 	else printw("%d", field->GetEnemy()->GetLevel());
 			attroff(A_BOLD);
 	 	}
-	 	else if (field != playerField && field->HavePowerUp())
+	 	else if (field != playerField && field->HavePowerup())
 	 		{
 	 			switch (field->GetPowerup()->GetType())
 	 			{
@@ -165,7 +165,7 @@ char Display::DrawField(uint8_t rowIndex, uint8_t colIndex)
 	 					printw("*");
 	 			}
 	 		}
-	 	else if (field == playerField && field->HavePowerUp())
+	 	else if (field == playerField && field->HavePowerup())
 		{
 			attron(A_BOLD);
 			printw("@");
