@@ -57,7 +57,7 @@ uint8_t Monster::CalculateMaxHP(uint8_t monsterLevel)
 
 void Monster::Attack(Player * plr)
 {
-	plr->LoseHP(m_damage);
+	plr->TakeDamage(m_damage);
 }
 
 
@@ -75,7 +75,7 @@ void Monster::TakeDamage(Player * plr)
 		{
 			m_isDead = 1;
 			// if it was real monster, not a copy
-			if (plr->GetTarget()->GetEnemy() == this) --s_Quantity;
+			if (plr->GetTargetField()->GetEnemy() == this) --s_Quantity;
 		}
 }
 

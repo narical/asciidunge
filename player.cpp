@@ -61,7 +61,7 @@ void Player::Act(int input_key)
 {
 	Field *currentField = m_position;
 	Field *nextField = currentField;
-	Field *targetField = GetTarget();
+	Field *targetField = GetTargetField();
 
 	switch(input_key)
 	{
@@ -80,11 +80,11 @@ void Player::Act(int input_key)
 		}
 		else //if target was somewhere else
 		{
-			SetTarget(NULL); //forget about it
+			SetTargetField(NULL); //forget about it
 
 			if (nextField->HaveEnemy()) 
 			{
-				SetTarget(nextField); // select new target if any
+				SetTargetField(nextField); // select new target if any
 				m_battlefield->CalculateNextFight();
 			}
 			else if (nextField->HavePowerUp())
@@ -127,8 +127,8 @@ void Player::LookAround()
 			{
 				Field *field = m_battlefield->GetField(tempRow, tempColumn);
 				field->MakeVisible();
-				AddMana(field->GetMana());
-				AddHP(field->GetHP());
+				RecoverBy(field->GetMana());
+				HealBy(field->GetHP());
 			}
 }
 
@@ -151,8 +151,8 @@ void Player::LevelUp()
  	 	m_expMax *= EXP_TO_NEXT_LVL_MULTIPLIER;
  	 	m_maxHP += ADD_MAXHP_PER_LVL;
  	 	m_damage += ADD_DAMAGE_PER_LVL;
- 	 	SetHpFull();
- 	 	SetManaFull();
+ 	 	Heal();
+ 	 	Recover();
  	}
 	// lvl-up animation works only if "real" player gets level-up
 	if (this == m_battlefield->GetPlayer()) m_display->SendEvent(LVLUP);
@@ -171,21 +171,21 @@ bool Player::InSightRadius(uint8_t testRow, uint8_t testColumn)
 }
 
 
-void Player::IncreaseMaxHP(uint8_t delta)
+void Player::BoostHP(uint8_t delta)
 {
 	m_maxHP += delta;
-	AddHP(delta);
+	HealBy(delta);
 }
 
 
-void Player::IncreaseMaxMana(uint8_t delta)
+void Player::BoostMana(uint8_t delta)
 {
 	m_maxMana += delta;
-	AddMana(delta);
+	RecoverBy(delta);
 }
 
 
-void Player::IncreaseDamage(uint8_t delta)
+void Player::BoostDamage(uint8_t delta)
 {
 	m_damage += delta;
 }
@@ -198,19 +198,19 @@ void Player::SetMana(uint8_t newQuantity)
 }
 
 
-void Player::SetManaFull()
+void Player::Recover()
 {
 	m_mana = m_maxMana;
 }
 
 
-void Player::AddMana(uint8_t delta)
+void Player::RecoverBy(uint8_t delta)
 {
 	m_mana = (m_mana + delta > m_maxMana ? m_maxMana : m_mana + delta);
 }
 
 
-void Player::LoseMana(uint8_t delta)
+void Player::SpendMana(uint8_t delta)
 {
 	m_mana = (m_mana - delta < 0 ? 0 : m_mana - delta);
 }
@@ -223,25 +223,25 @@ void Player::SetHP(uint8_t newQuantity)
 }
 
 
-void Player::SetHpFull()
+void Player::Heal()
 {
 	m_HP = m_maxHP;
 }
 
 
-void Player::AddHP(uint8_t delta)
+void Player::HealBy(uint8_t delta)
 {
 	m_HP = (m_HP + delta > m_maxHP ? m_maxHP : m_HP + delta);
 }
 
 
-void Player::LoseHP(uint8_t delta)
+void Player::TakeDamage(uint8_t delta)
 {
 	m_HP = (m_HP - delta < 0 ? 0 : m_HP - delta);
 }
 
 
-void Player::SetTarget(Field * fld)
+void Player::SetTargetField(Field * fld)
 {
 	m_target = fld;
 }
@@ -253,7 +253,7 @@ void Player::SetDisplay(Display * dspl)
 }
 
 
-Field * Player::GetTarget() const
+Field * Player::GetTargetField() const
 {
 	return 	m_target;
 }
@@ -295,13 +295,13 @@ uint8_t Player::GetLevel() const
 }
 
 
-uint8_t Player::GetExp() const
+uint16_t Player::GetExp() const
 {
 	return m_exp;
 }
 
 
-uint8_t Player::GetExpMax() const
+uint16_t Player::GetExpMax() const
 {
 	return m_expMax;
 }
@@ -344,10 +344,5 @@ void Player::TEST_LevelUp()
 {
 	m_exp = m_expMax;
 	LevelUp();
-}
-
-void Player::TEST_Heal()
-{
-	m_HP = m_maxHP;
 }
 

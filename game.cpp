@@ -52,8 +52,8 @@ void Game::GetPlayerInput(Player * plr) //TODO: move all input to Input class
 			plr->TEST_LevelUp();
 			break;
 		case 'h':
-			plr->TEST_Heal();
-			break;					
+			plr->Heal();
+			break;
 		case 'q':
 			Display::NcursesShutdown();
 			exit(0);

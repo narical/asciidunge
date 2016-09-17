@@ -37,27 +37,27 @@ class Player
 		void LookAround();
 		void Move(Field *);
 		void SetMana(uint8_t);
-		void SetManaFull();
-		void AddMana(uint8_t);
-		void LoseMana(uint8_t);
+		void Recover();
+		void RecoverBy(uint8_t);
+		void SpendMana(uint8_t);
 		void SetHP(uint8_t);
-		void SetHpFull();
-		void AddHP(uint8_t);
-		void LoseHP(uint8_t);
+		void Heal();
+		void HealBy(uint8_t);
+		void TakeDamage(uint8_t);
 		void GainExp(Monster *);
 		void LevelUp();
-		void IncreaseMaxHP(uint8_t);
-		void IncreaseMaxMana(uint8_t);
-		void IncreaseDamage(uint8_t);
-		void SetTarget(Field *);
+		void BoostHP(uint8_t);
+		void BoostMana(uint8_t);
+		void BoostDamage(uint8_t);
+		void SetTargetField(Field *);
 		void SetDisplay(Display *);
 
-		Field* GetTarget() const;
+		Field* GetTargetField() const;
 		Field* GetPosition() const;
 		std::string GetName() const;
 		uint8_t GetLevel() const;
-		uint8_t GetExp() const;
-		uint8_t GetExpMax() const;
+		uint16_t GetExp() const;
+		uint16_t GetExpMax() const;
 		uint8_t GetDamage() const;
 		uint8_t GetHP() const;
 		uint8_t GetMaxHP() const;
@@ -69,9 +69,7 @@ class Player
 		bool HaveTarget() const;
 
 		void TEST_LevelUp();
-		void TEST_Heal();	
 
-		 
 	private:
 		std::string m_name;
 		uint8_t m_level;

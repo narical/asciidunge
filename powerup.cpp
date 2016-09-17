@@ -22,17 +22,17 @@ EventType PowerUp::TakeBy(Player * plr)
 	switch (m_type)
 	{
 		case HEALTH:
-			plr->IncreaseMaxHP(POWERUP_HEALTH_BONUS);
+			plr->BoostHP(POWERUP_HEALTH_BONUS);
 			m_field->RemovePowerUp();
 			return HP_PWRUP;
 
 		case MANA:
-			plr->IncreaseMaxMana(POWERUP_MANA_BONUS);
+			plr->BoostMana(POWERUP_MANA_BONUS);
 			m_field->RemovePowerUp();
 			return MANA_PWRUP;
 			
 		case DAMAGE:
-			plr->IncreaseDamage(POWERUP_DAMAGE_BONUS);
+			plr->BoostDamage(POWERUP_DAMAGE_BONUS);
 			m_field->RemovePowerUp();
 			return DMG_PWRUP;
 	}

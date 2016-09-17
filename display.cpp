@@ -111,7 +111,7 @@ void Display::DrawEnemyInfo()
 {
 	Monster * enemy = NULL;
 	if (m_battlefield->GetEnemyCopy() != NULL && m_frame == FUTURE) enemy = m_battlefield->GetEnemyCopy();
-	else enemy = m_player->GetTarget()->GetEnemy();
+	else enemy = m_player->GetTargetField()->GetEnemy();
 	
 	if (enemy != NULL)
 	{
@@ -137,7 +137,7 @@ char Display::DrawField(uint8_t rowIndex, uint8_t colIndex)
 {
 	Field *playerField = m_player->GetPosition();
 	Field *field = m_battlefield->GetField(rowIndex, colIndex);
-	Field *playerTarget = m_player->GetTarget();
+	Field *playerTarget = m_player->GetTargetField();
 
 	if (!field->IsVisible()) printw(".");
 	else

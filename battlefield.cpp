@@ -118,7 +118,7 @@ void Battlefield::Fight(Player * player, Monster * enemy)
 			if (enemy->IsDead())
 			{
 				player->GainExp(enemy);
-				player->SetTarget(NULL);
+				player->SetTargetField(NULL);
 			}
 		}
 	}
@@ -128,11 +128,11 @@ void Battlefield::Fight(Player * player, Monster * enemy)
 		if (enemy->IsDead())
 		{
 			player->GainExp(enemy);
-			player->SetTarget(NULL);
+			player->SetTargetField(NULL);
 		}
 		else
 		{
-			enemy->Attack(player);			
+			enemy->Attack(player);
 		}
 	}
 }
@@ -143,7 +143,7 @@ void Battlefield::CalculateNextFight()
 	if (m_playerCopy != 0) delete m_playerCopy;
 	if (m_enemyCopy != 0) delete m_enemyCopy;
 	m_playerCopy = new Player( *m_player );
-	m_enemyCopy = new Monster( *( m_player->GetTarget()->GetEnemy() ) );
+	m_enemyCopy = new Monster( *( m_player->GetTargetField()->GetEnemy() ) );
 	
 	Fight(m_playerCopy, m_enemyCopy);
 }
