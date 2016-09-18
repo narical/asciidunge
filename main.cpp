@@ -4,15 +4,12 @@
  * Copyright (C) 2016 Joy Narical <jnarical@gmail.com>
  * 
  */
-#include <ncurses.h>
-#include "game.h"
-#include "battlefield.h"
-#include "player.h"
-#include "display.h"
-
 void ncurses_init();
 void ncurses_off();
 
+#include <ncurses.h>
+#include "game.h"
+#include "display.h"
 
 int main()
 {

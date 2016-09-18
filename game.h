@@ -8,17 +8,7 @@
 #ifndef _GAME_H_
 #define _GAME_H_
 
-class Battlefield;
-class Player;
-class Display;
-#include <iostream>
-#include <string>
-#include <cstdlib>
-#include <ctime>
-#include <iterator>
-#include "battlefield.h"
 #include "player.h"
-#include "display.h"
 
 class Game
 {

@@ -6,7 +6,7 @@
  */
 
 #include "monster.h"
-uint8_t Monster::s_Quantity = 0;
+bool Monster::bossIsDead = FALSE;
 
 Monster::Monster(uint8_t monsterLevel) : m_level( monsterLevel ), m_isDead(0)
 {
@@ -74,8 +74,8 @@ void Monster::TakeDamage(Player * plr)
 	if (m_HP == 0)
 		{
 			m_isDead = 1;
-			// if it was real monster, not a copy
-			if (plr->GetTargetField()->GetEnemy() == this) --s_Quantity;
+			// if it was boss monster, and not a copy
+			if (m_level == 10 && plr->GetTargetField()->GetEnemy() == this) bossIsDead = TRUE;
 		}
 }
 

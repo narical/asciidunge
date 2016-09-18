@@ -5,6 +5,17 @@
  *
  */
 
+class Battlefield;
+class Player;
+class Display;
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <ctime>
+#include <iterator>
+#include "battlefield.h"
+#include "player.h"
+#include "display.h"
 #include "ncurses.h"
 #include "game.h"
 
@@ -63,7 +74,7 @@ void Game::GetPlayerInput(Player * plr) //TODO: move all input to Input class
 
 bool Game::CheckVictory()
 {
-	return !Monster::s_Quantity;
+	return Monster::bossIsDead;
 }
 
 

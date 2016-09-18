@@ -23,7 +23,6 @@ class Monster
 public:
 	Monster(uint8_t);
 //	Monster(const Monster &);
-	static uint8_t s_Quantity;
 	void Attack(Player *);
 	void AddHP(uint8_t);
 	void TakeDamage(Player *);
@@ -35,6 +34,8 @@ public:
 	uint8_t GetDamage() const;
 	uint8_t GetHP() const;
 	uint8_t GetMaxHP() const;
+
+	static bool bossIsDead;
 	 
 private:
 

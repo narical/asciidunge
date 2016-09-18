@@ -4,7 +4,6 @@ Small ascii roguelike game
 
 ## Internal TO-DO list:
 - make enemy spawning more sparse
-- refactor member functions for more name consistency
 - make all counters as single array
 - fix non-showing victory bug!
 
@@ -24,4 +23,3 @@ Small ascii roguelike game
 + Display::LevelUpCheck() / Display::LevelUpCheckEnd() functions implemented
 + Display::SendEvent(EventType) {LVLUP,MONSTER_DEATH, ...} implemented
 + Player::m_display property is used to get access to display instance
-

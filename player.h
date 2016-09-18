@@ -11,6 +11,8 @@
 class Battlefield;
 class Game;
 class Monster;
+class Display;
+
 #include <string>
 #include <ncurses.h>
 #include "battlefield.h"
