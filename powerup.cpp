@@ -10,7 +10,7 @@
 
 
 
-Powerup::Powerup(PowerupType type) : m_type(type), m_field(NULL)
+Powerup::Powerup(PowerupType type) : _type(type), _field(NULL)
 {
 
 }
@@ -19,21 +19,21 @@ Powerup::Powerup(PowerupType type) : m_type(type), m_field(NULL)
 
 EventType Powerup::TakeBy(Player * plr)
 {
-	switch (m_type)
+	switch (_type)
 	{
 		case HEALTH:
 			plr->BoostHP(POWERUP_HEALTH_BONUS);
-			m_field->RemovePowerup();
+			_field->RemovePowerup();
 			return HP_PWRUP;
 
 		case MANA:
 			plr->BoostMana(POWERUP_MANA_BONUS);
-			m_field->RemovePowerup();
+			_field->RemovePowerup();
 			return MANA_PWRUP;
 			
 		case DAMAGE:
 			plr->BoostDamage(POWERUP_DAMAGE_BONUS);
-			m_field->RemovePowerup();
+			_field->RemovePowerup();
 			return DMG_PWRUP;
 	}
 }
@@ -42,12 +42,12 @@ EventType Powerup::TakeBy(Player * plr)
 
 void Powerup::SetPosition(Field * position)
 {
-	m_field = position;
+	_field = position;
 }
 
 
 
 PowerupType Powerup::GetType()
 {
-	return m_type;
+	return _type;
 }

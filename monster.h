@@ -39,14 +39,14 @@ public:
 	 
 private:
 
-	uint8_t m_level;
-	uint8_t m_exp;
-	uint8_t m_damage;
-	uint8_t m_HP;
-	uint8_t m_maxHP;
-	Field * m_field;
-	std::string m_name;
-	bool m_isDead;
+	uint8_t _level;
+	uint8_t _exp;
+	uint8_t _damage;
+	uint8_t _HP;
+	uint8_t _maxHP;
+	Field * _field;
+	std::string _name;
+	bool _isDead;
 	
 	uint8_t CalculateDamage(uint8_t);
 	uint8_t CalculateMaxHP(uint8_t);

@@ -8,11 +8,15 @@ Small ascii roguelike game
 - fix non-showing victory bug!
 - refactor abstraction layers
 - clean all #includes
-- make all members' names begin with _ instead of m_
 - make all pointers variables begin with p
 - remove vectors entirely
+- add assertions to entire code
+- make different powerup classes
+- fix player spawning on powerup
+- add initiative proprty to player and monsters
 
 ## Latest changes
++ make all members' names begin with _ instead of m_
 + refactor Player/Powerup classes
 + fix 100% CPU load bug!
 + make powerups - hp, mana and damage!

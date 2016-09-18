@@ -8,89 +8,89 @@
 #include "field.h"
 
 Field::Field(uint8_t row, uint8_t col) :
-	m_coordCol(col),
-	m_coordRow(row),
-	m_enemy(NULL),
-	m_powerup(NULL),
-	m_item("no item!"),
-	m_mana(MANA_PER_FIELD),
-	m_HP(HP_PER_FIELD),
-	m_visible(false)
+	_coordCol(col),
+	_coordRow(row),
+	_enemy(NULL),
+	_powerup(NULL),
+	_item("no item!"),
+	_mana(MANA_PER_FIELD),
+	_HP(HP_PER_FIELD),
+	_visible(false)
 { }
 
 
 /*
 Field::Field (const Field &f)
 {
-	m_coordCol = f.m_coordCol;
-	m_coordRow = f.m_coordRow;
-	m_enemy = NULL;				//new Monster(*(f.m_enemy));
-	m_item = f.m_item;			//TODO: FIX AFTER "ITEM" CLASS IMPLEMENTATION !
-	m_mana = f.m_mana;
-	m_HP = f.m_HP;
-	m_visible = f.m_visible;	
+	_coordCol = f._coordCol;
+	_coordRow = f._coordRow;
+	_enemy = NULL;				//new Monster(*(f._enemy));
+	_item = f._item;			//TODO: FIX AFTER "ITEM" CLASS IMPLEMENTATION !
+	_mana = f._mana;
+	_HP = f._HP;
+	_visible = f._visible;	
 }
 */
 
 
 uint8_t Field::GetRow() const
 {
-	return m_coordRow;
+	return _coordRow;
 }
 
 uint8_t Field::GetCol() const
 {
-	return m_coordCol;
+	return _coordCol;
 }
 
 void Field::SpawnEnemy(Monster * nextEnemyFromPool)
 {
-   m_enemy = nextEnemyFromPool;
+   _enemy = nextEnemyFromPool;
 }
 
 void Field::SpawnPowerup(Powerup * nextPowerupFromPool)
 {
-   m_powerup = nextPowerupFromPool;
-   m_powerup->SetPosition(this);
+   _powerup = nextPowerupFromPool;
+   _powerup->SetPosition(this);
 }
 
 
 void Field::RemovePowerup()
 {
-	m_powerup = NULL;
+	_powerup = NULL;
 }
 
 
 Monster * Field::GetEnemy() const
 {
-   return m_enemy;
+   return _enemy;
 }
 
 
 Powerup * Field::GetPowerup() const
 {
-   return m_powerup;
+   return _powerup;
 }
 
 
 bool Field::HaveEnemy()
 {
- return ((m_enemy != NULL) && m_enemy->IsAlive());
+ return ((_enemy != NULL) && _enemy->IsAlive());
 }
 
 bool Field::HavePowerup()
 {
- return (m_powerup != NULL);
+ return (_powerup != NULL);
 }
 
 void Field::SpawnItem()
 {
-   m_item = "item";
+   _item = "item";
 }
 
 std::string Field::GetItem() const
 {
-   return m_item;
+   return _item;
 }
 
 bool Field::HaveItem()
@@ -100,28 +100,26 @@ bool Field::HaveItem()
 
 void Field::MakeVisible()
 {
-   m_visible = true;
+   _visible = true;
 }
 
 bool Field::IsVisible()
 {
- return m_visible;
+ return _visible;
 }
 
 uint8_t Field::GetMana()
 {
-	uint8_t res = m_mana;
-	m_mana = 0;
+	uint8_t res = _mana;
+	_mana = 0;
 	return res;
 }
 
 
 uint8_t Field::GetHP()
 {
-	uint8_t res = m_HP;
-	m_HP = 0;
+	uint8_t res = _HP;
+	_HP = 0;
 	return res;
 }
-		
-
 

@@ -8,14 +8,14 @@
 #include "battlefield.h"
 
 
-Battlefield::Battlefield() : m_playerCopy(0), m_enemyCopy(0)
+Battlefield::Battlefield() : _playerCopy(0), _enemyCopy(0)
 {
 	uint8_t maxItemsCount = rand() % 5 + 5;
-	m_enemies.reserve(MAX_ENEMY_COUNT);
+	_enemies.reserve(MAX_ENEMY_COUNT);
 
 	for (uint8_t row = 0; row < BF_SIZE; ++row)
 		for (uint8_t column = 0; column < BF_SIZE; ++column)
-			m_field[row][column] = new Field(row, column); //TODO: free memory in destructor
+			_field[row][column] = new Field(row, column); //TODO: free memory in destructor
 
 	for (uint8_t monsterLevel = 1; monsterLevel <= 10; ++monsterLevel)
 		CreateEnemy(monsterLevel, QUANTITY_OF_LEVEL[monsterLevel]);
@@ -29,8 +29,8 @@ Battlefield::Battlefield() : m_playerCopy(0), m_enemyCopy(0)
 	{
 		row = rand() % BF_SIZE;
 		col = rand() % BF_SIZE;
-		if ( m_field[row][col]->HaveEnemy() ) continue;
-		m_field[row][col]->SpawnEnemy( &this->m_enemies[ --enemiesToSpawn ] );
+		if ( _field[row][col]->HaveEnemy() ) continue;
+		_field[row][col]->SpawnEnemy( &this->_enemies[ --enemiesToSpawn ] );
 	}
 
   uint8_t powerupsToSpawn = MAX_POWERUPS_COUNT;
@@ -38,8 +38,8 @@ Battlefield::Battlefield() : m_playerCopy(0), m_enemyCopy(0)
 	{
 		row = rand() % BF_SIZE;
 		col = rand() % BF_SIZE;
-		if ( m_field[row][col]->HavePowerup() ) continue;
-		m_field[row][col]->SpawnPowerup( &this->m_powerups[ --powerupsToSpawn ] );
+		if ( _field[row][col]->HavePowerup() ) continue;
+		_field[row][col]->SpawnPowerup( &this->_powerups[ --powerupsToSpawn ] );
 	}
 
 
@@ -47,7 +47,7 @@ Battlefield::Battlefield() : m_playerCopy(0), m_enemyCopy(0)
 	{
 		uint8_t row = rand() % BF_SIZE;
 		uint8_t col = rand() % BF_SIZE;
-		m_field[row][col]->SpawnItem();
+		_field[row][col]->SpawnItem();
 	}
 }
 
@@ -80,13 +80,13 @@ Field * Battlefield::GetNextField(Field * currentField, direction dir) const
 
 Field * Battlefield::GetField(uint8_t row, uint8_t col) const
 {
-	return m_field[row][col];
+	return _field[row][col];
 }
 
 
 void Battlefield::SetPlayer(Player * plr)
 {
-	m_player = plr;
+	_player = plr;
 }
 
 
@@ -98,7 +98,7 @@ uint8_t Battlefield::GetSize() const
 
 std::vector<Monster> * Battlefield::GetEnemies()
 {
-	return &m_enemies;
+	return &_enemies;
 }
 
 
@@ -140,42 +140,42 @@ void Battlefield::Fight(Player * player, Monster * enemy)
 
 void Battlefield::CalculateNextFight()
 {
-	if (m_playerCopy != 0) delete m_playerCopy;
-	if (m_enemyCopy != 0) delete m_enemyCopy;
-	m_playerCopy = new Player( *m_player );
-	m_enemyCopy = new Monster( *( m_player->GetTargetField()->GetEnemy() ) );
+	if (_playerCopy != 0) delete _playerCopy;
+	if (_enemyCopy != 0) delete _enemyCopy;
+	_playerCopy = new Player( *_player );
+	_enemyCopy = new Monster( *( _player->GetTargetField()->GetEnemy() ) );
 	
-	Fight(m_playerCopy, m_enemyCopy);
+	Fight(_playerCopy, _enemyCopy);
 }
 
 
 void Battlefield::CreateEnemy(uint8_t level, uint8_t quantity)
 {
-	 for (uint8_t i = 0; i < quantity; ++i) m_enemies.push_back(Monster(level));
+	 for (uint8_t i = 0; i < quantity; ++i) _enemies.push_back(Monster(level));
 }
 
 
 void Battlefield::CreatePowerup(PowerupType type, uint8_t quantity)
 {
-	 for (uint8_t i = 0; i < quantity; ++i) m_powerups.push_back(Powerup(type));
+	 for (uint8_t i = 0; i < quantity; ++i) _powerups.push_back(Powerup(type));
 }
 
 
 Player * Battlefield::GetPlayer()
 {
-	return m_player;
+	return _player;
 }
 
 
 Player * Battlefield::GetPlayerCopy()
 {
-	return m_playerCopy;
+	return _playerCopy;
 }
 
 
 Monster * Battlefield::GetEnemyCopy()
 {
-	return m_enemyCopy;
+	return _enemyCopy;
 }
 
 
@@ -183,8 +183,8 @@ Battlefield::~Battlefield()
 {
 	for (uint8_t row = 0; row < BF_SIZE; ++row)
 		for (uint8_t column = 0; column < BF_SIZE; ++column)
-			delete(m_field[row][column]);
+			delete(_field[row][column]);
 
-	//for (unsigned int i = 0; i < m_enemies.size(); ++i) delete(m_enemies[i]); Ask A1eks what to to
+	//for (unsigned int i = 0; i < _enemies.size(); ++i) delete(_enemies[i]); Ask A1eks what to to
 }
 

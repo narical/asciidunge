@@ -35,14 +35,14 @@ class Battlefield {
 		std::vector<Monster> * GetEnemies();
 		 
 	private:
-		Field *m_field[BF_SIZE][BF_SIZE];
-		Player *m_player;
-		std::vector<Monster> m_enemies;
-		std::vector<Powerup> m_powerups;
+		Field *_field[BF_SIZE][BF_SIZE];
+		Player *_player;
+		std::vector<Monster> _enemies;
+		std::vector<Powerup> _powerups;
 		
 		// to store possible fight results
-		Player *m_playerCopy;
-		Monster *m_enemyCopy;
+		Player *_playerCopy;
+		Monster *_enemyCopy;
 		
 		const uint8_t POWERUPS_HP_COUNT = 5;
 		const uint8_t POWERUPS_MANA_COUNT = 5;

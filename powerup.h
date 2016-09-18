@@ -24,8 +24,8 @@ class Powerup
 		void SetPosition(Field *);
 		 
 	private:
-		PowerupType m_type;
-		Field * m_field;
+		PowerupType _type;
+		Field * _field;
 		const uint8_t POWERUP_HEALTH_BONUS = 10;
 		const uint8_t POWERUP_MANA_BONUS = 7;
 		const uint8_t POWERUP_DAMAGE_BONUS = 5;

@@ -5,8 +5,8 @@
  *
  */
 
-#ifndef _ITEM_H_
-#define _ITEM_H_
+#ifndef _ITE_H_
+#define _ITE_H_
 
 /* class Battlefield; */
 /* class Game; */
@@ -31,10 +31,10 @@ public:
 private:
 	std::string name;
 	std::string desc;
-	Player * player;
-	Field * field;
+	Player * _player;
+	Field * _field;
 	int manacost;
 
 };
 
-#endif // _ITEM_H_
+#endif // _ITE_H_

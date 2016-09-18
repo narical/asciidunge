@@ -10,26 +10,26 @@
 
 
 Display::Display(Battlefield * btl, Player * plr) :
-m_levelUpCounter(0),
-m_healthPowerupCounter(0),
-m_manaPowerupCounter(0),
-m_damagePowerupCounter(0),
-m_battlefield(btl),
-m_player(plr),
-m_enemy(NULL),
-m_frame(CURRENT)
+_levelUpCounter(0),
+_healthPowerupCounter(0),
+_manaPowerupCounter(0),
+_damagePowerupCounter(0),
+_battlefield(btl),
+_player(plr),
+_enemy(NULL),
+_frame(CURRENT)
 {
 	HORIZ_WALL = "";
-	uint8_t wallSize = m_battlefield->GetSize() + 2;
+	uint8_t wallSize = _battlefield->GetSize() + 2;
 	for (uint8_t i = 0; i < wallSize; ++i) HORIZ_WALL += "#";
-	m_player->SetDisplay(this);
+	_player->SetDisplay(this);
 }
 
 
 
 void Display::DrawBattlefield()
 {
-	uint8_t bf_size = m_battlefield->GetSize();
+	uint8_t bf_size = _battlefield->GetSize();
 	attron(A_BOLD);
 	mvprintw(BF_ROW, BF_MARGIN, HORIZ_WALL.c_str());
 	for (uint8_t rowIndex = 0; rowIndex < bf_size; ++rowIndex)
@@ -52,16 +52,16 @@ void Display::DrawPlayerInfo()
 	Player * plr = NULL;
 	Monster * enemy_copy = NULL;
 
-	if (m_player->HaveTarget())
+	if (_player->HaveTarget())
 	{
-		plr_copy = m_battlefield->GetPlayerCopy();
-		enemy_copy = m_battlefield->GetEnemyCopy();
+		plr_copy = _battlefield->GetPlayerCopy();
+		enemy_copy = _battlefield->GetEnemyCopy();
 	}
 
-	if (plr_copy != NULL && m_frame == FUTURE)
+	if (plr_copy != NULL && _frame == FUTURE)
 		plr = plr_copy;
 	else
-		plr = m_player;
+		plr = _player;
 		 
 	std::string name = plr->GetName();
 	uint8_t level = plr->GetLevel();
@@ -110,8 +110,8 @@ void Display::DrawPlayerInfo()
 void Display::DrawEnemyInfo()
 {
 	Monster * enemy = NULL;
-	if (m_battlefield->GetEnemyCopy() != NULL && m_frame == FUTURE) enemy = m_battlefield->GetEnemyCopy();
-	else enemy = m_player->GetTargetField()->GetEnemy();
+	if (_battlefield->GetEnemyCopy() != NULL && _frame == FUTURE) enemy = _battlefield->GetEnemyCopy();
+	else enemy = _player->GetTargetField()->GetEnemy();
 	
 	if (enemy != NULL)
 	{
@@ -135,9 +135,9 @@ void Display::DrawEnemyInfo()
 
 char Display::DrawField(uint8_t rowIndex, uint8_t colIndex)
 {
-	Field *playerField = m_player->GetPosition();
-	Field *field = m_battlefield->GetField(rowIndex, colIndex);
-	Field *playerTarget = m_player->GetTargetField();
+	Field *playerField = _player->GetPosition();
+	Field *field = _battlefield->GetField(rowIndex, colIndex);
+	Field *playerTarget = _player->GetTargetField();
 
 	if (!field->IsVisible()) printw(".");
 	else
@@ -190,7 +190,7 @@ void Display::ShowFrame()
 	clear();
 	DrawBattlefield();
 	DrawPlayerInfo();
-	if (m_player->HaveTarget()) DrawEnemyInfo();
+	if (_player->HaveTarget()) DrawEnemyInfo();
 	refresh();
 	SwitchFrameType();
 	ReduceCounters();
@@ -200,16 +200,16 @@ void Display::ShowFrame()
 
 void Display::ReduceCounters()
 {
-	if (m_levelUpCounter > 0) --m_levelUpCounter;
-	if (m_healthPowerupCounter > 0) --m_healthPowerupCounter;
-	if (m_manaPowerupCounter > 0) --m_manaPowerupCounter;
-	if (m_damagePowerupCounter > 0) --m_damagePowerupCounter;
+	if (_levelUpCounter > 0) --_levelUpCounter;
+	if (_healthPowerupCounter > 0) --_healthPowerupCounter;
+	if (_manaPowerupCounter > 0) --_manaPowerupCounter;
+	if (_damagePowerupCounter > 0) --_damagePowerupCounter;
 }
 
 
 void Display::SwitchFrameType()
 {
-	m_frame = (m_frame == CURRENT ? FUTURE : CURRENT);
+	_frame = (_frame == CURRENT ? FUTURE : CURRENT);
 }
 
 
@@ -231,19 +231,19 @@ void Display::SendEvent(EventType event)
 	switch (event)
 	{
 		case LVLUP:
-			m_levelUpCounter = 6;
+			_levelUpCounter = 6;
 			break;
 			
 		case HP_PWRUP:
-			m_healthPowerupCounter = 6;
+			_healthPowerupCounter = 6;
 			break;
 			
 		case MANA_PWRUP:
-			m_manaPowerupCounter = 6;
+			_manaPowerupCounter = 6;
 			break;
 			
 		case DMG_PWRUP:
-			m_damagePowerupCounter = 6;
+			_damagePowerupCounter = 6;
 	}
 }
 
@@ -254,19 +254,19 @@ void Display::CheckEvent(EventType event)
 	switch (event)
 	{
 		case LVLUP:
-			if (m_levelUpCounter > 0 && m_levelUpCounter % 2) attron(A_BOLD);
+			if (_levelUpCounter > 0 && _levelUpCounter % 2) attron(A_BOLD);
 			break;
 			
 		case HP_PWRUP:
-			if (m_healthPowerupCounter > 0 && m_healthPowerupCounter % 2) attron(A_BOLD);
+			if (_healthPowerupCounter > 0 && _healthPowerupCounter % 2) attron(A_BOLD);
 			break;
 			
 		case MANA_PWRUP:
-			if (m_manaPowerupCounter > 0 && m_manaPowerupCounter % 2) attron(A_BOLD);
+			if (_manaPowerupCounter > 0 && _manaPowerupCounter % 2) attron(A_BOLD);
 			break;
 			
 		case DMG_PWRUP:
-			if (m_damagePowerupCounter > 0 && m_damagePowerupCounter % 2) attron(A_BOLD);
+			if (_damagePowerupCounter > 0 && _damagePowerupCounter % 2) attron(A_BOLD);
 	}
 }
 

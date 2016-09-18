@@ -42,14 +42,14 @@ class Field
 		uint8_t GetRow() const;
 		
 	private:
-		uint8_t m_coordCol;
-		uint8_t m_coordRow;
-		Monster * m_enemy;
-		Powerup * m_powerup;
-		std::string m_item;
-		uint8_t m_mana;
-		uint8_t m_HP;
-		bool m_visible;
+		uint8_t _coordCol;
+		uint8_t _coordRow;
+		Monster * _enemy;
+		Powerup * _powerup;
+		std::string _item;
+		uint8_t _mana;
+		uint8_t _HP;
+		bool _visible;
 };
 
 #endif // _FIELD_H_

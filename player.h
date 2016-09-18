@@ -73,19 +73,19 @@ class Player
 		void TEST_LevelUp();
 
 	private:
-		std::string m_name;
-		uint8_t m_level;
-		uint16_t m_exp;
-		uint16_t m_expMax;
-		uint8_t m_damage;
-		uint8_t m_HP, m_maxHP;
-		uint8_t m_mana, m_maxMana;
-		uint8_t m_sightRadius;
+		std::string _name;
+		uint8_t _level;
+		uint16_t _exp;
+		uint16_t _expMax;
+		uint8_t _damage;
+		uint8_t _HP, _maxHP;
+		uint8_t _mana, _maxMana;
+		uint8_t _sightRadius;
 
-		Battlefield *m_battlefield;
-		Field *m_position;
-		Field *m_target;
-		Display *m_display;
+		Battlefield *_battlefield;
+		Field *_position;
+		Field *_target;
+		Display *_display;
 
 		bool InSightRadius(uint8_t, uint8_t);
 };

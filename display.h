@@ -10,10 +10,7 @@
 enum Frametype {CURRENT, FUTURE};
 enum EventType {LVLUP, HP_PWRUP, MANA_PWRUP, DMG_PWRUP};
 
-class Player;
-class Battlefield;
-class Monster;
-class Field;
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -44,15 +41,15 @@ class Display
 		static void NcursesShutdown();
 
 	private:
-		uint8_t m_levelUpCounter;
-		uint8_t m_healthPowerupCounter;
-		uint8_t m_manaPowerupCounter;
-		uint8_t m_damagePowerupCounter;
+		uint8_t _levelUpCounter;
+		uint8_t _healthPowerupCounter;
+		uint8_t _manaPowerupCounter;
+		uint8_t _damagePowerupCounter;
 				
-		Battlefield * m_battlefield;
-		Player * m_player;
-		Monster * m_enemy;
-		Frametype m_frame;
+		Battlefield * _battlefield;
+		Player * _player;
+		Monster * _enemy;
+		Frametype _frame;
 		std::string HORIZ_WALL;
 
 		std::string ShowBar(uint8_t, uint8_t) const;
