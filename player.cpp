@@ -31,6 +31,7 @@ m_display( NULL )
 		if (!tempField->HaveEnemy() && !tempField->HaveItem()) break;
 	}
 	m_position = tempField;
+  LookAround();
 }
 
 

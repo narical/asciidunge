@@ -5,14 +5,10 @@
  *
  */
 
-class Battlefield;
-class Player;
-class Display;
 #include <iostream>
 #include <string>
 #include <cstdlib>
 #include <ctime>
-#include <iterator>
 #include "battlefield.h"
 #include "player.h"
 #include "display.h"
@@ -34,7 +30,6 @@ void Game::Run ()   //TODO: move all input to Input class
 
 	while ( plr->IsAlive() )
 	{
-		plr->LookAround();
 		display->ShowFrame();
 		GetPlayerInput(plr);
 	 	if (CheckVictory()) break;

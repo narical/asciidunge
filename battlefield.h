@@ -7,16 +7,12 @@
 
 #ifndef _BATTLEFIELD_H_
 #define _BATTLEFIELD_H_
+enum direction {LEFT, RIGHT, UP, DOWN};
 
 #include <vector>
 #include "monster.h"
 #include "powerup.h"
-//class Player;
-//class Monster;
-//class Powerup;
-//class Game;
-//class Field;
-enum direction {LEFT, RIGHT, UP, DOWN};
+
 
 class Battlefield {
 	static const uint8_t BF_SIZE = 20;
