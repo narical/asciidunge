@@ -70,16 +70,16 @@ void Display::DrawPlayerInfo()
 	uint8_t maxHP = plr->GetMaxHP();
 	uint8_t mana = plr->GetMana();
 	uint8_t maxMana = plr->GetMaxMana();
-	uint8_t exp = plr->GetExp();
-	uint8_t expMax = plr->GetExpMax();
+	uint16_t exp = plr->GetExp();
+	uint16_t expMax = plr->GetExpMax();
 
 	std::string healthBar = ShowBar(HP, maxHP);
 	std::string manaBar = ShowBar(mana, maxMana);
 	std::string expBar = ShowBar(exp, expMax);
 
-	mvprintw(PLAYER_ROW + 0, INFO_MARGIN, "Exp   %d / %d", exp, expMax);
+	mvprintw(PLAYER_ROW + 0, INFO_MARGIN, "Exp   %u / %u", exp, expMax);
 	CheckEvent(MANA_PWRUP);
-	mvprintw(PLAYER_ROW + 1, INFO_MARGIN, "Mana  %d / %d", mana, maxMana);
+	mvprintw(PLAYER_ROW + 1, INFO_MARGIN, "Mana  %u / %u", mana, maxMana);
 	EndCheck();
 	CheckEvent(LVLUP);
 	mvprintw(PLAYER_ROW + 5, INFO_MARGIN, "%s - level %d", name.c_str(), level);

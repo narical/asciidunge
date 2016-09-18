@@ -8,10 +8,10 @@
 #ifndef _ITEM_H_
 #define _ITEM_H_
 
-class Battlefield;
-class Game;
-class Player;
-class Field;
+/* class Battlefield; */
+/* class Game; */
+/* class Player; */
+/* class Field; */
 #include <string>
 #include "battlefield.h"
 #include "game.h"

@@ -6,6 +6,11 @@ Small ascii roguelike game
 - make enemy spawning more sparse
 - make all counters as single array
 - fix non-showing victory bug!
+- refactor abstraction layers
+- clean all #includes
+- make all members' names begin with _ instead of m_
+- make all pointers variables begin with p
+- remove vectors entirely
 
 ## Latest changes
 + refactor Player/Powerup classes
