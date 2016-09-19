@@ -20,21 +20,22 @@ class Field
 {
 	static const uint8_t HP_PER_FIELD = 2;
 	static const uint8_t MANA_PER_FIELD = 2;
-	
+
 	public:
 		Field (uint8_t, uint8_t);
+		~Field ();
 //		Field (const Field &);
 		void MakeVisible();
-		void SpawnEnemy(Monster *);
+		void SpawnEnemy(uint8_t);
+		void SpawnPowerup(PowerupType);
 		void SpawnItem();
-		void SpawnPowerup(Powerup *);
 		void RemovePowerup();
-		uint8_t GetHP();
-		uint8_t GetMana();
-		bool HaveEnemy();
-		bool HavePowerup();
-		bool HaveItem();
-		bool IsVisible();
+		uint8_t ExtractMana();
+		uint8_t ExtractHP();
+		bool HaveEnemy() const;
+		bool HavePowerup() const;
+		bool HaveItem() const;
+		bool IsVisible() const;
 		Monster * GetEnemy() const;
 		Powerup * GetPowerup() const;
 		std::string GetItem() const;

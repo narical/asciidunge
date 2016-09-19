@@ -22,15 +22,14 @@ _target( NULL ),
 _display( NULL )
 {
 	_battlefield->SetPlayer(this);
-	Field *tempField = NULL;
+	Field *field = NULL;
 	while (true)
 	{
-		uint8_t row = rand() % _battlefield->GetSize();
-		uint8_t col = rand() % _battlefield->GetSize();
-		tempField = _battlefield->GetField(row, col);
-		if (!tempField->HaveEnemy() && !tempField->HaveItem()) break;
+		field = _battlefield->GetRandomField();
+		if (field->HaveEnemy() || field->HaveItem() || field->HavePowerup() ) continue;
+		break;
 	}
-	_position = tempField;
+	_position = field;
   LookAround();
 }
 
@@ -128,8 +127,8 @@ void Player::LookAround()
 			{
 				Field *field = _battlefield->GetField(tempRow, tempColumn);
 				field->MakeVisible();
-				RecoverBy(field->GetMana());
-				HealBy(field->GetHP());
+				RecoverBy(field->ExtractMana());
+				HealBy(field->ExtractHP());
 			}
 }
 

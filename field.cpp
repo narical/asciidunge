@@ -19,6 +19,13 @@ Field::Field(uint8_t row, uint8_t col) :
 { }
 
 
+Field::~Field()
+{
+	if (_enemy != NULL) delete(_enemy);
+	if (_powerup != NULL) delete(_powerup);
+}
+
+
 /*
 Field::Field (const Field &f)
 {
@@ -38,19 +45,22 @@ uint8_t Field::GetRow() const
 	return _coordRow;
 }
 
+
 uint8_t Field::GetCol() const
 {
 	return _coordCol;
 }
 
-void Field::SpawnEnemy(Monster * nextEnemyFromPool)
+
+void Field::SpawnEnemy(uint8_t monsterLevel)
 {
-   _enemy = nextEnemyFromPool;
+   _enemy = new Monster(monsterLevel);
 }
 
-void Field::SpawnPowerup(Powerup * nextPowerupFromPool)
+
+void Field::SpawnPowerup(PowerupType type)
 {
-   _powerup = nextPowerupFromPool;
+   _powerup = new Powerup(type);
    _powerup->SetPosition(this);
 }
 
@@ -73,42 +83,48 @@ Powerup * Field::GetPowerup() const
 }
 
 
-bool Field::HaveEnemy()
+bool Field::HaveEnemy() const
 {
  return ((_enemy != NULL) && _enemy->IsAlive());
 }
 
-bool Field::HavePowerup()
+
+bool Field::HavePowerup() const
 {
  return (_powerup != NULL);
 }
+
 
 void Field::SpawnItem()
 {
    _item = "item";
 }
 
+
 std::string Field::GetItem() const
 {
    return _item;
 }
 
-bool Field::HaveItem()
+bool Field::HaveItem() const
 {
  return (GetItem() != "no item!");
 }
+
 
 void Field::MakeVisible()
 {
    _visible = true;
 }
 
-bool Field::IsVisible()
+
+bool Field::IsVisible() const
 {
  return _visible;
 }
 
-uint8_t Field::GetMana()
+
+uint8_t Field::ExtractMana()
 {
 	uint8_t res = _mana;
 	_mana = 0;
@@ -116,7 +132,7 @@ uint8_t Field::GetMana()
 }
 
 
-uint8_t Field::GetHP()
+uint8_t Field::ExtractHP()
 {
 	uint8_t res = _HP;
 	_HP = 0;

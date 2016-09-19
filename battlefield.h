@@ -9,49 +9,42 @@
 #define _BATTLEFIELD_H_
 enum direction {LEFT, RIGHT, UP, DOWN};
 
-#include <vector>
+
 #include "monster.h"
 #include "powerup.h"
 
 
-class Battlefield {
+class Battlefield
+{
 	static const uint8_t BF_SIZE = 20;
 
 	public:
 		Battlefield();
 		~Battlefield();
-	 	void CreateEnemy(uint8_t, uint8_t);
-		void CreatePowerup(PowerupType, uint8_t);
+	 	void SpawnEnemies();
+		void SpawnPowerups();
 		Field * GetField(uint8_t, uint8_t) const;
+		Field * GetRandomField() const;
 		Field * GetNextField(Field *, direction) const;
-		uint8_t GetSize() const; 
+		uint8_t GetSize() const;
 		void SetPlayer(Player *);
-		Player * GetPlayer();
-		Player * GetPlayerCopy();
-		Monster * GetEnemyCopy();
+		Player * GetPlayer() const;
+		Player * GetPlayerCopy() const;
+		Monster * GetEnemyCopy() const;
 		void Fight(Player *, Monster *);
 		void CalculateNextFight();
 
-		std::vector<Monster> * GetEnemies();
-		 
 	private:
 		Field *_field[BF_SIZE][BF_SIZE];
 		Player *_player;
-		std::vector<Monster> _enemies;
-		std::vector<Powerup> _powerups;
-		
-		// to store possible fight results
+
+  		// to store possible fight results
 		Player *_playerCopy;
 		Monster *_enemyCopy;
-		
-		const uint8_t POWERUPS_HP_COUNT = 5;
-		const uint8_t POWERUPS_MANA_COUNT = 5;
-		const uint8_t POWERUPS_DAMAGE_COUNT = 5;
-		const uint8_t MAX_POWERUPS_COUNT = POWERUPS_HP_COUNT + POWERUPS_MANA_COUNT + POWERUPS_DAMAGE_COUNT;
-		const uint8_t QUANTITY_OF_LEVEL[11] = {0,10,5,4,4,4,3,3,3,2,1}; //Quantity of monsters of each level
-		const uint8_t MAX_ENEMY_COUNT =          10+5+4+4+4+3+3+3+2+1;
 
-
+		const uint8_t POWERUPS_QUANTITY_BY_TYPE[3] = {5,5,5}; //health, mana, damage
+		const uint8_t MONSTERS_QUANTITY_BY_LEVEL[11] = {0,10,5,4,4,4,3,3,3,2,1}; //Quantity of monsters of each level
+		const uint8_t MAX_ENEMY_COUNT =  39;
 };
 
 #endif // _BATTLEFIELD_H_

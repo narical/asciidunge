@@ -233,17 +233,20 @@ void Display::SendEvent(EventType event)
 		case LVLUP:
 			_levelUpCounter = 6;
 			break;
-			
+
 		case HP_PWRUP:
 			_healthPowerupCounter = 6;
 			break;
-			
+
 		case MANA_PWRUP:
 			_manaPowerupCounter = 6;
 			break;
-			
+
 		case DMG_PWRUP:
 			_damagePowerupCounter = 6;
+			break;
+
+		case NOTHING:;
 	}
 }
 
@@ -256,17 +259,20 @@ void Display::CheckEvent(EventType event)
 		case LVLUP:
 			if (_levelUpCounter > 0 && _levelUpCounter % 2) attron(A_BOLD);
 			break;
-			
+
 		case HP_PWRUP:
 			if (_healthPowerupCounter > 0 && _healthPowerupCounter % 2) attron(A_BOLD);
 			break;
-			
+
 		case MANA_PWRUP:
 			if (_manaPowerupCounter > 0 && _manaPowerupCounter % 2) attron(A_BOLD);
 			break;
-			
+
 		case DMG_PWRUP:
 			if (_damagePowerupCounter > 0 && _damagePowerupCounter % 2) attron(A_BOLD);
+			break;
+
+		case NOTHING:;
 	}
 }
 

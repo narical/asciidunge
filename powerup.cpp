@@ -36,6 +36,7 @@ EventType Powerup::TakeBy(Player * plr)
 			_field->RemovePowerup();
 			return DMG_PWRUP;
 	}
+	return NOTHING;
 }
 
 

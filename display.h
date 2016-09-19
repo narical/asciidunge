@@ -8,7 +8,7 @@
 #ifndef _DISPLAY_H_
 #define _DISPLAY_H_
 enum Frametype {CURRENT, FUTURE};
-enum EventType {LVLUP, HP_PWRUP, MANA_PWRUP, DMG_PWRUP};
+enum EventType {NOTHING, LVLUP, HP_PWRUP, MANA_PWRUP, DMG_PWRUP};
 
 
 #include <iostream>
