@@ -6,7 +6,13 @@
  */
 
 #include "player.h"
-#include "powerup.h"
+#include <ncurses.h>
+#include "battlefield.h"
+#include "monster.h"
+#include "display.h"
+#include "field.h"
+//#include "powerup.h"
+
 
 
 Player::Player (Battlefield *btl) :

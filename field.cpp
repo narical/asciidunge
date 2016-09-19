@@ -6,6 +6,9 @@
  */
 
 #include "field.h"
+#include "monster.h"
+
+
 
 Field::Field(uint8_t row, uint8_t col) :
 	_coordCol(col),

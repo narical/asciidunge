@@ -6,10 +6,14 @@
  */
 #include <cstdlib>
 #include "battlefield.h"
+#include "player.h"
+#include "field.h"
+#include "monster.h"
+// #include "powerup.h"
 
 
 
-Battlefield::Battlefield() : _playerCopy(0), _enemyCopy(0)
+Battlefield::Battlefield() : _boss(NULL), _playerCopy(NULL), _enemyCopy(NULL)
 {
 	for (uint8_t row = 0; row < BF_SIZE; ++row)
 		for (uint8_t column = 0; column < BF_SIZE; ++column)
@@ -45,6 +49,8 @@ void Battlefield::SpawnEnemies()
 			if ( field->HaveEnemy() ) continue;
 			field->SpawnEnemy(monsterLevel);
 			enemiesToSpawn--;
+
+			if (monsterLevel == 10) _boss = field->GetEnemy();
 		}
 	}
 }
@@ -187,4 +193,19 @@ uint8_t Battlefield::GetSize() const
 {
 	return BF_SIZE;
 }
+
+
+bool Battlefield::BossIsDead()
+{
+	return _boss->IsDead();
+}
+
+
+
+bool Battlefield::BossIsAlive()
+{
+	return !_boss->IsDead();
+}
+
+
 

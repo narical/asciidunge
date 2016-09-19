@@ -7,6 +7,8 @@
 
 
 #include "powerup.h"
+#include "field.h"
+#include "player.h"
 
 
 

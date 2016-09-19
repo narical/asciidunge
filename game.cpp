@@ -5,15 +5,14 @@
  *
  */
 
-#include <iostream>
-#include <string>
-#include <cstdlib>
+#include "game.h"
+//#include <cstdlib>
 #include <ctime>
 #include "battlefield.h"
 #include "player.h"
 #include "display.h"
 #include "ncurses.h"
-#include "game.h"
+
 
 
 Game::Game ()
@@ -24,20 +23,20 @@ void Game::Run ()   //TODO: move all input to Input class
 {
 	Run_RNG();
 
-	Battlefield *btl = new Battlefield();
-	Player *plr = new Player(btl);
-	Display *display = new Display(btl, plr);
+	_battlefield = new Battlefield();
+	_player = new Player(_battlefield);
 
-	while ( plr->IsAlive() )
+	Display *display = new Display(_battlefield, _player);
+
+	while ( _player->IsAlive() && _battlefield->BossIsAlive() )
 	{
 		display->ShowFrame();
-		GetPlayerInput(plr);
-	 	if (CheckVictory()) break;
+		GetPlayerInput(_player);
 	}
 	CheckVictory() ? Victory() : Defeat();
 
-	delete(plr);
-	delete(btl);
+	delete(_player);
+	delete(_battlefield);
 	delete(display);
 }
 
@@ -69,7 +68,7 @@ void Game::GetPlayerInput(Player * plr) //TODO: move all input to Input class
 
 bool Game::CheckVictory()
 {
-	return Monster::bossIsDead;
+	return (_player->IsAlive() && _battlefield->BossIsDead());
 }
 
 

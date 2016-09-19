@@ -10,15 +10,12 @@
 enum Frametype {CURRENT, FUTURE};
 enum EventType {NOTHING, LVLUP, HP_PWRUP, MANA_PWRUP, DMG_PWRUP};
 
-
-#include <iostream>
+#include <stdint.h>
 #include <string>
-#include <vector>
-#include <cstdlib>
-#include <algorithm>
-#include <ncurses.h>
-#include <unistd.h>
-#include "field.h"
+
+class Battlefield;
+class Player;
+class Monster;
 
 class Display
 {

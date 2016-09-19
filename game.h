@@ -8,7 +8,10 @@
 #ifndef _GAME_H_
 #define _GAME_H_
 
-#include "player.h"
+class Battlefield;
+class Player;
+
+
 
 class Game
 {
@@ -20,6 +23,10 @@ class Game
 		void Victory();
 		void Defeat();
 		static void Run_RNG();
+
+	private:
+		Battlefield *_battlefield;
+		Player *_player;
 };
 
 #endif // _GAME_H_

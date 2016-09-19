@@ -8,13 +8,13 @@
 #ifndef _FIELD_H_
 #define _FIELD_H_
 
-class Monster;
-class Powerup;
-class Battlefield;
-#include <iostream>
 #include <string>
-#include "monster.h"
+#include <stdint.h>
 #include "powerup.h"
+
+class Monster;
+
+
 
 class Field
 {

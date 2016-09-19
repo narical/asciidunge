@@ -9,10 +9,11 @@
 #define _POWERUP_H_
 enum PowerupType {HEALTH, MANA, DAMAGE};
 
-class Field;
-#include <string>
-#include "field.h"
 #include "display.h"
+class Field;
+class Player;
+
+
 
 
 class Powerup

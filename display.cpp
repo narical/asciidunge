@@ -7,7 +7,13 @@
 
 
 #include "display.h"
-
+//#include <cstdlib>
+#include <ncurses.h>
+//#include <unistd.h>
+#include "battlefield.h"
+#include "player.h"
+#include "monster.h"
+#include "field.h"
 
 Display::Display(Battlefield * btl, Player * plr) :
 _levelUpCounter(0),

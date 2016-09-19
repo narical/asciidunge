@@ -9,9 +9,12 @@
 #define _BATTLEFIELD_H_
 enum direction {LEFT, RIGHT, UP, DOWN};
 
+#include <stdint.h>
 
-#include "monster.h"
-#include "powerup.h"
+
+class Player;
+class Field;
+class Monster;
 
 
 class Battlefield
@@ -33,10 +36,13 @@ class Battlefield
 		Monster * GetEnemyCopy() const;
 		void Fight(Player *, Monster *);
 		void CalculateNextFight();
+		bool BossIsAlive();
+		bool BossIsDead();
 
 	private:
 		Field *_field[BF_SIZE][BF_SIZE];
 		Player *_player;
+		Monster *_boss;
 
   		// to store possible fight results
 		Player *_playerCopy;
