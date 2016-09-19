@@ -83,11 +83,11 @@ void Display::DrawPlayerInfo()
 
 	std::string name = plr->GetName();
 	uint8_t level = plr->GetLevel();
-	uint8_t damage = plr->GetDamage();
-	uint8_t HP = plr->GetHP();
-	uint8_t maxHP = plr->GetMaxHP();
-	uint8_t mana = plr->GetMana();
-	uint8_t maxMana = plr->GetMaxMana();
+	uint16_t damage = plr->GetDamage();
+	uint16_t HP = plr->GetHP();
+	uint16_t maxHP = plr->GetMaxHP();
+	uint16_t mana = plr->GetMana();
+	uint16_t maxMana = plr->GetMaxMana();
 	uint16_t exp = plr->GetExp();
 	uint16_t expMax = plr->GetExpMax();
 
@@ -135,9 +135,9 @@ void Display::DrawEnemyInfo()
 	{
 		std::string name = enemy->GetName();
 		uint8_t level = enemy->GetLevel();
-		uint8_t damage = enemy->GetDamage();
-		uint8_t HP = enemy->GetHP();
-		uint8_t maxHP = enemy->GetMaxHP();
+		uint16_t damage = enemy->GetDamage();
+		uint16_t HP = enemy->GetHP();
+		uint16_t maxHP = enemy->GetMaxHP();
 
 		std::string healthBar = DrawBar(HP, maxHP);
 

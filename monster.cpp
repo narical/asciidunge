@@ -46,13 +46,13 @@ Monster::Monster(const Monster &p)
 
 
 
-uint8_t Monster::CalculateDamage(uint8_t monsterLevel)
+uint16_t Monster::CalculateDamage(uint8_t monsterLevel)
 {
-	return (uint8_t)((monsterLevel * (monsterLevel + 5)) / 2);
+	return (uint16_t)((monsterLevel * (monsterLevel + 5)) / 2);
 }
 
 
-uint8_t Monster::CalculateMaxHP(uint8_t monsterLevel)
+uint16_t Monster::CalculateMaxHP(uint8_t monsterLevel)
 {
 	return (monsterLevel * (monsterLevel + 6) - 1);
 }
@@ -64,7 +64,7 @@ void Monster::Attack(Player * plr)
 }
 
 
-void Monster::AddHP(uint8_t delta)
+void Monster::AddHP(uint16_t delta)
 {
 	_HP = (_HP + delta > _maxHP ? _maxHP : _HP + delta);
 }
@@ -72,7 +72,7 @@ void Monster::AddHP(uint8_t delta)
 
 void Monster::TakeDamage(Player * plr)
 {
-	uint8_t delta = plr->GetDamage();
+	uint16_t delta = plr->GetDamage();
 	_HP = (_HP - delta < 0 ? 0 : _HP - delta);
 	if (_HP == 0) _isDead = 1;
 }
@@ -102,19 +102,19 @@ uint8_t Monster::GetLevel() const
 }
 
 
-uint8_t Monster::GetDamage() const
+uint16_t Monster::GetDamage() const
 {
 	return _damage;
 }
 
 
-uint8_t Monster::GetHP() const
+uint16_t Monster::GetHP() const
 {
 	return _HP;
 }
 
 
-uint8_t Monster::GetMaxHP() const
+uint16_t Monster::GetMaxHP() const
 {
 	return _maxHP;
 }

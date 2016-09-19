@@ -3,16 +3,19 @@ Small ascii roguelike game
 *ncurses-based console "Desktop Dungeon" clone*
 
 ## Internal TO-DO list:
-- make enemy spawning more sparse
 - make all counters as single array
-- fix non-showing victory bug!
 - refactor abstraction layers
 - make all pointers variables begin with p
 - add assertions to entire code
+- move all constants to config.h
+
+- remove ExtractHP/Mana from fields, use new player ManaRegen/HealthRegen properties
+- make enemy spawning more sparse
 - make different powerup classes
 - add initiative property to player and monsters
 
 ## Latest changes
++ change uint8_t to uint16_t where needed
 + clean all #includes
 + fix player spawning on powerup
 + remove vectors entirely

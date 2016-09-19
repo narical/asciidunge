@@ -40,10 +40,10 @@ class Display
 		static void NcursesShutdown();
 
 	private:
-		uint8_t _levelUpCounter;
-		uint8_t _healthPowerupCounter;
-		uint8_t _manaPowerupCounter;
-		uint8_t _damagePowerupCounter;
+		uint16_t _levelUpCounter;
+		uint16_t _healthPowerupCounter;
+		uint16_t _manaPowerupCounter;
+		uint16_t _damagePowerupCounter;
 				
 		Battlefield * _battlefield;
 		Player * _player;

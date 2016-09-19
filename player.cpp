@@ -6,6 +6,7 @@
  */
 
 #include "player.h"
+#include <cassert>
 #include <ncurses.h>
 #include "battlefield.h"
 #include "monster.h"
@@ -92,10 +93,12 @@ void Player::Act(int input_key)
 				SetTargetField(nextField); // select new target if any
 				_battlefield->CalculateNextFight();
 			}
+
 			else if (nextField->HavePowerup())
 			{
 				_display->SendEvent( nextField->GetPowerup()->TakeBy(this) );
-			}			
+			}
+
 			else
 			{
 				_position = nextField; //if there's no enemy - move there and look around
@@ -176,27 +179,27 @@ bool Player::InSightRadius(uint8_t testRow, uint8_t testColumn)
 }
 
 
-void Player::BoostHP(uint8_t delta)
+void Player::BoostHP(uint16_t delta)
 {
 	_maxHP += delta;
 	HealBy(delta);
 }
 
 
-void Player::BoostMana(uint8_t delta)
+void Player::BoostMana(uint16_t delta)
 {
 	_maxMana += delta;
 	RecoverBy(delta);
 }
 
 
-void Player::BoostDamage(uint8_t delta)
+void Player::BoostDamage(uint16_t delta)
 {
 	_damage += delta;
 }
 
 
-void Player::SetMana(uint8_t newQuantity)
+void Player::SetMana(uint16_t newQuantity)
 {
 	_mana = newQuantity;
 	//TODO: добавить проверку
@@ -209,19 +212,19 @@ void Player::Recover()
 }
 
 
-void Player::RecoverBy(uint8_t delta)
+void Player::RecoverBy(uint16_t delta)
 {
 	_mana = (_mana + delta > _maxMana ? _maxMana : _mana + delta);
 }
 
 
-void Player::SpendMana(uint8_t delta)
+void Player::SpendMana(uint16_t delta)
 {
 	_mana = (_mana - delta < 0 ? 0 : _mana - delta);
 }
 
 
-void Player::SetHP(uint8_t newQuantity)
+void Player::SetHP(uint16_t newQuantity)
 {
 	_HP = newQuantity;
 	//TODO: добавить проверку
@@ -234,13 +237,13 @@ void Player::Heal()
 }
 
 
-void Player::HealBy(uint8_t delta)
+void Player::HealBy(uint16_t delta)
 {
 	_HP = (_HP + delta > _maxHP ? _maxHP : _HP + delta);
 }
 
 
-void Player::TakeDamage(uint8_t delta)
+void Player::TakeDamage(uint16_t delta)
 {
 	_HP = (_HP - delta < 0 ? 0 : _HP - delta);
 }
@@ -312,31 +315,31 @@ uint16_t Player::GetExpMax() const
 }
 
 
-uint8_t Player::GetDamage() const
+uint16_t Player::GetDamage() const
 {
 	return _damage;
 }
 
 
-uint8_t Player::GetHP() const
+uint16_t Player::GetHP() const
 {
 	return _HP;
 }
 
 
-uint8_t Player::GetMaxHP() const
+uint16_t Player::GetMaxHP() const
 {
 	return _maxHP;
 }
 
 
-uint8_t Player::GetMana() const
+uint16_t Player::GetMana() const
 {
 	return _mana;
 }
 
 
-uint8_t Player::GetMaxMana() const
+uint16_t Player::GetMaxMana() const
 {
 	return _maxMana;
 }

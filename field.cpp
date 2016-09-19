@@ -127,17 +127,17 @@ bool Field::IsVisible() const
 }
 
 
-uint8_t Field::ExtractMana()
+uint16_t Field::ExtractMana()
 {
-	uint8_t res = _mana;
+	uint16_t res = _mana;
 	_mana = 0;
 	return res;
 }
 
 
-uint8_t Field::ExtractHP()
+uint16_t Field::ExtractHP()
 {
-	uint8_t res = _HP;
+	uint16_t res = _HP;
 	_HP = 0;
 	return res;
 }

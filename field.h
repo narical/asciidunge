@@ -30,8 +30,8 @@ class Field
 		void SpawnPowerup(PowerupType);
 		void SpawnItem();
 		void RemovePowerup();
-		uint8_t ExtractMana();
-		uint8_t ExtractHP();
+		uint16_t ExtractMana();
+		uint16_t ExtractHP();
 		bool HaveEnemy() const;
 		bool HavePowerup() const;
 		bool HaveItem() const;

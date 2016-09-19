@@ -21,29 +21,29 @@ class Monster
 		Monster(uint8_t);
 	//	Monster(const Monster &);
 		void Attack(Player *);
-		void AddHP(uint8_t);
+		void AddHP(uint16_t);
 		void TakeDamage(Player *);
 		bool IsDead();
 		bool IsAlive();
 
 		std::string GetName() const;
 		uint8_t GetLevel() const;
-		uint8_t GetDamage() const;
-		uint8_t GetHP() const;
-		uint8_t GetMaxHP() const;
+		uint16_t GetDamage() const;
+		uint16_t GetHP() const;
+		uint16_t GetMaxHP() const;
 
 	private:
 		uint8_t _level;
-		uint8_t _exp;
-		uint8_t _damage;
-		uint8_t _HP;
-		uint8_t _maxHP;
+		uint16_t _exp;
+		uint16_t _damage;
+		uint16_t _HP;
+		uint16_t _maxHP;
 		Field * _field;
 		std::string _name;
 		bool _isDead;
 
-		uint8_t CalculateDamage(uint8_t);
-		uint8_t CalculateMaxHP(uint8_t);
+		uint16_t CalculateDamage(uint8_t);
+		uint16_t CalculateMaxHP(uint8_t);
 };
 
 #endif // _MONSTER_H_

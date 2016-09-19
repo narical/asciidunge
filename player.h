@@ -38,19 +38,19 @@ class Player
 		void Act(int);
 		void LookAround();
 		void Move(Field *);
-		void SetMana(uint8_t);
+		void SetMana(uint16_t);
 		void Recover();
-		void RecoverBy(uint8_t);
-		void SpendMana(uint8_t);
-		void SetHP(uint8_t);
+		void RecoverBy(uint16_t);
+		void SpendMana(uint16_t);
+		void SetHP(uint16_t);
 		void Heal();
-		void HealBy(uint8_t);
-		void TakeDamage(uint8_t);
+		void HealBy(uint16_t);
+		void TakeDamage(uint16_t);
 		void GainExp(Monster *);
 		void LevelUp();
-		void BoostHP(uint8_t);
-		void BoostMana(uint8_t);
-		void BoostDamage(uint8_t);
+		void BoostHP(uint16_t);
+		void BoostMana(uint16_t);
+		void BoostDamage(uint16_t);
 		void SetTargetField(Field *);
 		void SetDisplay(Display *);
 
@@ -60,11 +60,11 @@ class Player
 		uint8_t GetLevel() const;
 		uint16_t GetExp() const;
 		uint16_t GetExpMax() const;
-		uint8_t GetDamage() const;
-		uint8_t GetHP() const;
-		uint8_t GetMaxHP() const;
-		uint8_t GetMana() const;
-		uint8_t GetMaxMana() const;
+		uint16_t GetDamage() const;
+		uint16_t GetHP() const;
+		uint16_t GetMaxHP() const;
+		uint16_t GetMana() const;
+		uint16_t GetMaxMana() const;
 
 		bool IsAlive() const;
 		bool IsDead() const;
@@ -77,10 +77,10 @@ class Player
 		uint8_t _level;
 		uint16_t _exp;
 		uint16_t _expMax;
-		uint8_t _damage;
-		uint8_t _HP, _maxHP;
-		uint8_t _mana, _maxMana;
-		uint8_t _sightRadius;
+		uint16_t _damage;
+		uint16_t _HP, _maxHP;
+		uint16_t _mana, _maxMana;
+		uint16_t _sightRadius;
 
 		Battlefield *_battlefield;
 		Field *_position;
