@@ -8,11 +8,6 @@
 #ifndef _PLAYER_H_
 #define _PLAYER_H_
 
-class Battlefield;
-class Game;
-class Monster;
-class Display;
-
 #include <string>
 #include <stdint.h>
 

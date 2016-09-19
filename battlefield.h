@@ -50,7 +50,6 @@ class Battlefield
 
 		const uint8_t POWERUPS_QUANTITY_BY_TYPE[3] = {5,5,5}; //health, mana, damage
 		const uint8_t MONSTERS_QUANTITY_BY_LEVEL[11] = {0,10,5,4,4,4,3,3,3,2,1}; //Quantity of monsters of each level
-		const uint8_t MAX_ENEMY_COUNT =  39;
 };
 
 #endif // _BATTLEFIELD_H_
