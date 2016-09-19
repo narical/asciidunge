@@ -4,6 +4,12 @@ Small ascii roguelike game
 
 ## version history:
 
+### 0.4a
+* added animation and some color eye-candy
+* added fight result calculation
+* powerups give health / mana / damage bonuses
+* victory condition - killing the boss
+
 ### 0.3a
 * player can lose and (theoretically) win the game
 * enemies can spawn with different levels and stats, based on levels
@@ -22,12 +28,6 @@ Small ascii roguelike game
 * exit with ESQ key
 
 ## Development Roadmap:
-
-### 0.4a
-* added animation and some color eye-candy
-* added fight result calculation
-* powerups give health / mana / damage bonuses
-* victory condition - killing the boss
 
 ### 0.5a
 * different monster types have different properties

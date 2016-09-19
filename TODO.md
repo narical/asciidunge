@@ -7,13 +7,13 @@ Small ascii roguelike game
 - make all counters as single array
 - fix non-showing victory bug!
 - refactor abstraction layers
-- clean all #includes
 - make all pointers variables begin with p
 - add assertions to entire code
 - make different powerup classes
 - add initiative property to player and monsters
 
 ## Latest changes
++ clean all #includes
 + fix player spawning on powerup
 + remove vectors entirely
 + make all members' names begin with _ instead of m_
