@@ -11,7 +11,7 @@
 #include "battlefield.h"
 #include "player.h"
 #include "display.h"
-#include "ncurses.h"
+#include "input.h"
 
 
 
@@ -19,51 +19,29 @@ Game::Game ()
 { }
 
 
-void Game::Run ()   //TODO: move all input to Input class
+void Game::Run ()
 {
 	Run_RNG();
 
 	_battlefield = new Battlefield();
 	_player = new Player(_battlefield);
-
+	Input *input = new Input(_battlefield);
 	Display *display = new Display(_battlefield, _player);
 
 	while ( _player->IsAlive() && _battlefield->BossIsAlive() )
 	{
 		display->ShowFrame();
-		GetPlayerInput(_player);
+		input->GetPlayerInput();
 	}
+
 	CheckVictory() ? Victory() : Defeat();
 
 	delete(_player);
 	delete(_battlefield);
 	delete(display);
+	delete(input);
 }
 
-
-void Game::GetPlayerInput(Player * plr) //TODO: move all input to Input class
-{
-	int input_key;
-	input_key = getch();
-	switch(input_key)
-	{
-		case KEY_RIGHT:
-		case KEY_LEFT:
-		case KEY_UP:
-		case KEY_DOWN:
-			plr->Act(input_key);
-			break;
-		case 'l':
-			plr->TEST_LevelUp();
-			break;
-		case 'h':
-			plr->Heal();
-			break;
-		case 'q':
-			Display::NcursesShutdown();
-			exit(0);
-	}
-}
 
 
 bool Game::CheckVictory()
@@ -75,20 +53,14 @@ bool Game::CheckVictory()
 void Game::Victory()
 {
 	Display::ShowVictoryScreen();
-	while (true)
-	{
-		if (getch() != ERR) break;
-	}
+	Input::WaitAnyKey();
 }
 
 
 void Game::Defeat()
 {
 	Display::ShowDefeatScreen();
-	while (true)
-	{
-		if (getch() != ERR) break;
-	}
+	Input::WaitAnyKey();
 }
 
 
