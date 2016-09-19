@@ -7,21 +7,20 @@
 
 
 #include "display.h"
-//#include <cstdlib>
-#include <ncurses.h>
-//#include <unistd.h>
+#include "input.h"
 #include "battlefield.h"
 #include "player.h"
 #include "monster.h"
 #include "field.h"
+#include "ncurses.h"
 
-Display::Display(Battlefield * btl, Player * plr) :
+Display::Display(Battlefield * btl) :
 _levelUpCounter(0),
 _healthPowerupCounter(0),
 _manaPowerupCounter(0),
 _damagePowerupCounter(0),
 _battlefield(btl),
-_player(plr),
+_player(btl->GetPlayer()),
 _enemy(NULL),
 _frame(CURRENT)
 {
@@ -33,21 +32,34 @@ _frame(CURRENT)
 
 
 
+void Display::ShowFrame()
+{
+	clear();
+	DrawBattlefield();
+	DrawPlayerInfo();
+	if (_player->HaveTarget()) DrawEnemyInfo();
+	refresh();
+	SwitchFrameType();
+	ReduceCounters();
+}
+
+
+
 void Display::DrawBattlefield()
 {
 	uint8_t bf_size = _battlefield->GetSize();
-	attron(A_BOLD);
+	BoldOn();
 	mvprintw(BF_ROW, BF_MARGIN, HORIZ_WALL.c_str());
 	for (uint8_t rowIndex = 0; rowIndex < bf_size; ++rowIndex)
 	{
 		mvprintw(BF_ROW + rowIndex + 1, BF_MARGIN, "#");
-		attroff(A_BOLD);
+		BoldOff();
 		for (uint8_t colIndex = 0; colIndex < bf_size; ++colIndex) DrawField(rowIndex, colIndex);
-		attron(A_BOLD);
+		BoldOn();
 		printw("#");
 	}
 	mvprintw(BF_ROW + bf_size + 1, BF_MARGIN, HORIZ_WALL.c_str());
-	attroff(A_BOLD);
+	BoldOff();
 }
 
 
@@ -68,7 +80,7 @@ void Display::DrawPlayerInfo()
 		plr = plr_copy;
 	else
 		plr = _player;
-		 
+
 	std::string name = plr->GetName();
 	uint8_t level = plr->GetLevel();
 	uint8_t damage = plr->GetDamage();
@@ -79,9 +91,9 @@ void Display::DrawPlayerInfo()
 	uint16_t exp = plr->GetExp();
 	uint16_t expMax = plr->GetExpMax();
 
-	std::string healthBar = ShowBar(HP, maxHP);
-	std::string manaBar = ShowBar(mana, maxMana);
-	std::string expBar = ShowBar(exp, expMax);
+	std::string healthBar = DrawBar(HP, maxHP);
+	std::string manaBar = DrawBar(mana, maxMana);
+	std::string expBar = DrawBar(exp, expMax);
 
 	mvprintw(PLAYER_ROW + 0, INFO_MARGIN, "Exp   %u / %u", exp, expMax);
 	CheckEvent(MANA_PWRUP);
@@ -127,7 +139,7 @@ void Display::DrawEnemyInfo()
 		uint8_t HP = enemy->GetHP();
 		uint8_t maxHP = enemy->GetMaxHP();
 
-		std::string healthBar = ShowBar(HP, maxHP);
+		std::string healthBar = DrawBar(HP, maxHP);
 
 		mvprintw(ENEMY_ROW + 0, INFO_MARGIN, "%s - level %d  ", name.c_str(), level);
 		mvprintw(ENEMY_ROW + 2, INFO_MARGIN, " [+]   %d / %d", HP, maxHP);
@@ -150,10 +162,10 @@ char Display::DrawField(uint8_t rowIndex, uint8_t colIndex)
 	{
 		if (field->HaveEnemy())
 	 	{
-			if (field == playerTarget) attron(A_BOLD);
+			if (field == playerTarget) BoldOn();
 	 	 	if (field->GetEnemy()->GetLevel() == 10) printw("Z");
 	 	 	else printw("%d", field->GetEnemy()->GetLevel());
-			attroff(A_BOLD);
+			BoldOff();
 	 	}
 	 	else if (field != playerField && field->HavePowerup())
 	 		{
@@ -173,9 +185,9 @@ char Display::DrawField(uint8_t rowIndex, uint8_t colIndex)
 	 		}
 	 	else if (field == playerField && field->HavePowerup())
 		{
-			attron(A_BOLD);
+			BoldOn();
 			printw("@");
-			attroff(A_BOLD);
+			BoldOff();
 		}	 	
 
 		else if (field == playerField)
@@ -184,22 +196,10 @@ char Display::DrawField(uint8_t rowIndex, uint8_t colIndex)
 			printw("@");
 			EndCheck();
 		}
-		
+
 		else printw(" ");
 	}
 	return 0;
-}
-
-
-void Display::ShowFrame()
-{
-	clear();
-	DrawBattlefield();
-	DrawPlayerInfo();
-	if (_player->HaveTarget()) DrawEnemyInfo();
-	refresh();
-	SwitchFrameType();
-	ReduceCounters();
 }
 
 
@@ -219,13 +219,13 @@ void Display::SwitchFrameType()
 }
 
 
-std::string Display::ShowBar(uint8_t current, uint8_t max) const
+std::string Display::DrawBar(uint16_t current, uint16_t max) const
 {
-	uint8_t num;
+	uint16_t num;
 	std::string result = "[";
-	num = (current != 0 ? (uint8_t)( (double)current / max * BARWIDTH) : 0);
-	for (uint8_t i = 0; i < num; ++i) result += '#';
-	for (uint8_t i = 0; i < BARWIDTH - num; ++i) result += '.';
+	num = (current != 0 ? (uint16_t)( (double)current / max * BARWIDTH) : 0);
+	for (uint16_t i = 0; i < num; ++i) result += '#';
+	for (uint16_t i = 0; i < BARWIDTH - num; ++i) result += '.';
 	result += ']';
 	return result;
 }
@@ -263,23 +263,37 @@ void Display::CheckEvent(EventType event)
 	switch (event)
 	{
 		case LVLUP:
-			if (_levelUpCounter > 0 && _levelUpCounter % 2) attron(A_BOLD);
+			if (_levelUpCounter > 0 && _levelUpCounter % 2) BoldOn();
 			break;
 
 		case HP_PWRUP:
-			if (_healthPowerupCounter > 0 && _healthPowerupCounter % 2) attron(A_BOLD);
+			if (_healthPowerupCounter > 0 && _healthPowerupCounter % 2) BoldOn();
 			break;
 
 		case MANA_PWRUP:
-			if (_manaPowerupCounter > 0 && _manaPowerupCounter % 2) attron(A_BOLD);
+			if (_manaPowerupCounter > 0 && _manaPowerupCounter % 2) BoldOn();
 			break;
 
 		case DMG_PWRUP:
-			if (_damagePowerupCounter > 0 && _damagePowerupCounter % 2) attron(A_BOLD);
+			if (_damagePowerupCounter > 0 && _damagePowerupCounter % 2) BoldOn();
 			break;
 
 		case NOTHING:;
 	}
+}
+
+
+
+void Display::BoldOn()
+{
+	attron(A_BOLD);
+}
+
+
+
+void Display::BoldOff()
+{
+	attroff(A_BOLD);
 }
 
 

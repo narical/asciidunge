@@ -50,3 +50,4 @@ void Input::WaitAnyKey()
 {
 	while (true) if (getch() != ERR) break;
 }
+

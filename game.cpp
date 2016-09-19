@@ -16,17 +16,17 @@
 
 
 Game::Game ()
-{ }
+{
+	Run_RNG();
+}
 
 
 void Game::Run ()
 {
-	Run_RNG();
-
 	_battlefield = new Battlefield();
 	_player = new Player(_battlefield);
 	Input *input = new Input(_battlefield);
-	Display *display = new Display(_battlefield, _player);
+	Display *display = new Display(_battlefield);
 
 	while ( _player->IsAlive() && _battlefield->BossIsAlive() )
 	{

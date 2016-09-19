@@ -28,9 +28,11 @@ class Display
 	static const uint8_t BAR_MARGIN = 45;
 
 	public:
-		Display ( Battlefield * btl, Player * plr );
+		Display (Battlefield * btl);
 		void ShowFrame();
 		void SendEvent(EventType);
+		void BoldOn();
+		void BoldOff();
 
 		static void ShowVictoryScreen();
 		static void ShowDefeatScreen();
@@ -49,7 +51,7 @@ class Display
 		Frametype _frame;
 		std::string HORIZ_WALL;
 
-		std::string ShowBar(uint8_t, uint8_t) const;
+		std::string DrawBar(uint16_t, uint16_t) const;
 		void ReduceCounters();
 		void SwitchFrameType();
 		void CheckEvent(EventType);
