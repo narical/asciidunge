@@ -7,10 +7,8 @@
 
 #ifndef _DISPLAY_H_
 #define _DISPLAY_H_
-enum Frametype {CURRENT, FUTURE};
-enum EventType {NOTHING, LVLUP, HP_PWRUP, MANA_PWRUP, DMG_PWRUP};
 
-#include <stdint.h>
+#include "config.h"
 #include <string>
 
 class Battlefield;
@@ -19,50 +17,40 @@ class Monster;
 
 class Display
 {
-	static const uint8_t BARWIDTH = 20;
-	static const uint8_t BF_ROW = 1;
-	static const uint8_t PLAYER_ROW = 1;
-	static const uint8_t ENEMY_ROW = 14;
-	static const uint8_t BF_MARGIN = 2;
-	static const uint8_t INFO_MARGIN = 26;
-	static const uint8_t BAR_MARGIN = 45;
-
 	public:
 		Display (Battlefield * btl);
+		void SendEvent(eventtype);
 		void ShowFrame();
-		void SendEvent(EventType);
-		void BoldOn();
-		void BoldOff();
 
 		static void ShowVictoryScreen();
 		static void ShowDefeatScreen();
-		static void NcursesInit();
 		static void NcursesShutdown();
+		static void NcursesInit();
 
 	private:
 		uint16_t _levelUpCounter;
 		uint16_t _healthPowerupCounter;
 		uint16_t _manaPowerupCounter;
 		uint16_t _damagePowerupCounter;
-				
-		Battlefield * _battlefield;
-		Player * _player;
-		Monster * _enemy;
-		Frametype _frame;
 		std::string HORIZ_WALL;
 
+		Battlefield * _battlefield;
+		Monster * _enemy;
+		Player * _player;
+		frametype _frame;
+
 		std::string DrawBar(uint16_t, uint16_t) const;
-		void ReduceCounters();
-		void SwitchFrameType();
-		void CheckEvent(EventType);
-		void EndCheck();
+		char DrawField(uint8_t, uint8_t);
 		void DrawBattlefield();
 		void DrawPlayerInfo();
 		void DrawEnemyInfo();
-		char DrawField(uint8_t, uint8_t);
+		void CheckEvent(eventtype);
+		void SwitchFrameType();
+		void ReduceCounters();
+		void EndCheck();
+		void BoldOff();
+		void BoldOn();
 };
 
 #endif // _DISPLAY_H_
 
-
-	

@@ -6,12 +6,11 @@
  */
 
 #include "game.h"
-//#include <cstdlib>
-#include <ctime>
 #include "battlefield.h"
 #include "player.h"
 #include "display.h"
 #include "input.h"
+#include <ctime>
 
 
 

@@ -8,8 +8,8 @@
 #ifndef _FIELD_H_
 #define _FIELD_H_
 
+#include "config.h"
 #include <string>
-#include <stdint.h>
 #include "powerup.h"
 
 class Monster;
@@ -18,16 +18,13 @@ class Monster;
 
 class Field
 {
-	static const uint8_t HP_PER_FIELD = 2;
-	static const uint8_t MANA_PER_FIELD = 2;
-
 	public:
 		Field (uint8_t, uint8_t);
 		~Field ();
 //		Field (const Field &);
 		void MakeVisible();
 		void SpawnEnemy(uint8_t);
-		void SpawnPowerup(PowerupType);
+		void SpawnPowerup(poweruptype);
 		void SpawnItem();
 		void RemovePowerup();
 		uint16_t ExtractMana();

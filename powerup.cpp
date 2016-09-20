@@ -5,21 +5,20 @@
  *
  */
 
-
 #include "powerup.h"
 #include "field.h"
 #include "player.h"
 
 
 
-Powerup::Powerup(PowerupType type) : _type(type), _field(NULL)
+Powerup::Powerup(poweruptype type) : _type(type), _field(NULL)
 {
 
 }
 
 
 
-EventType Powerup::TakeBy(Player * plr)
+eventtype Powerup::TakeBy(Player * plr)
 {
 	switch (_type)
 	{
@@ -50,7 +49,7 @@ void Powerup::SetPosition(Field * position)
 
 
 
-PowerupType Powerup::GetType()
+poweruptype Powerup::GetType()
 {
 	return _type;
 }

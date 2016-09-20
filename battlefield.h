@@ -7,8 +7,8 @@
 
 #ifndef _BATTLEFIELD_H_
 #define _BATTLEFIELD_H_
-enum direction {LEFT, RIGHT, UP, DOWN};
 
+#include "config.h"
 #include <stdint.h>
 
 
@@ -19,25 +19,24 @@ class Monster;
 
 class Battlefield
 {
-	static const uint8_t BF_SIZE = 20;
-
 	public:
 		Battlefield();
 		~Battlefield();
 	 	void SpawnEnemies();
 		void SpawnPowerups();
+		void SetPlayer(Player *);
+		void CalculateNextFight();
+		void Fight(Player *, Monster *);
+
+		Field * GetNextField(Field *, direction) const;
 		Field * GetField(uint8_t, uint8_t) const;
 		Field * GetRandomField() const;
-		Field * GetNextField(Field *, direction) const;
-		uint8_t GetSize() const;
-		void SetPlayer(Player *);
-		Player * GetPlayer() const;
 		Player * GetPlayerCopy() const;
 		Monster * GetEnemyCopy() const;
-		void Fight(Player *, Monster *);
-		void CalculateNextFight();
-		bool BossIsAlive();
-		bool BossIsDead();
+		Player * GetPlayer() const;
+		uint8_t GetSize() const;
+		bool BossIsAlive() const;
+		bool BossIsDead() const;
 
 	private:
 		Field *_field[BF_SIZE][BF_SIZE];
@@ -47,9 +46,6 @@ class Battlefield
   		// to store possible fight results
 		Player *_playerCopy;
 		Monster *_enemyCopy;
-
-		const uint8_t POWERUPS_QUANTITY_BY_TYPE[3] = {5,5,5}; //health, mana, damage
-		const uint8_t MONSTERS_QUANTITY_BY_LEVEL[11] = {0,10,5,4,4,4,3,3,3,2,1}; //Quantity of monsters of each level
 };
 
 #endif // _BATTLEFIELD_H_

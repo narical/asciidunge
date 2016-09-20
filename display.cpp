@@ -20,8 +20,8 @@ _healthPowerupCounter(0),
 _manaPowerupCounter(0),
 _damagePowerupCounter(0),
 _battlefield(btl),
-_player(btl->GetPlayer()),
 _enemy(NULL),
+_player(btl->GetPlayer()),
 _frame(CURRENT)
 {
 	HORIZ_WALL = "";
@@ -213,10 +213,12 @@ void Display::ReduceCounters()
 }
 
 
+
 void Display::SwitchFrameType()
 {
 	_frame = (_frame == CURRENT ? FUTURE : CURRENT);
 }
+
 
 
 std::string Display::DrawBar(uint16_t current, uint16_t max) const
@@ -232,7 +234,7 @@ std::string Display::DrawBar(uint16_t current, uint16_t max) const
 
 
 
-void Display::SendEvent(EventType event)
+void Display::SendEvent(eventtype event)
 {
 	switch (event)
 	{
@@ -258,7 +260,7 @@ void Display::SendEvent(EventType event)
 
 
 
-void Display::CheckEvent(EventType event)
+void Display::CheckEvent(eventtype event)
 {
 	switch (event)
 	{

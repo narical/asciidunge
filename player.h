@@ -8,8 +8,8 @@
 #ifndef _PLAYER_H_
 #define _PLAYER_H_
 
+#include "config.h"
 #include <string>
-#include <stdint.h>
 
 class Battlefield;
 class Monster;
@@ -20,18 +20,6 @@ class Field;
 
 class Player
 {
-	static const uint8_t START_LEVEL =		1;
-	static const uint8_t START_EXP =		0;
-	static const uint8_t START_MAX_EXP =	4;
-	static const uint8_t START_DAMAGE =		5;
-	static const uint8_t START_MAX_HP =		10;
-	static const uint8_t START_MAX_MANA =	10;
-	static const uint8_t SIGHT_RADIUS =		2;
-
-	static const uint8_t ADD_MAXHP_PER_LVL =   10;
-	static const uint8_t ADD_DAMAGE_PER_LVL =	5;
-	static const uint8_t EXP_TO_NEXT_LVL_MULTIPLIER = 2;
-
 	public:
 		Player(Battlefield *);
 //		Player(const Player &);

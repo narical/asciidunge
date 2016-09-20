@@ -5,16 +5,13 @@ Small ascii roguelike game
 ## Internal TO-DO list:
 - make all counters as single array
 - refactor abstraction layers
-- make all pointers variables begin with p
-- add assertions to entire code
-- move all constants to config.h
 
 - remove ExtractHP/Mana from fields, use new player ManaRegen/HealthRegen properties
 - make enemy spawning more sparse
-- make different powerup classes
 - add initiative property to player and monsters
 
 ## Latest changes
++ move all constants to config.h
 + change uint8_t to uint16_t where needed
 + clean all #includes
 + fix player spawning on powerup

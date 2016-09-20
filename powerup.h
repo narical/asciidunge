@@ -7,29 +7,24 @@
 
 #ifndef _POWERUP_H_
 #define _POWERUP_H_
-enum PowerupType {HEALTH, MANA, DAMAGE};
 
-#include "display.h"
+#include "config.h"
 class Field;
 class Player;
-
 
 
 
 class Powerup
 {
 	public:
-		Powerup(PowerupType);
-		EventType TakeBy(Player *);
-		PowerupType GetType();
+		Powerup(poweruptype);
+		eventtype TakeBy(Player *);
+		poweruptype GetType();
 		void SetPosition(Field *);
-		 
+
 	private:
-		PowerupType _type;
+		poweruptype _type;
 		Field * _field;
-		const uint8_t POWERUP_HEALTH_BONUS = 10;
-		const uint8_t POWERUP_MANA_BONUS = 7;
-		const uint8_t POWERUP_DAMAGE_BONUS = 5;
 };
 
 #endif // _POWERUP_H_

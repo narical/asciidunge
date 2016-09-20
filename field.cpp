@@ -61,7 +61,7 @@ void Field::SpawnEnemy(uint8_t monsterLevel)
 }
 
 
-void Field::SpawnPowerup(PowerupType type)
+void Field::SpawnPowerup(poweruptype type)
 {
    _powerup = new Powerup(type);
    _powerup->SetPosition(this);

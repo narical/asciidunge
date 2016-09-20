@@ -4,7 +4,6 @@
  * Copyright (C) 2016 Unknown <jnarical@gmail.com>
  *
  */
-#include <cstdlib>
 #include "battlefield.h"
 #include "player.h"
 #include "field.h"
@@ -59,7 +58,7 @@ void Battlefield::SpawnEnemies()
 void Battlefield::SpawnPowerups()
 {
 	uint8_t powerupsToSpawn;
-	for (PowerupType type = HEALTH; type != DAMAGE; type = PowerupType(type + 1))
+	for (poweruptype type = HEALTH; type != DAMAGE; type = poweruptype(type + 1))
 	{
 		powerupsToSpawn = POWERUPS_QUANTITY_BY_TYPE[type];
 		while (powerupsToSpawn > 0)
@@ -194,14 +193,14 @@ uint8_t Battlefield::GetSize() const
 }
 
 
-bool Battlefield::BossIsDead()
+bool Battlefield::BossIsDead() const
 {
 	return _boss->IsDead();
 }
 
 
 
-bool Battlefield::BossIsAlive()
+bool Battlefield::BossIsAlive() const
 {
 	return !_boss->IsDead();
 }
