@@ -246,6 +246,7 @@ void Player::HealBy(uint16_t delta)
 void Player::TakeDamage(uint16_t delta)
 {
 	_HP = (_HP - delta < 0 ? 0 : _HP - delta);
+	_display->SendEvent(PLR_HIT);
 }
 
 

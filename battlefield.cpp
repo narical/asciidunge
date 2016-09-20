@@ -8,6 +8,7 @@
 #include "player.h"
 #include "field.h"
 #include "monster.h"
+#include "display.h"
 
 
 
@@ -108,11 +109,13 @@ void Battlefield::Fight(Player * player, Monster * enemy)
 	if (monsterLevel >= playerLevel)
 	{
 		enemy->Attack(player);
+		_display->SendEvent(PLR_HIT);
 
 		if (player->IsAlive())
 		{
 			enemy->TakeDamage(player);
-
+			_display->SendEvent(MNSTR_HIT);
+			
 			if (enemy->IsDead())
 			{
 				player->GainExp(enemy);
@@ -123,6 +126,8 @@ void Battlefield::Fight(Player * player, Monster * enemy)
 	else
 	{
 		enemy->TakeDamage(player);
+		_display->SendEvent(MNSTR_HIT);
+		
 		if (enemy->IsDead())
 		{
 			player->GainExp(enemy);
@@ -131,6 +136,7 @@ void Battlefield::Fight(Player * player, Monster * enemy)
 		else
 		{
 			enemy->Attack(player);
+			_display->SendEvent(PLR_HIT);
 		}
 	}
 }
@@ -152,6 +158,12 @@ void Battlefield::CalculateNextFight()
 void Battlefield::SetPlayer(Player * plr)
 {
 	_player = plr;
+}
+
+
+void Battlefield::SetDisplay(Display * dspl)
+{
+	_display = dspl;
 }
 
 

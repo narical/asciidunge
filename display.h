@@ -28,10 +28,7 @@ class Display
 		static void NcursesInit();
 
 	private:
-		uint16_t _levelUpCounter;
-		uint16_t _healthPowerupCounter;
-		uint16_t _manaPowerupCounter;
-		uint16_t _damagePowerupCounter;
+		uint8_t _frameCounters[4];
 		std::string HORIZ_WALL;
 
 		Battlefield * _battlefield;
@@ -41,13 +38,14 @@ class Display
 
 		std::string DrawBar(uint16_t, uint16_t) const;
 		char DrawField(uint8_t, uint8_t);
-		void DrawBattlefield();
-		void DrawPlayerInfo();
-		void DrawEnemyInfo();
 		void CheckEvent(eventtype);
+		void DrawBattlefield();
 		void SwitchFrameType();
+		void DrawPlayerInfo();
 		void ReduceCounters();
+		void DrawEnemyInfo();
 		void EndCheck();
+		void InvertOn();
 		void BoldOff();
 		void BoldOn();
 };

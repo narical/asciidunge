@@ -15,10 +15,6 @@
 #include "ncurses.h"
 
 Display::Display(Battlefield * btl) :
-_levelUpCounter(0),
-_healthPowerupCounter(0),
-_manaPowerupCounter(0),
-_damagePowerupCounter(0),
 _battlefield(btl),
 _enemy(NULL),
 _player(btl->GetPlayer()),
@@ -27,7 +23,10 @@ _frame(CURRENT)
 	HORIZ_WALL = "";
 	uint8_t wallSize = _battlefield->GetSize() + 2;
 	for (uint8_t i = 0; i < wallSize; ++i) HORIZ_WALL += "#";
+	for (eventtype event = LVLUP; event != MNSTR_HIT; event = eventtype(event + 1))
+		_frameCounters[event] = 0;
 	_player->SetDisplay(this);
+	_battlefield->SetDisplay(this);
 }
 
 
@@ -163,8 +162,10 @@ char Display::DrawField(uint8_t rowIndex, uint8_t colIndex)
 		if (field->HaveEnemy())
 	 	{
 			if (field == playerTarget) BoldOn();
+			CheckEvent(MNSTR_HIT);
 	 	 	if (field->GetEnemy()->GetLevel() == 10) printw("Z");
 	 	 	else printw("%d", field->GetEnemy()->GetLevel());
+	 	 	EndCheck();
 			BoldOff();
 	 	}
 	 	else if (field != playerField && field->HavePowerup())
@@ -182,17 +183,12 @@ char Display::DrawField(uint8_t rowIndex, uint8_t colIndex)
 	 				case DAMAGE:
 	 					printw("*");
 	 			}
-	 		}
-	 	else if (field == playerField && field->HavePowerup())
-		{
-			BoldOn();
-			printw("@");
-			BoldOff();
-		}	 	
+	 		} 	
 
 		else if (field == playerField)
 		{
 			CheckEvent(LVLUP);
+			CheckEvent(PLR_HIT);
 			printw("@");
 			EndCheck();
 		}
@@ -206,10 +202,8 @@ char Display::DrawField(uint8_t rowIndex, uint8_t colIndex)
 
 void Display::ReduceCounters()
 {
-	if (_levelUpCounter > 0) --_levelUpCounter;
-	if (_healthPowerupCounter > 0) --_healthPowerupCounter;
-	if (_manaPowerupCounter > 0) --_manaPowerupCounter;
-	if (_damagePowerupCounter > 0) --_damagePowerupCounter;
+	for (eventtype event = LVLUP; event != MNSTR_HIT; event = eventtype(event + 1))
+		if (_frameCounters[event] > 0) --_frameCounters[event];
 }
 
 
@@ -236,26 +230,7 @@ std::string Display::DrawBar(uint16_t current, uint16_t max) const
 
 void Display::SendEvent(eventtype event)
 {
-	switch (event)
-	{
-		case LVLUP:
-			_levelUpCounter = 6;
-			break;
-
-		case HP_PWRUP:
-			_healthPowerupCounter = 6;
-			break;
-
-		case MANA_PWRUP:
-			_manaPowerupCounter = 6;
-			break;
-
-		case DMG_PWRUP:
-			_damagePowerupCounter = 6;
-			break;
-
-		case NOTHING:;
-	}
+	_frameCounters[event] = EVENT_TIMERS[event];
 }
 
 
@@ -265,20 +240,14 @@ void Display::CheckEvent(eventtype event)
 	switch (event)
 	{
 		case LVLUP:
-			if (_levelUpCounter > 0 && _levelUpCounter % 2) BoldOn();
-			break;
-
 		case HP_PWRUP:
-			if (_healthPowerupCounter > 0 && _healthPowerupCounter % 2) BoldOn();
-			break;
-
 		case MANA_PWRUP:
-			if (_manaPowerupCounter > 0 && _manaPowerupCounter % 2) BoldOn();
-			break;
-
 		case DMG_PWRUP:
-			if (_damagePowerupCounter > 0 && _damagePowerupCounter % 2) BoldOn();
+			if (_frameCounters[event] > 0 && _frameCounters[event] % 2) BoldOn();
 			break;
+		case PLR_HIT:
+		case MNSTR_HIT:
+			if (_frameCounters[event] > 0) InvertOn();
 
 		case NOTHING:;
 	}
@@ -300,9 +269,17 @@ void Display::BoldOff()
 
 
 
+void Display::InvertOn()
+{
+	attron(A_REVERSE);
+}
+
+
+
 void Display::EndCheck()
 {
 	attroff(A_BOLD);
+	attroff(A_REVERSE);
 }
 
 

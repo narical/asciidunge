@@ -15,6 +15,7 @@
 class Player;
 class Field;
 class Monster;
+class Display;
 
 
 class Battlefield
@@ -26,6 +27,7 @@ class Battlefield
 		void SpawnPowerups();
 		void SetPlayer(Player *);
 		void CalculateNextFight();
+		void SetDisplay(Display *);
 		void Fight(Player *, Monster *);
 
 		Field * GetNextField(Field *, direction) const;
@@ -40,6 +42,7 @@ class Battlefield
 
 	private:
 		Field *_field[BF_SIZE][BF_SIZE];
+		Display *_display;
 		Player *_player;
 		Monster *_boss;
 

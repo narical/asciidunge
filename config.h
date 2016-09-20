@@ -13,7 +13,8 @@
 enum frametype   {CURRENT, FUTURE};
 enum poweruptype {HEALTH, MANA, DAMAGE};
 enum direction   {LEFT, RIGHT, UP, DOWN};
-enum eventtype   {NOTHING, LVLUP, HP_PWRUP, MANA_PWRUP, DMG_PWRUP};
+enum eventtype   {NOTHING, LVLUP, HP_PWRUP, MANA_PWRUP, DMG_PWRUP, PLR_HIT, MNSTR_HIT};
+const uint8_t EVENT_TIMERS[] = {0, 6, 6, 6, 6, 2, 2};
 
 // Battlefield
 const uint8_t BF_SIZE = 20;
