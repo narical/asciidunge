@@ -59,7 +59,7 @@ void Battlefield::SpawnEnemies()
 void Battlefield::SpawnPowerups()
 {
 	uint8_t powerupsToSpawn;
-	for (poweruptype type = HEALTH; type != DAMAGE; type = poweruptype(type + 1))
+	for (poweruptype type = HEALTH; type <= DAMAGE; type = poweruptype(type + 1))
 	{
 		powerupsToSpawn = POWERUPS_QUANTITY_BY_TYPE[type];
 		while (powerupsToSpawn > 0)

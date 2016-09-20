@@ -23,7 +23,7 @@ _frame(CURRENT)
 	HORIZ_WALL = "";
 	uint8_t wallSize = _battlefield->GetSize() + 2;
 	for (uint8_t i = 0; i < wallSize; ++i) HORIZ_WALL += "#";
-	for (eventtype event = LVLUP; event != MNSTR_HIT; event = eventtype(event + 1))
+	for (eventtype event = LVLUP; event <= MNSTR_HIT; event = eventtype(event + 1))
 		_frameCounters[event] = 0;
 	_player->SetDisplay(this);
 	_battlefield->SetDisplay(this);
@@ -161,29 +161,38 @@ char Display::DrawField(uint8_t rowIndex, uint8_t colIndex)
 	{
 		if (field->HaveEnemy())
 	 	{
-			if (field == playerTarget) BoldOn();
-			CheckEvent(MNSTR_HIT);
-	 	 	if (field->GetEnemy()->GetLevel() == 10) printw("Z");
-	 	 	else printw("%d", field->GetEnemy()->GetLevel());
-	 	 	EndCheck();
-			BoldOff();
-	 	}
-	 	else if (field != playerField && field->HavePowerup())
-	 		{
-	 			switch (field->GetPowerup()->GetType())
-	 			{
-	 				case HEALTH:
-	 					printw("+");
-	 					break;
-	 					
-	 				case MANA:
-	 					printw("x");
-	 					break;
-	 					
-	 				case DAMAGE:
-	 					printw("*");
-	 			}
-	 		} 	
+			if (field == playerTarget)
+			{
+				BoldOn();
+				CheckEvent(MNSTR_HIT);
+				if (field->GetEnemy()->GetLevel() == 10) printw("Z");
+				else printw("%d", field->GetEnemy()->GetLevel());
+				BoldOff();
+				EndCheck();
+			}
+			else
+			{
+				if (field->GetEnemy()->GetLevel() == 10) printw("Z");
+				else printw("%d", field->GetEnemy()->GetLevel());
+			}
+		}
+
+		else if (field != playerField && field->HavePowerup())
+		{
+			switch (field->GetPowerup()->GetType())
+			{
+				case HEALTH:
+					printw("+");
+					break;
+					
+				case MANA:
+					printw("x");
+					break;
+					
+				case DAMAGE:
+					printw("*");
+			}
+		}
 
 		else if (field == playerField)
 		{
@@ -202,7 +211,7 @@ char Display::DrawField(uint8_t rowIndex, uint8_t colIndex)
 
 void Display::ReduceCounters()
 {
-	for (eventtype event = LVLUP; event != MNSTR_HIT; event = eventtype(event + 1))
+	for (eventtype event = LVLUP; event <= MNSTR_HIT; event = eventtype(event + 1))
 		if (_frameCounters[event] > 0) --_frameCounters[event];
 }
 
