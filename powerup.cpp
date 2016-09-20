@@ -37,7 +37,9 @@ eventtype Powerup::TakeBy(Player * plr)
 			_field->RemovePowerup();
 			return DMG_PWRUP;
 	}
-	return NOTHING;
+	
+	// To get rid of compiler warning about non-void function returns nothing
+	return EVENTS_END;
 }
 
 

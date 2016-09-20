@@ -23,7 +23,7 @@ _frame(CURRENT)
 	HORIZ_WALL = "";
 	uint8_t wallSize = _battlefield->GetSize() + 2;
 	for (uint8_t i = 0; i < wallSize; ++i) HORIZ_WALL += "#";
-	for (eventtype event = LVLUP; event <= MNSTR_HIT; event = eventtype(event + 1))
+	for (eventtype event = LVLUP; event != EVENTS_END; event = eventtype(event + 1))
 		_frameCounters[event] = 0;
 	_player->SetDisplay(this);
 	_battlefield->SetDisplay(this);
@@ -164,11 +164,12 @@ char Display::DrawField(uint8_t rowIndex, uint8_t colIndex)
 			if (field == playerTarget)
 			{
 				BoldOn();
-				CheckEvent(MNSTR_HIT);
+				CheckEvent(MNSTR_HIT_1);
+				CheckEvent(MNSTR_HIT_2);
 				if (field->GetEnemy()->GetLevel() == 10) printw("Z");
 				else printw("%d", field->GetEnemy()->GetLevel());
-				BoldOff();
 				EndCheck();
+				BoldOff();
 			}
 			else
 			{
@@ -197,7 +198,8 @@ char Display::DrawField(uint8_t rowIndex, uint8_t colIndex)
 		else if (field == playerField)
 		{
 			CheckEvent(LVLUP);
-			CheckEvent(PLR_HIT);
+			CheckEvent(PLR_HIT_1);
+			CheckEvent(PLR_HIT_2);
 			printw("@");
 			EndCheck();
 		}
@@ -211,7 +213,7 @@ char Display::DrawField(uint8_t rowIndex, uint8_t colIndex)
 
 void Display::ReduceCounters()
 {
-	for (eventtype event = LVLUP; event <= MNSTR_HIT; event = eventtype(event + 1))
+	for (eventtype event = LVLUP; event != EVENTS_END; event = eventtype(event + 1))
 		if (_frameCounters[event] > 0) --_frameCounters[event];
 }
 
@@ -254,11 +256,14 @@ void Display::CheckEvent(eventtype event)
 		case DMG_PWRUP:
 			if (_frameCounters[event] > 0 && _frameCounters[event] % 2) BoldOn();
 			break;
-		case PLR_HIT:
-		case MNSTR_HIT:
-			if (_frameCounters[event] > 0) InvertOn();
+		case PLR_HIT_1:
+		case MNSTR_HIT_1:
+		case PLR_HIT_2:
+		case MNSTR_HIT_2:
+			if (_frameCounters[event] == 1) InvertOn();
+			break;
 
-		case NOTHING:;
+		case EVENTS_END:;
 	}
 }
 

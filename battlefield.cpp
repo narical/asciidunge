@@ -109,12 +109,12 @@ void Battlefield::Fight(Player * player, Monster * enemy)
 	if (monsterLevel >= playerLevel)
 	{
 		enemy->Attack(player);
-		_display->SendEvent(PLR_HIT);
+		_display->SendEvent(PLR_HIT_1);
 
 		if (player->IsAlive())
 		{
 			enemy->TakeDamage(player);
-			_display->SendEvent(MNSTR_HIT);
+			_display->SendEvent(MNSTR_HIT_2);
 			
 			if (enemy->IsDead())
 			{
@@ -126,8 +126,8 @@ void Battlefield::Fight(Player * player, Monster * enemy)
 	else
 	{
 		enemy->TakeDamage(player);
-		_display->SendEvent(MNSTR_HIT);
-		
+		_display->SendEvent(MNSTR_HIT_1);
+
 		if (enemy->IsDead())
 		{
 			player->GainExp(enemy);
@@ -136,7 +136,7 @@ void Battlefield::Fight(Player * player, Monster * enemy)
 		else
 		{
 			enemy->Attack(player);
-			_display->SendEvent(PLR_HIT);
+			_display->SendEvent(PLR_HIT_2);
 		}
 	}
 }
@@ -150,7 +150,38 @@ void Battlefield::CalculateNextFight()
 	_playerCopy = new Player( *_player );
 	_enemyCopy = new Monster( *( _player->GetTargetField()->GetEnemy() ) );
 
-	Fight(_playerCopy, _enemyCopy);
+	uint8_t monsterLevel = _enemyCopy->GetLevel();
+	uint8_t playerLevel = _playerCopy->GetLevel();
+
+	if (monsterLevel >= playerLevel)
+	{
+		_enemyCopy->Attack(_playerCopy);
+
+		if (_playerCopy->IsAlive())
+		{
+			_enemyCopy->TakeDamage(_playerCopy);
+			
+			if (_enemyCopy->IsDead())
+			{
+				_playerCopy->GainExp(_enemyCopy);
+				_playerCopy->SetTargetField(NULL);
+			}
+		}
+	}
+	else
+	{
+		_enemyCopy->TakeDamage(_playerCopy);
+
+		if (_enemyCopy->IsDead())
+		{
+			_playerCopy->GainExp(_enemyCopy);
+			_playerCopy->SetTargetField(NULL);
+		}
+		else
+		{
+			_enemyCopy->Attack(_playerCopy);
+		}
+	}
 }
 
 

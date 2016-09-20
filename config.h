@@ -10,11 +10,14 @@
 
 #include <stdint.h>
 
-enum frametype   {CURRENT, FUTURE};
-enum poweruptype {HEALTH, MANA, DAMAGE};
-enum direction   {LEFT, RIGHT, UP, DOWN};
-enum eventtype   {NOTHING, LVLUP, HP_PWRUP, MANA_PWRUP, DMG_PWRUP, PLR_HIT, MNSTR_HIT};
-const uint8_t EVENT_TIMERS[] = {0, 6, 6, 6, 6, 1, 1};
+enum frametype  {CURRENT, FUTURE};
+enum poweruptype{HEALTH, MANA, DAMAGE};
+enum direction  {LEFT, RIGHT, UP, DOWN};
+enum eventtype  {LVLUP, HP_PWRUP, MANA_PWRUP, DMG_PWRUP,
+				PLR_HIT_1, MNSTR_HIT_1, PLR_HIT_2, MNSTR_HIT_2,
+				EVENTS_END};
+
+const uint8_t EVENT_TIMERS[] = {6, 6, 6, 6, 1, 1, 2, 2, 0};
 
 // Battlefield
 const uint8_t BF_SIZE = 20;
