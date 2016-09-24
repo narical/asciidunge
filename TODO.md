@@ -3,14 +3,18 @@ Small ascii roguelike game
 *ncurses-based console "Desktop Dungeon" clone*
 
 ## Internal TO-DO list:
-- make all counters as single array
 - refactor abstraction layers
-
-- remove ExtractHP/Mana from fields, use new player ManaRegen/HealthRegen properties
+- make all mosters of different types
+- make player hp double with each level
+- remove ExtractHP/Mana from fields
+-- use player level as hp per field and 1 for mana per field
+-- use player level as hp per powerup and 1 for mana powerup
 - make enemy spawning more sparse
 - add initiative property to player and monsters
 
 ## Latest changes
++ move to CMake build system
++ make all counters as single array
 + move all constants to config.h
 + change uint8_t to uint16_t where needed
 + clean all #includes
