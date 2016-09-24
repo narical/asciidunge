@@ -11,6 +11,7 @@ Small ascii roguelike game
 -- use player level as hp per powerup and 1 for mana powerup
 - make enemy spawning more sparse
 - add initiative property to player and monsters
+- set sight radius to 8 neightbour fields near player
 
 ## Latest changes
 + move to CMake build system
