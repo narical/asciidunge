@@ -4,8 +4,8 @@
  * Copyright (C) 2016 Joy Narical <jnarical@gmail.com>
  * 
  */
-#include "game.h"
-#include "display.h"
+#include "headers/game.h"
+#include "headers/display.h"
 
 int main()
 {

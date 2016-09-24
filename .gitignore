@@ -1,2 +1,4 @@
-asciidunge*
+build/CMakeFiles*
+build/CMakeCache.txt
+cmake_install.cmake
 *.o

@@ -5,11 +5,11 @@
  *
  */
 
-#include "game.h"
-#include "battlefield.h"
-#include "player.h"
-#include "display.h"
-#include "input.h"
+#include "headers/game.h"
+#include "headers/battlefield.h"
+#include "headers/player.h"
+#include "headers/display.h"
+#include "headers/input.h"
 #include <ctime>
 
 

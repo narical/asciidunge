@@ -5,10 +5,10 @@
  *
  */
 
-#include "input.h"
-#include "battlefield.h"
-#include "player.h"
-#include "display.h"
+#include "headers/input.h"
+#include "headers/battlefield.h"
+#include "headers/player.h"
+#include "headers/display.h"
 #include <ncurses.h>
 
 

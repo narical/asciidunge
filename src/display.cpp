@@ -6,13 +6,13 @@
  */
 
 
-#include "display.h"
-#include "input.h"
-#include "battlefield.h"
-#include "player.h"
-#include "monster.h"
-#include "field.h"
-#include "ncurses.h"
+#include "headers/display.h"
+#include "headers/input.h"
+#include "headers/battlefield.h"
+#include "headers/player.h"
+#include "headers/monster.h"
+#include "headers/field.h"
+#include <ncurses.h>
 
 Display::Display(Battlefield * btl) :
 _battlefield(btl),

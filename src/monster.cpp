@@ -5,9 +5,9 @@
  *
  */
 
-#include "monster.h"
-#include "player.h"
-#include "field.h"
+#include "headers/monster.h"
+#include "headers/player.h"
+#include "headers/field.h"
 
 
 

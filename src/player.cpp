@@ -5,13 +5,13 @@
  *
  */
 
-#include "player.h"
+#include "headers/player.h"
 #include <cassert>
 #include <ncurses.h>
-#include "battlefield.h"
-#include "monster.h"
-#include "display.h"
-#include "field.h"
+#include "headers/battlefield.h"
+#include "headers/monster.h"
+#include "headers/display.h"
+#include "headers/field.h"
 
 
 

@@ -4,11 +4,11 @@
  * Copyright (C) 2016 Unknown <jnarical@gmail.com>
  *
  */
-#include "battlefield.h"
-#include "player.h"
-#include "field.h"
-#include "monster.h"
-#include "display.h"
+#include "headers/battlefield.h"
+#include "headers/player.h"
+#include "headers/field.h"
+#include "headers/monster.h"
+#include "headers/display.h"
 
 
 
