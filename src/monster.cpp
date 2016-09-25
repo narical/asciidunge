@@ -33,16 +33,24 @@ Monster::Monster(const Monster &p)
 
 
 
-uint16_t Monster::CalculateDamage(uint8_t monsterLevel)
+uint16_t Monster::FromCurve(uint16_t min, uint16_t max)
 {
-	return (uint16_t)((monsterLevel * (monsterLevel + 5)) / 2);
+	if (_level == 1) return min;
+	if (_level == 9) return max;
+	if (_level == 10) return (uint16_t) max * 1.5;
+
+	uint16_t full_delta = max - min;
+
+	float result = min;
+	for (uint8_t level = 2; level <= _level; ++level)
+	{
+		float rate = (float) CURVE_COEFF[level - 2] / SUM_COEFF;
+		float delta = (float) full_delta * rate;
+		result += delta;
+	}
+  return (uint16_t) result;
 }
 
-
-uint16_t Monster::CalculateMaxHP(uint8_t monsterLevel)
-{
-	return (monsterLevel * (monsterLevel + 6) - 1);
-}
 
 
 void Monster::Attack(Player * plr)
@@ -118,8 +126,8 @@ uint16_t Monster::GetMaxHP() const
 
 Goblin::Goblin(uint8_t monsterLevel) : Monster(monsterLevel)
 {
-	_damage = CalculateDamage( monsterLevel );
-	_maxHP = CalculateMaxHP( monsterLevel );
+	_damage = FromCurve( 2, 52 );
+	_maxHP = FromCurve( 4, 93 );
 	_HP = _maxHP;
 	_name = "goblin";
 }
@@ -128,8 +136,8 @@ Goblin::Goblin(uint8_t monsterLevel) : Monster(monsterLevel)
 
 Skeleton::Skeleton(uint8_t monsterLevel) : Monster(monsterLevel)
 {
-	_damage = CalculateDamage( monsterLevel );
-	_maxHP = CalculateMaxHP( monsterLevel );
+	_damage = FromCurve( 2, 25 );
+	_maxHP = FromCurve( 3, 78 );
 	_HP = _maxHP;
 	_name = "skeleton";
 }
@@ -138,8 +146,8 @@ Skeleton::Skeleton(uint8_t monsterLevel) : Monster(monsterLevel)
 
 Zombie::Zombie(uint8_t monsterLevel) : Monster(monsterLevel)
 {
-	_damage = CalculateDamage( monsterLevel );
-	_maxHP = CalculateMaxHP( monsterLevel );
+	_damage = FromCurve( 4, 30 );
+	_maxHP = FromCurve( 6, 125 );
 	_HP = _maxHP;
 	_name = "zombie";
 }
@@ -148,8 +156,8 @@ Zombie::Zombie(uint8_t monsterLevel) : Monster(monsterLevel)
 
 Troll::Troll(uint8_t monsterLevel) : Monster(monsterLevel)
 {
-	_damage = CalculateDamage( monsterLevel );
-	_maxHP = CalculateMaxHP( monsterLevel );
+	_damage = FromCurve( 2, 35 );
+	_maxHP = FromCurve( 6, 140 );
 	_HP = _maxHP;
 	_name = "troll";
 }
@@ -158,8 +166,8 @@ Troll::Troll(uint8_t monsterLevel) : Monster(monsterLevel)
 
 Rogue::Rogue(uint8_t monsterLevel) : Monster(monsterLevel)
 {
-	_damage = CalculateDamage( monsterLevel );
-	_maxHP = CalculateMaxHP( monsterLevel );
+	_damage = FromCurve( 4, 60 );
+	_maxHP = FromCurve( 3, 80 );
 	_HP = _maxHP;
 	_name = "rogue";
 }
@@ -168,8 +176,8 @@ Rogue::Rogue(uint8_t monsterLevel) : Monster(monsterLevel)
 
 Mage::Mage(uint8_t monsterLevel) : Monster(monsterLevel)
 {
-	_damage = CalculateDamage( monsterLevel );
-	_maxHP = CalculateMaxHP( monsterLevel );
+	_damage = FromCurve( 4, 65 );
+	_maxHP = FromCurve( 4, 83 );
 	_HP = _maxHP;
 	_name = "mage";
 }
@@ -178,8 +186,8 @@ Mage::Mage(uint8_t monsterLevel) : Monster(monsterLevel)
 
 Golem::Golem(uint8_t monsterLevel) : Monster(monsterLevel)
 {
-	_damage = CalculateDamage( monsterLevel );
-	_maxHP = CalculateMaxHP( monsterLevel );
+	_damage = FromCurve( 1, 20 );
+	_maxHP = FromCurve( 8, 200 );
 	_HP = _maxHP;
 	_name = "golem";
 }
@@ -188,8 +196,8 @@ Golem::Golem(uint8_t monsterLevel) : Monster(monsterLevel)
 
 Ghost::Ghost(uint8_t monsterLevel) : Monster(monsterLevel)
 {
-	_damage = CalculateDamage( monsterLevel );
-	_maxHP = CalculateMaxHP( monsterLevel );
+	_damage = FromCurve( 4, 40 );
+	_maxHP = FromCurve( 2, 174 );
 	_HP = _maxHP;
 	_name = "ghost";
 }

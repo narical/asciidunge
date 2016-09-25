@@ -42,8 +42,7 @@ class Monster
 		std::string _name;
 		bool _isDead;
 
-		uint16_t CalculateDamage(uint8_t);
-		uint16_t CalculateMaxHP(uint8_t);
+		uint16_t FromCurve(uint16_t, uint16_t);
 };
 
 
