@@ -1,9 +1,9 @@
-/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-  */
-/*
- * main.cc
- * Copyright (C) 2016 Joy Narical <jnarical@gmail.com>
- * 
- */
+//
+// Copyright (c) 2016 Joy Narical <jnarical@gmail.com> MIT license
+//
+// main.cpp
+//
+ 
 #include "headers/game.h"
 #include "headers/display.h"
 

@@ -1,9 +1,8 @@
-/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-  */
-/*
- * item.h
- * Copyright (C) 2016 Unknown <jnarical@gmail.com>
- *
- */
+//
+// Copyright (c) 2016 Joy Narical <jnarical@gmail.com> MIT license
+//
+// item.h
+//
 
 #ifndef _ITE_H_
 #define _ITE_H_

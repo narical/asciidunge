@@ -1,9 +1,8 @@
-/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-  */
-/*
- * display.cpp
- * Copyright (C) 2016 Unknown <jnarical@gmail.com>
- *
- */
+//
+// Copyright (c) 2016 Joy Narical <jnarical@gmail.com> MIT license
+//
+// display.cpp
+//
 
 
 #include "headers/display.h"

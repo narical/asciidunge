@@ -1,9 +1,8 @@
-/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-  */
-/*
- * game.h
- * Copyright (C) 2016 Unknown <jnarical@gmail.com>
- *
- */
+//
+// Copyright (c) 2016 Joy Narical <jnarical@gmail.com> MIT license
+//
+// game.h
+//
 
 #ifndef _GAME_H_
 #define _GAME_H_
