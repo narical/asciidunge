@@ -10,7 +10,8 @@
 
 
 
-Monster::Monster(uint8_t monsterLevel) : _level( monsterLevel ), _isDead(0)
+Monster::Monster(uint8_t monsterLevel) :
+_level( monsterLevel ), _initiative(0), _isDead(0)
 {
 
 }
@@ -72,13 +73,13 @@ void Monster::TakeDamage(Player * plr)
 }
 
 
-bool Monster::IsDead()
+bool Monster::IsDead() const
 {
 	return _isDead;
 }
 
 
-bool Monster::IsAlive()
+bool Monster::IsAlive() const
 {
 	return !_isDead;
 }
@@ -111,6 +112,12 @@ uint16_t Monster::GetHP() const
 uint16_t Monster::GetMaxHP() const
 {
 	return _maxHP;
+}
+
+
+uint16_t Monster::GetInitiative() const
+{
+	return _level + _initiative;
 }
 
 

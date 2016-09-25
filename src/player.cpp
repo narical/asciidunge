@@ -21,6 +21,7 @@ _exp( START_EXP ), _expMax( START_MAX_EXP ),
 _damage( START_DAMAGE ),
 _HP( START_MAX_HP ), _maxHP( START_MAX_HP ),
 _mana( START_MAX_MANA ), _maxMana( START_MAX_MANA ),
+_initiative(0),
 _battlefield( btl ),
 _target( NULL ),
 _display( NULL )
@@ -79,7 +80,7 @@ void Player::Act(int input_key)
 	{
 		if (nextField == targetField) //where our target is
 		{
-			_battlefield->Fight(this, targetField->GetEnemy()); //Kill'em!
+			_battlefield->Fight(this, targetField->GetEnemy(), true); //Kill'em!
 			if ( HaveTarget() ) _battlefield->CalculateNextFight(); //if enemy still alive
 		}
 		else //if target was somewhere else
@@ -321,6 +322,12 @@ uint16_t Player::GetMana() const
 uint16_t Player::GetMaxMana() const
 {
 	return _maxMana;
+}
+
+
+uint16_t Player::GetInitiative() const
+{
+	return _level + _initiative;
 }
 
 

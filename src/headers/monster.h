@@ -22,21 +22,22 @@ class Monster
 		void Attack(Player *);
 		void AddHP(uint16_t);
 		void TakeDamage(Player *);
-		bool IsDead();
-		bool IsAlive();
 
 		std::string GetName() const;
 		uint8_t GetLevel() const;
 		uint16_t GetDamage() const;
 		uint16_t GetHP() const;
 		uint16_t GetMaxHP() const;
+		uint16_t GetInitiative() const;
+		bool IsDead() const;
+		bool IsAlive() const;
 
 	protected:
 		uint8_t _level;
-		uint16_t _exp;
 		uint16_t _damage;
 		uint16_t _HP;
 		uint16_t _maxHP;
+		uint16_t _initiative;
 		Field * _field;
 		std::string _name;
 		bool _isDead;

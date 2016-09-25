@@ -101,24 +101,24 @@ Field * Battlefield::GetNextField(Field * currentField, direction dir) const
 
 
 
-void Battlefield::Fight(Player * player, Monster * enemy)
+void Battlefield::Fight(Player * player, Monster * enemy, bool realFight)
 {
-	uint8_t monsterLevel = enemy->GetLevel();
-	uint8_t playerLevel = player->GetLevel();
+	uint16_t monsterInitiative = enemy->GetInitiative();
+	uint16_t playerInitiative = player->GetInitiative();
 
-	if (monsterLevel >= playerLevel)
+	if (monsterInitiative >= playerInitiative)
 	{
 		enemy->Attack(player);
-		_display->SendEvent(PLR_HIT_1);
+		if (realFight) _display->SendEvent(PLR_HIT_1);
 
 		if (player->IsAlive())
 		{
 			enemy->TakeDamage(player);
-			_display->SendEvent(MNSTR_HIT_2);
+			if (realFight) _display->SendEvent(MNSTR_HIT_2);
 			
 			if (enemy->IsDead())
 			{
-				player->GainExp(enemy);
+				if (realFight) player->GainExp(enemy);
 				player->SetTargetField(NULL);
 			}
 		}
@@ -126,17 +126,17 @@ void Battlefield::Fight(Player * player, Monster * enemy)
 	else
 	{
 		enemy->TakeDamage(player);
-		_display->SendEvent(MNSTR_HIT_1);
+		if (realFight) _display->SendEvent(MNSTR_HIT_1);
 
 		if (enemy->IsDead())
 		{
-			player->GainExp(enemy);
+			if (realFight) player->GainExp(enemy);
 			player->SetTargetField(NULL);
 		}
 		else
 		{
 			enemy->Attack(player);
-			_display->SendEvent(PLR_HIT_2);
+			if (realFight) _display->SendEvent(PLR_HIT_2);
 		}
 	}
 }
@@ -149,39 +149,7 @@ void Battlefield::CalculateNextFight()
 	if (_enemyCopy != 0) delete _enemyCopy;
 	_playerCopy = new Player( *_player );
 	_enemyCopy = new Monster( *( _player->GetTargetField()->GetEnemy() ) );
-
-	uint8_t monsterLevel = _enemyCopy->GetLevel();
-	uint8_t playerLevel = _playerCopy->GetLevel();
-
-	if (monsterLevel >= playerLevel)
-	{
-		_enemyCopy->Attack(_playerCopy);
-
-		if (_playerCopy->IsAlive())
-		{
-			_enemyCopy->TakeDamage(_playerCopy);
-			
-			if (_enemyCopy->IsDead())
-			{
-				_playerCopy->GainExp(_enemyCopy);
-				_playerCopy->SetTargetField(NULL);
-			}
-		}
-	}
-	else
-	{
-		_enemyCopy->TakeDamage(_playerCopy);
-
-		if (_enemyCopy->IsDead())
-		{
-			_playerCopy->GainExp(_enemyCopy);
-			_playerCopy->SetTargetField(NULL);
-		}
-		else
-		{
-			_enemyCopy->Attack(_playerCopy);
-		}
-	}
+	Fight(_playerCopy, _enemyCopy, false);
 }
 
 

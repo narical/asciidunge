@@ -45,6 +45,7 @@ class Player
 		Field* GetPosition() const;
 		std::string GetName() const;
 		uint8_t GetLevel() const;
+		uint16_t GetInitiative() const;
 		uint16_t GetExp() const;
 		uint16_t GetExpMax() const;
 		uint16_t GetDamage() const;
@@ -67,6 +68,7 @@ class Player
 		uint16_t _damage;
 		uint16_t _HP, _maxHP;
 		uint16_t _mana, _maxMana;
+		uint16_t _initiative;
 
 		Battlefield *_battlefield;
 		Field *_position;

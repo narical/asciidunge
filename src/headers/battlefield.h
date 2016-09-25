@@ -27,7 +27,7 @@ class Battlefield
 		void SetPlayer(Player *);
 		void CalculateNextFight();
 		void SetDisplay(Display *);
-		void Fight(Player *, Monster *);
+		void Fight(Player *, Monster *, bool);
 
 		Field * GetNextField(Field *, direction) const;
 		Field * GetField(uint8_t, uint8_t) const;
