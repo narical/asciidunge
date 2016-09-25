@@ -7,7 +7,7 @@
 #ifndef _CONFIG_H_
 #define _CONFIG_H_
 
-#include <stdint.h>
+#include <cstdint>
 
 enum frametype  {CURRENT, FUTURE};
 enum poweruptype{HEALTH, MANA, DAMAGE};
