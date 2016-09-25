@@ -5,7 +5,7 @@ Small ascii roguelike game
 ## Development Roadmap:
 
 ### 0.5a
-- [*] different monster types have different properties
+- [x] different monster types have different properties
 - [ ] different player classes have different properties
 - [ ] added inventory and pickable/dropable items
 
