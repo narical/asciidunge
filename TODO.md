@@ -3,11 +3,11 @@ Small ascii roguelike game
 *ncurses-based console "Desktop Dungeon" clone*
 
 ## Internal TO-DO list:
-- refactor abstraction layers
-- make player hp double with each level
--- use player level as hp per powerup and 1 for mana powerup
-- make enemy spawning more sparse
-- add initiative property to player and monsters
+- [ ] refactor abstraction layers
+- [ ] make player hp double with each level
+- [ ] use player level as hp per powerup and 1 for mana powerup
+- [ ] make enemy spawning more sparse
+- [ ] add initiative property to player and monsters
 
 
 ## Latest changes
