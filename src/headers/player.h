@@ -68,14 +68,11 @@ class Player
 		uint16_t _damage;
 		uint16_t _HP, _maxHP;
 		uint16_t _mana, _maxMana;
-		uint16_t _sightRadius;
 
 		Battlefield *_battlefield;
 		Field *_position;
 		Field *_target;
 		Display *_display;
-
-		bool InSightRadius(uint8_t, uint8_t);
 };
 
 #endif // _PLAYER_H_

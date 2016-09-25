@@ -16,8 +16,6 @@ Field::Field(uint8_t row, uint8_t col) :
 	_enemy(NULL),
 	_powerup(NULL),
 	_item("no item!"),
-	_mana(MANA_PER_FIELD),
-	_HP(HP_PER_FIELD),
 	_visible(false)
 { }
 
@@ -126,30 +124,16 @@ bool Field::HaveItem() const
 }
 
 
-void Field::MakeVisible()
+bool Field::MakeVisible()
 {
-   _visible = true;
+	bool result = _visible;
+	_visible = true;
+	return !result; //return TRUE if we just made this field visible
 }
 
 
 bool Field::IsVisible() const
 {
  return _visible;
-}
-
-
-uint16_t Field::ExtractMana()
-{
-	uint16_t res = _mana;
-	_mana = 0;
-	return res;
-}
-
-
-uint16_t Field::ExtractHP()
-{
-	uint16_t res = _HP;
-	_HP = 0;
-	return res;
 }
 

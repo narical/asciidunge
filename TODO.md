@@ -4,16 +4,18 @@ Small ascii roguelike game
 
 ## Internal TO-DO list:
 - refactor abstraction layers
-- make all mosters of different types
 - make player hp double with each level
-- remove ExtractHP/Mana from fields
--- use player level as hp per field and 1 for mana per field
 -- use player level as hp per powerup and 1 for mana powerup
 - make enemy spawning more sparse
 - add initiative property to player and monsters
-- set sight radius to 8 neightbour fields near player
+
 
 ## Latest changes
++ add mana regeneration by 1 per tile
++ add healing by player level per tile
++ remove ExtractHP/Mana from fields
++ set sight radius to 8 neightbour fields near player
++ make all mosters of different types
 + move to CMake build system
 + make all counters as single array
 + move all constants to config.h

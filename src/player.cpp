@@ -21,8 +21,7 @@ _level( START_LEVEL ),
 _exp( START_EXP ), _expMax( START_MAX_EXP ),
 _damage( START_DAMAGE ),
 _HP( START_MAX_HP ), _maxHP( START_MAX_HP ),
-_mana( START_MAX_MANA ), _maxMana( START_MAX_MANA ), 
-_sightRadius( SIGHT_RADIUS ),
+_mana( START_MAX_MANA ), _maxMana( START_MAX_MANA ),
 _battlefield( btl ),
 _target( NULL ),
 _display( NULL )
@@ -111,32 +110,24 @@ void Player::Act(int input_key)
 
 void Player::LookAround()
 {
-	uint8_t radius	= _sightRadius;
 	uint8_t column	= _position->GetCol();
 	uint8_t row		= _position->GetRow();
+	uint8_t maxCoord= _battlefield->GetSize() - 1;
 
-	uint8_t leftBorder		= column;
-	uint8_t rightBorder		= column;
-	uint8_t topBorder		= row;
-	uint8_t bottomBorder	= row;
-	uint8_t maxCoord		= _battlefield->GetSize() - 1;
-
-	for (uint8_t delta = 1; delta <= radius; ++delta)   // Crop sight rectangle to battlefield
-	{
-		if (leftBorder - delta <= 0) leftBorder = 0; else --leftBorder;
-		if (rightBorder + delta >= maxCoord) rightBorder = maxCoord; else ++rightBorder;
-		if (topBorder - delta <= 0) topBorder = 0; else --topBorder;
-		if (bottomBorder + delta >= maxCoord) bottomBorder = maxCoord; else ++bottomBorder;
-	}
+	uint8_t leftBorder		= column > 0		? column - 1 : 0;
+	uint8_t rightBorder		= column < maxCoord ? column + 1 : maxCoord;
+	uint8_t topBorder		= row > 0			? row - 1 : 0;
+	uint8_t bottomBorder	= row < maxCoord	? row + 1 : maxCoord;
 
 	for (uint8_t tempRow = topBorder; tempRow <= bottomBorder; ++tempRow)
 		for (uint8_t tempColumn = leftBorder; tempColumn <= rightBorder; ++tempColumn)
-			if ( InSightRadius(tempRow, tempColumn) )
 			{
 				Field *field = _battlefield->GetField(tempRow, tempColumn);
-				field->MakeVisible();
-				RecoverBy(field->ExtractMana());
-				HealBy(field->ExtractHP());
+				if (field->MakeVisible())
+				{
+					RecoverBy(1);
+					HealBy(_level);
+				}
 			}
 }
 
@@ -166,17 +157,6 @@ void Player::LevelUp()
 	if (this == _battlefield->GetPlayer()) _display->SendEvent(LVLUP);
 }
 
-
-bool Player::InSightRadius(uint8_t testRow, uint8_t testColumn)
-{
-	uint8_t column  = _position->GetCol();
-	uint8_t row		= _position->GetRow();
-	uint8_t radius  = _sightRadius;
-	int deltaRow	= testRow - row;
-	int deltaColumn = testColumn - column;
-
-	return (deltaRow * deltaRow + deltaColumn * deltaColumn <= radius * radius);
-}
 
 
 void Player::BoostHP(uint16_t delta)

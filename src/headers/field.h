@@ -22,13 +22,11 @@ class Field
 		Field (uint8_t, uint8_t);
 		~Field ();
 //		Field (const Field &);
-		void MakeVisible();
+		bool MakeVisible();
 		void SpawnEnemy(uint8_t);
 		void SpawnPowerup(poweruptype);
 		void SpawnItem();
 		void RemovePowerup();
-		uint16_t ExtractMana();
-		uint16_t ExtractHP();
 		bool HaveEnemy() const;
 		bool HavePowerup() const;
 		bool HaveItem() const;
@@ -45,8 +43,6 @@ class Field
 		Monster * _enemy;
 		Powerup * _powerup;
 		std::string _item;
-		uint8_t _mana;
-		uint8_t _HP;
 		bool _visible;
 };
 
