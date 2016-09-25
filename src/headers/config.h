@@ -18,6 +18,7 @@ enum eventtype  {LVLUP, HP_PWRUP, MANA_PWRUP, DMG_PWRUP,
 				EVENTS_END};
 
 const uint8_t EVENT_TIMERS[] = {6, 6, 6, 6, 1, 1, 2, 2, 0};
+const uint8_t CURVE_COEFF[] = {5, 6, 7, 8, 9, 10, 11, 12};
 
 // Battlefield
 const uint8_t BF_SIZE = 20;

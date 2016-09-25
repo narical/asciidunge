@@ -57,7 +57,18 @@ uint8_t Field::GetCol() const
 
 void Field::SpawnEnemy(uint8_t monsterLevel)
 {
-   _enemy = new Monster(monsterLevel);
+	switch (rand() % 8)
+	{
+		case 0: _enemy = new Goblin(monsterLevel); break;
+		case 1: _enemy = new Skeleton(monsterLevel); break;
+		case 2: _enemy = new Zombie(monsterLevel); break;
+		case 3: _enemy = new Troll(monsterLevel); break;
+		case 4: _enemy = new Rogue(monsterLevel); break;
+		case 5: _enemy = new Mage(monsterLevel); break;
+		case 6: _enemy = new Golem(monsterLevel); break;
+		case 7: _enemy = new Ghost(monsterLevel); break;
+	}
+
 }
 
 

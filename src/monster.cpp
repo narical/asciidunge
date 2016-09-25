@@ -13,20 +13,7 @@
 
 Monster::Monster(uint8_t monsterLevel) : _level( monsterLevel ), _isDead(0)
 {
-	_damage = CalculateDamage( monsterLevel );
-	_maxHP = CalculateMaxHP( monsterLevel );
-	_HP = _maxHP;
-	switch (rand() % 8)
-	{
-		case 0: _name = "goblin"; break;
-		case 1: _name = "skeleton"; break;
-		case 2: _name = "zombie"; break;
-		case 3: _name = "troll"; break;
-		case 4: _name = "rogue"; break;
-		case 5: _name = "mage"; break;
-		case 6: _name = "golem"; break;
-		case 7: _name = "ghost";
-	}
+
 }
 
 
@@ -37,7 +24,7 @@ Monster::Monster(const Monster &p)
 	_exp = p._exp;
 	_damage = p._damage;
 	_HP = p._HP;
-	_maxHP = p._maxHP;	
+	_maxHP = p._maxHP;
 	_field = NULL;
 	_name = "111"; //p._name;
 	_isDead = p._isDead;
@@ -117,5 +104,93 @@ uint16_t Monster::GetHP() const
 uint16_t Monster::GetMaxHP() const
 {
 	return _maxHP;
+}
+
+
+
+//==============================================================//
+//																//
+//					BEGIN OF MONSTER SUBCLASSES					//
+//																//
+//==============================================================//
+
+
+
+Goblin::Goblin(uint8_t monsterLevel) : Monster(monsterLevel)
+{
+	_damage = CalculateDamage( monsterLevel );
+	_maxHP = CalculateMaxHP( monsterLevel );
+	_HP = _maxHP;
+	_name = "goblin";
+}
+
+
+
+Skeleton::Skeleton(uint8_t monsterLevel) : Monster(monsterLevel)
+{
+	_damage = CalculateDamage( monsterLevel );
+	_maxHP = CalculateMaxHP( monsterLevel );
+	_HP = _maxHP;
+	_name = "skeleton";
+}
+
+
+
+Zombie::Zombie(uint8_t monsterLevel) : Monster(monsterLevel)
+{
+	_damage = CalculateDamage( monsterLevel );
+	_maxHP = CalculateMaxHP( monsterLevel );
+	_HP = _maxHP;
+	_name = "zombie";
+}
+
+
+
+Troll::Troll(uint8_t monsterLevel) : Monster(monsterLevel)
+{
+	_damage = CalculateDamage( monsterLevel );
+	_maxHP = CalculateMaxHP( monsterLevel );
+	_HP = _maxHP;
+	_name = "troll";
+}
+
+
+
+Rogue::Rogue(uint8_t monsterLevel) : Monster(monsterLevel)
+{
+	_damage = CalculateDamage( monsterLevel );
+	_maxHP = CalculateMaxHP( monsterLevel );
+	_HP = _maxHP;
+	_name = "rogue";
+}
+
+
+
+Mage::Mage(uint8_t monsterLevel) : Monster(monsterLevel)
+{
+	_damage = CalculateDamage( monsterLevel );
+	_maxHP = CalculateMaxHP( monsterLevel );
+	_HP = _maxHP;
+	_name = "mage";
+}
+
+
+
+Golem::Golem(uint8_t monsterLevel) : Monster(monsterLevel)
+{
+	_damage = CalculateDamage( monsterLevel );
+	_maxHP = CalculateMaxHP( monsterLevel );
+	_HP = _maxHP;
+	_name = "golem";
+}
+
+
+
+Ghost::Ghost(uint8_t monsterLevel) : Monster(monsterLevel)
+{
+	_damage = CalculateDamage( monsterLevel );
+	_maxHP = CalculateMaxHP( monsterLevel );
+	_HP = _maxHP;
+	_name = "ghost";
 }
 
