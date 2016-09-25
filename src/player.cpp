@@ -125,7 +125,7 @@ void Player::LookAround()
 				Field *field = _battlefield->GetField(tempRow, tempColumn);
 				if (field->MakeVisible())
 				{
-					RecoverBy(1);
+					RecoverBy(MANA_PER_FIELD);
 					HealBy(_level);
 				}
 			}
@@ -148,13 +148,11 @@ void Player::LevelUp()
  	 	_level++;
  	 	_exp -= _expMax;
  	 	_expMax *= EXP_TO_NEXT_LVL_MULTIPLIER;
- 	 	_maxHP += ADD_MAXHP_PER_LVL;
+ 	 	_maxHP *= HP_PER_LVL_MULTIPLIER;
  	 	_damage += ADD_DAMAGE_PER_LVL;
  	 	Heal();
  	 	Recover();
  	}
-	// lvl-up animation works only if "real" player gets level-up
-	if (this == _battlefield->GetPlayer()) _display->SendEvent(LVLUP);
 }
 
 

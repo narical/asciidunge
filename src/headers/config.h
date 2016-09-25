@@ -26,19 +26,20 @@ const uint8_t POWERUPS_QUANTITY_BY_TYPE[3] = {5,5,5}; //health, mana, damage
 const uint8_t MONSTERS_QUANTITY_BY_LEVEL[11] = {0,10,5,4,4,4,3,3,3,2,1}; //Quantity of monsters of each level
 
 // Player
-const uint8_t START_LEVEL =		1;
-const uint8_t START_EXP =		0;
-const uint8_t START_MAX_EXP =	4;
-const uint8_t START_DAMAGE =		5;
-const uint8_t START_MAX_HP =		10;
-const uint8_t START_MAX_MANA =	10;
-const uint8_t ADD_MAXHP_PER_LVL =   10;
-const uint8_t ADD_DAMAGE_PER_LVL =	5;
+const uint8_t START_EXP = 0;
+const uint8_t START_LEVEL = 1;
+const uint8_t START_DAMAGE = 5;
+const uint8_t START_MAX_HP = 10;
+const uint8_t START_MAX_EXP = 4;
+const uint8_t MANA_PER_FIELD = 1;
+const uint8_t START_MAX_MANA = 10;
+const uint8_t ADD_DAMAGE_PER_LVL = 5;
+const uint8_t HP_PER_LVL_MULTIPLIER = 2;
 const uint8_t EXP_TO_NEXT_LVL_MULTIPLIER = 2;
 
 // Powerup
-const uint8_t POWERUP_HEALTH_BONUS = 10;
 const uint8_t POWERUP_MANA_BONUS = 7;
+const uint8_t POWERUP_HEALTH_BONUS = 10;
 const uint8_t POWERUP_DAMAGE_BONUS = 5;
 
 // Display
