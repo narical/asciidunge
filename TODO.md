@@ -10,31 +10,31 @@ Small ascii roguelike game
 - [ ] add initiative property to player and monsters
 
 ## Latest changes
-- [*] add mana regeneration by 1 per tile
-- [*] add healing by player level per tile
-- [*] remove ExtractHP/Mana from fields
-- [*] set sight radius to 8 neightbour fields near player
-- [*] make all mosters of different types
-- [*] move to CMake build system
-- [*] make all counters as single array
-- [*] move all constants to config.h
-- [*] change uint8_t to uint16_t where needed
-- [*] clean all #includes
-- [*] fix player spawning on powerup
-- [*] remove vectors entirely
-- [*] make all members' names begin with _ instead of m_
-- [*] refactor Player/Powerup classes
-- [*] fix 100% CPU load bug!
-- [*] make powerups - hp, mana and damage!
-- [*] make future fight calculations store in BF class member variables
-- [*] add switching frames with current fight state and future state
-- [*] add future fight calculation on enemy select
-- [*] move Fight() and CalculateFutureFight() to "Battlefield" class
-- [*] add Battlefield.playerCopy and Battlefield.enemyCopy pointers 
-- [*] change all unsigned int to uint8
-- [*] added first strike priority based on level comparison
-- [*] Implemented separate Player::Fight() function
-- [*] added class destructors
-- [*] Display::LevelUpCheck() / Display::LevelUpCheckEnd() functions implemented
-- [*] Display::SendEvent(EventType) {LVLUP,MONSTER_DEATH, ...} implemented
-- [*] Player::m_display property is used to get access to display instance
+- [x] add mana regeneration by 1 per tile
+- [x] add healing by player level per tile
+- [x] remove ExtractHP/Mana from fields
+- [x] set sight radius to 8 neightbour fields near player
+- [x] make all mosters of different types
+- [x] move to CMake build system
+- [x] make all counters as single array
+- [x] move all constants to config.h
+- [x] change uint8_t to uint16_t where needed
+- [x] clean all #includes
+- [x] fix player spawning on powerup
+- [x] remove vectors entirely
+- [x] make all members' names begin with _ instead of m_
+- [x] refactor Player/Powerup classes
+- [x] fix 100% CPU load bug!
+- [x] make powerups - hp, mana and damage!
+- [x] make future fight calculations store in BF class member variables
+- [x] add switching frames with current fight state and future state
+- [x] add future fight calculation on enemy select
+- [x] move Fight() and CalculateFutureFight() to "Battlefield" class
+- [x] add Battlefield.playerCopy and Battlefield.enemyCopy pointers 
+- [x] change all unsigned int to uint8
+- [x] added first strike priority based on level comparison
+- [x] Implemented separate Player::Fight() function
+- [x] added class destructors
+- [x] Display::LevelUpCheck() / Display::LevelUpCheckEnd() functions implemented
+- [x] Display::SendEvent(EventType) {LVLUP,MONSTER_DEATH, ...} implemented
+- [x] Player::m_display property is used to get access to display instance
