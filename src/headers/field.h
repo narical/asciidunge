@@ -9,10 +9,10 @@
 
 #include "config.h"
 #include <string>
-#include "powerup.h"
 
 class Monster;
-
+class Powerup;
+class Item;
 
 
 class Field
@@ -32,7 +32,7 @@ class Field
 		bool IsVisible() const;
 		Monster * GetEnemy() const;
 		Powerup * GetPowerup() const;
-		std::string GetItem() const;
+		Item * GetItem() const;
 		uint8_t GetCol() const;
 		uint8_t GetRow() const;
 		
@@ -41,7 +41,7 @@ class Field
 		uint8_t _coordRow;
 		Monster * _enemy;
 		Powerup * _powerup;
-		std::string _item;
+		Item * _item;
 		bool _visible;
 };
 

@@ -6,6 +6,8 @@
 
 #include "headers/field.h"
 #include "headers/monster.h"
+#include "headers/powerup.h"
+#include "headers/item.h"
 
 
 
@@ -14,7 +16,7 @@ Field::Field(uint8_t row, uint8_t col) :
 	_coordRow(row),
 	_enemy(NULL),
 	_powerup(NULL),
-	_item("no item!"),
+	_item(NULL),
 	_visible(false)
 { }
 
@@ -23,6 +25,7 @@ Field::~Field()
 {
 	if (_enemy != NULL) delete(_enemy);
 	if (_powerup != NULL) delete(_powerup);
+	if (_item != NULL) delete(_item);
 }
 
 
@@ -65,14 +68,19 @@ void Field::SpawnEnemy(uint8_t monsterLevel)
 		case 6: _enemy = new Golem(monsterLevel); break;
 		case 7: _enemy = new Ghost(monsterLevel); break;
 	}
+}
 
+
+void Field::SpawnItem()
+{
+	_item = new SwordOfReadiness();
 }
 
 
 void Field::SpawnPowerup(poweruptype type)
 {
-   _powerup = new Powerup(type);
-   _powerup->SetPosition(this);
+	_powerup = new Powerup(type);
+//	_powerup->SetPosition(this);
 }
 
 
@@ -84,42 +92,36 @@ void Field::RemovePowerup()
 
 Monster * Field::GetEnemy() const
 {
-   return _enemy;
+	return _enemy;
 }
 
 
 Powerup * Field::GetPowerup() const
 {
-   return _powerup;
+	return _powerup;
 }
 
 
 bool Field::HaveEnemy() const
 {
- return ((_enemy != NULL) && _enemy->IsAlive());
+	return ((_enemy != NULL) && _enemy->IsAlive());
 }
 
 
 bool Field::HavePowerup() const
 {
- return (_powerup != NULL);
+	return (_powerup != NULL);
 }
 
 
-void Field::SpawnItem()
+Item * Field::GetItem() const
 {
-   _item = "item";
-}
-
-
-std::string Field::GetItem() const
-{
-   return _item;
+	return _item;
 }
 
 bool Field::HaveItem() const
 {
- return (GetItem() != "no item!");
+	return (_item != NULL);
 }
 
 
@@ -133,6 +135,6 @@ bool Field::MakeVisible()
 
 bool Field::IsVisible() const
 {
- return _visible;
+	return _visible;
 }
 

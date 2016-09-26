@@ -5,7 +5,9 @@ Small ascii roguelike game
 ## Internal TO-DO list:
 - [ ] refactor abstraction layers
 - [ ] make enemy spawning more sparse
-
+- [ ] add items
+- [ ] add inventory
+- [ ] add items picking and using
 
 ## Latest changes
 - [x] change powerup calculations entirely

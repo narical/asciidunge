@@ -6,7 +6,6 @@
 
 #include "headers/powerup.h"
 #include "headers/field.h"
-#include "headers/player.h"
 
 
 

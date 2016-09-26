@@ -8,6 +8,7 @@
 #include "headers/display.h"
 #include "headers/input.h"
 #include "headers/battlefield.h"
+#include "headers/powerup.h"
 #include "headers/player.h"
 #include "headers/monster.h"
 #include "headers/field.h"

@@ -8,7 +8,7 @@
 #define _MONSTER_H_
 
 #include <string>
-#include <stdint.h>
+#include <cstdint>
 class Player;
 class Field;
 

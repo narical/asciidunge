@@ -9,8 +9,6 @@
 
 #include "config.h"
 class Field;
-class Player;
-
 
 
 class Powerup
