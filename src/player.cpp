@@ -134,9 +134,12 @@ void Player::LookAround()
 
 void Player::GainExp(Monster *enemy)
 {
-	int delta = enemy->GetLevel() - _level;
-	int mult = (delta <= 0 ? 1 : delta + 1);
-	_exp += enemy->GetLevel() * mult * 2;
+	uint8_t enemyLevel = enemy->GetLevel();
+	uint8_t playerLevel = _level;
+	uint8_t delta = (enemyLevel > playerLevel ? enemyLevel - playerLevel : 0);
+
+	if (delta == 1) _exp += enemyLevel + 2;
+	else _exp += enemyLevel + delta * delta;
 	if (_exp >= _expMax) LevelUp();
 }
 
