@@ -9,6 +9,7 @@
 #include "headers/field.h"
 #include "headers/monster.h"
 #include "headers/display.h"
+#include "headers/item.h"
 
 
 
@@ -20,6 +21,7 @@ Battlefield::Battlefield() : _boss(NULL), _playerCopy(NULL), _enemyCopy(NULL)
 
 	SpawnEnemies();
 	SpawnPowerups();
+	SpawnItems();
 }
 
 
@@ -69,6 +71,20 @@ void Battlefield::SpawnPowerups()
 			field->SpawnPowerup(type);
 			powerupsToSpawn--;
 		}
+	}
+}
+
+
+
+void Battlefield::SpawnItems()
+{
+	uint8_t itemsToSpawn = ITEMS_QUANTITY;
+	while (itemsToSpawn > 0)
+	{
+		Field *field = GetRandomField();
+		if ( field->HavePowerup() || field->HaveItem() || field->HaveEnemy() ) continue;
+		field->SpawnItem();
+		itemsToSpawn--;
 	}
 }
 

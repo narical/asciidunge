@@ -195,6 +195,18 @@ char Display::DrawField(uint8_t rowIndex, uint8_t colIndex)
 			}
 		}
 
+		else if (field != playerField && field->HaveItem())
+		{
+			printw("i");
+		}
+
+		else if (field == playerField && field->HaveItem())
+		{
+			BoldOn();
+			printw("@");
+			BoldOff();
+		}
+
 		else if (field == playerField)
 		{
 			CheckEvent(LVLUP);

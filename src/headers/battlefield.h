@@ -24,6 +24,7 @@ class Battlefield
 		~Battlefield();
 	 	void SpawnEnemies();
 		void SpawnPowerups();
+		void SpawnItems();
 		void SetPlayer(Player *);
 		void CalculateNextFight();
 		void SetDisplay(Display *);
