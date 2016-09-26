@@ -90,6 +90,18 @@ void Field::RemovePowerup()
 }
 
 
+void Field::AddItem(Item * itm)
+{
+	_item = itm;
+}
+
+
+void Field::RemoveItem()
+{
+	_item = NULL;
+}
+
+
 Monster * Field::GetEnemy() const
 {
 	return _enemy;

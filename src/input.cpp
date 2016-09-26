@@ -32,6 +32,9 @@ void Input::GetPlayerInput()
 		case KEY_DOWN:
 			player->Act(input_key);
 			break;
+		case 't':
+			player->TakeItem();
+			break;
 		case 'l':
 			player->TEST_LevelUp();
 			break;

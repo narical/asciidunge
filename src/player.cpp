@@ -192,6 +192,25 @@ eventtype Player::TakePowerup(Field * field)
 }
 
 
+void Player::TakeItem()
+{
+	if (_position->GetItem() != NULL)
+	{
+		Item * item = _position->GetItem();
+		if (_inventory[0] == NULL || _inventory[1] == NULL ||
+			_inventory[2] == NULL || _inventory[3] == NULL)
+			{
+				if		(_inventory[0] == NULL) _inventory[0] = item;
+				else if	(_inventory[1] == NULL) _inventory[1] = item;
+				else if	(_inventory[2] == NULL) _inventory[2] = item;
+				else if	(_inventory[3] == NULL) _inventory[3] = item;
+				_position->RemoveItem();
+			}
+	}
+}
+
+
+
 void Player::SetMana(uint16_t newQuantity)
 {
 	_mana = newQuantity;

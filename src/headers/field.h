@@ -26,6 +26,8 @@ class Field
 		void SpawnPowerup(poweruptype);
 		void SpawnItem();
 		void RemovePowerup();
+		void AddItem(Item *);
+		void RemoveItem();
 		bool HaveEnemy() const;
 		bool HavePowerup() const;
 		bool HaveItem() const;

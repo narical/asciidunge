@@ -86,7 +86,8 @@ void Display::DrawPlayerInfo()
 	std::string inv2 = (_player->GetInventory(1) != NULL ? _player->GetInventory(1)->GetName() : "Empty slot");
 	std::string inv3 = (_player->GetInventory(2) != NULL ? _player->GetInventory(2)->GetName() : "Empty slot");
 	std::string inv4 = (_player->GetInventory(3) != NULL ? _player->GetInventory(3)->GetName() : "Empty slot");
-	std::string grnd = (_player->GetPosition()->HaveItem() ? _player->GetPosition()->GetItem()->GetName() : "");
+	std::string grnd = (_player->GetPosition()->HaveItem() ?
+		"On ground: " + _player->GetPosition()->GetItem()->GetName() : "");
 	uint8_t level = plr->GetLevel();
 	uint16_t damage = plr->GetDamage();
 	uint16_t HP = plr->GetHP();

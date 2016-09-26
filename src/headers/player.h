@@ -38,6 +38,7 @@ class Player
 		void GainExp(Monster *);
 		void LevelUp();
 		eventtype TakePowerup(Field *);
+		void TakeItem();
 		void SetTargetField(Field *);
 		void SetDisplay(Display *);
 
