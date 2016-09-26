@@ -30,12 +30,12 @@ const uint8_t START_EXP = 0;
 const uint8_t START_LEVEL = 1;
 const uint8_t START_DAMAGE = 5;
 const uint8_t START_MAX_HP = 10;
-const uint8_t START_MAX_EXP = 4;
+const uint8_t START_MAX_EXP = 5;
 const uint8_t MANA_PER_FIELD = 1;
 const uint8_t START_MAX_MANA = 10;
 const uint8_t ADD_DAMAGE_PER_LVL = 5;
-const uint8_t HP_PER_LVL_MULTIPLIER = 2;
-const uint8_t EXP_TO_NEXT_LVL_MULTIPLIER = 2;
+const uint8_t ADD_HEALTH_PER_LVL = 10;
+const uint8_t NEXT_LEVEL_MULTIPLIER = 5;
 
 // Powerup
 const uint8_t POWERUP_MANA_BONUS = 7;

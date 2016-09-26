@@ -147,8 +147,8 @@ void Player::LevelUp()
  	{
  	 	_level++;
  	 	_exp -= _expMax;
- 	 	_expMax *= EXP_TO_NEXT_LVL_MULTIPLIER;
- 	 	_maxHP *= HP_PER_LVL_MULTIPLIER;
+ 	 	_expMax = _level * NEXT_LEVEL_MULTIPLIER;
+ 	 	_maxHP += ADD_HEALTH_PER_LVL;
  	 	_damage += ADD_DAMAGE_PER_LVL;
  	 	Heal();
  	 	Recover();

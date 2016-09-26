@@ -4,12 +4,13 @@ Small ascii roguelike game
 
 ## Internal TO-DO list:
 - [ ] refactor abstraction layers
-- [ ] make player hp double with each level
 - [ ] use player level as hp per powerup and 1 for mana powerup
 - [ ] make enemy spawning more sparse
+- [ ] add Player.powerup_count for different calculation
 
 
 ## Latest changes
+- [x] make next level exp 5 times more then current level
 - [x] add initiative property to player and monsters
 - [x] add mana regeneration by 1 per tile
 - [x] add healing by player level per tile
