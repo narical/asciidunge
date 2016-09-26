@@ -12,6 +12,7 @@
 #include "headers/monster.h"
 #include "headers/display.h"
 #include "headers/field.h"
+#include "headers/item.h"
 
 
 
@@ -28,6 +29,7 @@ _display( NULL )
 	_powerups[HEALTH] = 0;
 	_powerups[MANA] = 0;
 	_powerups[DAMAGE] = 0;
+	for (uint8_t i = 0; i < 4; ++i) _inventory[i] = NULL;
 
 	Field *field = NULL;
 	while (true)
@@ -249,6 +251,12 @@ void Player::SetTargetField(Field * fld)
 void Player::SetDisplay(Display * dspl)
 {
 	_display = dspl;
+}
+
+
+Item * Player::GetInventory(uint8_t index) const
+{
+	return _inventory[index];
 }
 
 

@@ -29,7 +29,8 @@ void Item::SetPosition(Field * position)
 
 SwordOfReadiness::SwordOfReadiness()
 {
-
+	_name = "Sword of Readiness";
+	_description = "Grants FIRST STRIKE ability";
 }
 
 
@@ -42,5 +43,17 @@ SwordOfReadiness::~SwordOfReadiness()
 void SwordOfReadiness::Use()
 {
 
+}
+
+
+std::string Item::GetName() const
+{
+	return _name;
+}
+
+
+std::string Item::GetDescription() const
+{
+	return _description;
 }
 

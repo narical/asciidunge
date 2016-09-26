@@ -11,6 +11,7 @@
 #include "headers/powerup.h"
 #include "headers/player.h"
 #include "headers/monster.h"
+#include "headers/item.h"
 #include "headers/field.h"
 #include <ncurses.h>
 
@@ -81,6 +82,11 @@ void Display::DrawPlayerInfo()
 		plr = _player;
 
 	std::string name = plr->GetName();
+	std::string inv1 = (_player->GetInventory(0) != NULL ? _player->GetInventory(0)->GetName() : "Empty slot");
+	std::string inv2 = (_player->GetInventory(1) != NULL ? _player->GetInventory(1)->GetName() : "Empty slot");
+	std::string inv3 = (_player->GetInventory(2) != NULL ? _player->GetInventory(2)->GetName() : "Empty slot");
+	std::string inv4 = (_player->GetInventory(3) != NULL ? _player->GetInventory(3)->GetName() : "Empty slot");
+	std::string grnd = (_player->GetPosition()->HaveItem() ? _player->GetPosition()->GetItem()->GetName() : "");
 	uint8_t level = plr->GetLevel();
 	uint16_t damage = plr->GetDamage();
 	uint16_t HP = plr->GetHP();
@@ -98,19 +104,25 @@ void Display::DrawPlayerInfo()
 	CheckEvent(MANA_PWRUP);
 	mvprintw(PLAYER_ROW + 1, INFO_MARGIN, "Mana  %u / %u", mana, maxMana);
 	EndCheck();
+	mvprintw(PLAYER_ROW + 3, INFO_MARGIN, "%s", inv1.c_str());
+	mvprintw(PLAYER_ROW + 4, INFO_MARGIN, "%s", inv2.c_str());
+	mvprintw(PLAYER_ROW + 5, INFO_MARGIN, "%s", inv3.c_str());
+	mvprintw(PLAYER_ROW + 6, INFO_MARGIN, "%s", inv4.c_str());
+	if (grnd != "")
+	mvprintw(PLAYER_ROW + 7, INFO_MARGIN, "%s", grnd.c_str());
 	CheckEvent(LVLUP);
-	mvprintw(PLAYER_ROW + 5, INFO_MARGIN, "%s - level %d", name.c_str(), level);
+	mvprintw(PLAYER_ROW + 9, INFO_MARGIN, "%s - level %d", name.c_str(), level);
 	EndCheck();
 	CheckEvent(HP_PWRUP);
-	mvprintw(PLAYER_ROW + 7, INFO_MARGIN, " [+]  %d / %d", HP, maxHP);
+	mvprintw(PLAYER_ROW + 11, INFO_MARGIN, " [+]  %d / %d", HP, maxHP);
 	EndCheck();
 	CheckEvent(DMG_PWRUP);
-	mvprintw(PLAYER_ROW + 9, INFO_MARGIN, " [*]    %d   ", damage);
+	mvprintw(PLAYER_ROW + 13, INFO_MARGIN, " [*]    %d   ", damage);
 	EndCheck();
 
 	mvprintw(PLAYER_ROW + 0, BAR_MARGIN, "%s", expBar.c_str());
 	mvprintw(PLAYER_ROW + 1, BAR_MARGIN, "%s", manaBar.c_str());
-	mvprintw(PLAYER_ROW + 7, BAR_MARGIN, "%s", healthBar.c_str());
+	mvprintw(PLAYER_ROW + 11, BAR_MARGIN, "%s", healthBar.c_str());
 
 	if (plr_copy != NULL)
 	{
@@ -118,7 +130,7 @@ void Display::DrawPlayerInfo()
 		if (plr_copy->IsAlive() && enemy_copy->IsAlive()) prediction = "SAFE";
 		else if (plr_copy->IsDead() && enemy_copy->IsAlive()) prediction = "DEATH !!!";
 		else if (plr_copy->IsAlive() && enemy_copy->IsDead()) prediction = "Victory!";
-		mvprintw(PLAYER_ROW + 9, BAR_MARGIN, "%s", prediction.c_str());
+		mvprintw(PLAYER_ROW + 13, BAR_MARGIN, "%s", prediction.c_str());
 	}
 }
 

@@ -14,6 +14,7 @@ class Battlefield;
 class Monster;
 class Display;
 class Field;
+class Item;
 
 
 
@@ -52,6 +53,7 @@ class Player
 		uint16_t GetMaxHP() const;
 		uint16_t GetMana() const;
 		uint16_t GetMaxMana() const;
+		Item * GetInventory(uint8_t) const;
 
 		bool IsAlive() const;
 		bool IsDead() const;
@@ -61,6 +63,7 @@ class Player
 
 	private:
 		std::string _name;
+		Item * _inventory[4];
 		uint8_t _level;
 		uint16_t _exp;
 		uint16_t _expMax;
