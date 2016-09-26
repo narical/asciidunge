@@ -8,6 +8,7 @@
 #include <cassert>
 #include <ncurses.h>
 #include "headers/battlefield.h"
+#include "headers/powerup.h"
 #include "headers/monster.h"
 #include "headers/display.h"
 #include "headers/field.h"
@@ -17,16 +18,17 @@
 Player::Player (Battlefield *btl) :
 _name( "Nameless hero" ),
 _level( START_LEVEL ),
-_exp( START_EXP ), _expMax( START_MAX_EXP ),
-_damage( START_DAMAGE ),
-_HP( START_MAX_HP ), _maxHP( START_MAX_HP ),
-_mana( START_MAX_MANA ), _maxMana( START_MAX_MANA ),
 _initiative(0),
 _battlefield( btl ),
 _target( NULL ),
 _display( NULL )
 {
 	_battlefield->SetPlayer(this);
+	
+	_powerups[HEALTH] = 0;
+	_powerups[MANA] = 0;
+	_powerups[DAMAGE] = 0;
+
 	Field *field = NULL;
 	while (true)
 	{
@@ -35,7 +37,11 @@ _display( NULL )
 		break;
 	}
 	_position = field;
-  LookAround();
+
+	CalculateStats();
+	Heal();
+	Recover();
+	LookAround();
 }
 
 
@@ -60,6 +66,14 @@ Player::Player (const Player &p)
 }
 */
 
+
+void Player::CalculateStats()
+{
+	_maxHP		= _level * (HEALTH_PER_LEVEL + _powerups[HEALTH]);
+	_maxMana	= START_MAX_MANA + _powerups[MANA];
+	_damage		= _level * DAMAGE_PER_LEVEL * (1 + _powerups[DAMAGE] * (float) POWERUP_DAMAGE_BONUS /100 );
+	_expMax		= _level * NEXT_LEVEL_MULTIPLIER;
+}
 
 
 void Player::Act(int input_key)
@@ -95,7 +109,7 @@ void Player::Act(int input_key)
 
 			else if (nextField->HavePowerup())
 			{
-				_display->SendEvent( nextField->GetPowerup()->TakeBy(this) );
+				_display->SendEvent( TakePowerup(nextField) );
 			}
 
 			else
@@ -150,9 +164,7 @@ void Player::LevelUp()
  	{
  	 	_level++;
  	 	_exp -= _expMax;
- 	 	_expMax = _level * NEXT_LEVEL_MULTIPLIER;
- 	 	_maxHP += ADD_HEALTH_PER_LVL;
- 	 	_damage += ADD_DAMAGE_PER_LVL;
+		CalculateStats();
  	 	Heal();
  	 	Recover();
  	}
@@ -160,23 +172,21 @@ void Player::LevelUp()
 
 
 
-void Player::BoostHP(uint16_t delta)
+eventtype Player::TakePowerup(Field * field)
 {
-	_maxHP += delta;
-	HealBy(delta);
-}
-
-
-void Player::BoostMana(uint16_t delta)
-{
-	_maxMana += delta;
-	RecoverBy(delta);
-}
-
-
-void Player::BoostDamage(uint16_t delta)
-{
-	_damage += delta;
+	poweruptype type = field->GetPowerup()->GetType();
+	++_powerups[type];
+	CalculateStats();
+	field->RemovePowerup();
+	
+	eventtype result;
+	switch (type)
+	{
+		case HEALTH:	result = HP_PWRUP; break;
+		case MANA:		result = MANA_PWRUP; break;
+		case DAMAGE:	result = DMG_PWRUP;
+	}
+	return result;
 }
 
 

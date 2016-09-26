@@ -24,6 +24,7 @@ class Player
 //		Player(const Player &);
 		void Act(int);
 		void LookAround();
+		void CalculateStats();
 		void Move(Field *);
 		void SetMana(uint16_t);
 		void Recover();
@@ -35,9 +36,7 @@ class Player
 		void TakeDamage(uint16_t);
 		void GainExp(Monster *);
 		void LevelUp();
-		void BoostHP(uint16_t);
-		void BoostMana(uint16_t);
-		void BoostDamage(uint16_t);
+		eventtype TakePowerup(Field *);
 		void SetTargetField(Field *);
 		void SetDisplay(Display *);
 
@@ -69,6 +68,7 @@ class Player
 		uint16_t _HP, _maxHP;
 		uint16_t _mana, _maxMana;
 		uint16_t _initiative;
+		uint8_t _powerups[3];
 
 		Battlefield *_battlefield;
 		Field *_position;

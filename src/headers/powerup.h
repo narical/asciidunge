@@ -17,7 +17,6 @@ class Powerup
 {
 	public:
 		Powerup(poweruptype);
-		eventtype TakeBy(Player *);
 		poweruptype GetType();
 		void SetPosition(Field *);
 
