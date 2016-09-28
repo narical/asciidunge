@@ -21,6 +21,7 @@ _name( "Nameless hero" ),
 _level( START_LEVEL ),
 _initiative(0),
 _battlefield( btl ),
+_selectedItem( NULL ),
 _target( NULL ),
 _display( NULL )
 {
@@ -211,6 +212,13 @@ void Player::TakeItem()
 
 
 
+void Player::SelectItem(uint8_t number)
+{
+	if (_inventory[number] != NULL) _selectedItem = _inventory[number];
+}
+
+
+
 void Player::SetMana(uint16_t newQuantity)
 {
 	_mana = newQuantity;
@@ -276,6 +284,12 @@ void Player::SetDisplay(Display * dspl)
 Item * Player::GetInventory(uint8_t index) const
 {
 	return _inventory[index];
+}
+
+
+Item * Player::GetSelectedItem() const
+{
+	return _selectedItem;
 }
 
 

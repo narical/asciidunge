@@ -38,6 +38,7 @@ class Player
 		void GainExp(Monster *);
 		void LevelUp();
 		eventtype TakePowerup(Field *);
+		void SelectItem(uint8_t);
 		void TakeItem();
 		void SetTargetField(Field *);
 		void SetDisplay(Display *);
@@ -55,6 +56,7 @@ class Player
 		uint16_t GetMana() const;
 		uint16_t GetMaxMana() const;
 		Item * GetInventory(uint8_t) const;
+		Item * GetSelectedItem() const;
 
 		bool IsAlive() const;
 		bool IsDead() const;
@@ -75,6 +77,7 @@ class Player
 		uint8_t _powerups[3];
 
 		Battlefield *_battlefield;
+		Item * _selectedItem;
 		Field *_position;
 		Field *_target;
 		Display *_display;

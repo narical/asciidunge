@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/joy/Documents/asciidunge/build
+CMAKE_SOURCE_DIR = /home/narical/Документы/asciidunge/build
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/joy/Documents/asciidunge/build
+CMAKE_BINARY_DIR = /home/narical/Документы/asciidunge/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -124,9 +124,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/joy/Documents/asciidunge/build/CMakeFiles /home/joy/Documents/asciidunge/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/narical/Документы/asciidunge/build/CMakeFiles /home/narical/Документы/asciidunge/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/joy/Documents/asciidunge/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/narical/Документы/asciidunge/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -167,275 +167,275 @@ asciidunge/fast:
 	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/build
 .PHONY : asciidunge/fast
 
-home/joy/Documents/asciidunge/src/battlefield.o: home/joy/Documents/asciidunge/src/battlefield.cpp.o
+home/narical/Документы/asciidunge/src/battlefield.o: home/narical/Документы/asciidunge/src/battlefield.cpp.o
 
-.PHONY : home/joy/Documents/asciidunge/src/battlefield.o
-
-# target to build an object file
-home/joy/Documents/asciidunge/src/battlefield.cpp.o:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/battlefield.cpp.o
-.PHONY : home/joy/Documents/asciidunge/src/battlefield.cpp.o
-
-home/joy/Documents/asciidunge/src/battlefield.i: home/joy/Documents/asciidunge/src/battlefield.cpp.i
-
-.PHONY : home/joy/Documents/asciidunge/src/battlefield.i
-
-# target to preprocess a source file
-home/joy/Documents/asciidunge/src/battlefield.cpp.i:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/battlefield.cpp.i
-.PHONY : home/joy/Documents/asciidunge/src/battlefield.cpp.i
-
-home/joy/Documents/asciidunge/src/battlefield.s: home/joy/Documents/asciidunge/src/battlefield.cpp.s
-
-.PHONY : home/joy/Documents/asciidunge/src/battlefield.s
-
-# target to generate assembly for a file
-home/joy/Documents/asciidunge/src/battlefield.cpp.s:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/battlefield.cpp.s
-.PHONY : home/joy/Documents/asciidunge/src/battlefield.cpp.s
-
-home/joy/Documents/asciidunge/src/display.o: home/joy/Documents/asciidunge/src/display.cpp.o
-
-.PHONY : home/joy/Documents/asciidunge/src/display.o
+.PHONY : home/narical/Документы/asciidunge/src/battlefield.o
 
 # target to build an object file
-home/joy/Documents/asciidunge/src/display.cpp.o:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/display.cpp.o
-.PHONY : home/joy/Documents/asciidunge/src/display.cpp.o
+home/narical/Документы/asciidunge/src/battlefield.cpp.o:
+	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/narical/Документы/asciidunge/src/battlefield.cpp.o
+.PHONY : home/narical/Документы/asciidunge/src/battlefield.cpp.o
 
-home/joy/Documents/asciidunge/src/display.i: home/joy/Documents/asciidunge/src/display.cpp.i
+home/narical/Документы/asciidunge/src/battlefield.i: home/narical/Документы/asciidunge/src/battlefield.cpp.i
 
-.PHONY : home/joy/Documents/asciidunge/src/display.i
+.PHONY : home/narical/Документы/asciidunge/src/battlefield.i
 
 # target to preprocess a source file
-home/joy/Documents/asciidunge/src/display.cpp.i:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/display.cpp.i
-.PHONY : home/joy/Documents/asciidunge/src/display.cpp.i
+home/narical/Документы/asciidunge/src/battlefield.cpp.i:
+	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/narical/Документы/asciidunge/src/battlefield.cpp.i
+.PHONY : home/narical/Документы/asciidunge/src/battlefield.cpp.i
 
-home/joy/Documents/asciidunge/src/display.s: home/joy/Documents/asciidunge/src/display.cpp.s
+home/narical/Документы/asciidunge/src/battlefield.s: home/narical/Документы/asciidunge/src/battlefield.cpp.s
 
-.PHONY : home/joy/Documents/asciidunge/src/display.s
+.PHONY : home/narical/Документы/asciidunge/src/battlefield.s
 
 # target to generate assembly for a file
-home/joy/Documents/asciidunge/src/display.cpp.s:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/display.cpp.s
-.PHONY : home/joy/Documents/asciidunge/src/display.cpp.s
+home/narical/Документы/asciidunge/src/battlefield.cpp.s:
+	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/narical/Документы/asciidunge/src/battlefield.cpp.s
+.PHONY : home/narical/Документы/asciidunge/src/battlefield.cpp.s
 
-home/joy/Documents/asciidunge/src/field.o: home/joy/Documents/asciidunge/src/field.cpp.o
+home/narical/Документы/asciidunge/src/display.o: home/narical/Документы/asciidunge/src/display.cpp.o
 
-.PHONY : home/joy/Documents/asciidunge/src/field.o
+.PHONY : home/narical/Документы/asciidunge/src/display.o
 
 # target to build an object file
-home/joy/Documents/asciidunge/src/field.cpp.o:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/field.cpp.o
-.PHONY : home/joy/Documents/asciidunge/src/field.cpp.o
+home/narical/Документы/asciidunge/src/display.cpp.o:
+	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/narical/Документы/asciidunge/src/display.cpp.o
+.PHONY : home/narical/Документы/asciidunge/src/display.cpp.o
 
-home/joy/Documents/asciidunge/src/field.i: home/joy/Documents/asciidunge/src/field.cpp.i
+home/narical/Документы/asciidunge/src/display.i: home/narical/Документы/asciidunge/src/display.cpp.i
 
-.PHONY : home/joy/Documents/asciidunge/src/field.i
+.PHONY : home/narical/Документы/asciidunge/src/display.i
 
 # target to preprocess a source file
-home/joy/Documents/asciidunge/src/field.cpp.i:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/field.cpp.i
-.PHONY : home/joy/Documents/asciidunge/src/field.cpp.i
+home/narical/Документы/asciidunge/src/display.cpp.i:
+	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/narical/Документы/asciidunge/src/display.cpp.i
+.PHONY : home/narical/Документы/asciidunge/src/display.cpp.i
 
-home/joy/Documents/asciidunge/src/field.s: home/joy/Documents/asciidunge/src/field.cpp.s
+home/narical/Документы/asciidunge/src/display.s: home/narical/Документы/asciidunge/src/display.cpp.s
 
-.PHONY : home/joy/Documents/asciidunge/src/field.s
+.PHONY : home/narical/Документы/asciidunge/src/display.s
 
 # target to generate assembly for a file
-home/joy/Documents/asciidunge/src/field.cpp.s:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/field.cpp.s
-.PHONY : home/joy/Documents/asciidunge/src/field.cpp.s
+home/narical/Документы/asciidunge/src/display.cpp.s:
+	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/narical/Документы/asciidunge/src/display.cpp.s
+.PHONY : home/narical/Документы/asciidunge/src/display.cpp.s
 
-home/joy/Documents/asciidunge/src/game.o: home/joy/Documents/asciidunge/src/game.cpp.o
+home/narical/Документы/asciidunge/src/field.o: home/narical/Документы/asciidunge/src/field.cpp.o
 
-.PHONY : home/joy/Documents/asciidunge/src/game.o
+.PHONY : home/narical/Документы/asciidunge/src/field.o
 
 # target to build an object file
-home/joy/Documents/asciidunge/src/game.cpp.o:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/game.cpp.o
-.PHONY : home/joy/Documents/asciidunge/src/game.cpp.o
+home/narical/Документы/asciidunge/src/field.cpp.o:
+	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/narical/Документы/asciidunge/src/field.cpp.o
+.PHONY : home/narical/Документы/asciidunge/src/field.cpp.o
 
-home/joy/Documents/asciidunge/src/game.i: home/joy/Documents/asciidunge/src/game.cpp.i
+home/narical/Документы/asciidunge/src/field.i: home/narical/Документы/asciidunge/src/field.cpp.i
 
-.PHONY : home/joy/Documents/asciidunge/src/game.i
+.PHONY : home/narical/Документы/asciidunge/src/field.i
 
 # target to preprocess a source file
-home/joy/Documents/asciidunge/src/game.cpp.i:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/game.cpp.i
-.PHONY : home/joy/Documents/asciidunge/src/game.cpp.i
+home/narical/Документы/asciidunge/src/field.cpp.i:
+	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/narical/Документы/asciidunge/src/field.cpp.i
+.PHONY : home/narical/Документы/asciidunge/src/field.cpp.i
 
-home/joy/Documents/asciidunge/src/game.s: home/joy/Documents/asciidunge/src/game.cpp.s
+home/narical/Документы/asciidunge/src/field.s: home/narical/Документы/asciidunge/src/field.cpp.s
 
-.PHONY : home/joy/Documents/asciidunge/src/game.s
+.PHONY : home/narical/Документы/asciidunge/src/field.s
 
 # target to generate assembly for a file
-home/joy/Documents/asciidunge/src/game.cpp.s:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/game.cpp.s
-.PHONY : home/joy/Documents/asciidunge/src/game.cpp.s
+home/narical/Документы/asciidunge/src/field.cpp.s:
+	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/narical/Документы/asciidunge/src/field.cpp.s
+.PHONY : home/narical/Документы/asciidunge/src/field.cpp.s
 
-home/joy/Documents/asciidunge/src/input.o: home/joy/Documents/asciidunge/src/input.cpp.o
+home/narical/Документы/asciidunge/src/game.o: home/narical/Документы/asciidunge/src/game.cpp.o
 
-.PHONY : home/joy/Documents/asciidunge/src/input.o
+.PHONY : home/narical/Документы/asciidunge/src/game.o
 
 # target to build an object file
-home/joy/Documents/asciidunge/src/input.cpp.o:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/input.cpp.o
-.PHONY : home/joy/Documents/asciidunge/src/input.cpp.o
+home/narical/Документы/asciidunge/src/game.cpp.o:
+	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/narical/Документы/asciidunge/src/game.cpp.o
+.PHONY : home/narical/Документы/asciidunge/src/game.cpp.o
 
-home/joy/Documents/asciidunge/src/input.i: home/joy/Documents/asciidunge/src/input.cpp.i
+home/narical/Документы/asciidunge/src/game.i: home/narical/Документы/asciidunge/src/game.cpp.i
 
-.PHONY : home/joy/Documents/asciidunge/src/input.i
+.PHONY : home/narical/Документы/asciidunge/src/game.i
 
 # target to preprocess a source file
-home/joy/Documents/asciidunge/src/input.cpp.i:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/input.cpp.i
-.PHONY : home/joy/Documents/asciidunge/src/input.cpp.i
+home/narical/Документы/asciidunge/src/game.cpp.i:
+	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/narical/Документы/asciidunge/src/game.cpp.i
+.PHONY : home/narical/Документы/asciidunge/src/game.cpp.i
 
-home/joy/Documents/asciidunge/src/input.s: home/joy/Documents/asciidunge/src/input.cpp.s
+home/narical/Документы/asciidunge/src/game.s: home/narical/Документы/asciidunge/src/game.cpp.s
 
-.PHONY : home/joy/Documents/asciidunge/src/input.s
+.PHONY : home/narical/Документы/asciidunge/src/game.s
 
 # target to generate assembly for a file
-home/joy/Documents/asciidunge/src/input.cpp.s:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/input.cpp.s
-.PHONY : home/joy/Documents/asciidunge/src/input.cpp.s
+home/narical/Документы/asciidunge/src/game.cpp.s:
+	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/narical/Документы/asciidunge/src/game.cpp.s
+.PHONY : home/narical/Документы/asciidunge/src/game.cpp.s
 
-home/joy/Documents/asciidunge/src/item.o: home/joy/Documents/asciidunge/src/item.cpp.o
+home/narical/Документы/asciidunge/src/input.o: home/narical/Документы/asciidunge/src/input.cpp.o
 
-.PHONY : home/joy/Documents/asciidunge/src/item.o
+.PHONY : home/narical/Документы/asciidunge/src/input.o
 
 # target to build an object file
-home/joy/Documents/asciidunge/src/item.cpp.o:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/item.cpp.o
-.PHONY : home/joy/Documents/asciidunge/src/item.cpp.o
+home/narical/Документы/asciidunge/src/input.cpp.o:
+	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/narical/Документы/asciidunge/src/input.cpp.o
+.PHONY : home/narical/Документы/asciidunge/src/input.cpp.o
 
-home/joy/Documents/asciidunge/src/item.i: home/joy/Documents/asciidunge/src/item.cpp.i
+home/narical/Документы/asciidunge/src/input.i: home/narical/Документы/asciidunge/src/input.cpp.i
 
-.PHONY : home/joy/Documents/asciidunge/src/item.i
+.PHONY : home/narical/Документы/asciidunge/src/input.i
 
 # target to preprocess a source file
-home/joy/Documents/asciidunge/src/item.cpp.i:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/item.cpp.i
-.PHONY : home/joy/Documents/asciidunge/src/item.cpp.i
+home/narical/Документы/asciidunge/src/input.cpp.i:
+	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/narical/Документы/asciidunge/src/input.cpp.i
+.PHONY : home/narical/Документы/asciidunge/src/input.cpp.i
 
-home/joy/Documents/asciidunge/src/item.s: home/joy/Documents/asciidunge/src/item.cpp.s
+home/narical/Документы/asciidunge/src/input.s: home/narical/Документы/asciidunge/src/input.cpp.s
 
-.PHONY : home/joy/Documents/asciidunge/src/item.s
+.PHONY : home/narical/Документы/asciidunge/src/input.s
 
 # target to generate assembly for a file
-home/joy/Documents/asciidunge/src/item.cpp.s:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/item.cpp.s
-.PHONY : home/joy/Documents/asciidunge/src/item.cpp.s
+home/narical/Документы/asciidunge/src/input.cpp.s:
+	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/narical/Документы/asciidunge/src/input.cpp.s
+.PHONY : home/narical/Документы/asciidunge/src/input.cpp.s
 
-home/joy/Documents/asciidunge/src/main.o: home/joy/Documents/asciidunge/src/main.cpp.o
+home/narical/Документы/asciidunge/src/item.o: home/narical/Документы/asciidunge/src/item.cpp.o
 
-.PHONY : home/joy/Documents/asciidunge/src/main.o
+.PHONY : home/narical/Документы/asciidunge/src/item.o
 
 # target to build an object file
-home/joy/Documents/asciidunge/src/main.cpp.o:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/main.cpp.o
-.PHONY : home/joy/Documents/asciidunge/src/main.cpp.o
+home/narical/Документы/asciidunge/src/item.cpp.o:
+	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/narical/Документы/asciidunge/src/item.cpp.o
+.PHONY : home/narical/Документы/asciidunge/src/item.cpp.o
 
-home/joy/Documents/asciidunge/src/main.i: home/joy/Documents/asciidunge/src/main.cpp.i
+home/narical/Документы/asciidunge/src/item.i: home/narical/Документы/asciidunge/src/item.cpp.i
 
-.PHONY : home/joy/Documents/asciidunge/src/main.i
+.PHONY : home/narical/Документы/asciidunge/src/item.i
 
 # target to preprocess a source file
-home/joy/Documents/asciidunge/src/main.cpp.i:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/main.cpp.i
-.PHONY : home/joy/Documents/asciidunge/src/main.cpp.i
+home/narical/Документы/asciidunge/src/item.cpp.i:
+	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/narical/Документы/asciidunge/src/item.cpp.i
+.PHONY : home/narical/Документы/asciidunge/src/item.cpp.i
 
-home/joy/Documents/asciidunge/src/main.s: home/joy/Documents/asciidunge/src/main.cpp.s
+home/narical/Документы/asciidunge/src/item.s: home/narical/Документы/asciidunge/src/item.cpp.s
 
-.PHONY : home/joy/Documents/asciidunge/src/main.s
+.PHONY : home/narical/Документы/asciidunge/src/item.s
 
 # target to generate assembly for a file
-home/joy/Documents/asciidunge/src/main.cpp.s:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/main.cpp.s
-.PHONY : home/joy/Documents/asciidunge/src/main.cpp.s
+home/narical/Документы/asciidunge/src/item.cpp.s:
+	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/narical/Документы/asciidunge/src/item.cpp.s
+.PHONY : home/narical/Документы/asciidunge/src/item.cpp.s
 
-home/joy/Documents/asciidunge/src/monster.o: home/joy/Documents/asciidunge/src/monster.cpp.o
+home/narical/Документы/asciidunge/src/main.o: home/narical/Документы/asciidunge/src/main.cpp.o
 
-.PHONY : home/joy/Documents/asciidunge/src/monster.o
+.PHONY : home/narical/Документы/asciidunge/src/main.o
 
 # target to build an object file
-home/joy/Documents/asciidunge/src/monster.cpp.o:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/monster.cpp.o
-.PHONY : home/joy/Documents/asciidunge/src/monster.cpp.o
+home/narical/Документы/asciidunge/src/main.cpp.o:
+	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/narical/Документы/asciidunge/src/main.cpp.o
+.PHONY : home/narical/Документы/asciidunge/src/main.cpp.o
 
-home/joy/Documents/asciidunge/src/monster.i: home/joy/Documents/asciidunge/src/monster.cpp.i
+home/narical/Документы/asciidunge/src/main.i: home/narical/Документы/asciidunge/src/main.cpp.i
 
-.PHONY : home/joy/Documents/asciidunge/src/monster.i
+.PHONY : home/narical/Документы/asciidunge/src/main.i
 
 # target to preprocess a source file
-home/joy/Documents/asciidunge/src/monster.cpp.i:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/monster.cpp.i
-.PHONY : home/joy/Documents/asciidunge/src/monster.cpp.i
+home/narical/Документы/asciidunge/src/main.cpp.i:
+	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/narical/Документы/asciidunge/src/main.cpp.i
+.PHONY : home/narical/Документы/asciidunge/src/main.cpp.i
 
-home/joy/Documents/asciidunge/src/monster.s: home/joy/Documents/asciidunge/src/monster.cpp.s
+home/narical/Документы/asciidunge/src/main.s: home/narical/Документы/asciidunge/src/main.cpp.s
 
-.PHONY : home/joy/Documents/asciidunge/src/monster.s
+.PHONY : home/narical/Документы/asciidunge/src/main.s
 
 # target to generate assembly for a file
-home/joy/Documents/asciidunge/src/monster.cpp.s:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/monster.cpp.s
-.PHONY : home/joy/Documents/asciidunge/src/monster.cpp.s
+home/narical/Документы/asciidunge/src/main.cpp.s:
+	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/narical/Документы/asciidunge/src/main.cpp.s
+.PHONY : home/narical/Документы/asciidunge/src/main.cpp.s
 
-home/joy/Documents/asciidunge/src/player.o: home/joy/Documents/asciidunge/src/player.cpp.o
+home/narical/Документы/asciidunge/src/monster.o: home/narical/Документы/asciidunge/src/monster.cpp.o
 
-.PHONY : home/joy/Documents/asciidunge/src/player.o
+.PHONY : home/narical/Документы/asciidunge/src/monster.o
 
 # target to build an object file
-home/joy/Documents/asciidunge/src/player.cpp.o:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/player.cpp.o
-.PHONY : home/joy/Documents/asciidunge/src/player.cpp.o
+home/narical/Документы/asciidunge/src/monster.cpp.o:
+	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/narical/Документы/asciidunge/src/monster.cpp.o
+.PHONY : home/narical/Документы/asciidunge/src/monster.cpp.o
 
-home/joy/Documents/asciidunge/src/player.i: home/joy/Documents/asciidunge/src/player.cpp.i
+home/narical/Документы/asciidunge/src/monster.i: home/narical/Документы/asciidunge/src/monster.cpp.i
 
-.PHONY : home/joy/Documents/asciidunge/src/player.i
+.PHONY : home/narical/Документы/asciidunge/src/monster.i
 
 # target to preprocess a source file
-home/joy/Documents/asciidunge/src/player.cpp.i:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/player.cpp.i
-.PHONY : home/joy/Documents/asciidunge/src/player.cpp.i
+home/narical/Документы/asciidunge/src/monster.cpp.i:
+	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/narical/Документы/asciidunge/src/monster.cpp.i
+.PHONY : home/narical/Документы/asciidunge/src/monster.cpp.i
 
-home/joy/Documents/asciidunge/src/player.s: home/joy/Documents/asciidunge/src/player.cpp.s
+home/narical/Документы/asciidunge/src/monster.s: home/narical/Документы/asciidunge/src/monster.cpp.s
 
-.PHONY : home/joy/Documents/asciidunge/src/player.s
+.PHONY : home/narical/Документы/asciidunge/src/monster.s
 
 # target to generate assembly for a file
-home/joy/Documents/asciidunge/src/player.cpp.s:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/player.cpp.s
-.PHONY : home/joy/Documents/asciidunge/src/player.cpp.s
+home/narical/Документы/asciidunge/src/monster.cpp.s:
+	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/narical/Документы/asciidunge/src/monster.cpp.s
+.PHONY : home/narical/Документы/asciidunge/src/monster.cpp.s
 
-home/joy/Documents/asciidunge/src/powerup.o: home/joy/Documents/asciidunge/src/powerup.cpp.o
+home/narical/Документы/asciidunge/src/player.o: home/narical/Документы/asciidunge/src/player.cpp.o
 
-.PHONY : home/joy/Documents/asciidunge/src/powerup.o
+.PHONY : home/narical/Документы/asciidunge/src/player.o
 
 # target to build an object file
-home/joy/Documents/asciidunge/src/powerup.cpp.o:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/powerup.cpp.o
-.PHONY : home/joy/Documents/asciidunge/src/powerup.cpp.o
+home/narical/Документы/asciidunge/src/player.cpp.o:
+	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/narical/Документы/asciidunge/src/player.cpp.o
+.PHONY : home/narical/Документы/asciidunge/src/player.cpp.o
 
-home/joy/Documents/asciidunge/src/powerup.i: home/joy/Documents/asciidunge/src/powerup.cpp.i
+home/narical/Документы/asciidunge/src/player.i: home/narical/Документы/asciidunge/src/player.cpp.i
 
-.PHONY : home/joy/Documents/asciidunge/src/powerup.i
+.PHONY : home/narical/Документы/asciidunge/src/player.i
 
 # target to preprocess a source file
-home/joy/Documents/asciidunge/src/powerup.cpp.i:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/powerup.cpp.i
-.PHONY : home/joy/Documents/asciidunge/src/powerup.cpp.i
+home/narical/Документы/asciidunge/src/player.cpp.i:
+	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/narical/Документы/asciidunge/src/player.cpp.i
+.PHONY : home/narical/Документы/asciidunge/src/player.cpp.i
 
-home/joy/Documents/asciidunge/src/powerup.s: home/joy/Documents/asciidunge/src/powerup.cpp.s
+home/narical/Документы/asciidunge/src/player.s: home/narical/Документы/asciidunge/src/player.cpp.s
 
-.PHONY : home/joy/Documents/asciidunge/src/powerup.s
+.PHONY : home/narical/Документы/asciidunge/src/player.s
 
 # target to generate assembly for a file
-home/joy/Documents/asciidunge/src/powerup.cpp.s:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/powerup.cpp.s
-.PHONY : home/joy/Documents/asciidunge/src/powerup.cpp.s
+home/narical/Документы/asciidunge/src/player.cpp.s:
+	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/narical/Документы/asciidunge/src/player.cpp.s
+.PHONY : home/narical/Документы/asciidunge/src/player.cpp.s
+
+home/narical/Документы/asciidunge/src/powerup.o: home/narical/Документы/asciidunge/src/powerup.cpp.o
+
+.PHONY : home/narical/Документы/asciidunge/src/powerup.o
+
+# target to build an object file
+home/narical/Документы/asciidunge/src/powerup.cpp.o:
+	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/narical/Документы/asciidunge/src/powerup.cpp.o
+.PHONY : home/narical/Документы/asciidunge/src/powerup.cpp.o
+
+home/narical/Документы/asciidunge/src/powerup.i: home/narical/Документы/asciidunge/src/powerup.cpp.i
+
+.PHONY : home/narical/Документы/asciidunge/src/powerup.i
+
+# target to preprocess a source file
+home/narical/Документы/asciidunge/src/powerup.cpp.i:
+	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/narical/Документы/asciidunge/src/powerup.cpp.i
+.PHONY : home/narical/Документы/asciidunge/src/powerup.cpp.i
+
+home/narical/Документы/asciidunge/src/powerup.s: home/narical/Документы/asciidunge/src/powerup.cpp.s
+
+.PHONY : home/narical/Документы/asciidunge/src/powerup.s
+
+# target to generate assembly for a file
+home/narical/Документы/asciidunge/src/powerup.cpp.s:
+	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/narical/Документы/asciidunge/src/powerup.cpp.s
+.PHONY : home/narical/Документы/asciidunge/src/powerup.cpp.s
 
 # Help Target
 help:
@@ -450,36 +450,36 @@ help:
 	@echo "... install/strip"
 	@echo "... install/local"
 	@echo "... edit_cache"
-	@echo "... home/joy/Documents/asciidunge/src/battlefield.o"
-	@echo "... home/joy/Documents/asciidunge/src/battlefield.i"
-	@echo "... home/joy/Documents/asciidunge/src/battlefield.s"
-	@echo "... home/joy/Documents/asciidunge/src/display.o"
-	@echo "... home/joy/Documents/asciidunge/src/display.i"
-	@echo "... home/joy/Documents/asciidunge/src/display.s"
-	@echo "... home/joy/Documents/asciidunge/src/field.o"
-	@echo "... home/joy/Documents/asciidunge/src/field.i"
-	@echo "... home/joy/Documents/asciidunge/src/field.s"
-	@echo "... home/joy/Documents/asciidunge/src/game.o"
-	@echo "... home/joy/Documents/asciidunge/src/game.i"
-	@echo "... home/joy/Documents/asciidunge/src/game.s"
-	@echo "... home/joy/Documents/asciidunge/src/input.o"
-	@echo "... home/joy/Documents/asciidunge/src/input.i"
-	@echo "... home/joy/Documents/asciidunge/src/input.s"
-	@echo "... home/joy/Documents/asciidunge/src/item.o"
-	@echo "... home/joy/Documents/asciidunge/src/item.i"
-	@echo "... home/joy/Documents/asciidunge/src/item.s"
-	@echo "... home/joy/Documents/asciidunge/src/main.o"
-	@echo "... home/joy/Documents/asciidunge/src/main.i"
-	@echo "... home/joy/Documents/asciidunge/src/main.s"
-	@echo "... home/joy/Documents/asciidunge/src/monster.o"
-	@echo "... home/joy/Documents/asciidunge/src/monster.i"
-	@echo "... home/joy/Documents/asciidunge/src/monster.s"
-	@echo "... home/joy/Documents/asciidunge/src/player.o"
-	@echo "... home/joy/Documents/asciidunge/src/player.i"
-	@echo "... home/joy/Documents/asciidunge/src/player.s"
-	@echo "... home/joy/Documents/asciidunge/src/powerup.o"
-	@echo "... home/joy/Documents/asciidunge/src/powerup.i"
-	@echo "... home/joy/Documents/asciidunge/src/powerup.s"
+	@echo "... home/narical/Документы/asciidunge/src/battlefield.o"
+	@echo "... home/narical/Документы/asciidunge/src/battlefield.i"
+	@echo "... home/narical/Документы/asciidunge/src/battlefield.s"
+	@echo "... home/narical/Документы/asciidunge/src/display.o"
+	@echo "... home/narical/Документы/asciidunge/src/display.i"
+	@echo "... home/narical/Документы/asciidunge/src/display.s"
+	@echo "... home/narical/Документы/asciidunge/src/field.o"
+	@echo "... home/narical/Документы/asciidunge/src/field.i"
+	@echo "... home/narical/Документы/asciidunge/src/field.s"
+	@echo "... home/narical/Документы/asciidunge/src/game.o"
+	@echo "... home/narical/Документы/asciidunge/src/game.i"
+	@echo "... home/narical/Документы/asciidunge/src/game.s"
+	@echo "... home/narical/Документы/asciidunge/src/input.o"
+	@echo "... home/narical/Документы/asciidunge/src/input.i"
+	@echo "... home/narical/Документы/asciidunge/src/input.s"
+	@echo "... home/narical/Документы/asciidunge/src/item.o"
+	@echo "... home/narical/Документы/asciidunge/src/item.i"
+	@echo "... home/narical/Документы/asciidunge/src/item.s"
+	@echo "... home/narical/Документы/asciidunge/src/main.o"
+	@echo "... home/narical/Документы/asciidunge/src/main.i"
+	@echo "... home/narical/Документы/asciidunge/src/main.s"
+	@echo "... home/narical/Документы/asciidunge/src/monster.o"
+	@echo "... home/narical/Документы/asciidunge/src/monster.i"
+	@echo "... home/narical/Документы/asciidunge/src/monster.s"
+	@echo "... home/narical/Документы/asciidunge/src/player.o"
+	@echo "... home/narical/Документы/asciidunge/src/player.i"
+	@echo "... home/narical/Документы/asciidunge/src/player.s"
+	@echo "... home/narical/Документы/asciidunge/src/powerup.o"
+	@echo "... home/narical/Документы/asciidunge/src/powerup.i"
+	@echo "... home/narical/Документы/asciidunge/src/powerup.s"
 .PHONY : help
 
 

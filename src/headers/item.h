@@ -24,6 +24,7 @@ class Item
 		std::string GetDescription() const;
 
 	protected:
+		bool _selected;
 		std::string _name;
 		std::string _description;
 		Field * _field;

@@ -9,7 +9,7 @@
 
 
 
-Item::Item() : _field(NULL)
+Item::Item() : _selected(false), _field(NULL)
 {
 
 }
@@ -25,6 +25,22 @@ void Item::SetPosition(Field * position)
 {
 	_field = position;
 }
+
+
+
+std::string Item::GetName() const
+{
+	return _name;
+}
+
+
+
+std::string Item::GetDescription() const
+{
+	return _description;
+}
+
+
 
 
 SwordOfReadiness::SwordOfReadiness()
@@ -43,17 +59,5 @@ SwordOfReadiness::~SwordOfReadiness()
 void SwordOfReadiness::Use()
 {
 
-}
-
-
-std::string Item::GetName() const
-{
-	return _name;
-}
-
-
-std::string Item::GetDescription() const
-{
-	return _description;
 }
 

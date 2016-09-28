@@ -80,14 +80,21 @@ void Display::DrawPlayerInfo()
 		plr = plr_copy;
 	else
 		plr = _player;
+		
+	Item *inv1 = _player->GetInventory(0);
+	Item *inv2 = _player->GetInventory(1);
+	Item *inv3 = _player->GetInventory(2);
+	Item *inv4 = _player->GetInventory(3);
+	Item *grnd = _player->GetPosition()->GetItem();
+	Item *sel_item = _player->GetSelectedItem();
+
+	std::string str_inv1 = (inv1 != NULL ? inv1->GetName() : "Empty slot");
+	std::string str_inv2 = (inv2 != NULL ? inv2->GetName() : "Empty slot");
+	std::string str_inv3 = (inv3 != NULL ? inv3->GetName() : "Empty slot");
+	std::string str_inv4 = (inv4 != NULL ? inv4->GetName() : "Empty slot");
+	std::string str_grnd = (grnd != NULL ? "On ground: " + grnd->GetName() : "");
 
 	std::string name = plr->GetName();
-	std::string inv1 = (_player->GetInventory(0) != NULL ? _player->GetInventory(0)->GetName() : "Empty slot");
-	std::string inv2 = (_player->GetInventory(1) != NULL ? _player->GetInventory(1)->GetName() : "Empty slot");
-	std::string inv3 = (_player->GetInventory(2) != NULL ? _player->GetInventory(2)->GetName() : "Empty slot");
-	std::string inv4 = (_player->GetInventory(3) != NULL ? _player->GetInventory(3)->GetName() : "Empty slot");
-	std::string grnd = (_player->GetPosition()->HaveItem() ?
-		"On ground: " + _player->GetPosition()->GetItem()->GetName() : "");
 	uint8_t level = plr->GetLevel();
 	uint16_t damage = plr->GetDamage();
 	uint16_t HP = plr->GetHP();
@@ -105,12 +112,24 @@ void Display::DrawPlayerInfo()
 	CheckEvent(MANA_PWRUP);
 	mvprintw(PLAYER_ROW + 1, INFO_MARGIN, "Mana  %u / %u", mana, maxMana);
 	EndCheck();
-	mvprintw(PLAYER_ROW + 3, INFO_MARGIN, "%s", inv1.c_str());
-	mvprintw(PLAYER_ROW + 4, INFO_MARGIN, "%s", inv2.c_str());
-	mvprintw(PLAYER_ROW + 5, INFO_MARGIN, "%s", inv3.c_str());
-	mvprintw(PLAYER_ROW + 6, INFO_MARGIN, "%s", inv4.c_str());
-	if (grnd != "")
-	mvprintw(PLAYER_ROW + 7, INFO_MARGIN, "%s", grnd.c_str());
+	
+	if (inv1 == sel_item && sel_item != NULL) BoldOn();
+	mvprintw(PLAYER_ROW + 3, INFO_MARGIN, "%s", str_inv1.c_str());
+	BoldOff();
+	if (inv2 == sel_item && sel_item != NULL) BoldOn();
+	mvprintw(PLAYER_ROW + 4, INFO_MARGIN, "%s", str_inv2.c_str());
+	BoldOff();
+	if (inv3 == sel_item && sel_item != NULL) BoldOn();	
+	mvprintw(PLAYER_ROW + 5, INFO_MARGIN, "%s", str_inv3.c_str());
+	BoldOff();
+	if (inv4 == sel_item && sel_item != NULL) BoldOn();
+	mvprintw(PLAYER_ROW + 6, INFO_MARGIN, "%s", str_inv4.c_str());
+	BoldOff();
+	
+	if (str_grnd != "")
+	mvprintw(PLAYER_ROW + 7, INFO_MARGIN, "%s", str_grnd.c_str());
+	//mvprintw(PLAYER_ROW + 7, INFO_MARGIN, "%d", '1');
+	
 	CheckEvent(LVLUP);
 	mvprintw(PLAYER_ROW + 9, INFO_MARGIN, "%s - level %d", name.c_str(), level);
 	EndCheck();
