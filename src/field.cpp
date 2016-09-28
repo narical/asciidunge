@@ -73,7 +73,14 @@ void Field::SpawnEnemy(uint8_t monsterLevel)
 
 void Field::SpawnItem()
 {
-	_item = new SwordOfReadiness();
+	switch (rand() % 5)
+	{
+		case 0: _item = new SwordOfReadiness(); break;
+		case 1: _item = new MightyStrike(); break;
+		case 2: _item = new Fireball(); break;
+		case 3: _item = new Heal(); break;
+		case 4: _item = new EnergyShield(); break;
+	}
 }
 
 

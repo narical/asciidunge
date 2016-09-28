@@ -21,6 +21,14 @@ Item::~Item()
 }
 
 
+
+void Item::Use()
+{
+
+}
+
+
+
 void Item::SetPosition(Field * position)
 {
 	_field = position;
@@ -51,6 +59,58 @@ SwordOfReadiness::SwordOfReadiness()
 
 
 SwordOfReadiness::~SwordOfReadiness()
+{
+
+}
+
+
+MightyStrike::MightyStrike()
+{
+	_name = "Mighty Strike";
+	_description = "This powerful blow grants 30% bonus damage";
+}
+
+
+MightyStrike::~MightyStrike()
+{
+
+}
+
+
+Fireball::Fireball()
+{
+	_name = "Fireball";
+	_description = "Fire death from above!";
+}
+
+
+Fireball::~Fireball()
+{
+
+}
+
+
+Heal::Heal()
+{
+	_name = "Tome of healing";
+	_description = "Healing power of magic";
+}
+
+
+Heal::~Heal()
+{
+
+}
+
+
+EnergyShield::EnergyShield()
+{
+	_name = "Energy Shield";
+	_description = "Let's magic defend you";
+}
+
+
+EnergyShield::~EnergyShield()
 {
 
 }

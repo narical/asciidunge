@@ -2,6 +2,8 @@
 
 # Минимальная версия CMake, младше нельзя.
 cmake_minimum_required( VERSION 3.6 )
+add_definitions( "-ggdb" )
+add_definitions( "-std=c++11" )
 
 # Устанавливаем значение переменной BIN
 set( BIN asciidunge )

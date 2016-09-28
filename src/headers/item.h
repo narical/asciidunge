@@ -18,7 +18,7 @@ class Item
 	public:
 		Item();
 		virtual ~Item();
-		void virtual Use() = 0;
+		void virtual Use();
 		void SetPosition(Field *);
 		std::string GetName() const;
 		std::string GetDescription() const;
@@ -39,4 +39,41 @@ class SwordOfReadiness : public Item
 		~SwordOfReadiness();
 		void Use();
 };
+
+
+class MightyStrike : public Item
+{
+	public:
+		MightyStrike();
+		~MightyStrike();
+		//void Use();
+};
+
+
+class Fireball : public Item
+{
+	public:
+		Fireball();
+		~Fireball();
+		//void Use();
+};
+
+
+class Heal : public Item
+{
+	public:
+		Heal();
+		~Heal();
+		//void Use();
+};
+
+
+class EnergyShield : public Item
+{
+	public:
+		EnergyShield();
+		~EnergyShield();
+		//void Use();
+};
+
 #endif // _ITEM_H_
