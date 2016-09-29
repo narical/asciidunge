@@ -40,6 +40,7 @@ class Player
 		eventtype TakePowerup(Field *);
 		void SelectItem(uint8_t);
 		void TakeItem();
+		void DropItem();
 		void SetTargetField(Field *);
 		void SetDisplay(Display *);
 

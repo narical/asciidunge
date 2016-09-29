@@ -35,12 +35,18 @@ void Input::GetPlayerInput()
 		case 't':
 			player->TakeItem();
 			break;
+		case 'd':
+			player->DropItem();
+			break;			
 		case '1':
 		case '2':
 		case '3':		
 		case '4':		
 			player->SelectItem(input_key - '1');
-			break;			
+			break;
+		case 'r':
+			_battlefield->TEST_Reveal();
+			break;					
 		case 'l':
 			player->TEST_LevelUp();
 			break;

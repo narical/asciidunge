@@ -234,3 +234,11 @@ bool Battlefield::BossIsAlive() const
 
 
 
+// FOR TESTING
+
+void Battlefield::TEST_Reveal()
+{
+	for (uint8_t row = 0; row < BF_SIZE; ++row)
+		for (uint8_t column = 0; column < BF_SIZE; ++column)
+			_field[row][column]->MakeVisible();
+}

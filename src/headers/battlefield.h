@@ -39,6 +39,8 @@ class Battlefield
 		uint8_t GetSize() const;
 		bool BossIsAlive() const;
 		bool BossIsDead() const;
+		
+		void TEST_Reveal();
 
 	private:
 		Field *_field[BF_SIZE][BF_SIZE];

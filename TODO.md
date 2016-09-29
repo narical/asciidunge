@@ -5,11 +5,14 @@ Small ascii roguelike game
 ## Internal TO-DO list:
 - [ ] refactor abstraction layers
 - [ ] make enemy spawning more sparse
-- [ ] add items
-- [ ] add inventory
-- [ ] add items picking and using
+- [ ] add items using
+- [ ] add items recycling
 
 ## Latest changes
+- [x] add items droping
+- [x] add items picking
+- [x] add items
+- [x] add inventory
 - [x] change powerup calculations entirely
 - [x] make next level exp 5 times more then current level
 - [x] add initiative property to player and monsters

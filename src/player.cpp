@@ -207,9 +207,25 @@ void Player::TakeItem()
 				else if	(_inventory[3] == NULL) _inventory[3] = item;
 				_position->RemoveItem();
 			}
+			else if (_selectedItem != NULL)
+			{
+				DropItem();
+			}
 	}
 }
 
+
+void Player::DropItem()
+{
+	if (_selectedItem != NULL)
+	{
+		Item * pickItem = _position->GetItem();
+		for (uint8_t i = 0; i < 4; ++i)
+			if (_inventory[i] == _selectedItem) _inventory[i] = pickItem;
+		_position->AddItem(_selectedItem);
+		_selectedItem = pickItem;
+	}
+}
 
 
 void Player::SelectItem(uint8_t number)
