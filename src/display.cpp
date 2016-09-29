@@ -6,6 +6,7 @@
 
 
 #include "headers/display.h"
+#include "headers/strings.h"
 #include "headers/input.h"
 #include "headers/battlefield.h"
 #include "headers/powerup.h"
@@ -88,11 +89,11 @@ void Display::DrawPlayerInfo()
 	Item *grnd = _player->GetPosition()->GetItem();
 	Item *sel_item = _player->GetSelectedItem();
 
-	std::string str_inv1 = (inv1 != NULL ? inv1->GetName() : "Empty slot");
-	std::string str_inv2 = (inv2 != NULL ? inv2->GetName() : "Empty slot");
-	std::string str_inv3 = (inv3 != NULL ? inv3->GetName() : "Empty slot");
-	std::string str_inv4 = (inv4 != NULL ? inv4->GetName() : "Empty slot");
-	std::string str_grnd = (grnd != NULL ? "On ground: " + grnd->GetName() : "");
+	std::string str_inv1 = (inv1 != NULL ? "1. " + inv1->GetName() : "Empty slot");
+	std::string str_inv2 = (inv2 != NULL ? "2. " + inv2->GetName() : "Empty slot");
+	std::string str_inv3 = (inv3 != NULL ? "3. " + inv3->GetName() : "Empty slot");
+	std::string str_inv4 = (inv4 != NULL ? "4. " + inv4->GetName() : "Empty slot");
+	std::string str_grnd = (grnd != NULL ? GRND1 + grnd->GetName() + GRND2 : "");
 
 	std::string name = plr->GetName();
 	uint8_t level = plr->GetLevel();
@@ -113,22 +114,39 @@ void Display::DrawPlayerInfo()
 	mvprintw(PLAYER_ROW + 1, INFO_MARGIN, "Mana  %u / %u", mana, maxMana);
 	EndCheck();
 	
-	if (inv1 == sel_item && sel_item != NULL) BoldOn();
-	mvprintw(PLAYER_ROW + 3, INFO_MARGIN, "%s", str_inv1.c_str());
-	BoldOff();
-	if (inv2 == sel_item && sel_item != NULL) BoldOn();
-	mvprintw(PLAYER_ROW + 4, INFO_MARGIN, "%s", str_inv2.c_str());
-	BoldOff();
-	if (inv3 == sel_item && sel_item != NULL) BoldOn();	
-	mvprintw(PLAYER_ROW + 5, INFO_MARGIN, "%s", str_inv3.c_str());
-	BoldOff();
-	if (inv4 == sel_item && sel_item != NULL) BoldOn();
-	mvprintw(PLAYER_ROW + 6, INFO_MARGIN, "%s", str_inv4.c_str());
-	BoldOff();
+	if (inv1 == sel_item && sel_item != NULL)
+	{
+		BoldOn();
+		str_inv1 += INV;
+	}
+		mvprintw(PLAYER_ROW + 3, INFO_MARGIN, "%s", str_inv1.c_str());
+		BoldOff();
 	
-	if (str_grnd != "")
-	mvprintw(PLAYER_ROW + 7, INFO_MARGIN, "%s", str_grnd.c_str());
-	//mvprintw(PLAYER_ROW + 7, INFO_MARGIN, "%d", '1');
+	if (inv2 == sel_item && sel_item != NULL)
+	{
+		BoldOn();
+		str_inv2 += INV;
+	}
+		mvprintw(PLAYER_ROW + 4, INFO_MARGIN, "%s", str_inv2.c_str());
+		BoldOff();
+	
+	if (inv3 == sel_item && sel_item != NULL)
+	{
+		BoldOn();
+		str_inv3 += INV;
+	}
+		mvprintw(PLAYER_ROW + 5, INFO_MARGIN, "%s", str_inv3.c_str());
+		BoldOff();
+	
+	if (inv4 == sel_item && sel_item != NULL)
+	{
+		BoldOn();
+		str_inv4 += INV;
+	}
+		mvprintw(PLAYER_ROW + 6, INFO_MARGIN, "%s", str_inv4.c_str());
+		BoldOff();
+	
+	if (str_grnd != "")	mvprintw(PLAYER_ROW + 7, INFO_MARGIN, "%s", str_grnd.c_str());
 	
 	CheckEvent(LVLUP);
 	mvprintw(PLAYER_ROW + 9, INFO_MARGIN, "%s - level %d", name.c_str(), level);
