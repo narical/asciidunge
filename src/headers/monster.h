@@ -9,6 +9,7 @@
 
 #include <string>
 #include <cstdint>
+
 class Player;
 class Field;
 
@@ -44,63 +45,6 @@ class Monster
 
 		uint16_t FromCurve(uint16_t, uint16_t);
 };
-
-
-class Goblin : public Monster
-{
-	public:
-		Goblin(uint8_t);
-};
-
-
-class Skeleton : public Monster
-{
-	public:
-		Skeleton(uint8_t);
-};
-
-
-class Zombie : public Monster
-{
-	public:
-		Zombie(uint8_t);
-};
-
-
-class Troll : public Monster
-{
-	public:
-		Troll(uint8_t);
-};
-
-
-class Rogue : public Monster
-{
-	public:
-		Rogue(uint8_t);
-};
-
-
-class Mage : public Monster
-{
-	public:
-		Mage(uint8_t);
-};
-
-
-class Golem : public Monster
-{
-	public:
-		Golem(uint8_t);
-};
-
-
-class Ghost : public Monster
-{
-	public:
-		Ghost(uint8_t);
-};
-
 
 #endif // _MONSTER_H_
 

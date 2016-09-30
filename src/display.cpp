@@ -11,10 +11,18 @@
 #include "headers/battlefield.h"
 #include "headers/powerup.h"
 #include "headers/player.h"
-#include "headers/monster.h"
 #include "headers/item.h"
 #include "headers/field.h"
 #include <ncurses.h>
+
+#include "monsters/ghost.h"
+#include "monsters/goblin.h"
+#include "monsters/golem.h"
+#include "monsters/mage.h"
+#include "monsters/rogue.h"
+#include "monsters/skeleton.h"
+#include "monsters/troll.h"
+#include "monsters/zombie.h"
 
 Display::Display(Battlefield * btl) :
 _battlefield(btl),
