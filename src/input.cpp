@@ -37,16 +37,19 @@ void Input::GetPlayerInput()
 			break;
 		case 'd':
 			player->DropItem();
-			break;			
+			break;
+		case 'u':
+			player->ActivateItem();
+			break;
 		case '1':
 		case '2':
-		case '3':		
-		case '4':		
+		case '3':
+		case '4':
 			player->SelectItem(input_key - '1');
 			break;
 		case 'r':
 			_battlefield->TEST_Reveal();
-			break;					
+			break;
 		case 'l':
 			player->TEST_LevelUp();
 			break;

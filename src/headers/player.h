@@ -22,7 +22,7 @@ class Player
 {
 	public:
 		Player(Battlefield *);
-//		Player(const Player &);
+		Player(const Player &);
 		void Act(int);
 		void LookAround();
 		void CalculateStats();
@@ -35,12 +35,15 @@ class Player
 		void Heal();
 		void HealBy(uint16_t);
 		void TakeDamage(uint16_t);
+		void SetInitiative(uint16_t);
 		void GainExp(Monster *);
 		void LevelUp();
 		eventtype TakePowerup(Field *);
 		void SelectItem(uint8_t);
 		void TakeItem();
 		void DropItem();
+		void ActivateItem();
+		void HandleItems(std::string);
 		void SetTargetField(Field *);
 		void SetDisplay(Display *);
 

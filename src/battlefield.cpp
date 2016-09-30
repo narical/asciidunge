@@ -119,6 +119,7 @@ Field * Battlefield::GetNextField(Field * currentField, direction dir) const
 
 void Battlefield::Fight(Player * player, Monster * enemy, bool realFight)
 {
+	player->HandleItems("Sword of Readiness");
 	uint16_t monsterInitiative = enemy->GetInitiative();
 	uint16_t playerInitiative = player->GetInitiative();
 
@@ -155,6 +156,7 @@ void Battlefield::Fight(Player * player, Monster * enemy, bool realFight)
 			if (realFight) _display->SendEvent(PLR_HIT_2);
 		}
 	}
+	player->HandleItems("Sword of Readiness");
 }
 
 

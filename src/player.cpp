@@ -31,7 +31,6 @@ _display( NULL )
 	_powerups[MANA] = 0;
 	_powerups[DAMAGE] = 0;
 	for (uint8_t i = 0; i < 4; ++i) _inventory[i] = NULL;
-
 	Field *field = NULL;
 	while (true)
 	{
@@ -48,7 +47,7 @@ _display( NULL )
 }
 
 
-/*
+
 Player::Player (const Player &p)
 {
 	_name = p._name;
@@ -60,14 +59,26 @@ Player::Player (const Player &p)
 	_maxHP = p._maxHP;
 	_mana = p._mana;
 	_maxMana = p._maxMana;
-	_sightRadius = p._sightRadius;
-
+	_initiative = p._initiative;
 	_battlefield = p._battlefield;
 	_display = p._display;
 	_position = p._position;
 	_target = NULL;
+
+	for (poweruptype type = HEALTH; type <= DAMAGE; type = poweruptype(type + 1))
+		_powerups[type] = p._powerups[type];
+
+	for (uint8_t i = 0; i < 4; ++i)
+	{
+		if (p._inventory[i] == NULL) _inventory[i] = NULL;
+		else 
+		{
+			_inventory[i] = p._inventory[i]->Clone();
+			if (p._selectedItem == p._inventory[i]) _selectedItem = _inventory[i];
+		}
+	}
 }
-*/
+
 
 
 void Player::CalculateStats()
@@ -228,6 +239,32 @@ void Player::DropItem()
 }
 
 
+
+void Player::ActivateItem()
+{
+	if (_selectedItem != NULL &&
+		_mana >= _selectedItem->GetManaCost() &&
+		_selectedItem->GetState() == NOT_SET)
+	{
+		_target = NULL;
+		_selectedItem->SetState(PREPARED);
+		_mana -= _selectedItem->GetManaCost();
+	}
+}
+
+
+void Player::HandleItems(std::string name)
+{
+	for (uint8_t i = 0; i < 4; ++i)
+		if (_inventory[i] != NULL && _inventory[i]->GetName() == name)
+		{
+			_inventory[i]->Use(this);
+			break;
+		}
+}
+
+
+
 void Player::SelectItem(uint8_t number)
 {
 	if (_inventory[number] != NULL) _selectedItem = _inventory[number];
@@ -294,6 +331,12 @@ void Player::SetTargetField(Field * fld)
 void Player::SetDisplay(Display * dspl)
 {
 	_display = dspl;
+}
+
+
+void Player::SetInitiative(uint16_t delta)
+{
+	_initiative += delta;
 }
 
 

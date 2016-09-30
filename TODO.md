@@ -5,10 +5,10 @@ Small ascii roguelike game
 ## Internal TO-DO list:
 - [ ] refactor abstraction layers
 - [ ] make enemy spawning more sparse
-- [ ] add items using
 - [ ] add items recycling
 
 ## Latest changes
+- [x] add items using (sword only)
 - [x] add items droping
 - [x] add items picking
 - [x] add items

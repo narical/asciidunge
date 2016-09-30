@@ -10,6 +10,7 @@
 #include "config.h"
 #include <string>
 
+class Player;
 class Monster;
 class Powerup;
 class Item;

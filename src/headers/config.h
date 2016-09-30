@@ -12,6 +12,7 @@
 enum frametype  {CURRENT, FUTURE};
 enum poweruptype{HEALTH, MANA, DAMAGE};
 enum direction  {LEFT, RIGHT, UP, DOWN};
+enum itemstate {NOT_SET, PREPARED, ACTIVE};
 enum eventtype  {LVLUP, HP_PWRUP, MANA_PWRUP, DMG_PWRUP,
 				PLR_HIT_1, MNSTR_HIT_1, PLR_HIT_2, MNSTR_HIT_2,
 				EVENTS_END};

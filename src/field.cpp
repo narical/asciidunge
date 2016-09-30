@@ -5,6 +5,7 @@
 //
 
 #include "headers/field.h"
+#include "headers/player.h"
 #include "headers/monster.h"
 #include "headers/powerup.h"
 #include "headers/item.h"
