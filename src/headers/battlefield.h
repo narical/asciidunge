@@ -32,6 +32,7 @@ class Battlefield
 
 		Field * GetNextField(Field *, direction) const;
 		Field * GetField(uint8_t, uint8_t) const;
+		uint8_t CountNearObjects(Field *);
 		Field * GetRandomField() const;
 		Player * GetPlayerCopy() const;
 		Monster * GetEnemyCopy() const;

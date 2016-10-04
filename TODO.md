@@ -29,10 +29,10 @@ target game state:
 
 ## Internal TO-DO list:
 - [ ] refactor abstraction layers
-- [ ] make enemy spawning more sparse
 - [ ] add items recycling
 
 ## Latest changes
+- [x] make enemy spawning more sparse
 - [x] separate items to different files and move them to 'items' directory
 - [x] make items spawn only once
 - [x] move all monster files to separate directory

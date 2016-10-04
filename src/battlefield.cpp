@@ -53,7 +53,9 @@ void Battlefield::SpawnEnemies()
 		while (enemiesToSpawn > 0)
 		{
 			Field *field = GetRandomField();
-			if ( field->HaveEnemy() ) continue;
+			if ( field->HaveEnemy() ||
+				CountNearObjects(field) > MAX_NEAR_OBJECTS ) continue;
+
 			field->SpawnEnemy(monsterLevel);
 			enemiesToSpawn--;
 
@@ -73,7 +75,9 @@ void Battlefield::SpawnPowerups()
 		while (powerupsToSpawn > 0)
 		{
 			Field *field = GetRandomField();
-			if ( field->HavePowerup() ) continue;
+			if ( field->HavePowerup() ||
+				CountNearObjects(field) > MAX_NEAR_OBJECTS ) continue;
+
 			field->SpawnPowerup(type);
 			powerupsToSpawn--;
 		}
@@ -88,7 +92,8 @@ void Battlefield::SpawnItems()
 	while (itemsToSpawn > 0)
 	{
 		Field *field = GetRandomField();
-		if ( field->HavePowerup() || field->HaveItem() || field->HaveEnemy() ) continue;
+		if ( field->HavePowerup() || field->HaveItem() || field->HaveEnemy() ||
+			CountNearObjects(field) > MAX_NEAR_OBJECTS ) continue;
 		//field->SpawnItem();
 		field->TEST_SpawnItem(itemsToSpawn);	// Can wait until v0.6a milestone
 		itemsToSpawn--;
@@ -188,6 +193,22 @@ void Battlefield::CalculateNextFight()
 	_playerCopy = new Player( *_player );
 	_enemyCopy = new Monster( *( _player->GetTargetField()->GetEnemy() ) );
 	Fight(_playerCopy, _enemyCopy, false);
+}
+
+
+
+uint8_t Battlefield::CountNearObjects(Field *field)
+{
+	uint8_t summ = 0;
+	for (direction dir = LEFT; dir <= DOWNRIGHT; dir = direction(dir + 1))
+	{
+		Field * nextField = GetNextField(field, dir);
+		if (nextField != NULL &&
+		( nextField->HaveEnemy() || nextField->HavePowerup() || nextField->HaveItem() ))
+			++summ;
+	}
+
+	return summ;
 }
 
 

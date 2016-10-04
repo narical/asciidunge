@@ -24,6 +24,7 @@ const uint8_t SUM_COEFF = 68;
 // Battlefield
 const uint8_t BF_SIZE = 20;
 const uint8_t ITEMS_QUANTITY = 5;
+const uint8_t MAX_NEAR_OBJECTS = 1;
 const uint8_t POWERUPS_QUANTITY_BY_TYPE[3] = {5,5,5}; //health, mana, damage
 const uint8_t MONSTERS_QUANTITY_BY_LEVEL[11] = {0,10,5,4,4,4,3,3,3,2,1}; //Quantity of monsters of each level
 
