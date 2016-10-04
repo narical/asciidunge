@@ -15,8 +15,8 @@ class Golem : public Monster
 	public:
 		Golem(uint8_t monsterLevel) : Monster(monsterLevel)
 		{
-			_damage = FromCurve( 1, 20 );
-			_maxHP = FromCurve( 8, 200 );
+			_damage = FromCurve( 1, 33 );
+			_maxHP = FromCurve( 8, 140 );
 			_HP = _maxHP;
 			_name = "golem";
 		}

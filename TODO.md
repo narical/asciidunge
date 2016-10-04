@@ -5,11 +5,11 @@ Small ascii roguelike game
 Next milestone: v0.5a
 target game state:
 
-- [ ] 8 different monsters with different "perks":
- - [ ] skeleton - weak in any way
- - [ ] goblin - high damage, low hp
- - [ ] troll - fat
- - [ ] rogue - first strike
+- [x] 8 different monsters with different "perks":
+ - [x] skeleton - weak in any way
+ - [x] goblin - high damage, low hp
+ - [x] troll - fat
+ - [x] rogue - first strike
  - [x] zombie
  - [x] mage
  - [X] golem
@@ -22,7 +22,7 @@ target game state:
  - [ ] Heal - healing player based on it's level
  - [ ] Energy shield - incoming damage goes to mana first
 
-- [ ] 3 powerup types
+- [x] 3 powerup types
  - [x] health powerup - gives 1 hp per character level, scales with level-up
  - [x] mana powerup - gives 1 mana permanently, doesn't scales
  - [x] damage powerup - gives 10% cumulative damage bonus

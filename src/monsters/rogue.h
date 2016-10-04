@@ -19,6 +19,7 @@ class Rogue : public Monster
 			_maxHP = FromCurve( 3, 80 );
 			_HP = _maxHP;
 			_name = "rogue";
+			_initiative = 10;
 		}
 };
 

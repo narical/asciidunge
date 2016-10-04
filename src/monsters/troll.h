@@ -15,8 +15,8 @@ class Troll : public Monster
 	public:
 		Troll(uint8_t monsterLevel) : Monster(monsterLevel)
 		{
-			_damage = FromCurve( 2, 35 );
-			_maxHP = FromCurve( 6, 140 );
+			_damage = FromCurve( 2, 20 );
+			_maxHP = FromCurve( 6, 200 );
 			_HP = _maxHP;
 			_name = "troll";
 		}
