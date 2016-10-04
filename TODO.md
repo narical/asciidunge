@@ -2,9 +2,35 @@
 Small ascii roguelike game
 *ncurses-based console "Desktop Dungeon" clone*
 
+Next milestone: v0.5a
+target game state:
+
+- [ ] 8 different monsters with different "perks":
+ - [ ] skeleton - weak in any way
+ - [ ] goblin - high damage, low hp
+ - [ ] troll - fat
+ - [ ] rogue - first strike
+ - [x] zombie
+ - [x] mage
+ - [X] golem
+ - [x] ghost
+
+- [ ] 5 different items
+ - [x] Sword of Readiness - grants first strike
+ - [ ] Fireball - deals damage based on player level
+ - [ ] Mighty Strike - add 30% damage bonus to next strike
+ - [ ] Heal - healing player based on it's level
+ - [ ] Energy shield - incoming damage goes to mana first
+
+- [ ] 3 powerup types
+ - [x] health powerup - gives 1 hp per character level, scales with level-up
+ - [x] mana powerup - gives 1 mana permanently, doesn't scales
+ - [x] damage powerup - gives 10% cumulative damage bonus
+
 ## Internal TO-DO list:
 - [ ] refactor abstraction layers
 - [ ] make enemy spawning more sparse
+- [ ] make items spawn only once
 - [ ] add items recycling
 
 ## Latest changes
