@@ -16,7 +16,6 @@ class Powerup
 	public:
 		Powerup(poweruptype);
 		poweruptype GetType();
-		void SetPosition(Field *);
 
 	private:
 		poweruptype _type;

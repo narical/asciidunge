@@ -18,6 +18,12 @@
 #include "monsters/troll.h"
 #include "monsters/zombie.h"
 
+#include "items/swordofreadiness.h"
+#include "items/fireball.h"
+#include "items/heal.h"
+#include "items/energyshield.h"
+#include "items/mightystrike.h"
+
 
 Field::Field(uint8_t row, uint8_t col) :
 	_coordCol(col),
@@ -79,7 +85,7 @@ void Field::SpawnEnemy(uint8_t monsterLevel)
 }
 
 
-void Field::SpawnItem()
+void Field::SpawnItem()	//TODO: make spawn every item only once
 {
 	switch (rand() % 5)
 	{
@@ -108,7 +114,6 @@ void Field::TEST_SpawnItem(uint8_t num)
 void Field::SpawnPowerup(poweruptype type)
 {
 	_powerup = new Powerup(type);
-//	_powerup->SetPosition(this);
 }
 
 

@@ -16,13 +16,6 @@ Powerup::Powerup(poweruptype type) : _type(type), _field(NULL)
 
 
 
-void Powerup::SetPosition(Field * position)
-{
-	_field = position;
-}
-
-
-
 poweruptype Powerup::GetType()
 {
 	return _type;
