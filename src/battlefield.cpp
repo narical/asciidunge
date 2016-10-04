@@ -99,27 +99,40 @@ void Battlefield::SpawnItems()
 
 Field * Battlefield::GetNextField(Field * currentField, direction dir) const
 {
-	uint8_t currentCol = currentField->GetCol();
-	uint8_t currentRow = currentField->GetRow();
-	uint8_t nextCol = currentCol;
-	uint8_t nextRow = currentRow;
+	uint8_t Col = currentField->GetCol();
+	uint8_t Row = currentField->GetRow();
+	bool notLeft = Col > 0;
+	bool notTop = Row > 0;
+	bool notRight = Col < BF_SIZE - 1;
+	bool notBottom = Row < BF_SIZE - 1;
 
 	switch (dir)
 	{
-		case LEFT:
-			if (currentCol > 0) --nextCol;
+		case LEFT:	if (notLeft) return GetField(Row, --Col);
 			break;
-		case RIGHT:
-			if (currentCol < BF_SIZE - 1) ++nextCol;
+
+		case RIGHT:	if (notRight) return GetField(Row, ++Col);
 			break;
-		case UP:
-			if (currentRow > 0) --nextRow;
+
+		case UP:	if (notTop) return GetField(--Row, Col);
 			break;
-		case DOWN:
-			if (currentRow < BF_SIZE - 1) ++nextRow;
+
+		case DOWN:	if (notBottom) return GetField(++Row, Col);
+			break;
+
+		case UPLEFT: if (notTop && notLeft) return GetField(--Row, --Col);
+			break;
+
+		case UPRIGHT: if (notTop && notRight) return GetField(--Row, ++Col);
+			break;
+
+		case DOWNLEFT: if (notBottom && notLeft) return GetField(++Row, --Col);
+			break;
+
+		case DOWNRIGHT: if (notBottom && notRight) return GetField(++Row, ++Col);
+			break;
 	}
-	Field *nextField = GetField(nextRow, nextCol);
-	return nextField;
+	return NULL;
 }
 
 
