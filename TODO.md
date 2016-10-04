@@ -30,10 +30,12 @@ target game state:
 ## Internal TO-DO list:
 - [ ] refactor abstraction layers
 - [ ] make enemy spawning more sparse
-- [ ] make items spawn only once
+- [ ] separate items to different files and move them to 'items' directory
 - [ ] add items recycling
 
 ## Latest changes
+- [x] make items spawn only once
+- [x] move all monster files to separate directory
 - [x] add items using (sword only)
 - [x] add items droping
 - [x] add items picking

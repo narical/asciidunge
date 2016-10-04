@@ -92,6 +92,19 @@ void Field::SpawnItem()
 }
 
 
+void Field::TEST_SpawnItem(uint8_t num)
+{
+	switch (num)
+	{
+		case 1: _item = new SwordOfReadiness(); break;
+		case 2: _item = new MightyStrike(); break;
+		case 3: _item = new Fireball(); break;
+		case 4: _item = new Heal(); break;
+		case 5: _item = new EnergyShield(); break;
+	}
+}
+
+
 void Field::SpawnPowerup(poweruptype type)
 {
 	_powerup = new Powerup(type);

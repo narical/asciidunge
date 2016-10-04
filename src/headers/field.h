@@ -26,6 +26,7 @@ class Field
 		void SpawnEnemy(uint8_t);
 		void SpawnPowerup(poweruptype);
 		void SpawnItem();
+		void TEST_SpawnItem(uint8_t);
 		void RemovePowerup();
 		void AddItem(Item *);
 		void RemoveItem();

@@ -89,7 +89,8 @@ void Battlefield::SpawnItems()
 	{
 		Field *field = GetRandomField();
 		if ( field->HavePowerup() || field->HaveItem() || field->HaveEnemy() ) continue;
-		field->SpawnItem();
+		//field->SpawnItem();
+		field->TEST_SpawnItem(itemsToSpawn);	// Can wait until v0.6a milestone
 		itemsToSpawn--;
 	}
 }
