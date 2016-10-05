@@ -111,7 +111,7 @@ void Player::Act(int input_key)
 		case KEY_DOWN:  nextField = _battlefield->GetNextField(currentField, DOWN);
 	}
 
-	if (nextField != currentField) //if we're moving somewhere
+	if (nextField != NULL) //if we're moving somewhere
 	{
 		if (nextField == targetField) //where our target is
 		{

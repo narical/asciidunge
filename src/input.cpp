@@ -24,7 +24,7 @@ void Input::GetPlayerInput()
 	Player *player = _battlefield->GetPlayer();
 	int input_key;
 	input_key = getch();
-	switch(input_key)
+	if (input_key) switch(input_key)
 	{
 		case KEY_RIGHT:
 		case KEY_LEFT:
