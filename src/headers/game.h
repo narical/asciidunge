@@ -17,7 +17,6 @@ class Game
 	public:
 		Game ();
 		void Run();
-		void GetPlayerInput(Player *);
 		bool CheckVictory();
 		void Victory();
 		void Defeat();
