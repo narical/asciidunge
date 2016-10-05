@@ -2,6 +2,10 @@
 Small ascii roguelike game
 *ncurses-based console "Desktop Dungeon" clone*
 
+# Compiling
+Run "cmake && make" in "build" directory
+(needs ncurses library)
+
 ## Development Roadmap:
 
 ### 0.5a
