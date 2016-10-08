@@ -6,7 +6,6 @@
 
 #include "headers/field.h"
 #include "headers/player.h"
-#include "headers/powerup.h"
 #include "headers/item.h"
 
 #include "monsters/ghost.h"
@@ -57,17 +56,6 @@ Field::Field (const Field &f)
 */
 
 
-uint8_t Field::GetRow() const
-{
-	return _coordRow;
-}
-
-
-uint8_t Field::GetCol() const
-{
-	return _coordCol;
-}
-
 
 void Field::SpawnEnemy(uint8_t monsterLevel)
 {
@@ -111,75 +99,11 @@ void Field::TEST_SpawnItem(uint8_t num)
 }
 
 
-void Field::SpawnPowerup(poweruptype type)
-{
-	_powerup = new Powerup(type);
-}
-
-
-void Field::RemovePowerup()
-{
-	_powerup = NULL;
-}
-
-
-void Field::AddItem(Item * itm)
-{
-	_item = itm;
-}
-
-
-void Field::RemoveItem()
-{
-	_item = NULL;
-}
-
-
-Monster * Field::GetEnemy() const
-{
-	return _enemy;
-}
-
-
-Powerup * Field::GetPowerup() const
-{
-	return _powerup;
-}
-
-
-bool Field::HaveEnemy() const
-{
-	return ((_enemy != NULL) && _enemy->IsAlive());
-}
-
-
-bool Field::HavePowerup() const
-{
-	return (_powerup != NULL);
-}
-
-
-Item * Field::GetItem() const
-{
-	return _item;
-}
-
-bool Field::HaveItem() const
-{
-	return (_item != NULL);
-}
-
 
 bool Field::MakeVisible()
 {
 	bool result = _visible;
 	_visible = true;
 	return !result; //return TRUE if we just made this field visible
-}
-
-
-bool Field::IsVisible() const
-{
-	return _visible;
 }
 

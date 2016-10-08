@@ -7,8 +7,7 @@
 #ifndef _MONSTER_H_
 #define _MONSTER_H_
 
-#include <string>
-#include <cstdint>
+#include "config.h"
 
 class Player;
 class Field;
@@ -18,20 +17,20 @@ class Field;
 class Monster
 {
 	public:
-		Monster(uint8_t);
-	//	Monster(const Monster &);
+		Monster(uint8_t monsterLevel) : _level( monsterLevel ), _initiative(0), _isDead(0) { }
+
 		void Attack(Player *);
 		void AddHP(uint16_t);
 		void TakeDamage(Player *);
 
-		std::string GetName() const;
-		uint8_t GetLevel() const;
-		uint16_t GetDamage() const;
-		uint16_t GetHP() const;
-		uint16_t GetMaxHP() const;
-		uint16_t GetInitiative() const;
-		bool IsDead() const;
-		bool IsAlive() const;
+		uint16_t GetInitiative() const { return _level + _initiative; }
+		uint16_t GetDamage() const { return _damage; }
+		std::string GetName() const { return _name; }
+		uint16_t GetMaxHP() const { return _maxHP; }
+		uint8_t GetLevel() const { return _level; }
+		bool IsAlive() const { return !_isDead; }
+		bool IsDead() const { return _isDead; }
+		uint16_t GetHP() const { return _HP; }
 
 	protected:
 		uint8_t _level;

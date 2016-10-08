@@ -8,6 +8,8 @@
 #define _FIELD_H_
 
 #include "config.h"
+#include "powerup.h"
+#include "monster.h"
 #include <string>
 
 class Player;
@@ -24,21 +26,23 @@ class Field
 //		Field (const Field &);
 		bool MakeVisible();
 		void SpawnEnemy(uint8_t);
-		void SpawnPowerup(poweruptype);
+
 		void SpawnItem();
 		void TEST_SpawnItem(uint8_t);
-		void RemovePowerup();
-		void AddItem(Item *);
-		void RemoveItem();
-		bool HaveEnemy() const;
-		bool HavePowerup() const;
-		bool HaveItem() const;
-		bool IsVisible() const;
-		Monster * GetEnemy() const;
-		Powerup * GetPowerup() const;
-		Item * GetItem() const;
-		uint8_t GetCol() const;
-		uint8_t GetRow() const;
+
+		bool HaveEnemy() const { return ((_enemy != NULL) && _enemy->IsAlive()); }
+		void SpawnPowerup(poweruptype type) { _powerup = new Powerup(type); }
+		bool HavePowerup() const { return (_powerup != NULL); }
+		bool HaveItem() const { return (_item != NULL); }
+		void RemovePowerup() { _powerup = NULL; }
+		void AddItem(Item * item) { _item = item; }
+		void RemoveItem() { _item = NULL; }
+		bool IsVisible() const { return _visible; }
+		Monster * GetEnemy() const { return _enemy; }
+		Powerup * GetPowerup() const { return _powerup; }
+		Item * GetItem() const { return _item; }
+		uint8_t GetCol() const { return _coordCol; }
+		uint8_t GetRow() const { return _coordRow; }
 		
 	private:
 		uint8_t _coordCol;

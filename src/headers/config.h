@@ -8,6 +8,8 @@
 #define _CONFIG_H_
 
 #include <cstdint>
+#include <cstdlib>
+#include <string>
 
 enum frametype  {CURRENT, FUTURE};
 enum poweruptype{HEALTH, MANA, DAMAGE};

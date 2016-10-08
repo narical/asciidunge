@@ -8,24 +8,26 @@
 #define _ITEM_H_
 
 #include "config.h"
+#include "field.h"
+#include "player.h"
 #include <string>
-class Field;
-class Player;
+
 
 
 class Item
 {
 	public:
-		Item();
-		virtual ~Item();
+		Item() : _state(NOT_SET), _field(NULL) { }
+		virtual ~Item() { }
 		virtual Item * Clone() const = 0;
-		virtual void Use(Player *);
-		void SetPosition(Field *);
-		std::string GetName() const;
-		std::string GetDescription() const;
-		uint8_t GetManaCost() const;
-		itemstate GetState() const;
-		void SetState(itemstate);
+		virtual void Use(Player *) { }
+
+		void SetPosition(Field * position) { _field = position; }
+		std::string GetName() const { return _name; }
+		std::string GetDescription() const { return _description; }
+		uint8_t GetManaCost() const { return _manaCost; }
+		itemstate GetState() const { return _state; }
+		void SetState(itemstate state) { _state = state; }
 
 	protected:
 		itemstate _state;

@@ -10,29 +10,6 @@
 
 
 
-Monster::Monster(uint8_t monsterLevel) :
-_level( monsterLevel ), _initiative(0), _isDead(0)
-{
-
-}
-
-
-/*
-Monster::Monster(const Monster &p)
-{
-	_level = p._level;
-	_exp = p._exp;
-	_damage = p._damage;
-	_HP = p._HP;
-	_maxHP = p._maxHP;
-	_field = NULL;
-	_name = "111"; //p._name;
-	_isDead = p._isDead;
-}
-*/
-
-
-
 uint16_t Monster::FromCurve(uint16_t min, uint16_t max)
 {
 	if (_level == 1) return min;
@@ -59,10 +36,12 @@ void Monster::Attack(Player * plr)
 }
 
 
+
 void Monster::AddHP(uint16_t delta)
 {
 	_HP = (_HP + delta > _maxHP ? _maxHP : _HP + delta);
 }
+
 
 
 void Monster::TakeDamage(Player * plr)
@@ -70,53 +49,5 @@ void Monster::TakeDamage(Player * plr)
 	uint16_t delta = plr->GetDamage();
 	_HP = (_HP - delta < 0 ? 0 : _HP - delta);
 	if (_HP == 0) _isDead = 1;
-}
-
-
-bool Monster::IsDead() const
-{
-	return _isDead;
-}
-
-
-bool Monster::IsAlive() const
-{
-	return !_isDead;
-}
-
-
-std::string Monster::GetName() const
-{
-	return _name;
-}
-
-
-uint8_t Monster::GetLevel() const
-{
-	return _level;
-}
-
-
-uint16_t Monster::GetDamage() const
-{
-	return _damage;
-}
-
-
-uint16_t Monster::GetHP() const
-{
-	return _HP;
-}
-
-
-uint16_t Monster::GetMaxHP() const
-{
-	return _maxHP;
-}
-
-
-uint16_t Monster::GetInitiative() const
-{
-	return _level + _initiative;
 }
 

@@ -23,6 +23,7 @@
 #include "monsters/zombie.h"
 
 
+
 Player::Player (Battlefield *btl) :
 _name( "Nameless hero" ),
 _level( START_LEVEL ),
@@ -33,7 +34,7 @@ _target( NULL ),
 _display( NULL )
 {
 	_battlefield->SetPlayer(this);
-	
+
 	_powerups[HEALTH] = 0;
 	_powerups[MANA] = 0;
 	_powerups[DAMAGE] = 0;
@@ -91,10 +92,11 @@ Player::Player (const Player &p)
 void Player::CalculateStats()
 {
 	_maxHP		= _level * (HEALTH_PER_LEVEL + _powerups[HEALTH]);
-	_maxMana	= START_MAX_MANA + _powerups[MANA];
+	_maxMana	= _powerups[MANA] + START_MAX_MANA; 
 	_damage		= _level * DAMAGE_PER_LEVEL * (1 + _powerups[DAMAGE] * (float) POWERUP_DAMAGE_BONUS /100 );
 	_expMax		= _level * NEXT_LEVEL_MULTIPLIER;
 }
+
 
 
 void Player::Act(int input_key)
@@ -143,11 +145,12 @@ void Player::Act(int input_key)
 }
 
 
+
 void Player::LookAround()
 {
 	uint8_t column	= _position->GetCol();
 	uint8_t row		= _position->GetRow();
-	uint8_t maxCoord= _battlefield->GetSize() - 1;
+	uint8_t maxCoord= BF_SIZE - 1;
 
 	uint8_t leftBorder		= column > 0		? column - 1 : 0;
 	uint8_t rightBorder		= column < maxCoord ? column + 1 : maxCoord;
@@ -167,6 +170,7 @@ void Player::LookAround()
 }
 
 
+
 void Player::GainExp(Monster *enemy)
 {
 	uint8_t enemyLevel = enemy->GetLevel();
@@ -177,6 +181,7 @@ void Player::GainExp(Monster *enemy)
 	else _exp += enemyLevel + delta * delta;
 	if (_exp >= _expMax) LevelUp();
 }
+
 
 
 void Player::LevelUp()
@@ -211,6 +216,7 @@ eventtype Player::TakePowerup(Field * field)
 }
 
 
+
 void Player::TakeItem()
 {
 	if (_position->GetItem() != NULL)
@@ -231,6 +237,7 @@ void Player::TakeItem()
 			}
 	}
 }
+
 
 
 void Player::DropItem()
@@ -260,6 +267,7 @@ void Player::ActivateItem()
 }
 
 
+
 void Player::HandleItems(std::string name)
 {
 	for (uint8_t i = 0; i < 4; ++i)
@@ -268,184 +276,6 @@ void Player::HandleItems(std::string name)
 			_inventory[i]->Use(this);
 			break;
 		}
-}
-
-
-
-void Player::SelectItem(uint8_t number)
-{
-	if (_inventory[number] != NULL) _selectedItem = _inventory[number];
-}
-
-
-
-void Player::SetMana(uint16_t newQuantity)
-{
-	_mana = newQuantity;
-	//TODO: добавить проверку
-}
-
-
-void Player::Recover()
-{
-	_mana = _maxMana;
-}
-
-
-void Player::RecoverBy(uint16_t delta)
-{
-	_mana = (_mana + delta > _maxMana ? _maxMana : _mana + delta);
-}
-
-
-void Player::SpendMana(uint16_t delta)
-{
-	_mana = (_mana - delta < 0 ? 0 : _mana - delta);
-}
-
-
-void Player::SetHP(uint16_t newQuantity)
-{
-	_HP = newQuantity;
-	//TODO: добавить проверку
-}
-
-
-void Player::Heal()
-{
-	_HP = _maxHP;
-}
-
-
-void Player::HealBy(uint16_t delta)
-{
-	_HP = (_HP + delta > _maxHP ? _maxHP : _HP + delta);
-}
-
-
-void Player::TakeDamage(uint16_t delta)
-{
-	_HP = (_HP - delta < 0 ? 0 : _HP - delta);
-}
-
-
-void Player::SetTargetField(Field * fld)
-{
-	_target = fld;
-}
-
-
-void Player::SetDisplay(Display * dspl)
-{
-	_display = dspl;
-}
-
-
-void Player::SetInitiative(uint16_t delta)
-{
-	_initiative += delta;
-}
-
-
-Item * Player::GetInventory(uint8_t index) const
-{
-	return _inventory[index];
-}
-
-
-Item * Player::GetSelectedItem() const
-{
-	return _selectedItem;
-}
-
-
-Field * Player::GetTargetField() const
-{
-	return 	_target;
-}
-
-
-Field * Player::GetPosition() const
-{
-	return _position;
-}
-
-
-bool Player::IsAlive() const
-{
-	return _HP;
-}
-
-
-bool Player::IsDead() const
-{
-	return !IsAlive();
-}
-
-
-bool Player::HaveTarget() const
-{
-	return (_target != NULL);
-}
-
-
-std::string Player::GetName() const
-{
-	return _name;
-}
-
-
-uint8_t Player::GetLevel() const
-{
-	return _level;
-}
-
-
-uint16_t Player::GetExp() const
-{
-	return _exp;
-}
-
-
-uint16_t Player::GetExpMax() const
-{
-	return _expMax;
-}
-
-
-uint16_t Player::GetDamage() const
-{
-	return _damage;
-}
-
-
-uint16_t Player::GetHP() const
-{
-	return _HP;
-}
-
-
-uint16_t Player::GetMaxHP() const
-{
-	return _maxHP;
-}
-
-
-uint16_t Player::GetMana() const
-{
-	return _mana;
-}
-
-
-uint16_t Player::GetMaxMana() const
-{
-	return _maxMana;
-}
-
-
-uint16_t Player::GetInitiative() const
-{
-	return _level + _initiative;
 }
 
 

@@ -302,33 +302,6 @@ home/joy/Documents/asciidunge/src/input.cpp.s:
 	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/input.cpp.s
 .PHONY : home/joy/Documents/asciidunge/src/input.cpp.s
 
-home/joy/Documents/asciidunge/src/item.o: home/joy/Documents/asciidunge/src/item.cpp.o
-
-.PHONY : home/joy/Documents/asciidunge/src/item.o
-
-# target to build an object file
-home/joy/Documents/asciidunge/src/item.cpp.o:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/item.cpp.o
-.PHONY : home/joy/Documents/asciidunge/src/item.cpp.o
-
-home/joy/Documents/asciidunge/src/item.i: home/joy/Documents/asciidunge/src/item.cpp.i
-
-.PHONY : home/joy/Documents/asciidunge/src/item.i
-
-# target to preprocess a source file
-home/joy/Documents/asciidunge/src/item.cpp.i:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/item.cpp.i
-.PHONY : home/joy/Documents/asciidunge/src/item.cpp.i
-
-home/joy/Documents/asciidunge/src/item.s: home/joy/Documents/asciidunge/src/item.cpp.s
-
-.PHONY : home/joy/Documents/asciidunge/src/item.s
-
-# target to generate assembly for a file
-home/joy/Documents/asciidunge/src/item.cpp.s:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/item.cpp.s
-.PHONY : home/joy/Documents/asciidunge/src/item.cpp.s
-
 home/joy/Documents/asciidunge/src/main.o: home/joy/Documents/asciidunge/src/main.cpp.o
 
 .PHONY : home/joy/Documents/asciidunge/src/main.o
@@ -410,33 +383,6 @@ home/joy/Documents/asciidunge/src/player.cpp.s:
 	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/player.cpp.s
 .PHONY : home/joy/Documents/asciidunge/src/player.cpp.s
 
-home/joy/Documents/asciidunge/src/powerup.o: home/joy/Documents/asciidunge/src/powerup.cpp.o
-
-.PHONY : home/joy/Documents/asciidunge/src/powerup.o
-
-# target to build an object file
-home/joy/Documents/asciidunge/src/powerup.cpp.o:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/powerup.cpp.o
-.PHONY : home/joy/Documents/asciidunge/src/powerup.cpp.o
-
-home/joy/Documents/asciidunge/src/powerup.i: home/joy/Documents/asciidunge/src/powerup.cpp.i
-
-.PHONY : home/joy/Documents/asciidunge/src/powerup.i
-
-# target to preprocess a source file
-home/joy/Documents/asciidunge/src/powerup.cpp.i:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/powerup.cpp.i
-.PHONY : home/joy/Documents/asciidunge/src/powerup.cpp.i
-
-home/joy/Documents/asciidunge/src/powerup.s: home/joy/Documents/asciidunge/src/powerup.cpp.s
-
-.PHONY : home/joy/Documents/asciidunge/src/powerup.s
-
-# target to generate assembly for a file
-home/joy/Documents/asciidunge/src/powerup.cpp.s:
-	$(MAKE) -f CMakeFiles/asciidunge.dir/build.make CMakeFiles/asciidunge.dir/home/joy/Documents/asciidunge/src/powerup.cpp.s
-.PHONY : home/joy/Documents/asciidunge/src/powerup.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -465,9 +411,6 @@ help:
 	@echo "... home/joy/Documents/asciidunge/src/input.o"
 	@echo "... home/joy/Documents/asciidunge/src/input.i"
 	@echo "... home/joy/Documents/asciidunge/src/input.s"
-	@echo "... home/joy/Documents/asciidunge/src/item.o"
-	@echo "... home/joy/Documents/asciidunge/src/item.i"
-	@echo "... home/joy/Documents/asciidunge/src/item.s"
 	@echo "... home/joy/Documents/asciidunge/src/main.o"
 	@echo "... home/joy/Documents/asciidunge/src/main.i"
 	@echo "... home/joy/Documents/asciidunge/src/main.s"
@@ -477,9 +420,6 @@ help:
 	@echo "... home/joy/Documents/asciidunge/src/player.o"
 	@echo "... home/joy/Documents/asciidunge/src/player.i"
 	@echo "... home/joy/Documents/asciidunge/src/player.s"
-	@echo "... home/joy/Documents/asciidunge/src/powerup.o"
-	@echo "... home/joy/Documents/asciidunge/src/powerup.i"
-	@echo "... home/joy/Documents/asciidunge/src/powerup.s"
 .PHONY : help
 
 

@@ -31,7 +31,7 @@ _player(btl->GetPlayer()),
 _frame(CURRENT)
 {
 	HORIZ_WALL = "";
-	uint8_t wallSize = _battlefield->GetSize() + 2;
+	uint8_t wallSize = BF_SIZE + 2;
 	for (uint8_t i = 0; i < wallSize; ++i) HORIZ_WALL += "#";
 	for (eventtype event = LVLUP; event != EVENTS_END; event = eventtype(event + 1))
 		_frameCounters[event] = 0;
@@ -56,18 +56,17 @@ void Display::ShowFrame()
 
 void Display::DrawBattlefield()
 {
-	uint8_t bf_size = _battlefield->GetSize();
 	BoldOn();
 	mvprintw(BF_ROW, BF_MARGIN, HORIZ_WALL.c_str());
-	for (uint8_t rowIndex = 0; rowIndex < bf_size; ++rowIndex)
+	for (uint8_t rowIndex = 0; rowIndex < BF_SIZE; ++rowIndex)
 	{
 		mvprintw(BF_ROW + rowIndex + 1, BF_MARGIN, "#");
 		BoldOff();
-		for (uint8_t colIndex = 0; colIndex < bf_size; ++colIndex) DrawField(rowIndex, colIndex);
+		for (uint8_t colIndex = 0; colIndex < BF_SIZE; ++colIndex) DrawField(rowIndex, colIndex);
 		BoldOn();
 		printw("#");
 	}
-	mvprintw(BF_ROW + bf_size + 1, BF_MARGIN, HORIZ_WALL.c_str());
+	mvprintw(BF_ROW + BF_SIZE + 1, BF_MARGIN, HORIZ_WALL.c_str());
 	BoldOff();
 }
 

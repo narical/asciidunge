@@ -23,48 +23,48 @@ class Player
 	public:
 		Player(Battlefield *);
 		Player(const Player &);
+
 		void Act(int);
-		void LookAround();
-		void CalculateStats();
-		void Move(Field *);
-		void SetMana(uint16_t);
-		void Recover();
-		void RecoverBy(uint16_t);
-		void SpendMana(uint16_t);
-		void SetHP(uint16_t);
-		void Heal();
-		void HealBy(uint16_t);
-		void TakeDamage(uint16_t);
-		void SetInitiative(uint16_t);
-		void GainExp(Monster *);
 		void LevelUp();
-		eventtype TakePowerup(Field *);
-		void SelectItem(uint8_t);
 		void TakeItem();
 		void DropItem();
+		void LookAround();
+		void Move(Field *);
 		void ActivateItem();
+		void CalculateStats();
+		void GainExp(Monster *);
 		void HandleItems(std::string);
-		void SetTargetField(Field *);
-		void SetDisplay(Display *);
+		eventtype TakePowerup(Field *);
 
-		Field* GetTargetField() const;
-		Field* GetPosition() const;
-		std::string GetName() const;
-		uint8_t GetLevel() const;
-		uint16_t GetInitiative() const;
-		uint16_t GetExp() const;
-		uint16_t GetExpMax() const;
-		uint16_t GetDamage() const;
-		uint16_t GetHP() const;
-		uint16_t GetMaxHP() const;
-		uint16_t GetMana() const;
-		uint16_t GetMaxMana() const;
-		Item * GetInventory(uint8_t) const;
-		Item * GetSelectedItem() const;
+		void Heal() { _HP = _maxHP; }
+		void Recover() { _mana = _maxMana; }
+		void SetTargetField(Field * fld) { _target = fld; }
+		void SetDisplay(Display * dspl) { _display = dspl; }
+		void SetInitiative(uint16_t delta) { _initiative += delta; }
+		void TakeDamage(uint16_t delta) { _HP = (_HP - delta < 0 ? 0 : _HP - delta); }
+		void SpendMana(uint16_t delta) { _mana = (_mana - delta < 0 ? 0 : _mana - delta); }
+		void HealBy(uint16_t delta) { _HP = (_HP + delta > _maxHP ? _maxHP : _HP + delta); }
+		void RecoverBy(uint16_t delta) { _mana = (_mana + delta > _maxMana ? _maxMana : _mana + delta); }
+		void SelectItem(uint8_t number) { if (_inventory[number] != NULL) _selectedItem = _inventory[number]; }
 
-		bool IsAlive() const;
-		bool IsDead() const;
-		bool HaveTarget() const;
+		uint16_t GetHP() const { return _HP; }
+		uint16_t GetExp() const { return _exp; }
+		uint16_t GetMana() const { return _mana; }
+		uint8_t GetLevel() const { return _level; }
+		uint16_t GetMaxHP() const { return _maxHP; }
+		uint16_t GetExpMax() const { return _expMax; }
+		uint16_t GetDamage() const { return _damage; }
+		uint16_t GetMaxMana() const { return _maxMana; }
+		uint16_t GetInitiative() const { return _initiative + _level; }
+		std::string GetName() const { return _name; }
+		Field* GetPosition() const { return _position; }
+		Field* GetTargetField() const { return _target; }
+		Item * GetSelectedItem() const { return _selectedItem; }
+		Item * GetInventory(uint8_t index) const { return _inventory[index]; }
+
+		bool IsAlive() const { return (_HP > 0 ? true : false); }
+		bool IsDead() const { return (_HP <= 0 ? true : false); }
+		bool HaveTarget() const { return (_target != NULL); }
 
 		void TEST_LevelUp();
 

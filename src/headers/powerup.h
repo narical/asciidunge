@@ -8,14 +8,15 @@
 #define _POWERUP_H_
 
 #include "config.h"
+#include <cstdio>
 class Field;
 
 
 class Powerup
 {
 	public:
-		Powerup(poweruptype);
-		poweruptype GetType();
+		Powerup(poweruptype type) : _type(type), _field(NULL) { }
+		poweruptype GetType() { return _type; }
 
 	private:
 		poweruptype _type;

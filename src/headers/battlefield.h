@@ -8,8 +8,7 @@
 #define _BATTLEFIELD_H_
 
 #include "config.h"
-#include <stdint.h>
-
+#include "monster.h"
 
 class Player;
 class Field;
@@ -22,25 +21,23 @@ class Battlefield
 	public:
 		Battlefield();
 		~Battlefield();
+		void SpawnItems();
 	 	void SpawnEnemies();
 		void SpawnPowerups();
-		void SpawnItems();
-		void SetPlayer(Player *);
 		void CalculateNextFight();
-		void SetDisplay(Display *);
-		void Fight(Player *, Monster *, bool);
-
-		Field * GetNextField(Field *, direction) const;
-		Field * GetField(uint8_t, uint8_t) const;
 		uint8_t CountNearObjects(Field *);
-		Field * GetRandomField() const;
-		Player * GetPlayerCopy() const;
-		Monster * GetEnemyCopy() const;
-		Player * GetPlayer() const;
-		uint8_t GetSize() const;
-		bool BossIsAlive() const;
-		bool BossIsDead() const;
+		void Fight(Player *, Monster *, bool);
+		Field * GetNextField(Field *, direction) const;
 		
+		Field * GetRandomField() const { return _field[ rand() % BF_SIZE ][ rand() % BF_SIZE ]; }
+		Field * GetField(uint8_t row, uint8_t col) const { return _field[row][col]; }
+		Player * GetPlayerCopy() const { return _playerCopy; }
+		Monster * GetEnemyCopy() const { return _enemyCopy; }
+		bool BossIsAlive() const { return !_boss->IsDead(); }
+		void SetDisplay(Display * dspl) { _display = dspl; }
+		bool BossIsDead() const { return _boss->IsDead(); }
+		void SetPlayer(Player * plr) { _player = plr; }
+		Player * GetPlayer() const { return _player; }
 		void TEST_Reveal();
 
 	private:
@@ -49,7 +46,7 @@ class Battlefield
 		Player *_player;
 		Monster *_boss;
 
-  		// to store possible fight results
+		// to store possible fight results
 		Player *_playerCopy;
 		Monster *_enemyCopy;
 };
