@@ -5,14 +5,15 @@
 //
 
 #include "headers/input.h"
-#include "headers/battlefield.h"
 #include "headers/player.h"
 #include "headers/display.h"
+#include "headers/battlefield.h"
+#include "headers/game.h"
 #include <ncurses.h>
 
 
 
-Input::Input(Battlefield * btl) : _battlefield(btl)
+Input::Input(Game * game) : _game(game)
 {
 
 }
@@ -21,9 +22,11 @@ Input::Input(Battlefield * btl) : _battlefield(btl)
 
 void Input::GetPlayerInput()
 {
-	Player *player = _battlefield->GetPlayer();
+	Player *player = _game->GetPlayer();
+	
 	int input_key;
 	input_key = getch();
+	
 	if (input_key) switch(input_key)
 	{
 		case KEY_RIGHT:
@@ -48,7 +51,7 @@ void Input::GetPlayerInput()
 			player->SelectItem(input_key - '1');
 			break;
 		case 'r':
-			_battlefield->TEST_Reveal();
+			_game->GetBattlefield()->TEST_Reveal();
 			break;
 		case 'l':
 			player->TEST_LevelUp();

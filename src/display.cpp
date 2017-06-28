@@ -13,6 +13,7 @@
 #include "headers/player.h"
 #include "headers/item.h"
 #include "headers/field.h"
+#include "headers/game.h"
 #include <ncurses.h>
 
 #include "monsters/ghost.h"
@@ -24,10 +25,8 @@
 #include "monsters/troll.h"
 #include "monsters/zombie.h"
 
-Display::Display(Battlefield * btl) :
-_battlefield(btl),
-_enemy(nullptr),
-_player(btl->GetPlayer()),
+Display::Display(Game * game) :
+_game(game),
 _frame(CURRENT)
 {
 	HORIZ_WALL = "";
@@ -35,8 +34,6 @@ _frame(CURRENT)
 	for (uint8_t i = 0; i < wallSize; ++i) HORIZ_WALL += "#";
 	for (eventtype event = LVLUP; event != EVENTS_END; event = eventtype(event + 1))
 		_frameCounters[event] = 0;
-	_player->SetDisplay(this);
-	_battlefield->SetDisplay(this);
 }
 
 
@@ -46,7 +43,7 @@ void Display::ShowFrame()
 	clear();
 	DrawBattlefield();
 	DrawPlayerInfo();
-	if (_player->HaveTarget()) DrawEnemyInfo();
+	if (_game->GetPlayer()->HaveTarget()) DrawEnemyInfo();
 	refresh();
 	SwitchFrameType();
 	ReduceCounters();
@@ -77,24 +74,26 @@ void Display::DrawPlayerInfo()
 	Player * plr_copy = nullptr;
 	Player * plr = nullptr;
 	Monster * enemy_copy = nullptr;
+	
+	plr = _game->GetPlayer();
 
-	if (_player->HaveTarget())
+	if (plr->HaveTarget())
 	{
-		plr_copy = _battlefield->GetPlayerCopy();
-		enemy_copy = _battlefield->GetEnemyCopy();
+		plr_copy = _game->GetBattlefield()->GetPlayerCopy();
+		enemy_copy = _game->GetBattlefield()->GetEnemyCopy();
 	}
+
+	Item *inv1 = plr->GetInventory(0);
+	Item *inv2 = plr->GetInventory(1);
+	Item *inv3 = plr->GetInventory(2);
+	Item *inv4 = plr->GetInventory(3);
+	Item *grnd = plr->GetPosition()->GetItem();
+	Item *sel_item = plr->GetSelectedItem();
 
 	if (plr_copy != nullptr && _frame == FUTURE)
 		plr = plr_copy;
 	else
-		plr = _player;
-		
-	Item *inv1 = _player->GetInventory(0);
-	Item *inv2 = _player->GetInventory(1);
-	Item *inv3 = _player->GetInventory(2);
-	Item *inv4 = _player->GetInventory(3);
-	Item *grnd = _player->GetPosition()->GetItem();
-	Item *sel_item = _player->GetSelectedItem();
+		plr = _game->GetPlayer();
 
 	std::string str_inv1 = (inv1 != nullptr ? "1. " + inv1->GetName() : "Empty slot");
 	std::string str_inv2 = (inv2 != nullptr ? "2. " + inv2->GetName() : "Empty slot");
@@ -184,8 +183,10 @@ void Display::DrawPlayerInfo()
 void Display::DrawEnemyInfo()
 {
 	Monster * enemy = nullptr;
-	if (_battlefield->GetEnemyCopy() != nullptr && _frame == FUTURE) enemy = _battlefield->GetEnemyCopy();
-	else enemy = _player->GetTargetField()->GetEnemy();
+	if (_game->GetBattlefield()->GetEnemyCopy() != nullptr && _frame == FUTURE)
+		enemy = _game->GetBattlefield()->GetEnemyCopy();
+		
+	else enemy = _game->GetPlayer()->GetTargetField()->GetEnemy();
 	
 	if (enemy != nullptr)
 	{
@@ -209,9 +210,9 @@ void Display::DrawEnemyInfo()
 
 char Display::DrawField(uint8_t rowIndex, uint8_t colIndex)
 {
-	Field *playerField = _player->GetPosition();
-	Field *field = _battlefield->GetField(rowIndex, colIndex);
-	Field *playerTarget = _player->GetTargetField();
+	Field *playerField = _game->GetPlayer()->GetPosition();
+	Field *playerTarget = _game->GetPlayer()->GetTargetField();
+	Field *field = _game->GetBattlefield()->GetField(rowIndex, colIndex);
 
 	if (!field->IsVisible()) printw(".");
 	else

@@ -12,6 +12,7 @@
 #include "headers/display.h"
 #include "headers/field.h"
 #include "headers/item.h"
+#include "headers/game.h"
 
 #include "monsters/ghost.h"
 #include "monsters/goblin.h"
@@ -24,17 +25,14 @@
 
 
 
-Player::Player (Battlefield *btl) :
+Player::Player (Game *game) :
 _name( "Nameless hero" ),
 _level( START_LEVEL ),
 _initiative(0),
-_battlefield( btl ),
 _selectedItem( nullptr ),
 _target( nullptr ),
-_display( nullptr )
+_game( game )
 {
-	_battlefield->SetPlayer(this);
-
 	_powerups[HEALTH] = 0;
 	_powerups[MANA] = 0;
 	_powerups[DAMAGE] = 0;
@@ -42,7 +40,7 @@ _display( nullptr )
 	Field *field = nullptr;
 	while (true)
 	{
-		field = _battlefield->GetRandomField();
+		field = _game->GetBattlefield()->GetRandomField();
 		if (field->HaveEnemy() || field->HaveItem() || field->HavePowerup() ) continue;
 		break;
 	}
@@ -68,10 +66,9 @@ Player::Player (const Player &p)
 	_mana = p._mana;
 	_maxMana = p._maxMana;
 	_initiative = p._initiative;
-	_battlefield = p._battlefield;
-	_display = p._display;
 	_position = p._position;
 	_target = nullptr;
+	_game = p._game;
 
 	for (poweruptype type = HEALTH; type <= DAMAGE; type = poweruptype(type + 1))
 		_powerups[type] = p._powerups[type];
@@ -104,21 +101,22 @@ void Player::Act(int input_key)
 	Field *currentField = _position;
 	Field *nextField = currentField;
 	Field *targetField = GetTargetField();
+	Battlefield *btl = _game->GetBattlefield();
 
 	switch(input_key)
 	{
-		case KEY_LEFT:  nextField = _battlefield->GetNextField(currentField, LEFT); break;
-		case KEY_RIGHT:	nextField = _battlefield->GetNextField(currentField, RIGHT); break;
-		case KEY_UP:	nextField = _battlefield->GetNextField(currentField, UP); break;
-		case KEY_DOWN:  nextField = _battlefield->GetNextField(currentField, DOWN);
+		case KEY_LEFT:  nextField = btl->GetNextField(currentField, LEFT); break;
+		case KEY_RIGHT:	nextField = btl->GetNextField(currentField, RIGHT); break;
+		case KEY_UP:	nextField = btl->GetNextField(currentField, UP); break;
+		case KEY_DOWN:  nextField = btl->GetNextField(currentField, DOWN);
 	}
 
 	if (nextField != nullptr) //if we're moving somewhere
 	{
 		if (nextField == targetField) //where our target is
 		{
-			_battlefield->Fight(this, targetField->GetEnemy(), true); //Kill'em!
-			if ( HaveTarget() ) _battlefield->CalculateNextFight(); //if enemy still alive
+			btl->Fight(this, targetField->GetEnemy(), true); //Kill'em!
+			if ( HaveTarget() ) btl->CalculateNextFight(); //if enemy still alive
 		}
 		else //if target was somewhere else
 		{
@@ -127,12 +125,12 @@ void Player::Act(int input_key)
 			if (nextField->HaveEnemy()) 
 			{
 				SetTargetField(nextField); // select new target if any
-				_battlefield->CalculateNextFight();
+				btl->CalculateNextFight();
 			}
 
 			else if (nextField->HavePowerup())
 			{
-				_display->SendEvent( TakePowerup(nextField) );
+				_game->GetDisplay()->SendEvent( TakePowerup(nextField) );
 			}
 
 			else
@@ -160,7 +158,7 @@ void Player::LookAround()
 	for (uint8_t tempRow = topBorder; tempRow <= bottomBorder; ++tempRow)
 		for (uint8_t tempColumn = leftBorder; tempColumn <= rightBorder; ++tempColumn)
 			{
-				Field *field = _battlefield->GetField(tempRow, tempColumn);
+				Field *field = _game->GetBattlefield()->GetField(tempRow, tempColumn);
 				if (field->MakeVisible())
 				{
 					RecoverBy(MANA_PER_FIELD);

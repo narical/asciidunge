@@ -10,16 +10,16 @@
 #include "config.h"
 #include "monster.h"
 
+class Game;
 class Player;
 class Field;
 class Monster;
-class Display;
 
 
 class Battlefield
 {
 	public:
-		Battlefield();
+		Battlefield(Game *);
 		~Battlefield();
 		void SpawnItems();
 	 	void SpawnEnemies();
@@ -34,16 +34,12 @@ class Battlefield
 		Player * GetPlayerCopy() const { return _playerCopy; }
 		Monster * GetEnemyCopy() const { return _enemyCopy; }
 		bool BossIsAlive() const { return !_boss->IsDead(); }
-		void SetDisplay(Display * dspl) { _display = dspl; }
 		bool BossIsDead() const { return _boss->IsDead(); }
-		void SetPlayer(Player * plr) { _player = plr; }
-		Player * GetPlayer() const { return _player; }
 		void TEST_Reveal();
 
 	private:
+		Game *_game;
 		Field *_field[BF_SIZE][BF_SIZE];
-		Display *_display;
-		Player *_player;
 		Monster *_boss;
 
 		// to store possible fight results

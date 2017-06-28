@@ -10,14 +10,12 @@
 #include "config.h"
 #include <string>
 
-class Battlefield;
-class Player;
-class Monster;
+class Game;
 
 class Display
 {
 	public:
-		Display (Battlefield * btl);
+		Display (Game *);
 		void SendEvent(eventtype);
 		void ShowFrame();
 
@@ -29,11 +27,9 @@ class Display
 	private:
 		uint8_t _frameCounters[4];
 		std::string HORIZ_WALL;
-
-		Battlefield * _battlefield;
-		Monster * _enemy;
-		Player * _player;
+		Game *_game;
 		frametype _frame;
+
 
 		std::string DrawBar(uint16_t, uint16_t) const;
 		char DrawField(uint8_t, uint8_t);

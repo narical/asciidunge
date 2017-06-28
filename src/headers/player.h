@@ -10,18 +10,17 @@
 #include "config.h"
 #include <string>
 
-class Battlefield;
 class Monster;
-class Display;
 class Field;
 class Item;
+class Game;
 
 
 
 class Player
 {
 	public:
-		Player(Battlefield *);
+		Player(Game *);
 		Player(const Player &);
 
 		void Act(int);
@@ -39,7 +38,6 @@ class Player
 		void Heal() { _HP = _maxHP; }
 		void Recover() { _mana = _maxMana; }
 		void SetTargetField(Field * fld) { _target = fld; }
-		void SetDisplay(Display * dspl) { _display = dspl; }
 		void SetInitiative(uint16_t delta) { _initiative += delta; }
 		void TakeDamage(uint16_t delta) { _HP = (_HP - delta < 0 ? 0 : _HP - delta); }
 		void SpendMana(uint16_t delta) { _mana = (_mana - delta < 0 ? 0 : _mana - delta); }
@@ -80,11 +78,11 @@ class Player
 		uint16_t _initiative;
 		uint8_t _powerups[3];
 
-		Battlefield *_battlefield;
 		Item * _selectedItem;
-		Field *_position;
-		Field *_target;
-		Display *_display;
+		Field * _position;
+		Field * _target;
+		
+		Game * _game;
 };
 
 #endif // _PLAYER_H_

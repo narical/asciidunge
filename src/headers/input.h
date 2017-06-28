@@ -7,19 +7,19 @@
 #ifndef _INPUT_H_
 #define _INPUT_H_
 
-class Battlefield;
+class Game;
 
 
 
 class Input
 {
 	public:
-		Input(Battlefield *);
+		Input(Game *);
 		void GetPlayerInput();
 		static void WaitAnyKey();
 
 	private:
-		Battlefield * _battlefield;
+		Game * _game;
 
 };
 

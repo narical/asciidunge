@@ -9,6 +9,7 @@
 #include "headers/field.h"
 #include "headers/display.h"
 #include "headers/item.h"
+#include "headers/game.h"
 
 #include "monsters/ghost.h"
 #include "monsters/goblin.h"
@@ -19,7 +20,8 @@
 #include "monsters/troll.h"
 #include "monsters/zombie.h"
 
-Battlefield::Battlefield() : _boss(nullptr), _playerCopy(nullptr), _enemyCopy(nullptr)
+Battlefield::Battlefield(Game *game) :
+	_game(game), _boss(nullptr), _playerCopy(nullptr), _enemyCopy(nullptr)
 {
 	for (uint8_t row = 0; row < BF_SIZE; ++row)
 		for (uint8_t column = 0; column < BF_SIZE; ++column)
@@ -144,19 +146,21 @@ Field * Battlefield::GetNextField(Field * currentField, direction dir) const
 
 void Battlefield::Fight(Player * player, Monster * enemy, bool realFight)
 {
+	Display *display = _game->GetDisplay();
 	player->HandleItems("Sword of Readiness");
+	
 	uint16_t monsterInitiative = enemy->GetInitiative();
 	uint16_t playerInitiative = player->GetInitiative();
 
 	if (monsterInitiative >= playerInitiative)
 	{
 		enemy->Attack(player);
-		if (realFight) _display->SendEvent(PLR_HIT_1);
+		if (realFight) display->SendEvent(PLR_HIT_1);
 
 		if (player->IsAlive())
 		{
 			enemy->TakeDamage(player);
-			if (realFight) _display->SendEvent(MNSTR_HIT_2);
+			if (realFight) display->SendEvent(MNSTR_HIT_2);
 			
 			if (enemy->IsDead())
 			{
@@ -168,7 +172,7 @@ void Battlefield::Fight(Player * player, Monster * enemy, bool realFight)
 	else
 	{
 		enemy->TakeDamage(player);
-		if (realFight) _display->SendEvent(MNSTR_HIT_1);
+		if (realFight) display->SendEvent(MNSTR_HIT_1);
 
 		if (enemy->IsDead())
 		{
@@ -178,7 +182,7 @@ void Battlefield::Fight(Player * player, Monster * enemy, bool realFight)
 		else
 		{
 			enemy->Attack(player);
-			if (realFight) _display->SendEvent(PLR_HIT_2);
+			if (realFight) display->SendEvent(PLR_HIT_2);
 		}
 	}
 	player->HandleItems("Sword of Readiness");
@@ -190,8 +194,9 @@ void Battlefield::CalculateNextFight()
 {
 	if (_playerCopy != 0) delete _playerCopy;
 	if (_enemyCopy != 0) delete _enemyCopy;
-	_playerCopy = new Player( *_player );
-	_enemyCopy = new Monster( *( _player->GetTargetField()->GetEnemy() ) );
+//	_playerCopy = new Player( *_player );
+	_playerCopy = new Player( *(_game->GetPlayer()) );
+	_enemyCopy = new Monster( *( _game->GetPlayer()->GetTargetField()->GetEnemy() ) );
 	Fight(_playerCopy, _enemyCopy, false);
 }
 
