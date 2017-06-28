@@ -29,17 +29,17 @@ _name( "Nameless hero" ),
 _level( START_LEVEL ),
 _initiative(0),
 _battlefield( btl ),
-_selectedItem( NULL ),
-_target( NULL ),
-_display( NULL )
+_selectedItem( nullptr ),
+_target( nullptr ),
+_display( nullptr )
 {
 	_battlefield->SetPlayer(this);
 
 	_powerups[HEALTH] = 0;
 	_powerups[MANA] = 0;
 	_powerups[DAMAGE] = 0;
-	for (uint8_t i = 0; i < 4; ++i) _inventory[i] = NULL;
-	Field *field = NULL;
+	for (uint8_t i = 0; i < 4; ++i) _inventory[i] = nullptr;
+	Field *field = nullptr;
 	while (true)
 	{
 		field = _battlefield->GetRandomField();
@@ -71,14 +71,14 @@ Player::Player (const Player &p)
 	_battlefield = p._battlefield;
 	_display = p._display;
 	_position = p._position;
-	_target = NULL;
+	_target = nullptr;
 
 	for (poweruptype type = HEALTH; type <= DAMAGE; type = poweruptype(type + 1))
 		_powerups[type] = p._powerups[type];
 
 	for (uint8_t i = 0; i < 4; ++i)
 	{
-		if (p._inventory[i] == NULL) _inventory[i] = NULL;
+		if (p._inventory[i] == nullptr) _inventory[i] = nullptr;
 		else 
 		{
 			_inventory[i] = p._inventory[i]->Clone();
@@ -113,7 +113,7 @@ void Player::Act(int input_key)
 		case KEY_DOWN:  nextField = _battlefield->GetNextField(currentField, DOWN);
 	}
 
-	if (nextField != NULL) //if we're moving somewhere
+	if (nextField != nullptr) //if we're moving somewhere
 	{
 		if (nextField == targetField) //where our target is
 		{
@@ -122,7 +122,7 @@ void Player::Act(int input_key)
 		}
 		else //if target was somewhere else
 		{
-			SetTargetField(NULL); //forget about it
+			SetTargetField(nullptr); //forget about it
 
 			if (nextField->HaveEnemy()) 
 			{
@@ -219,19 +219,19 @@ eventtype Player::TakePowerup(Field * field)
 
 void Player::TakeItem()
 {
-	if (_position->GetItem() != NULL)
+	if (_position->GetItem() != nullptr)
 	{
 		Item * item = _position->GetItem();
-		if (_inventory[0] == NULL || _inventory[1] == NULL ||
-			_inventory[2] == NULL || _inventory[3] == NULL)
+		if (_inventory[0] == nullptr || _inventory[1] == nullptr ||
+			_inventory[2] == nullptr || _inventory[3] == nullptr)
 			{
-				if		(_inventory[0] == NULL) _inventory[0] = item;
-				else if	(_inventory[1] == NULL) _inventory[1] = item;
-				else if	(_inventory[2] == NULL) _inventory[2] = item;
-				else if	(_inventory[3] == NULL) _inventory[3] = item;
+				if		(_inventory[0] == nullptr) _inventory[0] = item;
+				else if	(_inventory[1] == nullptr) _inventory[1] = item;
+				else if	(_inventory[2] == nullptr) _inventory[2] = item;
+				else if	(_inventory[3] == nullptr) _inventory[3] = item;
 				_position->RemoveItem();
 			}
-			else if (_selectedItem != NULL)
+			else if (_selectedItem != nullptr)
 			{
 				DropItem();
 			}
@@ -242,7 +242,7 @@ void Player::TakeItem()
 
 void Player::DropItem()
 {
-	if (_selectedItem != NULL)
+	if (_selectedItem != nullptr)
 	{
 		Item * pickItem = _position->GetItem();
 		for (uint8_t i = 0; i < 4; ++i)
@@ -256,11 +256,11 @@ void Player::DropItem()
 
 void Player::ActivateItem()
 {
-	if (_selectedItem != NULL &&
+	if (_selectedItem != nullptr &&
 		_mana >= _selectedItem->GetManaCost() &&
 		_selectedItem->GetState() == NOT_SET)
 	{
-		_target = NULL;
+		_target = nullptr;
 		_selectedItem->SetState(PREPARED);
 		_mana -= _selectedItem->GetManaCost();
 	}
@@ -271,7 +271,7 @@ void Player::ActivateItem()
 void Player::HandleItems(std::string name)
 {
 	for (uint8_t i = 0; i < 4; ++i)
-		if (_inventory[i] != NULL && _inventory[i]->GetName() == name)
+		if (_inventory[i] != nullptr && _inventory[i]->GetName() == name)
 		{
 			_inventory[i]->Use(this);
 			break;

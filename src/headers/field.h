@@ -30,13 +30,13 @@ class Field
 		void SpawnItem();
 		void TEST_SpawnItem(uint8_t);
 
-		bool HaveEnemy() const { return ((_enemy != NULL) && _enemy->IsAlive()); }
+		bool HaveEnemy() const { return ((_enemy != nullptr) && _enemy->IsAlive()); }
 		void SpawnPowerup(poweruptype type) { _powerup = new Powerup(type); }
-		bool HavePowerup() const { return (_powerup != NULL); }
-		bool HaveItem() const { return (_item != NULL); }
-		void RemovePowerup() { _powerup = NULL; }
+		bool HavePowerup() const { return (_powerup != nullptr); }
+		bool HaveItem() const { return (_item != nullptr); }
+		void RemovePowerup() { _powerup = nullptr; }
 		void AddItem(Item * item) { _item = item; }
-		void RemoveItem() { _item = NULL; }
+		void RemoveItem() { _item = nullptr; }
 		bool IsVisible() const { return _visible; }
 		Monster * GetEnemy() const { return _enemy; }
 		Powerup * GetPowerup() const { return _powerup; }

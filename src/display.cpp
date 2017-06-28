@@ -26,7 +26,7 @@
 
 Display::Display(Battlefield * btl) :
 _battlefield(btl),
-_enemy(NULL),
+_enemy(nullptr),
 _player(btl->GetPlayer()),
 _frame(CURRENT)
 {
@@ -74,9 +74,9 @@ void Display::DrawBattlefield()
 
 void Display::DrawPlayerInfo()
 {
-	Player * plr_copy = NULL;
-	Player * plr = NULL;
-	Monster * enemy_copy = NULL;
+	Player * plr_copy = nullptr;
+	Player * plr = nullptr;
+	Monster * enemy_copy = nullptr;
 
 	if (_player->HaveTarget())
 	{
@@ -84,7 +84,7 @@ void Display::DrawPlayerInfo()
 		enemy_copy = _battlefield->GetEnemyCopy();
 	}
 
-	if (plr_copy != NULL && _frame == FUTURE)
+	if (plr_copy != nullptr && _frame == FUTURE)
 		plr = plr_copy;
 	else
 		plr = _player;
@@ -96,11 +96,11 @@ void Display::DrawPlayerInfo()
 	Item *grnd = _player->GetPosition()->GetItem();
 	Item *sel_item = _player->GetSelectedItem();
 
-	std::string str_inv1 = (inv1 != NULL ? "1. " + inv1->GetName() : "Empty slot");
-	std::string str_inv2 = (inv2 != NULL ? "2. " + inv2->GetName() : "Empty slot");
-	std::string str_inv3 = (inv3 != NULL ? "3. " + inv3->GetName() : "Empty slot");
-	std::string str_inv4 = (inv4 != NULL ? "4. " + inv4->GetName() : "Empty slot");
-	std::string str_grnd = (grnd != NULL ? GRND1 + grnd->GetName() + GRND2 : "");
+	std::string str_inv1 = (inv1 != nullptr ? "1. " + inv1->GetName() : "Empty slot");
+	std::string str_inv2 = (inv2 != nullptr ? "2. " + inv2->GetName() : "Empty slot");
+	std::string str_inv3 = (inv3 != nullptr ? "3. " + inv3->GetName() : "Empty slot");
+	std::string str_inv4 = (inv4 != nullptr ? "4. " + inv4->GetName() : "Empty slot");
+	std::string str_grnd = (grnd != nullptr ? GRND1 + grnd->GetName() + GRND2 : "");
 
 	std::string name = plr->GetName();
 	uint8_t level = plr->GetLevel();
@@ -121,7 +121,7 @@ void Display::DrawPlayerInfo()
 	mvprintw(PLAYER_ROW + 1, INFO_MARGIN, "Mana  %u / %u", mana, maxMana);
 	EndCheck();
 	
-	if (inv1 == sel_item && sel_item != NULL)
+	if (inv1 == sel_item && sel_item != nullptr)
 	{
 		BoldOn();
 		str_inv1 += INV;
@@ -129,7 +129,7 @@ void Display::DrawPlayerInfo()
 		mvprintw(PLAYER_ROW + 3, INFO_MARGIN, "%s", str_inv1.c_str());
 		BoldOff();
 	
-	if (inv2 == sel_item && sel_item != NULL)
+	if (inv2 == sel_item && sel_item != nullptr)
 	{
 		BoldOn();
 		str_inv2 += INV;
@@ -137,7 +137,7 @@ void Display::DrawPlayerInfo()
 		mvprintw(PLAYER_ROW + 4, INFO_MARGIN, "%s", str_inv2.c_str());
 		BoldOff();
 	
-	if (inv3 == sel_item && sel_item != NULL)
+	if (inv3 == sel_item && sel_item != nullptr)
 	{
 		BoldOn();
 		str_inv3 += INV;
@@ -145,7 +145,7 @@ void Display::DrawPlayerInfo()
 		mvprintw(PLAYER_ROW + 5, INFO_MARGIN, "%s", str_inv3.c_str());
 		BoldOff();
 	
-	if (inv4 == sel_item && sel_item != NULL)
+	if (inv4 == sel_item && sel_item != nullptr)
 	{
 		BoldOn();
 		str_inv4 += INV;
@@ -169,7 +169,7 @@ void Display::DrawPlayerInfo()
 	mvprintw(PLAYER_ROW + 1, BAR_MARGIN, "%s", manaBar.c_str());
 	mvprintw(PLAYER_ROW + 11, BAR_MARGIN, "%s", healthBar.c_str());
 
-	if (plr_copy != NULL)
+	if (plr_copy != nullptr)
 	{
 		std::string prediction;
 		if (plr_copy->IsAlive() && enemy_copy->IsAlive()) prediction = "SAFE";
@@ -183,11 +183,11 @@ void Display::DrawPlayerInfo()
 
 void Display::DrawEnemyInfo()
 {
-	Monster * enemy = NULL;
-	if (_battlefield->GetEnemyCopy() != NULL && _frame == FUTURE) enemy = _battlefield->GetEnemyCopy();
+	Monster * enemy = nullptr;
+	if (_battlefield->GetEnemyCopy() != nullptr && _frame == FUTURE) enemy = _battlefield->GetEnemyCopy();
 	else enemy = _player->GetTargetField()->GetEnemy();
 	
-	if (enemy != NULL)
+	if (enemy != nullptr)
 	{
 		std::string name = enemy->GetName();
 		uint8_t level = enemy->GetLevel();

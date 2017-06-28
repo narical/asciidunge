@@ -27,18 +27,18 @@
 Field::Field(uint8_t row, uint8_t col) :
 	_coordCol(col),
 	_coordRow(row),
-	_enemy(NULL),
-	_powerup(NULL),
-	_item(NULL),
+	_enemy(nullptr),
+	_powerup(nullptr),
+	_item(nullptr),
 	_visible(false)
 { }
 
 
 Field::~Field()
 {
-	if (_enemy != NULL) delete(_enemy);
-	if (_powerup != NULL) delete(_powerup);
-	if (_item != NULL) delete(_item);
+	if (_enemy != nullptr) delete(_enemy);
+	if (_powerup != nullptr) delete(_powerup);
+	if (_item != nullptr) delete(_item);
 }
 
 
@@ -47,7 +47,7 @@ Field::Field (const Field &f)
 {
 	_coordCol = f._coordCol;
 	_coordRow = f._coordRow;
-	_enemy = NULL;				//new Monster(*(f._enemy));
+	_enemy = nullptr;				//new Monster(*(f._enemy));
 	_item = f._item;			//TODO: FIX AFTER "ITEM" CLASS IMPLEMENTATION !
 	_mana = f._mana;
 	_HP = f._HP;

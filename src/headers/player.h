@@ -45,7 +45,7 @@ class Player
 		void SpendMana(uint16_t delta) { _mana = (_mana - delta < 0 ? 0 : _mana - delta); }
 		void HealBy(uint16_t delta) { _HP = (_HP + delta > _maxHP ? _maxHP : _HP + delta); }
 		void RecoverBy(uint16_t delta) { _mana = (_mana + delta > _maxMana ? _maxMana : _mana + delta); }
-		void SelectItem(uint8_t number) { if (_inventory[number] != NULL) _selectedItem = _inventory[number]; }
+		void SelectItem(uint8_t number) { if (_inventory[number] != nullptr) _selectedItem = _inventory[number]; }
 
 		uint16_t GetHP() const { return _HP; }
 		uint16_t GetExp() const { return _exp; }
@@ -64,7 +64,7 @@ class Player
 
 		bool IsAlive() const { return (_HP > 0 ? true : false); }
 		bool IsDead() const { return (_HP <= 0 ? true : false); }
-		bool HaveTarget() const { return (_target != NULL); }
+		bool HaveTarget() const { return (_target != nullptr); }
 
 		void TEST_LevelUp();
 

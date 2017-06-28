@@ -19,7 +19,7 @@
 #include "monsters/troll.h"
 #include "monsters/zombie.h"
 
-Battlefield::Battlefield() : _boss(NULL), _playerCopy(NULL), _enemyCopy(NULL)
+Battlefield::Battlefield() : _boss(nullptr), _playerCopy(nullptr), _enemyCopy(nullptr)
 {
 	for (uint8_t row = 0; row < BF_SIZE; ++row)
 		for (uint8_t column = 0; column < BF_SIZE; ++column)
@@ -38,8 +38,8 @@ Battlefield::~Battlefield()
 		for (uint8_t column = 0; column < BF_SIZE; ++column)
 			delete(_field[row][column]);
 
-	if (_playerCopy != NULL) delete(_playerCopy);
-	if (_enemyCopy != NULL) delete(_enemyCopy);
+	if (_playerCopy != nullptr) delete(_playerCopy);
+	if (_enemyCopy != nullptr) delete(_enemyCopy);
 }
 
 
@@ -137,7 +137,7 @@ Field * Battlefield::GetNextField(Field * currentField, direction dir) const
 		case DOWNRIGHT: if (notBottom && notRight) return GetField(++Row, ++Col);
 			break;
 	}
-	return NULL;
+	return nullptr;
 }
 
 
@@ -161,7 +161,7 @@ void Battlefield::Fight(Player * player, Monster * enemy, bool realFight)
 			if (enemy->IsDead())
 			{
 				if (realFight) player->GainExp(enemy);
-				player->SetTargetField(NULL);
+				player->SetTargetField(nullptr);
 			}
 		}
 	}
@@ -173,7 +173,7 @@ void Battlefield::Fight(Player * player, Monster * enemy, bool realFight)
 		if (enemy->IsDead())
 		{
 			if (realFight) player->GainExp(enemy);
-			player->SetTargetField(NULL);
+			player->SetTargetField(nullptr);
 		}
 		else
 		{
@@ -203,7 +203,7 @@ uint8_t Battlefield::CountNearObjects(Field *field)
 	for (direction dir = LEFT; dir <= DOWNRIGHT; dir = direction(dir + 1))
 	{
 		Field * nextField = GetNextField(field, dir);
-		if (nextField != NULL &&
+		if (nextField != nullptr &&
 		( nextField->HaveEnemy() || nextField->HavePowerup() || nextField->HaveItem() ))
 			++summ;
 	}

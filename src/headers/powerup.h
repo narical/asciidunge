@@ -15,7 +15,7 @@ class Field;
 class Powerup
 {
 	public:
-		Powerup(poweruptype type) : _type(type), _field(NULL) { }
+		Powerup(poweruptype type) : _type(type), _field(nullptr) { }
 		poweruptype GetType() { return _type; }
 
 	private:
