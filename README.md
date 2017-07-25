@@ -1,3 +1,5 @@
+*README NEEDS UPDATING*
+
 # asciidunge
 Small ascii roguelike game
 *ncurses-based console "Desktop Dungeon" clone*
