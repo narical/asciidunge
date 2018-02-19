@@ -6,7 +6,7 @@
 
 #ifndef _TROLL_H_
 #define _TROLL_H_
-#include "../headers/monster.h"
+#include <monster.h>
 
 
 

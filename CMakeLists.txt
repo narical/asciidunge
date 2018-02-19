@@ -24,8 +24,7 @@ set( SOURCE_ROOT src )
 aux_source_directory( ${SOURCE_ROOT} SOURCES )
 
 # Указываем пути, где искать заголовочники, дополнительно к стандартным путям.
-#include_directories( "/my/addition/path/to/headers"
-#                     "${SOURCE_ROOT}" )
+include_directories( include )
 
 # Устанавливаем путь, куда будет скопирован исполняемый файл при выполнении
 # команды 'make install'.

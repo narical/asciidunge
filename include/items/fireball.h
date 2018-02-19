@@ -1,32 +1,32 @@
 //
 // Copyright (c) 2016 Joy Narical <jnarical@gmail.com> MIT license
 //
-// mightystrike.h
+// Fireball.h
 //
 
-#ifndef _MIGHTYSTRIKE_H_
-#define _MIGHTYSTRIKE_H_
+#ifndef _FIREBALL_H_
+#define _FIREBALL_H_
 
-#include "../headers/item.h"
+#include <item.h>
 class Field;
 class Player;
 
 
 
-class MightyStrike : public Item
+class Fireball : public Item
 {
 	public:
-		MightyStrike() : Item()
+		Fireball() : Item()
 		{
-			_name = "Mighty Strike";
-			_description = "This powerful blow grants 30% bonus damage";
+			_name = "Fireball";
+			_description = "Fire death from above!";
 			_manaCost = 6;
 		}
-		
-		~MightyStrike() { }
-		
-		virtual Item* Clone() const { return new MightyStrike (*this); }
-		
+
+		~Fireball() { }
+
+		virtual Item* Clone() const { return new Fireball (*this); }
+
 		virtual void Use(Player * player)
 		{
 			switch (_state)
@@ -44,9 +44,9 @@ class MightyStrike : public Item
 				case NOT_SET:;
 			}
 		}
-		
+
 	private:
 		// PRIVATE VARS IF ANY
 };
 
-#endif // _MIGHTYSTRIKE_H_
+#endif // _FIREBALL_H_

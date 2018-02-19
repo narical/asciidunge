@@ -6,7 +6,7 @@
 
 #ifndef _ROGUE_H_
 #define _ROGUE_H_
-#include "../headers/monster.h"
+#include <monster.h>
 
 
 

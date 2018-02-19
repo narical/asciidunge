@@ -7,7 +7,7 @@
 #ifndef _PLAYER_H_
 #define _PLAYER_H_
 
-#include "config.h"
+#include <config.h>
 #include <string>
 
 class Monster;
@@ -81,7 +81,7 @@ class Player
 		Item * _selectedItem;
 		Field * _position;
 		Field * _target;
-		
+
 		Game * _game;
 };
 

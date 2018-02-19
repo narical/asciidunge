@@ -7,8 +7,8 @@
 #ifndef _BATTLEFIELD_H_
 #define _BATTLEFIELD_H_
 
-#include "config.h"
-#include "monster.h"
+#include <config.h>
+#include <monster.h>
 
 class Game;
 class Player;
@@ -28,7 +28,7 @@ class Battlefield
 		uint8_t CountNearObjects(Field *);
 		void Fight(Player *, Monster *, bool);
 		Field * GetNextField(Field *, direction) const;
-		
+
 		Field * GetRandomField() const { return _field[ rand() % BF_SIZE ][ rand() % BF_SIZE ]; }
 		Field * GetField(uint8_t row, uint8_t col) const { return _field[row][col]; }
 		Player * GetPlayerCopy() const { return _playerCopy; }

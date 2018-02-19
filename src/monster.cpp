@@ -4,9 +4,9 @@
 // monster.cpp
 //
 
-#include "headers/monster.h"
-#include "headers/player.h"
-#include "headers/field.h"
+#include <monster.h>
+#include <player.h>
+#include <field.h>
 
 
 

@@ -7,7 +7,7 @@
 #ifndef _SWORD_H_
 #define _SWORD_H_
 
-#include "../headers/item.h"
+#include <item.h>
 class Field;
 class Player;
 
@@ -22,11 +22,11 @@ class SwordOfReadiness : public Item
 			_description = "Grants FIRST STRIKE ability";
 			_manaCost = 3;
 		}
-		
+
 		~SwordOfReadiness() { }
-		
+
 		virtual Item* Clone() const { return new SwordOfReadiness (*this); }
-		
+
 		virtual void Use(Player * player)
 		{
 			switch (_state)
@@ -44,7 +44,7 @@ class SwordOfReadiness : public Item
 				case NOT_SET:;
 			}
 		}
-		
+
 	private:
 		uint16_t _bonus_initiative = 100;
 };

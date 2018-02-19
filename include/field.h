@@ -7,9 +7,9 @@
 #ifndef _FIELD_H_
 #define _FIELD_H_
 
-#include "config.h"
-#include "powerup.h"
-#include "monster.h"
+#include <config.h>
+#include <powerup.h>
+#include <monster.h>
 #include <string>
 
 class Player;
@@ -43,7 +43,7 @@ class Field
 		Item * GetItem() const { return _item; }
 		uint8_t GetCol() const { return _coordCol; }
 		uint8_t GetRow() const { return _coordRow; }
-		
+
 	private:
 		uint8_t _coordCol;
 		uint8_t _coordRow;

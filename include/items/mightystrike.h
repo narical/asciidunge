@@ -1,32 +1,32 @@
 //
 // Copyright (c) 2016 Joy Narical <jnarical@gmail.com> MIT license
 //
-// heal.h
+// mightystrike.h
 //
 
-#ifndef _HEAL_H_
-#define _HEAL_H_
+#ifndef _MIGHTYSTRIKE_H_
+#define _MIGHTYSTRIKE_H_
 
-#include "../headers/item.h"
+#include <item.h>
 class Field;
 class Player;
 
 
 
-class Heal : public Item
+class MightyStrike : public Item
 {
 	public:
-		Heal() : Item()
+		MightyStrike() : Item()
 		{
-			_name = "Tome of healing";
-			_description = "Healing power of magic";
-			_manaCost = 7;
+			_name = "Mighty Strike";
+			_description = "This powerful blow grants 30% bonus damage";
+			_manaCost = 6;
 		}
-		
-		~Heal() { }
-		
-		virtual Item* Clone() const { return new Heal (*this); }
-		
+
+		~MightyStrike() { }
+
+		virtual Item* Clone() const { return new MightyStrike (*this); }
+
 		virtual void Use(Player * player)
 		{
 			switch (_state)
@@ -44,9 +44,9 @@ class Heal : public Item
 				case NOT_SET:;
 			}
 		}
-		
+
 	private:
 		// PRIVATE VARS IF ANY
 };
 
-#endif // _HEAL_H_
+#endif // _MIGHTYSTRIKE_H_

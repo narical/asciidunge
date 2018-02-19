@@ -4,8 +4,8 @@
 // main.cpp
 //
 
-#include "headers/game.h"
-#include "headers/display.h"
+#include <game.h>
+#include <display.h>
 
 int main()
 {

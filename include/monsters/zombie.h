@@ -6,7 +6,7 @@
 
 #ifndef _ZOMBIE_H_
 #define _ZOMBIE_H_
-#include "../headers/monster.h"
+#include <monster.h>
 
 
 

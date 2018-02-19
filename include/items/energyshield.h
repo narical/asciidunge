@@ -1,32 +1,32 @@
 //
 // Copyright (c) 2016 Joy Narical <jnarical@gmail.com> MIT license
 //
-// Fireball.h
+// energyshield.h
 //
 
-#ifndef _FIREBALL_H_
-#define _FIREBALL_H_
+#ifndef _ENERGY_SHIELD_H_
+#define _ENERGY_SHIELD_H_
 
-#include "../headers/item.h"
+#include <item.h>
 class Field;
 class Player;
 
 
 
-class Fireball : public Item
+class EnergyShield : public Item
 {
 	public:
-		Fireball() : Item()
+		EnergyShield() : Item()
 		{
-			_name = "Fireball";
-			_description = "Fire death from above!";
-			_manaCost = 6;
+			_name = "Energy Shield";
+			_description = "Let's magic defend you";
+			_manaCost = 1;
 		}
-		
-		~Fireball() { }
-		
-		virtual Item* Clone() const { return new Fireball (*this); }
-		
+
+		~EnergyShield() { }
+
+		virtual Item* Clone() const { return new EnergyShield (*this); }
+
 		virtual void Use(Player * player)
 		{
 			switch (_state)
@@ -44,9 +44,9 @@ class Fireball : public Item
 				case NOT_SET:;
 			}
 		}
-		
+
 	private:
 		// PRIVATE VARS IF ANY
 };
 
-#endif // _FIREBALL_H_
+#endif // _ENERGY_SHIELD_H_

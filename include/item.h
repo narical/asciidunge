@@ -7,9 +7,9 @@
 #ifndef _ITEM_H_
 #define _ITEM_H_
 
-#include "config.h"
-#include "field.h"
-#include "player.h"
+#include <config.h>
+#include <field.h>
+#include <player.h>
 #include <string>
 
 

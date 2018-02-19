@@ -5,25 +5,25 @@
 //
 
 
-#include "headers/display.h"
-#include "headers/strings.h"
-#include "headers/input.h"
-#include "headers/battlefield.h"
-#include "headers/powerup.h"
-#include "headers/player.h"
-#include "headers/item.h"
-#include "headers/field.h"
-#include "headers/game.h"
+#include <display.h>
+#include <strings.h>
+#include <input.h>
+#include <battlefield.h>
+#include <powerup.h>
+#include <player.h>
+#include <item.h>
+#include <field.h>
+#include <game.h>
 #include <ncurses.h>
 
-#include "monsters/ghost.h"
-#include "monsters/goblin.h"
-#include "monsters/golem.h"
-#include "monsters/mage.h"
-#include "monsters/rogue.h"
-#include "monsters/skeleton.h"
-#include "monsters/troll.h"
-#include "monsters/zombie.h"
+#include <monsters/ghost.h>
+#include <monsters/goblin.h>
+#include <monsters/golem.h>
+#include <monsters/mage.h>
+#include <monsters/rogue.h>
+#include <monsters/skeleton.h>
+#include <monsters/troll.h>
+#include <monsters/zombie.h>
 
 Display::Display(Game * game) :
 _game(game),

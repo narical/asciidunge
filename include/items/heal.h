@@ -1,32 +1,32 @@
 //
 // Copyright (c) 2016 Joy Narical <jnarical@gmail.com> MIT license
 //
-// energyshield.h
+// heal.h
 //
 
-#ifndef _ENERGY_SHIELD_H_
-#define _ENERGY_SHIELD_H_
+#ifndef _HEAL_H_
+#define _HEAL_H_
 
-#include "../headers/item.h"
+#include <item.h>
 class Field;
 class Player;
 
 
 
-class EnergyShield : public Item
+class Heal : public Item
 {
 	public:
-		EnergyShield() : Item()
+		Heal() : Item()
 		{
-			_name = "Energy Shield";
-			_description = "Let's magic defend you";
-			_manaCost = 1;
+			_name = "Tome of healing";
+			_description = "Healing power of magic";
+			_manaCost = 7;
 		}
-		
-		~EnergyShield() { }
-		
-		virtual Item* Clone() const { return new EnergyShield (*this); }
-		
+
+		~Heal() { }
+
+		virtual Item* Clone() const { return new Heal (*this); }
+
 		virtual void Use(Player * player)
 		{
 			switch (_state)
@@ -44,9 +44,9 @@ class EnergyShield : public Item
 				case NOT_SET:;
 			}
 		}
-		
+
 	private:
 		// PRIVATE VARS IF ANY
 };
 
-#endif // _ENERGY_SHIELD_H_
+#endif // _HEAL_H_
