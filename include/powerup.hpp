@@ -7,7 +7,7 @@
 #ifndef _POWERUP_H_
 #define _POWERUP_H_
 
-#include <config.h>
+#include "config.hpp"
 #include <cstdio>
 class Field;
 

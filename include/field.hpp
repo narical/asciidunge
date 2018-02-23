@@ -7,9 +7,9 @@
 #ifndef _FIELD_H_
 #define _FIELD_H_
 
-#include <config.h>
-#include <powerup.h>
-#include <monster.h>
+#include "config.hpp"
+#include "powerup.hpp"
+#include "monster.hpp"
 #include <string>
 
 class Player;

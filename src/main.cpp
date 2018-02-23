@@ -4,8 +4,8 @@
 // main.cpp
 //
 
-#include <game.h>
-#include <display.h>
+#include "game.hpp"
+#include "display.hpp"
 
 int main()
 {

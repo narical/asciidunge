@@ -7,7 +7,7 @@
 #ifndef _HEAL_H_
 #define _HEAL_H_
 
-#include <item.h>
+#include "item.hpp"
 class Field;
 class Player;
 

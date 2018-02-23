@@ -4,11 +4,11 @@
 // input.cpp
 //
 
-#include <input.h>
-#include <player.h>
-#include <display.h>
-#include <battlefield.h>
-#include <game.h>
+#include "input.hpp"
+#include "player.hpp"
+#include "display.hpp"
+#include "battlefield.hpp"
+#include "game.hpp"
 #include <ncurses.h>
 
 

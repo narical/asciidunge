@@ -4,11 +4,11 @@
 // game.cpp
 //
 
-#include <game.h>
-#include <battlefield.h>
-#include <player.h>
-#include <display.h>
-#include <input.h>
+#include "game.hpp"
+#include "battlefield.hpp"
+#include "player.hpp"
+#include "display.hpp"
+#include "input.hpp"
 #include <ctime>
 
 

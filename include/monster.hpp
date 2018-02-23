@@ -7,7 +7,7 @@
 #ifndef _MONSTER_H_
 #define _MONSTER_H_
 
-#include <config.h>
+#include "config.hpp"
 
 class Player;
 class Field;

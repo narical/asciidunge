@@ -4,12 +4,12 @@
 // battlefield.cpp
 //
 
-#include <battlefield.h>
-#include <player.h>
-#include <field.h>
-#include <display.h>
-#include <item.h>
-#include <game.h>
+#include "battlefield.hpp"
+#include "player.hpp"
+#include "field.hpp"
+#include "display.hpp"
+#include "item.hpp"
+#include "game.hpp"
 
 #include <monsters/ghost.h>
 #include <monsters/goblin.h>

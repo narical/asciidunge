@@ -5,15 +5,15 @@
 //
 
 
-#include <display.h>
-#include <strings.h>
-#include <input.h>
-#include <battlefield.h>
-#include <powerup.h>
-#include <player.h>
-#include <item.h>
-#include <field.h>
-#include <game.h>
+#include "display.hpp"
+#include "strings.hpp"
+#include "input.hpp"
+#include "battlefield.hpp"
+#include "powerup.hpp"
+#include "player.hpp"
+#include "item.hpp"
+#include "field.hpp"
+#include "game.hpp"
 #include <ncurses.h>
 
 #include <monsters/ghost.h>

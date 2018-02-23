@@ -4,15 +4,15 @@
 // player.cpp
 //
 
-#include <player.h>
+#include "player.hpp"
 #include <cassert>
 #include <ncurses.h>
-#include <battlefield.h>
-#include <powerup.h>
-#include <display.h>
-#include <field.h>
-#include <item.h>
-#include <game.h>
+#include "battlefield.hpp"
+#include "powerup.hpp"
+#include "display.hpp"
+#include "field.hpp"
+#include "item.hpp"
+#include "game.hpp"
 
 #include <monsters/ghost.h>
 #include <monsters/goblin.h>

@@ -6,7 +6,7 @@
 
 #ifndef _GOBLIN_H_
 #define _GOBLIN_H_
-#include <monster.h>
+#include "monster.hpp"
 
 
 

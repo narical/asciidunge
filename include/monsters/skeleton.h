@@ -6,7 +6,7 @@
 
 #ifndef _SKELETON_H_
 #define _SKELETON_H_
-#include <monster.h>
+#include "monster.hpp"
 
 
 

@@ -7,8 +7,8 @@
 #ifndef _BATTLEFIELD_H_
 #define _BATTLEFIELD_H_
 
-#include <config.h>
-#include <monster.h>
+#include "config.hpp"
+#include "monster.hpp"
 
 class Game;
 class Player;

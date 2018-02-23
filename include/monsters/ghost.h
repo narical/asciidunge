@@ -6,7 +6,7 @@
 
 #ifndef _GHOST_H_
 #define _GHOST_H_
-#include <monster.h>
+#include "monster.hpp"
 
 
 

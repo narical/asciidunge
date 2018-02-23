@@ -7,7 +7,7 @@
 #ifndef _ENERGY_SHIELD_H_
 #define _ENERGY_SHIELD_H_
 
-#include <item.h>
+#include "item.hpp"
 class Field;
 class Player;
 

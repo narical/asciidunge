@@ -6,7 +6,7 @@
 
 #ifndef _GOLEM_H_
 #define _GOLEM_H_
-#include <monster.h>
+#include "monster.hpp"
 
 
 

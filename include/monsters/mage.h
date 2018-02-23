@@ -6,7 +6,7 @@
 
 #ifndef _MAGE_H_
 #define _MAGE_H_
-#include <monster.h>
+#include "monster.hpp"
 
 
 

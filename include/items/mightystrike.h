@@ -7,7 +7,7 @@
 #ifndef _MIGHTYSTRIKE_H_
 #define _MIGHTYSTRIKE_H_
 
-#include <item.h>
+#include "item.hpp"
 class Field;
 class Player;
 

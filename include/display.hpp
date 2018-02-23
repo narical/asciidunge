@@ -7,7 +7,7 @@
 #ifndef _DISPLAY_H_
 #define _DISPLAY_H_
 
-#include <config.h>
+#include "config.hpp"
 #include <string>
 
 class Game;
