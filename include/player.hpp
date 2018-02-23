@@ -20,8 +20,9 @@ class Game;
 class Player
 {
 	public:
-		Player(Game *);
+		explicit Player(Game *);
 		Player(const Player &);
+		Player& operator=(const Player &);
 
 		void Act(int);
 		void LevelUp();
@@ -61,7 +62,7 @@ class Player
 		Item * GetInventory(uint8_t index) const { return _inventory[index]; }
 
 		bool IsAlive() const { return (_HP > 0 ? true : false); }
-		bool IsDead() const { return (_HP <= 0 ? true : false); }
+		bool IsDead() const { return (_HP == 0 ? true : false); }
 		bool HaveTarget() const { return (_target != nullptr); }
 
 		void TEST_LevelUp();

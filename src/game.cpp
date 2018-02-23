@@ -10,6 +10,7 @@
 #include "display.hpp"
 #include "input.hpp"
 #include <ctime>
+#include <cassert>
 
 
 
@@ -37,7 +38,10 @@ Game::~Game()
 
 void Game::Run ()
 {
-	_battlefield = new Battlefield(this);
+	// if (_battlefield != nullptr) delete(_battlefield);
+	_battlefield = new Battlefield(this); //FIX: memory leak
+
+	if (_player !=nullptr) delete(_player);
 	_player = new Player(this);
 
 

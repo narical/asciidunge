@@ -14,7 +14,7 @@ class Game;
 class Input
 {
 	public:
-		Input(Game *);
+		explicit Input(Game *);
 		void GetPlayerInput();
 		static void WaitAnyKey();
 

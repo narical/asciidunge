@@ -20,6 +20,7 @@
 Player::Player (Game *game) :
 _name( "Nameless hero" ),
 _level( START_LEVEL ),
+_exp(0),
 _initiative(0),
 _selectedItem( nullptr ),
 _target( nullptr ),
@@ -46,22 +47,21 @@ _game( game )
 
 
 
-Player::Player (const Player &p)
+Player::Player (const Player &p) :
+	_name(p._name),
+	_level(p._level),
+	_exp(p._exp),
+	_expMax(p._expMax),
+	_damage(p._damage),
+	_HP(p._HP),
+	_maxHP(p._maxHP),
+	_mana(p._mana),
+	_maxMana(p._maxMana),
+	_initiative(p._initiative),
+	_position(p._position),
+	_target(nullptr),
+	_game(p._game)
 {
-	_name = p._name;
-	_level = p._level;
-	_exp = p._exp;
-	_expMax = p._expMax;
-	_damage = p._damage;
-	_HP = p._HP;
-	_maxHP = p._maxHP;
-	_mana = p._mana;
-	_maxMana = p._maxMana;
-	_initiative = p._initiative;
-	_position = p._position;
-	_target = nullptr;
-	_game = p._game;
-
 	for (poweruptype type = HEALTH; type <= DAMAGE; type = poweruptype(type + 1))
 		_powerups[type] = p._powerups[type];
 
@@ -258,7 +258,7 @@ void Player::ActivateItem()
 
 
 
-void Player::HandleItems(std::string name)
+void Player::HandleItems(std::string name)	//FIX: rework function entirely!
 {
 	for (uint8_t i = 0; i < 4; ++i)
 		if (_inventory[i] != nullptr && _inventory[i]->GetName() == name)

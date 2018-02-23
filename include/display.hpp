@@ -15,7 +15,7 @@ class Game;
 class Display
 {
 	public:
-		Display (Game *);
+		explicit Display (Game *);
 		void SendEvent(eventtype);
 		void ShowFrame();
 

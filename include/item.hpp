@@ -17,7 +17,7 @@
 class Item
 {
 	public:
-		Item() : _state(NOT_SET), _field(nullptr) { }
+		Item() : _state(NOT_SET), _field(nullptr), _manaCost(0) { }
 		virtual ~Item() { }
 		virtual Item * Clone() const = 0;
 		virtual void Use(Player *) { }

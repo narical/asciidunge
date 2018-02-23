@@ -17,7 +17,8 @@ class Input;
 class Game
 {
 	public:
-		Game();
+		explicit Game();
+		Game(Game &game);
 		~Game();
 		void Run();
 		bool CheckVictory();

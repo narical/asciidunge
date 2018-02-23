@@ -37,10 +37,10 @@ void Monster::Attack(Player * plr)
 
 
 
-void Monster::AddHP(uint16_t delta)
+/*void Monster::AddHP(uint16_t delta)
 {
 	_HP = (_HP + delta > _maxHP ? _maxHP : _HP + delta);
-}
+}*/
 
 
 

@@ -41,10 +41,9 @@ Battlefield::~Battlefield()
 
 void Battlefield::SpawnEnemies()
 {
-	uint8_t enemiesToSpawn;
 	for (uint8_t monsterLevel = 1; monsterLevel <= 10; ++monsterLevel)
 	{
-		enemiesToSpawn = MONSTERS_QUANTITY_BY_LEVEL[monsterLevel];
+		uint8_t enemiesToSpawn = MONSTERS_QUANTITY_BY_LEVEL[monsterLevel];
 		while (enemiesToSpawn > 0)
 		{
 			Field *field = GetRandomField();
@@ -63,10 +62,9 @@ void Battlefield::SpawnEnemies()
 
 void Battlefield::SpawnPowerups()
 {
-	uint8_t powerupsToSpawn;
 	for (poweruptype type = HEALTH; type <= DAMAGE; type = poweruptype(type + 1))
 	{
-		powerupsToSpawn = POWERUPS_QUANTITY_BY_TYPE[type];
+		uint8_t powerupsToSpawn = POWERUPS_QUANTITY_BY_TYPE[type];
 		while (powerupsToSpawn > 0)
 		{
 			Field *field = GetRandomField();

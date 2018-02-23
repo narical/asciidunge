@@ -15,12 +15,12 @@ class Field;
 class Powerup
 {
 	public:
-		Powerup(poweruptype type) : _type(type), _field(nullptr) { }
+		explicit Powerup(poweruptype type) : _type(type), _field(nullptr) { }
 		poweruptype GetType() { return _type; }
 
 	private:
 		poweruptype _type;
-		Field * _field;
+		Field * _field; //FIX: find out wtf
 };
 
 #endif // _POWERUP_H_

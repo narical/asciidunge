@@ -19,7 +19,7 @@ class Monster;
 class Battlefield
 {
 	public:
-		Battlefield(Game *);
+		explicit Battlefield(Game *);
 		~Battlefield();
 		void SpawnItems();
 	 	void SpawnEnemies();

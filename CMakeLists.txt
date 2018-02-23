@@ -2,6 +2,7 @@
 
 # Минимальная версия CMake, младше нельзя.
 cmake_minimum_required( VERSION 3.6 )
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 add_definitions( "-ggdb" )
 add_definitions( "-std=c++11" )
 

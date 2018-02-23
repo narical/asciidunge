@@ -66,10 +66,9 @@ void Display::DrawBattlefield()
 void Display::DrawPlayerInfo()
 {
 	Player * plr_copy = nullptr;
-	Player * plr = nullptr;
 	Monster * enemy_copy = nullptr;
 	
-	plr = _game->GetPlayer();
+	Player * plr = _game->GetPlayer();
 
 	if (plr->HaveTarget())
 	{

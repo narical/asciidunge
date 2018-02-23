@@ -17,10 +17,18 @@ class Field;
 class Monster
 {
 	public:
-		Monster(uint8_t monsterLevel) : _level( monsterLevel ), _initiative(0), _isDead(0) { }
+		explicit Monster(uint8_t monsterLevel) :
+			_level( monsterLevel ),
+			_damage(0),
+			_HP(1),
+			_maxHP(1),
+			_initiative(0),
+			_field(nullptr),
+			_name("none"),
+			_isDead(false) { }
 
 		void Attack(Player *);
-		void AddHP(uint16_t);
+		//void AddHP(uint16_t);
 		void TakeDamage(Player *);
 
 		uint16_t GetInitiative() const { return _level + _initiative; }
@@ -50,7 +58,7 @@ class Monster
 class Ghost : public Monster
 {
 	public:
-		Ghost(uint8_t monsterLevel) : Monster(monsterLevel)
+		explicit Ghost(uint8_t monsterLevel) : Monster(monsterLevel)
 		{
 			_damage = FromCurve( 4, 40 );
 			_maxHP = FromCurve( 2, 174 );
@@ -64,7 +72,7 @@ class Ghost : public Monster
 class Goblin : public Monster
 {
 	public:
-		Goblin(uint8_t monsterLevel) : Monster(monsterLevel)
+		explicit Goblin(uint8_t monsterLevel) : Monster(monsterLevel)
 		{
 			_damage = FromCurve( 2, 52 );
 			_maxHP = FromCurve( 4, 93 );
@@ -78,7 +86,7 @@ class Goblin : public Monster
 class Golem : public Monster
 {
 	public:
-		Golem(uint8_t monsterLevel) : Monster(monsterLevel)
+		explicit Golem(uint8_t monsterLevel) : Monster(monsterLevel)
 		{
 			_damage = FromCurve( 1, 33 );
 			_maxHP = FromCurve( 8, 140 );
@@ -92,7 +100,7 @@ class Golem : public Monster
 class Mage : public Monster
 {
 	public:
-		Mage(uint8_t monsterLevel) : Monster(monsterLevel)
+		explicit Mage(uint8_t monsterLevel) : Monster(monsterLevel)
 		{
 			_damage = FromCurve( 4, 65 );
 			_maxHP = FromCurve( 4, 83 );
@@ -106,7 +114,7 @@ class Mage : public Monster
 class Rogue : public Monster
 {
 	public:
-		Rogue(uint8_t monsterLevel) : Monster(monsterLevel)
+		explicit Rogue(uint8_t monsterLevel) : Monster(monsterLevel)
 		{
 			_damage = FromCurve( 4, 60 );
 			_maxHP = FromCurve( 3, 80 );
@@ -121,7 +129,7 @@ class Rogue : public Monster
 class Skeleton : public Monster
 {
 	public:
-		Skeleton(uint8_t monsterLevel) : Monster(monsterLevel)
+		explicit Skeleton(uint8_t monsterLevel) : Monster(monsterLevel)
 		{
 			_damage = FromCurve( 2, 25 );
 			_maxHP = FromCurve( 3, 78 );
@@ -135,7 +143,7 @@ class Skeleton : public Monster
 class Troll : public Monster
 {
 	public:
-		Troll(uint8_t monsterLevel) : Monster(monsterLevel)
+		explicit Troll(uint8_t monsterLevel) : Monster(monsterLevel)
 		{
 			_damage = FromCurve( 2, 20 );
 			_maxHP = FromCurve( 6, 200 );
@@ -149,7 +157,7 @@ class Troll : public Monster
 class Zombie : public Monster
 {
 	public:
-		Zombie(uint8_t monsterLevel) : Monster(monsterLevel)
+		explicit Zombie(uint8_t monsterLevel) : Monster(monsterLevel)
 		{
 			_damage = FromCurve( 4, 30 );
 			_maxHP = FromCurve( 6, 125 );

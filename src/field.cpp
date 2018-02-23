@@ -8,6 +8,7 @@
 #include "player.hpp"
 #include "item.hpp"
 #include "monster.hpp"
+#include <cassert>
 
 
 
@@ -89,8 +90,24 @@ void Field::TEST_SpawnItem(uint8_t num)
 
 bool Field::MakeVisible()
 {
-	bool result = _visible;
+	bool wasAlreadyVisible = IsVisible();
 	_visible = true;
-	return !result; //return TRUE if we just made this field visible
+	return !(wasAlreadyVisible); //return TRUE if we just made this field visible
 }
 
+
+
+void Field::SpawnPowerup(poweruptype type)
+{
+	assert(_powerup == nullptr);
+	_powerup = new Powerup(type);
+}
+
+
+
+void Field::RemovePowerup()
+{
+	assert(_powerup != nullptr);
+	_powerup = nullptr;
+	//TODO: fix logic after changing all pointers to std::unique_ptr
+}
