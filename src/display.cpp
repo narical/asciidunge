@@ -12,18 +12,12 @@
 #include "powerup.hpp"
 #include "player.hpp"
 #include "item.hpp"
+#include "monster.hpp"
 #include "field.hpp"
 #include "game.hpp"
 #include <ncurses.h>
 
-#include <monsters/ghost.h>
-#include <monsters/goblin.h>
-#include <monsters/golem.h>
-#include <monsters/mage.h>
-#include <monsters/rogue.h>
-#include <monsters/skeleton.h>
-#include <monsters/troll.h>
-#include <monsters/zombie.h>
+
 
 Display::Display(Game * game) :
 _game(game),

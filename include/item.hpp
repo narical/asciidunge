@@ -37,4 +37,196 @@ class Item
 		uint8_t _manaCost;
 };
 
+
+
+class EnergyShield : public Item
+{
+	public:
+		EnergyShield() : Item()
+		{
+			_name = "Energy Shield";
+			_description = "Let's magic defend you";
+			_manaCost = 1;
+		}
+
+		~EnergyShield() { }
+
+		virtual Item* Clone() const { return new EnergyShield (*this); }
+
+		virtual void Use(Player * player)
+		{
+			switch (_state)
+			{
+				case PREPARED:
+					// ADD CHANGE HERE
+					_state = ACTIVE;
+					break;
+
+				case ACTIVE:
+					// REMOVE ANY CHANGES HERE
+					_state = NOT_SET;
+					break;
+
+				case NOT_SET:;
+			}
+		}
+
+	private:
+		// PRIVATE VARS IF ANY
+};
+
+
+
+class Fireball : public Item
+{
+	public:
+		Fireball() : Item()
+		{
+			_name = "Fireball";
+			_description = "Fire death from above!";
+			_manaCost = 6;
+		}
+
+		~Fireball() { }
+
+		virtual Item* Clone() const { return new Fireball (*this); }
+
+		virtual void Use(Player * player)
+		{
+			switch (_state)
+			{
+				case PREPARED:
+					// ADD CHANGE HERE
+					_state = ACTIVE;
+					break;
+
+				case ACTIVE:
+					// REMOVE ANY CHANGES HERE
+					_state = NOT_SET;
+					break;
+
+				case NOT_SET:;
+			}
+		}
+
+	private:
+		// PRIVATE VARS IF ANY
+};
+
+
+
+class Heal : public Item
+{
+	public:
+		Heal() : Item()
+		{
+			_name = "Tome of healing";
+			_description = "Healing power of magic";
+			_manaCost = 7;
+		}
+
+		~Heal() { }
+
+		virtual Item* Clone() const { return new Heal (*this); }
+
+		virtual void Use(Player * player)
+		{
+			switch (_state)
+			{
+				case PREPARED:
+					// ADD CHANGE HERE
+					_state = ACTIVE;
+					break;
+
+				case ACTIVE:
+					// REMOVE ANY CHANGES HERE
+					_state = NOT_SET;
+					break;
+
+				case NOT_SET:;
+			}
+		}
+
+	private:
+		// PRIVATE VARS IF ANY
+};
+
+
+
+class MightyStrike : public Item
+{
+	public:
+		MightyStrike() : Item()
+		{
+			_name = "Mighty Strike";
+			_description = "This powerful blow grants 30% bonus damage";
+			_manaCost = 6;
+		}
+
+		~MightyStrike() { }
+
+		virtual Item* Clone() const { return new MightyStrike (*this); }
+
+		virtual void Use(Player * player)
+		{
+			switch (_state)
+			{
+				case PREPARED:
+					// ADD CHANGE HERE
+					_state = ACTIVE;
+					break;
+
+				case ACTIVE:
+					// REMOVE ANY CHANGES HERE
+					_state = NOT_SET;
+					break;
+
+				case NOT_SET:;
+			}
+		}
+
+	private:
+		// PRIVATE VARS IF ANY
+};
+
+
+
+class SwordOfReadiness : public Item
+{
+	public:
+		SwordOfReadiness() : Item()
+		{
+			_name = "Sword of Readiness";
+			_description = "Grants FIRST STRIKE ability";
+			_manaCost = 3;
+		}
+
+		~SwordOfReadiness() { }
+
+		virtual Item* Clone() const { return new SwordOfReadiness (*this); }
+
+		virtual void Use(Player * player)
+		{
+			switch (_state)
+			{
+				case PREPARED:
+					player->SetInitiative(_bonus_initiative);
+					_state = ACTIVE;
+					break;
+
+				case ACTIVE:
+					player->SetInitiative(-_bonus_initiative);
+					_state = NOT_SET;
+					break;
+
+				case NOT_SET:;
+			}
+		}
+
+	private:
+		uint16_t _bonus_initiative = 100;
+};
+
+
+
 #endif // _ITEM_H_

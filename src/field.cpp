@@ -7,21 +7,8 @@
 #include "field.hpp"
 #include "player.hpp"
 #include "item.hpp"
+#include "monster.hpp"
 
-#include <monsters/ghost.h>
-#include <monsters/goblin.h>
-#include <monsters/golem.h>
-#include <monsters/mage.h>
-#include <monsters/rogue.h>
-#include <monsters/skeleton.h>
-#include <monsters/troll.h>
-#include <monsters/zombie.h>
-
-#include <items/swordofreadiness.h>
-#include <items/fireball.h>
-#include <items/heal.h>
-#include <items/energyshield.h>
-#include <items/mightystrike.h>
 
 
 Field::Field(uint8_t row, uint8_t col) :

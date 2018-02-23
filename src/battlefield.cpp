@@ -9,16 +9,9 @@
 #include "field.hpp"
 #include "display.hpp"
 #include "item.hpp"
+#include "monster.hpp"
 #include "game.hpp"
 
-#include <monsters/ghost.h>
-#include <monsters/goblin.h>
-#include <monsters/golem.h>
-#include <monsters/mage.h>
-#include <monsters/rogue.h>
-#include <monsters/skeleton.h>
-#include <monsters/troll.h>
-#include <monsters/zombie.h>
 
 Battlefield::Battlefield(Game *game) :
 	_game(game), _boss(nullptr), _playerCopy(nullptr), _enemyCopy(nullptr)
