@@ -41,7 +41,7 @@ set( INSTALL_PATH /usr/local/bin/ )
 set( REQUIRED_LIBRARIES ncurses )
 
 # Устанавливаем флаги компилятора (причём никаких скрытых флагов, только эти).
-set( CMAKE_CXX_FLAGS "-O0 -Wall -pedantic -std=c++0x" ) 
+set( CMAKE_CXX_FLAGS "-O0 -Wall -pedantic" ) 
 
 # Собираем исполняемый файл с именем my_program.
 add_executable( ${BIN} ${SOURCES} )
