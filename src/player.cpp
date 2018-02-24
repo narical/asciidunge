@@ -26,9 +26,9 @@ _selectedItem( nullptr ),
 _target( nullptr ),
 _game( game )
 {
-	_powerups[HEALTH] = 0;
-	_powerups[MANA] = 0;
-	_powerups[DAMAGE] = 0;
+	_powerups[Powerup::HEALTH] = 0;
+	_powerups[Powerup::MANA] = 0;
+	_powerups[Powerup::DAMAGE] = 0;
 	for (uint8_t i = 0; i < 4; ++i) _inventory[i] = nullptr;
 	Field *field = nullptr;
 	while (true)
@@ -62,7 +62,7 @@ Player::Player (const Player &p) :
 	_target(nullptr),
 	_game(p._game)
 {
-	for (poweruptype type = HEALTH; type <= DAMAGE; type = poweruptype(type + 1))
+	for (Powerup::Type type = Powerup::HEALTH; type <= Powerup::DAMAGE; type = Powerup::Type(type + 1))
 		_powerups[type] = p._powerups[type];
 
 	for (uint8_t i = 0; i < 4; ++i)
@@ -80,9 +80,9 @@ Player::Player (const Player &p) :
 
 void Player::CalculateStats()
 {
-	_maxHP		= _level * (HEALTH_PER_LEVEL + _powerups[HEALTH]);
-	_maxMana	= _powerups[MANA] + START_MAX_MANA; 
-	_damage		= _level * DAMAGE_PER_LEVEL * (1 + _powerups[DAMAGE] * (float) POWERUP_DAMAGE_BONUS /100 );
+	_maxHP		= _level * (HEALTH_PER_LEVEL + _powerups[Powerup::HEALTH]);
+	_maxMana	= _powerups[Powerup::MANA] + START_MAX_MANA; 
+	_damage		= _level * DAMAGE_PER_LEVEL * (1 + _powerups[Powerup::DAMAGE] * (float) POWERUP_DAMAGE_BONUS /100 );
 	_expMax		= _level * NEXT_LEVEL_MULTIPLIER;
 }
 
@@ -190,7 +190,7 @@ void Player::LevelUp()
 
 eventtype Player::TakePowerup(Field * field)
 {
-	poweruptype type = field->GetPowerup()->GetType();
+	Powerup::Type type = field->GetPowerup()->GetType();
 	++_powerups[type];
 	CalculateStats();
 	field->RemovePowerup();
@@ -198,9 +198,9 @@ eventtype Player::TakePowerup(Field * field)
 	eventtype result;
 	switch (type)
 	{
-		case HEALTH:	result = HP_PWRUP; break;
-		case MANA:		result = MANA_PWRUP; break;
-		case DAMAGE:	result = DMG_PWRUP;
+		case Powerup::HEALTH:	result = HP_PWRUP; break;
+		case Powerup::MANA:		result = MANA_PWRUP; break;
+		case Powerup::DAMAGE:	result = DMG_PWRUP;
 	}
 	return result;
 }

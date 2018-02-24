@@ -4,6 +4,8 @@
 // display.cpp
 //
 
+// Dirty code for drawing/animating game with ncurses.
+// BEWARE !
 
 #include "display.hpp"
 #include "strings.hpp"
@@ -17,15 +19,14 @@
 #include "game.hpp"
 #include <ncurses.h>
 
-
+//horizontal wall
+std::string Display::HORIZ_WALL = "######################";
 
 Display::Display(Game * game) :
 _game(game),
 _frame(CURRENT)
 {
-	HORIZ_WALL = "";
-	uint8_t wallSize = BF_SIZE + 2;
-	for (uint8_t i = 0; i < wallSize; ++i) HORIZ_WALL += "#";
+	// Make frame counters to zero for every event type
 	for (eventtype event = LVLUP; event != EVENTS_END; event = eventtype(event + 1))
 		_frameCounters[event] = 0;
 }
@@ -233,15 +234,15 @@ char Display::DrawField(uint8_t rowIndex, uint8_t colIndex)
 		{
 			switch (field->GetPowerup()->GetType())
 			{
-				case HEALTH:
+				case Powerup::HEALTH:
 					printw("+");
 					break;
 					
-				case MANA:
+				case Powerup::MANA:
 					printw("x");
 					break;
 					
-				case DAMAGE:
+				case Powerup::DAMAGE:
 					printw("*");
 			}
 		}

@@ -15,11 +15,12 @@ class Field;
 class Powerup
 {
 	public:
-		explicit Powerup(poweruptype type) : _type(type), _field(nullptr) { }
-		poweruptype GetType() { return _type; }
+		enum Type {HEALTH, MANA, DAMAGE};
+		explicit Powerup(Type t) : _type(t), _field(nullptr) { }
+		Type GetType() { return _type; }
 
 	private:
-		poweruptype _type;
+		Type _type;
 		Field * _field; //FIX: find out wtf
 };
 

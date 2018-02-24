@@ -14,6 +14,8 @@ class Game;
 
 class Display
 {
+	enum frametype {CURRENT, FUTURE};
+
 	public:
 		explicit Display (Game *);
 		void SendEvent(eventtype);
@@ -26,10 +28,8 @@ class Display
 
 	private:
 		uint8_t _frameCounters[4];
-		std::string HORIZ_WALL;
 		Game *_game;
 		frametype _frame;
-
 
 		std::string DrawBar(uint16_t, uint16_t) const;
 		char DrawField(uint8_t, uint8_t);
@@ -43,6 +43,8 @@ class Display
 		void InvertOn();
 		void BoldOff();
 		void BoldOn();
+
+		static std::string HORIZ_WALL;
 };
 
 #endif // _DISPLAY_H_

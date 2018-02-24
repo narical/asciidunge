@@ -97,7 +97,7 @@ bool Field::MakeVisible()
 
 
 
-void Field::SpawnPowerup(poweruptype type)
+void Field::SpawnPowerup(Powerup::Type type)
 {
 	assert(_powerup == nullptr);
 	_powerup = new Powerup(type);
