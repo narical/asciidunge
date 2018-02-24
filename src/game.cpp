@@ -38,10 +38,10 @@ Game::~Game()
 
 void Game::Run ()
 {
-	// if (_battlefield != nullptr) delete(_battlefield);
-	_battlefield = new Battlefield(this); //FIX: memory leak
+	assert(_battlefield == nullptr);
+	_battlefield = new Battlefield(this);
 
-	if (_player !=nullptr) delete(_player);
+	assert(_player == nullptr);
 	_player = new Player(this);
 
 
@@ -54,7 +54,9 @@ void Game::Run ()
 	CheckVictory() ? Victory() : Defeat();
 
 	delete(_player);
+	_player = nullptr;
 	delete(_battlefield);
+	_battlefield = nullptr;
 }
 
 
