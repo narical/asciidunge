@@ -248,10 +248,10 @@ void Player::ActivateItem()
 {
 	if (_selectedItem != nullptr &&
 		_mana >= _selectedItem->GetManaCost() &&
-		_selectedItem->GetState() == NOT_SET)
+		_selectedItem->GetState() == Item::NOT_SET)
 	{
 		_target = nullptr;
-		_selectedItem->SetState(PREPARED);
+		_selectedItem->SetState(Item::PREPARED);
 		_mana -= _selectedItem->GetManaCost();
 	}
 }

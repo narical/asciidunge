@@ -17,6 +17,8 @@
 class Item
 {
 	public:
+		enum State {NOT_SET, PREPARED, ACTIVE};
+
 		Item() : _state(NOT_SET), _field(nullptr), _manaCost(0) { }
 		virtual ~Item() { }
 		virtual Item * Clone() const = 0;
@@ -26,11 +28,11 @@ class Item
 		std::string GetName() const { return _name; }
 		std::string GetDescription() const { return _description; }
 		uint8_t GetManaCost() const { return _manaCost; }
-		itemstate GetState() const { return _state; }
-		void SetState(itemstate state) { _state = state; }
+		State GetState() const { return _state; }
+		void SetState(State state) { _state = state; }
 
 	protected:
-		itemstate _state;
+		State _state;
 		std::string _name;
 		std::string _description;
 		Field * _field;
