@@ -9,6 +9,7 @@
 
 #include "config.hpp"
 #include "monster.hpp"
+#include "input.hpp"	//for Input::Direction
 
 class Game;
 class Player;
@@ -27,7 +28,7 @@ class Battlefield
 		void CalculateNextFight();
 		uint8_t CountNearObjects(Field *);
 		void Fight(Player *, Monster *, bool);
-		Field * GetNextField(Field *, direction) const;
+		Field * GetNextField(Field *, Input::Direction) const;
 
 		Field * GetRandomField() const { return _field[ rand() % BF_SIZE ][ rand() % BF_SIZE ]; }
 		Field * GetField(uint8_t row, uint8_t col) const { return _field[row][col]; }

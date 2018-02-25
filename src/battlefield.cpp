@@ -5,6 +5,7 @@
 //
 
 #include "battlefield.hpp"
+#include "input.hpp"
 #include "player.hpp"
 #include "field.hpp"
 #include "display.hpp"
@@ -95,7 +96,7 @@ void Battlefield::SpawnItems()
 
 
 
-Field * Battlefield::GetNextField(Field * currentField, direction dir) const
+Field * Battlefield::GetNextField(Field * currentField, Input::Direction dir) const
 {
 	uint8_t Col = currentField->GetCol();
 	uint8_t Row = currentField->GetRow();
@@ -106,28 +107,28 @@ Field * Battlefield::GetNextField(Field * currentField, direction dir) const
 
 	switch (dir)
 	{
-		case LEFT:	if (notLeft) return GetField(Row, --Col);
+		case Input::LEFT:	if (notLeft) return GetField(Row, --Col);
 			break;
 
-		case RIGHT:	if (notRight) return GetField(Row, ++Col);
+		case Input::RIGHT:	if (notRight) return GetField(Row, ++Col);
 			break;
 
-		case UP:	if (notTop) return GetField(--Row, Col);
+		case Input::UP:	if (notTop) return GetField(--Row, Col);
 			break;
 
-		case DOWN:	if (notBottom) return GetField(++Row, Col);
+		case Input::DOWN:	if (notBottom) return GetField(++Row, Col);
 			break;
 
-		case UPLEFT: if (notTop && notLeft) return GetField(--Row, --Col);
+		case Input::UPLEFT: if (notTop && notLeft) return GetField(--Row, --Col);
 			break;
 
-		case UPRIGHT: if (notTop && notRight) return GetField(--Row, ++Col);
+		case Input::UPRIGHT: if (notTop && notRight) return GetField(--Row, ++Col);
 			break;
 
-		case DOWNLEFT: if (notBottom && notLeft) return GetField(++Row, --Col);
+		case Input::DOWNLEFT: if (notBottom && notLeft) return GetField(++Row, --Col);
 			break;
 
-		case DOWNRIGHT: if (notBottom && notRight) return GetField(++Row, ++Col);
+		case Input::DOWNRIGHT: if (notBottom && notRight) return GetField(++Row, ++Col);
 			break;
 	}
 	return nullptr;
@@ -196,7 +197,7 @@ void Battlefield::CalculateNextFight()
 uint8_t Battlefield::CountNearObjects(Field *field)
 {
 	uint8_t summ = 0;
-	for (direction dir = LEFT; dir <= DOWNRIGHT; dir = direction(dir + 1))
+	for (Input::Direction dir = Input::LEFT; dir <= Input::DOWNRIGHT; dir = Input::Direction(dir + 1))
 	{
 		Field * nextField = GetNextField(field, dir);
 		if (nextField != nullptr &&

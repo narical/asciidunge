@@ -14,6 +14,8 @@ class Game;
 class Input
 {
 	public:
+		enum Direction {LEFT, RIGHT, UP, DOWN, UPLEFT, UPRIGHT, DOWNLEFT, DOWNRIGHT};
+
 		explicit Input(Game *);
 		void GetPlayerInput();
 		static void WaitAnyKey();

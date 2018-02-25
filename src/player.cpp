@@ -5,16 +5,16 @@
 //
 
 #include "player.hpp"
-#include <cassert>
-#include <ncurses.h>
 #include "battlefield.hpp"
 #include "powerup.hpp"
 #include "display.hpp"
+#include "input.hpp"
 #include "field.hpp"
 #include "item.hpp"
 #include "monster.hpp"
 #include "game.hpp"
-
+#include <cassert>
+#include <ncurses.h>
 
 
 Player::Player (Game *game) :
@@ -97,10 +97,10 @@ void Player::Act(int input_key)
 
 	switch(input_key)
 	{
-		case KEY_LEFT:  nextField = btl->GetNextField(currentField, LEFT); break;
-		case KEY_RIGHT:	nextField = btl->GetNextField(currentField, RIGHT); break;
-		case KEY_UP:	nextField = btl->GetNextField(currentField, UP); break;
-		case KEY_DOWN:  nextField = btl->GetNextField(currentField, DOWN);
+		case KEY_LEFT:  nextField = btl->GetNextField(currentField, Input::LEFT); break;
+		case KEY_RIGHT:	nextField = btl->GetNextField(currentField, Input::RIGHT); break;
+		case KEY_UP:	nextField = btl->GetNextField(currentField, Input::UP); break;
+		case KEY_DOWN:  nextField = btl->GetNextField(currentField, Input::DOWN);
 	}
 
 	if (nextField != nullptr) //if we're moving somewhere
