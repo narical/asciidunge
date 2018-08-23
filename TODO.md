@@ -28,6 +28,8 @@ target game state:
  - [x] damage powerup - gives 10% cumulative damage bonus
 
 ## Internal TO-DO list:
+- [ ] move from ncurses to libtcod library
+- [ ] add statemachine for different gamestates
 - [ ] refactor abstraction layers
 - [ ] add items recycling
 
