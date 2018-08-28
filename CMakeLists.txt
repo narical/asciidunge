@@ -25,7 +25,7 @@ set( SOURCE_ROOT src )
 aux_source_directory( ${SOURCE_ROOT} SOURCES )
 
 # Указываем пути, где искать заголовочники, дополнительно к стандартным путям.
-include_directories( include )
+include_directories( include /usr/include/libtcod/ )
 
 # Устанавливаем путь, куда будет скопирован исполняемый файл при выполнении
 # команды 'make install'.
@@ -33,13 +33,13 @@ set( INSTALL_PATH /usr/local/bin/ )
 
 # Указываем пути, где искать сторонние динамически библиотеки. Эти пути будут
 # просмотрены в дополнение к умолчальными системным путям.
-# link_directories( "/my/addition/path/to/lib" )
+# link_directories( "/usr/lib/" )
 
 # Перечисляем необходимые сторонние динамические библиотеки и сохраняем
 # их список в переменной REQUIRED_LIBRARIES.
 # Поиск этих библиотек будет произведён как по стандартным системным путям, 
 # так и по указанным выше (с помощью функции link_directories).
-set( REQUIRED_LIBRARIES ncurses )
+set( REQUIRED_LIBRARIES ncurses tcod tcodxx )
 
 # Устанавливаем флаги компилятора (причём никаких скрытых флагов, только эти).
 set( CMAKE_CXX_FLAGS "-O0 -Wall -pedantic" ) 
