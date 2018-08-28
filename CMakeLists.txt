@@ -39,7 +39,7 @@ set( INSTALL_PATH /usr/local/bin/ )
 # их список в переменной REQUIRED_LIBRARIES.
 # Поиск этих библиотек будет произведён как по стандартным системным путям, 
 # так и по указанным выше (с помощью функции link_directories).
-set( REQUIRED_LIBRARIES ncurses tcod tcodxx )
+set( REQUIRED_LIBRARIES tcod tcodxx )
 
 # Устанавливаем флаги компилятора (причём никаких скрытых флагов, только эти).
 set( CMAKE_CXX_FLAGS "-O0 -Wall -pedantic" ) 

@@ -17,7 +17,7 @@
 #include "monster.hpp"
 #include "field.hpp"
 #include "game.hpp"
-#include <ncurses.h>
+#include <libtcod.hpp>
 
 //horizontal wall
 std::string Display::HORIZ_WALL = "######################";
@@ -26,6 +26,7 @@ Display::Display(Game * game) :
 _game(game),
 _frame(CURRENT)
 {
+	TCODConsole::initRoot(80,50,"Asciidunge",false);
 	// Make frame counters to zero for every event type
 	for (eventtype event = LVLUP; event != EVENTS_END; event = eventtype(event + 1))
 		_frameCounters[event] = 0;
@@ -35,20 +36,20 @@ _frame(CURRENT)
 
 void Display::ShowFrame()
 {
-	clear();
+/*	clear();
 	DrawBattlefield();
 	DrawPlayerInfo();
 	if (_game->GetPlayer()->HaveTarget()) DrawEnemyInfo();
 	refresh();
 	SwitchFrameType();
-	ReduceCounters();
+	ReduceCounters(); */
 }
 
 
 
 void Display::DrawBattlefield()
 {
-	BoldOn();
+/*	BoldOn();
 	mvprintw(BF_ROW, BF_MARGIN, HORIZ_WALL.c_str());
 	for (uint8_t rowIndex = 0; rowIndex < BF_SIZE; ++rowIndex)
 	{
@@ -60,13 +61,14 @@ void Display::DrawBattlefield()
 	}
 	mvprintw(BF_ROW + BF_SIZE + 1, BF_MARGIN, HORIZ_WALL.c_str());
 	BoldOff();
+*/
 }
 
 
 
 void Display::DrawPlayerInfo()
 {
-	Player * plr_copy = nullptr;
+/*	Player * plr_copy = nullptr;
 	Monster * enemy_copy = nullptr;
 	
 	Player * plr = _game->GetPlayer();
@@ -169,14 +171,14 @@ void Display::DrawPlayerInfo()
 		else if (plr_copy->IsDead() && enemy_copy->IsAlive()) prediction = "DEATH !!!";
 		else if (plr_copy->IsAlive() && enemy_copy->IsDead()) prediction = "Victory!";
 		mvprintw(PLAYER_ROW + 13, BAR_MARGIN, "%s", prediction.c_str());
-	}
+	} */
 }
 
 
 
 void Display::DrawEnemyInfo()
 {
-	Monster * enemy = nullptr;
+/*	Monster * enemy = nullptr;
 	if (_game->GetBattlefield()->GetEnemyCopy() != nullptr && _frame == FUTURE)
 		enemy = _game->GetBattlefield()->GetEnemyCopy();
 		
@@ -197,14 +199,14 @@ void Display::DrawEnemyInfo()
 		mvprintw(ENEMY_ROW + 4, INFO_MARGIN, " [*]     %d   ", damage);
 
 		mvprintw(ENEMY_ROW + 2, BAR_MARGIN, "%s", healthBar.c_str());
-	}
+	} */
 }
 
 
 
 char Display::DrawField(uint8_t rowIndex, uint8_t colIndex)
 {
-	Field *playerField = _game->GetPlayer()->GetPosition();
+/*	Field *playerField = _game->GetPlayer()->GetPosition();
 	Field *playerTarget = _game->GetPlayer()->GetTargetField();
 	Field *field = _game->GetBattlefield()->GetField(rowIndex, colIndex);
 
@@ -269,7 +271,7 @@ char Display::DrawField(uint8_t rowIndex, uint8_t colIndex)
 		}
 
 		else printw(" ");
-	}
+	} */
 	return 0;
 }
 
@@ -312,7 +314,7 @@ void Display::SendEvent(eventtype event)
 
 void Display::CheckEvent(eventtype event)
 {
-	switch (event)
+/*	switch (event)
 	{
 		case LVLUP:
 		case HP_PWRUP:
@@ -328,72 +330,23 @@ void Display::CheckEvent(eventtype event)
 			break;
 
 		case EVENTS_END:;
-	}
-}
-
-
-
-void Display::BoldOn()
-{
-	attron(A_BOLD);
-}
-
-
-
-void Display::BoldOff()
-{
-	attroff(A_BOLD);
-}
-
-
-
-void Display::InvertOn()
-{
-	attron(A_REVERSE);
-}
-
-
-
-void Display::EndCheck()
-{
-	attroff(A_BOLD);
-	attroff(A_REVERSE);
+	} */
 }
 
 
 
 void Display::ShowVictoryScreen()
 {
-	clear();
+/*	clear();
 	mvprintw(2,2,"Victory!");
-	refresh();
+	refresh(); */
 }
 
 
 
 void Display::ShowDefeatScreen()
 {
-	clear();
+/*	clear();
 	mvprintw(2,2,"DEFEAT !");
-	refresh();
-}
-
-
-
-void Display::NcursesInit()
-{
-	initscr();
-	cbreak();
-	noecho();
-	curs_set(0);
-	keypad(stdscr, TRUE);
-	halfdelay(5);
-}
-
-
-
-void Display::NcursesShutdown()
-{
-	clear();
-	endwin();
+	refresh(); */
 }

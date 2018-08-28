@@ -9,7 +9,6 @@
 #include "display.hpp"
 #include "battlefield.hpp"
 #include "game.hpp"
-#include <ncurses.h>
 
 
 
@@ -22,7 +21,7 @@ Input::Input(Game * game) : _game(game)
 
 void Input::GetPlayerInput()
 {
-	Player *player = _game->GetPlayer();
+/*	Player *player = _game->GetPlayer();
 	
 	int input_key;
 	input_key = getch();
@@ -62,12 +61,12 @@ void Input::GetPlayerInput()
 		case 'q':
 			Display::NcursesShutdown();
 			exit(0);
-	}
+	} */
 }
 
 
 void Input::WaitAnyKey()
 {
-	while (true) if (getch() != ERR) break;
+//	while (true) if (getch() != ERR) break;
 }
 
