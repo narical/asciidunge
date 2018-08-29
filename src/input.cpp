@@ -9,6 +9,7 @@
 #include "display.hpp"
 #include "battlefield.hpp"
 #include "game.hpp"
+#include <libtcod.hpp>
 
 
 
@@ -21,6 +22,15 @@ Input::Input(Game * game) : _game(game)
 
 void Input::GetPlayerInput()
 {
+	TCOD_key_t key;
+	TCODSystem::checkForEvent(TCOD_EVENT_KEY_PRESS,&key,NULL);
+	switch(key.vk)
+	{
+		case TCODK_ESCAPE : exit(0); break;
+		default:break;
+	}
+
+
 /*	Player *player = _game->GetPlayer();
 	
 	int input_key;
@@ -67,6 +77,12 @@ void Input::GetPlayerInput()
 
 void Input::WaitAnyKey()
 {
-//	while (true) if (getch() != ERR) break;
+	TCOD_key_t key;
+	while( true )
+	{
+		TCODSystem::checkForEvent(TCOD_EVENT_KEY_PRESS,&key,NULL);
+		if (key.vk == TCODK_NONE) continue;
+		break;
+	}
 }
 
