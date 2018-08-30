@@ -5,7 +5,6 @@
 //
 
 #include "battlefield.hpp"
-#include "input.hpp"
 #include "player.hpp"
 #include "field.hpp"
 #include "display.hpp"
@@ -96,7 +95,7 @@ void Battlefield::SpawnItems()
 
 
 
-Field * Battlefield::GetNextField(Field * currentField, Input::Direction dir) const
+Field * Battlefield::GetNextField(Field * currentField, direction  dir) const
 {
 	uint8_t Col = currentField->GetCol();
 	uint8_t Row = currentField->GetRow();
@@ -107,28 +106,28 @@ Field * Battlefield::GetNextField(Field * currentField, Input::Direction dir) co
 
 	switch (dir)
 	{
-		case Input::LEFT:	if (notLeft) return GetField(Row, --Col);
+		case LEFT:	if (notLeft) return GetField(Row, --Col);
 			break;
 
-		case Input::RIGHT:	if (notRight) return GetField(Row, ++Col);
+		case RIGHT:	if (notRight) return GetField(Row, ++Col);
 			break;
 
-		case Input::UP:	if (notTop) return GetField(--Row, Col);
+		case UP:	if (notTop) return GetField(--Row, Col);
 			break;
 
-		case Input::DOWN:	if (notBottom) return GetField(++Row, Col);
+		case DOWN:	if (notBottom) return GetField(++Row, Col);
 			break;
 
-		case Input::UPLEFT: if (notTop && notLeft) return GetField(--Row, --Col);
+		case UPLEFT: if (notTop && notLeft) return GetField(--Row, --Col);
 			break;
 
-		case Input::UPRIGHT: if (notTop && notRight) return GetField(--Row, ++Col);
+		case UPRIGHT: if (notTop && notRight) return GetField(--Row, ++Col);
 			break;
 
-		case Input::DOWNLEFT: if (notBottom && notLeft) return GetField(++Row, --Col);
+		case DOWNLEFT: if (notBottom && notLeft) return GetField(++Row, --Col);
 			break;
 
-		case Input::DOWNRIGHT: if (notBottom && notRight) return GetField(++Row, ++Col);
+		case DOWNRIGHT: if (notBottom && notRight) return GetField(++Row, ++Col);
 			break;
 	}
 	return nullptr;
@@ -186,7 +185,6 @@ void Battlefield::CalculateNextFight()
 {
 	if (_playerCopy != 0) delete _playerCopy;
 	if (_enemyCopy != 0) delete _enemyCopy;
-//	_playerCopy = new Player( *_player );
 	_playerCopy = new Player( *(_game->GetPlayer()) );
 	_enemyCopy = new Monster( *( _game->GetPlayer()->GetTargetField()->GetEnemy() ) );
 	Fight(_playerCopy, _enemyCopy, false);
@@ -197,7 +195,7 @@ void Battlefield::CalculateNextFight()
 uint8_t Battlefield::CountNearObjects(Field *field)
 {
 	uint8_t summ = 0;
-	for (Input::Direction dir = Input::LEFT; dir <= Input::DOWNRIGHT; dir = Input::Direction(dir + 1))
+	for (direction dir = LEFT; dir <= DOWNRIGHT; dir = direction(dir + 1))
 	{
 		Field * nextField = GetNextField(field, dir);
 		if (nextField != nullptr &&

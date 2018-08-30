@@ -88,20 +88,13 @@ void Player::CalculateStats()
 
 
 
-void Player::Act(int input_key)
+void Player::Act(direction input_dir)
 {
 	Field *currentField = _position;
 	Field *nextField = currentField;
 	Field *targetField = GetTargetField();
 	Battlefield *btl = _game->GetBattlefield();
-
-	switch(input_key)
-	{
-		case KEY_LEFT:  nextField = btl->GetNextField(currentField, Input::LEFT); break;
-		case KEY_RIGHT:	nextField = btl->GetNextField(currentField, Input::RIGHT); break;
-		case KEY_UP:	nextField = btl->GetNextField(currentField, Input::UP); break;
-		case KEY_DOWN:  nextField = btl->GetNextField(currentField, Input::DOWN);
-	}
+	nextField = btl->GetNextField(currentField, input_dir);
 
 	if (nextField != nullptr) //if we're moving somewhere
 	{

@@ -24,7 +24,7 @@ class Player
 		Player(const Player &);
 		Player& operator=(const Player &);
 
-		void Act(int);
+		void Act(direction);
 		void LevelUp();
 		void TakeItem();
 		void DropItem();
