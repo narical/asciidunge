@@ -62,7 +62,10 @@ void Battlefield::SpawnEnemies()
 
 void Battlefield::SpawnPowerups()
 {
-	for (Powerup::Type type = Powerup::HEALTH; type <= Powerup::DAMAGE; type = Powerup::Type(type + 1))
+    uint8_t list_begin = static_cast<uint8_t>(Powerups::HEALTH);
+    uint8_t list_end = static_cast<uint8_t>(Powerups::DAMAGE);
+
+	for (uint8_t type = list_begin; type <= list_end; type++)
 	{
 		uint8_t powerupsToSpawn = POWERUPS_QUANTITY_BY_TYPE[type];
 		while (powerupsToSpawn > 0)
@@ -71,7 +74,8 @@ void Battlefield::SpawnPowerups()
 			if ( field->HavePowerup() ||
 				CountNearObjects(field) > MAX_NEAR_OBJECTS ) continue;
 
-			field->SpawnPowerup(type);
+            
+			field->SpawnPowerup(static_cast<Powerups>(type));
 			powerupsToSpawn--;
 		}
 	}
@@ -95,7 +99,7 @@ void Battlefield::SpawnItems()
 
 
 
-Field * Battlefield::GetNextField(Field * currentField, direction  dir) const
+Field * Battlefield::GetNextField(Field * currentField, Directions  dir) const
 {
 	uint8_t Col = currentField->GetCol();
 	uint8_t Row = currentField->GetRow();
@@ -106,28 +110,28 @@ Field * Battlefield::GetNextField(Field * currentField, direction  dir) const
 
 	switch (dir)
 	{
-		case LEFT:	if (notLeft) return GetField(Row, --Col);
+		case Directions::LEFT:	if (notLeft) return GetField(Row, --Col);
 			break;
 
-		case RIGHT:	if (notRight) return GetField(Row, ++Col);
+		case Directions::RIGHT:	if (notRight) return GetField(Row, ++Col);
 			break;
 
-		case UP:	if (notTop) return GetField(--Row, Col);
+		case Directions::UP:	if (notTop) return GetField(--Row, Col);
 			break;
 
-		case DOWN:	if (notBottom) return GetField(++Row, Col);
+		case Directions::DOWN:	if (notBottom) return GetField(++Row, Col);
 			break;
 
-		case UPLEFT: if (notTop && notLeft) return GetField(--Row, --Col);
+		case Directions::UPLEFT: if (notTop && notLeft) return GetField(--Row, --Col);
 			break;
 
-		case UPRIGHT: if (notTop && notRight) return GetField(--Row, ++Col);
+		case Directions::UPRIGHT: if (notTop && notRight) return GetField(--Row, ++Col);
 			break;
 
-		case DOWNLEFT: if (notBottom && notLeft) return GetField(++Row, --Col);
+		case Directions::DOWNLEFT: if (notBottom && notLeft) return GetField(++Row, --Col);
 			break;
 
-		case DOWNRIGHT: if (notBottom && notRight) return GetField(++Row, ++Col);
+		case Directions::DOWNRIGHT: if (notBottom && notRight) return GetField(++Row, ++Col);
 			break;
 	}
 	return nullptr;
@@ -146,12 +150,12 @@ void Battlefield::Fight(Player * player, Monster * enemy, bool realFight)
 	if (monsterInitiative >= playerInitiative)
 	{
 		enemy->Attack(player);
-		if (realFight) display->SendEvent(PLR_HIT_1);
+		if (realFight) display->SendEvent(Events::PLR_HIT_1);
 
 		if (player->IsAlive())
 		{
 			enemy->TakeDamage(player);
-			if (realFight) display->SendEvent(MNSTR_HIT_2);
+			if (realFight) display->SendEvent(Events::MNSTR_HIT_2);
 			
 			if (enemy->IsDead())
 			{
@@ -163,7 +167,7 @@ void Battlefield::Fight(Player * player, Monster * enemy, bool realFight)
 	else
 	{
 		enemy->TakeDamage(player);
-		if (realFight) display->SendEvent(MNSTR_HIT_1);
+		if (realFight) display->SendEvent(Events::MNSTR_HIT_1);
 
 		if (enemy->IsDead())
 		{
@@ -173,7 +177,7 @@ void Battlefield::Fight(Player * player, Monster * enemy, bool realFight)
 		else
 		{
 			enemy->Attack(player);
-			if (realFight) display->SendEvent(PLR_HIT_2);
+			if (realFight) display->SendEvent(Events::PLR_HIT_2);
 		}
 	}
 	player->HandleItems("Sword of Readiness");
@@ -195,9 +199,12 @@ void Battlefield::CalculateNextFight()
 uint8_t Battlefield::CountNearObjects(Field *field)
 {
 	uint8_t summ = 0;
-	for (direction dir = LEFT; dir <= DOWNRIGHT; dir = direction(dir + 1))
+	uint8_t list_begin = static_cast<uint8_t>(Directions::LEFT);
+	uint8_t list_end = static_cast<uint8_t>(Directions::DOWNRIGHT);
+	
+	for (uint8_t dir = list_begin; dir <= list_end; dir++)
 	{
-		Field * nextField = GetNextField(field, dir);
+		Field * nextField = GetNextField(field, static_cast<Directions>(dir));
 		if (nextField != nullptr &&
 		( nextField->HaveEnemy() || nextField->HavePowerup() || nextField->HaveItem() ))
 			++summ;

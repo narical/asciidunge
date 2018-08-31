@@ -24,7 +24,7 @@ class Player
 		Player(const Player &);
 		Player& operator=(const Player &);
 
-		void Act(direction);
+		void Act(Directions);
 		void LevelUp();
 		void TakeItem();
 		void DropItem();
@@ -34,7 +34,7 @@ class Player
 		void CalculateStats();
 		void GainExp(Monster *);
 		void HandleItems(std::string);
-		eventtype TakePowerup(Field *);
+		Events TakePowerup(Field *);
 
 		void Heal() { _HP = _maxHP; }
 		void Recover() { _mana = _maxMana; }

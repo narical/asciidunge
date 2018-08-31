@@ -13,8 +13,11 @@
 #include <cstdlib>
 #include <string>
 
-enum direction  {LEFT, RIGHT, UP, DOWN, UPLEFT, UPRIGHT, DOWNLEFT, DOWNRIGHT};
-enum eventtype  {LVLUP, HP_PWRUP, MANA_PWRUP, DMG_PWRUP,
+enum class Powerups {HEALTH, MANA, DAMAGE};
+enum class Frames {CURRENT, FUTURE};
+enum class Itemstates {NOT_SET, PREPARED, ACTIVE};
+enum class Directions {LEFT, RIGHT, UP, DOWN, UPLEFT, UPRIGHT, DOWNLEFT, DOWNRIGHT};
+enum class Events {LVLUP, HP_PWRUP, MANA_PWRUP, DMG_PWRUP,
 				PLR_HIT_1, MNSTR_HIT_1, PLR_HIT_2, MNSTR_HIT_2,
 				EVENTS_END};
 

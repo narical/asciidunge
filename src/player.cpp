@@ -26,9 +26,9 @@ _selectedItem( nullptr ),
 _target( nullptr ),
 _game( game )
 {
-	_powerups[Powerup::HEALTH] = 0;
-	_powerups[Powerup::MANA] = 0;
-	_powerups[Powerup::DAMAGE] = 0;
+	_powerups[static_cast<uint8_t>(Powerups::HEALTH)] = 0;
+	_powerups[static_cast<uint8_t>(Powerups::MANA)] = 0;
+	_powerups[static_cast<uint8_t>(Powerups::DAMAGE)] = 0;
 	for (uint8_t i = 0; i < 4; ++i) _inventory[i] = nullptr;
 	Field *field = nullptr;
 	while (true)
@@ -62,7 +62,10 @@ Player::Player (const Player &p) :
 	_target(nullptr),
 	_game(p._game)
 {
-	for (Powerup::Type type = Powerup::HEALTH; type <= Powerup::DAMAGE; type = Powerup::Type(type + 1))
+    uint8_t list_begin = static_cast<uint8_t>(Powerups::HEALTH);
+    uint8_t list_end = static_cast<uint8_t>(Powerups::DAMAGE);
+    
+	for (uint8_t type = list_begin; type <= list_end; ++type)
 		_powerups[type] = p._powerups[type];
 
 	for (uint8_t i = 0; i < 4; ++i)
@@ -80,15 +83,19 @@ Player::Player (const Player &p) :
 
 void Player::CalculateStats()
 {
-	_maxHP		= _level * (HEALTH_PER_LEVEL + _powerups[Powerup::HEALTH]);
-	_maxMana	= _powerups[Powerup::MANA] + START_MAX_MANA; 
-	_damage		= _level * DAMAGE_PER_LEVEL * (1 + _powerups[Powerup::DAMAGE] * (float) POWERUP_DAMAGE_BONUS /100 );
+    uint8_t health_index = static_cast<uint8_t>(Powerups::HEALTH);
+    uint8_t damage_index = static_cast<uint8_t>(Powerups::DAMAGE);
+    uint8_t mana_index = static_cast<uint8_t>(Powerups::MANA);
+    
+	_maxHP		= _level * (HEALTH_PER_LEVEL + _powerups[health_index]);
+	_maxMana	= _powerups[mana_index] + START_MAX_MANA; 
+	_damage		= _level * DAMAGE_PER_LEVEL * (1 + _powerups[damage_index] * (float) POWERUP_DAMAGE_BONUS /100 );
 	_expMax		= _level * NEXT_LEVEL_MULTIPLIER;
 }
 
 
 
-void Player::Act(direction input_dir)
+void Player::Act(Directions input_dir)
 {
 	Field *currentField = _position;
 	Field *nextField = currentField;
@@ -181,19 +188,21 @@ void Player::LevelUp()
 
 
 
-eventtype Player::TakePowerup(Field * field)
+Events Player::TakePowerup(Field * field)
 {
-	Powerup::Type type = field->GetPowerup()->GetType();
-	++_powerups[type];
+	Powerups type = field->GetPowerup()->GetType();
+    uint8_t type_index = static_cast<uint8_t>(type);
+	++_powerups[type_index];
 	CalculateStats();
 	field->RemovePowerup();
 	
-	eventtype result;
+	Events result;
 	switch (type)
 	{
-		case Powerup::HEALTH:	result = HP_PWRUP; break;
-		case Powerup::MANA:		result = MANA_PWRUP; break;
-		case Powerup::DAMAGE:	result = DMG_PWRUP;
+		case Powerups::HEALTH:  result = Events::HP_PWRUP; break;
+		case Powerups::MANA:    result = Events::MANA_PWRUP; break;
+		case Powerups::DAMAGE:  result = Events::DMG_PWRUP; break;
+		default: break;
 	}
 	return result;
 }
@@ -241,10 +250,10 @@ void Player::ActivateItem()
 {
 	if (_selectedItem != nullptr &&
 		_mana >= _selectedItem->GetManaCost() &&
-		_selectedItem->GetState() == Item::NOT_SET)
+		_selectedItem->GetState() == Itemstates::NOT_SET)
 	{
 		_target = nullptr;
-		_selectedItem->SetState(Item::PREPARED);
+		_selectedItem->SetState(Itemstates::PREPARED);
 		_mana -= _selectedItem->GetManaCost();
 	}
 }

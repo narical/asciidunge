@@ -29,7 +29,7 @@ class Field
 
 		void SpawnItem();
 		void TEST_SpawnItem(uint8_t);
-		void SpawnPowerup(Powerup::Type type);
+		void SpawnPowerup(Powerups);
 		void RemovePowerup();
 
 		bool HaveEnemy() const { return ((_enemy != nullptr) && _enemy->IsAlive()); }

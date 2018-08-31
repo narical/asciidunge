@@ -12,6 +12,7 @@
 
 uint16_t Monster::FromCurve(uint16_t min, uint16_t max)
 {
+//FIX: WTF is that?
 	if (_level == 1) return min;
 	if (_level == 9) return max;
 	if (_level == 10) return (uint16_t) max * 1.5;

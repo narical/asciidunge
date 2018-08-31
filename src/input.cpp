@@ -28,10 +28,10 @@ void Input::GetPlayerInput()
 	TCODSystem::checkForEvent(TCOD_EVENT_KEY_PRESS,&key,NULL);
 	switch( key.vk )
 	{
-		case TCODK_UP	 :	player->Act(UP);	break;
-		case TCODK_RIGHT :	player->Act(RIGHT);	break;
-		case TCODK_DOWN	 :	player->Act(DOWN);	break;
-		case TCODK_LEFT	 :	player->Act(LEFT);	break;
+		case TCODK_UP	 :	player->Act(Directions::UP);	break;
+		case TCODK_RIGHT :	player->Act(Directions::RIGHT);	break;
+		case TCODK_DOWN	 :	player->Act(Directions::DOWN);	break;
+		case TCODK_LEFT	 :	player->Act(Directions::LEFT);	break;
 		case TCODK_1	 :	player->SelectItem(1);	break;
 		case TCODK_2 	 :	player->SelectItem(2);	break;
 		case TCODK_3 	 :	player->SelectItem(3);	break;

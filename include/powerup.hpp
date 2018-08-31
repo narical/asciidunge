@@ -8,19 +8,18 @@
 #define _POWERUP_H_
 
 #include "config.hpp"
-#include <cstdio>
+
 class Field;
 
 
 class Powerup
 {
 	public:
-		enum Type {HEALTH, MANA, DAMAGE};
-		explicit Powerup(Type t) : _type(t), _field(nullptr) { }
-		Type GetType() { return _type; }
+		explicit Powerup(Powerups p) : _type(p), _field(nullptr) { }
+		Powerups GetType() { return _type; }
 
 	private:
-		Type _type;
+		Powerups _type;
 		Field * _field; //FIX: find out wtf
 };
 

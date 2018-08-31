@@ -27,7 +27,7 @@ class Battlefield
 		void CalculateNextFight();
 		uint8_t CountNearObjects(Field *);
 		void Fight(Player *, Monster *, bool);
-		Field * GetNextField(Field *, direction) const;
+		Field * GetNextField(Field *, Directions) const;
 
 		Field * GetRandomField() const { return _field[ rand() % BF_SIZE ][ rand() % BF_SIZE ]; }
 		Field * GetField(uint8_t row, uint8_t col) const { return _field[row][col]; }

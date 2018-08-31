@@ -24,12 +24,15 @@ std::string Display::HORIZ_WALL = "######################";
 
 Display::Display(Game * game) :
 _game(game),
-_frame(CURRENT)
+_frame(Frames::CURRENT)
 {
 	TCODConsole::initRoot(80,50,"Asciidunge",false);
+    //TODO: insert FPS limiter here
 	// Make frame counters to zero for every event type
-	for (eventtype event = LVLUP; event != EVENTS_END; event = eventtype(event + 1))
-		_frameCounters[event] = 0;
+	uint8_t list_begin = static_cast<uint8_t>(Events::LVLUP);
+	uint8_t list_end = static_cast<uint8_t>(Events::EVENTS_END);
+	
+	for (uint8_t event = list_begin; event < list_end; ++event)	_frameCounters[event] = 0;
 }
 
 
@@ -150,7 +153,7 @@ void Display::DrawPlayerInfo()
 	
 	if (str_grnd != "")	mvprintw(PLAYER_ROW + 7, INFO_MARGIN, "%s", str_grnd.c_str());
 	
-	CheckEvent(LVLUP);
+	CheckEvent(Events::LVLUP);
 	mvprintw(PLAYER_ROW + 9, INFO_MARGIN, "%s - level %d", name.c_str(), level);
 	EndCheck();
 	CheckEvent(HP_PWRUP);
@@ -263,7 +266,7 @@ char Display::DrawField(uint8_t rowIndex, uint8_t colIndex)
 
 		else if (field == playerField)
 		{
-			CheckEvent(LVLUP);
+			CheckEvent(Events::LVLUP);
 			CheckEvent(PLR_HIT_1);
 			CheckEvent(PLR_HIT_2);
 			printw("@");
@@ -279,7 +282,10 @@ char Display::DrawField(uint8_t rowIndex, uint8_t colIndex)
 
 void Display::ReduceCounters()
 {
-	for (eventtype event = LVLUP; event != EVENTS_END; event = eventtype(event + 1))
+	uint8_t list_begin = static_cast<uint8_t>(Events::LVLUP);
+	uint8_t list_end = static_cast<uint8_t>(Events::EVENTS_END);
+	
+	for (uint8_t event = list_begin; event < list_end; ++event)
 		if (_frameCounters[event] > 0) --_frameCounters[event];
 }
 
@@ -287,7 +293,7 @@ void Display::ReduceCounters()
 
 void Display::SwitchFrameType()
 {
-	_frame = (_frame == CURRENT ? FUTURE : CURRENT);
+	_frame = (_frame == Frames::CURRENT ? Frames::FUTURE : Frames::CURRENT);
 }
 
 
@@ -305,18 +311,19 @@ std::string Display::DrawBar(uint16_t current, uint16_t max) const
 
 
 
-void Display::SendEvent(eventtype event)
+void Display::SendEvent(Events event)
 {
-	_frameCounters[event] = EVENT_TIMERS[event];
+    uint8_t num = static_cast<uint8_t>(event);
+	_frameCounters[num] = EVENT_TIMERS[num];
 }
 
 
 
-void Display::CheckEvent(eventtype event)
+void Display::CheckEvent(Events event)
 {
 /*	switch (event)
 	{
-		case LVLUP:
+		case Events::LVLUP:
 		case HP_PWRUP:
 		case MANA_PWRUP:
 		case DMG_PWRUP:
@@ -329,7 +336,7 @@ void Display::CheckEvent(eventtype event)
 			if (_frameCounters[event] == 1) InvertOn();
 			break;
 
-		case EVENTS_END:;
+		case Events::EVENTS_END:;
 	} */
 }
 

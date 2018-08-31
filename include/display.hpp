@@ -14,11 +14,9 @@ class Game;
 
 class Display
 {
-	enum frametype {CURRENT, FUTURE};
-
 	public:
 		explicit Display (Game *);
-		void SendEvent(eventtype);
+		void SendEvent(Events);
 		void ShowFrame();
 
 		static void ShowVictoryScreen();
@@ -29,11 +27,11 @@ class Display
 	private:
 		uint8_t _frameCounters[4];
 		Game *_game;
-		frametype _frame;
+		Frames _frame;
 
 		std::string DrawBar(uint16_t, uint16_t) const;
 		char DrawField(uint8_t, uint8_t);
-		void CheckEvent(eventtype);
+		void CheckEvent(Events);
 		void DrawBattlefield();
 		void SwitchFrameType();
 		void DrawPlayerInfo();
@@ -48,4 +46,3 @@ class Display
 };
 
 #endif // _DISPLAY_H_
-

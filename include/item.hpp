@@ -17,9 +17,7 @@
 class Item
 {
 	public:
-		enum State {NOT_SET, PREPARED, ACTIVE};
-
-		Item() : _state(NOT_SET), _field(nullptr), _manaCost(0) { }
+		Item() : _state(Itemstates::NOT_SET), _field(nullptr), _manaCost(0) { }
 		virtual ~Item() { }
 		virtual Item * Clone() const = 0;
 		virtual void Use(Player *) { }
@@ -28,11 +26,11 @@ class Item
 		std::string GetName() const { return _name; }
 		std::string GetDescription() const { return _description; }
 		uint8_t GetManaCost() const { return _manaCost; }
-		State GetState() const { return _state; }
-		void SetState(State state) { _state = state; }
+		Itemstates GetState() const { return _state; }
+		void SetState(Itemstates state) { _state = state; }
 
 	protected:
-		State _state;
+		Itemstates _state;
 		std::string _name;
 		std::string _description;
 		Field * _field;
@@ -59,17 +57,17 @@ class EnergyShield : public Item
 		{
 			switch (_state)
 			{
-				case PREPARED:
+				case Itemstates::PREPARED:
 					// ADD CHANGE HERE
-					_state = ACTIVE;
+					_state = Itemstates::ACTIVE;
 					break;
 
-				case ACTIVE:
+				case Itemstates::ACTIVE:
 					// REMOVE ANY CHANGES HERE
-					_state = NOT_SET;
+					_state = Itemstates::NOT_SET;
 					break;
 
-				case NOT_SET:;
+				case Itemstates::NOT_SET:;
 			}
 		}
 
@@ -97,17 +95,17 @@ class Fireball : public Item
 		{
 			switch (_state)
 			{
-				case PREPARED:
+				case Itemstates::PREPARED:
 					// ADD CHANGE HERE
-					_state = ACTIVE;
+					_state = Itemstates::ACTIVE;
 					break;
 
-				case ACTIVE:
+				case Itemstates::ACTIVE:
 					// REMOVE ANY CHANGES HERE
-					_state = NOT_SET;
+					_state = Itemstates::NOT_SET;
 					break;
 
-				case NOT_SET:;
+				case Itemstates::NOT_SET:;
 			}
 		}
 
@@ -135,17 +133,17 @@ class Heal : public Item
 		{
 			switch (_state)
 			{
-				case PREPARED:
+				case Itemstates::PREPARED:
 					// ADD CHANGE HERE
-					_state = ACTIVE;
+					_state = Itemstates::ACTIVE;
 					break;
 
-				case ACTIVE:
+				case Itemstates::ACTIVE:
 					// REMOVE ANY CHANGES HERE
-					_state = NOT_SET;
+					_state = Itemstates::NOT_SET;
 					break;
 
-				case NOT_SET:;
+				case Itemstates::NOT_SET:;
 			}
 		}
 
@@ -173,17 +171,17 @@ class MightyStrike : public Item
 		{
 			switch (_state)
 			{
-				case PREPARED:
+				case Itemstates::PREPARED:
 					// ADD CHANGE HERE
-					_state = ACTIVE;
+					_state = Itemstates::ACTIVE;
 					break;
 
-				case ACTIVE:
+				case Itemstates::ACTIVE:
 					// REMOVE ANY CHANGES HERE
-					_state = NOT_SET;
+					_state = Itemstates::NOT_SET;
 					break;
 
-				case NOT_SET:;
+				case Itemstates::NOT_SET:;
 			}
 		}
 
@@ -211,17 +209,17 @@ class SwordOfReadiness : public Item
 		{
 			switch (_state)
 			{
-				case PREPARED:
+				case Itemstates::PREPARED:
 					player->SetInitiative(_bonus_initiative);
-					_state = ACTIVE;
+					_state = Itemstates::ACTIVE;
 					break;
 
-				case ACTIVE:
+				case Itemstates::ACTIVE:
 					player->SetInitiative(-_bonus_initiative);
-					_state = NOT_SET;
+					_state = Itemstates::NOT_SET;
 					break;
 
-				case NOT_SET:;
+				case Itemstates::NOT_SET:;
 			}
 		}
 
