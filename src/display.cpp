@@ -16,6 +16,7 @@
 #include "field.hpp"
 #include "game.hpp"
 #include <libtcod.hpp>
+#include <cassert>
 
 //horizontal wall
 std::string Display::HORIZ_WALL = "######################";
@@ -51,20 +52,15 @@ void Display::ShowFrame()
 
 void Display::DrawBattlefield()
 {
-
-/*	BoldOn();
-	mvprintw(BF_ROW, BF_MARGIN, HORIZ_WALL.c_str());
-	for (uint8_t rowIndex = 0; rowIndex < BF_SIZE; ++rowIndex)
+    TCODConsole::root->print(BF_MARGIN, BF_ROW, HORIZ_WALL.c_str());
+	for (uint8_t rowIndex = 1; rowIndex <= BF_SIZE; ++rowIndex)
 	{
-		mvprintw(BF_ROW + rowIndex + 1, BF_MARGIN, "#");
-		BoldOff();
-		for (uint8_t colIndex = 0; colIndex < BF_SIZE; ++colIndex) DrawField(rowIndex, colIndex);
-		BoldOn();
-		printw("#");
+		TCODConsole::root->print(BF_MARGIN, BF_ROW + rowIndex, "#\n");
+		for (uint8_t colIndex = 1; colIndex <= BF_SIZE; ++colIndex) 
+    		TCODConsole::root->print(BF_MARGIN + colIndex, BF_ROW + rowIndex, DrawField(rowIndex-1, colIndex-1));
+		TCODConsole::root->print(BF_MARGIN + BF_SIZE + 1, BF_ROW + rowIndex, "#\n");
 	}
-	mvprintw(BF_ROW + BF_SIZE + 1, BF_MARGIN, HORIZ_WALL.c_str());
-	BoldOff();
-*/
+    TCODConsole::root->print(BF_MARGIN, BF_ROW + BF_SIZE + 1, HORIZ_WALL.c_str());
 }
 
 
@@ -207,31 +203,32 @@ void Display::DrawEnemyInfo()
 
 
 
-char Display::DrawField(uint8_t rowIndex, uint8_t colIndex)
+const char* Display::DrawField(uint8_t rowIndex, uint8_t colIndex) const
 {
-/*	Field *playerField = _game->GetPlayer()->GetPosition();
+	Field *playerField = _game->GetPlayer()->GetPosition();
 	Field *playerTarget = _game->GetPlayer()->GetTargetField();
 	Field *field = _game->GetBattlefield()->GetField(rowIndex, colIndex);
+    assert(field != nullptr);
 
-	if (!field->IsVisible()) printw(".");
+	if (!field->IsVisible()) return ".\n";
 	else
 	{
 		if (field->HaveEnemy())
 	 	{
 			if (field == playerTarget)
 			{
-				BoldOn();
-				CheckEvent(MNSTR_HIT_1);
-				CheckEvent(MNSTR_HIT_2);
-				if (field->GetEnemy()->GetLevel() == 10) printw("Z");
-				else printw("%d", field->GetEnemy()->GetLevel());
-				EndCheck();
-				BoldOff();
+				//BoldOn();
+				//CheckEvent(MNSTR_HIT_1);
+				//CheckEvent(MNSTR_HIT_2);
+				if (field->GetEnemy()->GetLevel() == 10) return "Z\n";
+				else return (std::to_string(field->GetEnemy()->GetLevel()) + "\n").c_str();
+				//EndCheck();
+				//BoldOff();
 			}
 			else
 			{
-				if (field->GetEnemy()->GetLevel() == 10) printw("Z");
-				else printw("%d", field->GetEnemy()->GetLevel());
+				if (field->GetEnemy()->GetLevel() == 10) return "Z\n";
+				else return (std::to_string(field->GetEnemy()->GetLevel()) + "\n").c_str();
 			}
 		}
 
@@ -239,43 +236,43 @@ char Display::DrawField(uint8_t rowIndex, uint8_t colIndex)
 		{
 			switch (field->GetPowerup()->GetType())
 			{
-				case Powerup::HEALTH:
-					printw("+");
+				case Powerups::HEALTH:
+					return "+\n";
 					break;
 					
-				case Powerup::MANA:
-					printw("x");
+				case Powerups::MANA:
+					return "x\n";
 					break;
 					
-				case Powerup::DAMAGE:
-					printw("*");
+				case Powerups::DAMAGE:
+					return "*\n";
 			}
 		}
 
 		else if (field != playerField && field->HaveItem())
 		{
-			printw("i");
+			return "i\n";
 		}
 
 		else if (field == playerField && field->HaveItem())
 		{
-			BoldOn();
-			printw("@");
-			BoldOff();
+			// BoldOn();
+			return "@\n";
+			// BoldOff();
 		}
 
 		else if (field == playerField)
 		{
-			CheckEvent(Events::LVLUP);
-			CheckEvent(PLR_HIT_1);
-			CheckEvent(PLR_HIT_2);
-			printw("@");
-			EndCheck();
+			// CheckEvent(Events::LVLUP);
+			// CheckEvent(PLR_HIT_1);
+			// CheckEvent(PLR_HIT_2);
+			return "@\n";
+			// EndCheck();
 		}
 
-		else printw(" ");
-	} */
-	return 0;
+		else return " \n";
+	}
+    return "S\n";
 }
 
 
@@ -323,18 +320,18 @@ void Display::CheckEvent(Events event)
 {
 /*	switch (event)
 	{
-		case Events::LVLUP:
+		case Eve.ts::LVLUP:
 		case HP_PWRUP:
 		case MANA_PWRUP:
 		case DMG_PWRUP:
 			if (_frameCounters[event] > 0 && _frameCounters[event] % 2) BoldOn();
 			break;
-		case PLR_HIT_1:
-		case MNSTR_HIT_1:
+		case PLR_HIT//_1:
+		case MNSTR_H//IT_1:
 		case PLR_HIT_2:
 		case MNSTR_HIT_2:
-			if (_frameCounters[event] == 1) InvertOn();
-			break;
+			if e\nf; //ameCounters[event] == 1) InvertOn()//;
+			brea//k;
 
 		case Events::EVENTS_END:;
 	} */
@@ -355,5 +352,5 @@ void Display::ShowDefeatScreen()
 {
 /*	clear();
 	mvprintw(2,2,"DEFEAT !");
-	refresh(); */
+s	\nrfresh(); */
 }

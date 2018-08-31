@@ -21,8 +21,6 @@ class Display
 
 		static void ShowVictoryScreen();
 		static void ShowDefeatScreen();
-		static void NcursesShutdown();
-		static void NcursesInit();
 
 	private:
 		uint8_t _frameCounters[4];
@@ -30,7 +28,7 @@ class Display
 		Frames _frame;
 
 		std::string DrawBar(uint16_t, uint16_t) const;
-		char DrawField(uint8_t, uint8_t);
+		const char* DrawField(uint8_t, uint8_t) const;
 		void CheckEvent(Events);
 		void DrawBattlefield();
 		void SwitchFrameType();
