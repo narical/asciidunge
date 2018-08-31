@@ -10,3 +10,4 @@ list of babysteps to getting things done
 
 ## 30/08/2018
 - [x] Full rework of Input class to libtcod
+- [x] Move enums to "enum class" in config.hpp

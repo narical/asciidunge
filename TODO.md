@@ -1,9 +1,11 @@
 # asciidunge
 Small ascii roguelike game
-*ncurses-based console "Desktop Dungeon" clone*
+*console-based "Desktop Dungeon" clone*
 
 Next milestone: v0.5a
 target game state:
+
+- [x] switch from ncurses to libtcod library
 
 - [x] 8 different monsters with different "perks":
  - [x] skeleton - weak in any way

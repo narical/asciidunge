@@ -1,19 +1,20 @@
-*README NEEDS UPDATING*
-
 # asciidunge
 Small ascii roguelike game
-*ncurses-based console "Desktop Dungeon" clone*
+*console-based "Desktop Dungeon" clone*
 
 # Compiling
-Run "cmake && make" in "build" directory
-(needs ncurses library)
+Run "cmake .. && make" in "build" directory
+(needs libtcod library)
 
 ## Development Roadmap:
 
-### 0.5a
+### 0.6a
 - [x] different monster types have different properties
 - [ ] different player classes have different properties
 - [ ] added inventory and pickable/dropable items
+
+### 0.5a
+- [ ] move from ncurses to libtcod library
 
 ## version history:
 
