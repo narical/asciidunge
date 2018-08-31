@@ -47,6 +47,8 @@ const uint8_t POWERUP_MANA_BONUS = 1;
 const uint8_t POWERUP_DAMAGE_BONUS = 10; //in percents
 
 // Display
+const uint8_t MAX_FPS = 20;
+
 const uint8_t BARWIDTH = 20;
 const uint8_t BF_ROW = 1;
 const uint8_t PLAYER_ROW = 1;

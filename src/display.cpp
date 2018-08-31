@@ -4,8 +4,6 @@
 // display.cpp
 //
 
-// Dirty code for drawing/animating game with ncurses.
-// BEWARE !
 
 #include "display.hpp"
 #include "strings.hpp"
@@ -26,12 +24,15 @@ Display::Display(Game * game) :
 _game(game),
 _frame(Frames::CURRENT)
 {
+    TCODSystem::setFps(MAX_FPS);
 	TCODConsole::initRoot(80,50,"Asciidunge",false);
-    //TODO: insert FPS limiter here
+    TCODConsole::credits();
+    TCODConsole::root->setDefaultBackground(TCODColor::black);
+    TCODConsole::root->setDefaultForeground(TCODColor::red);
+
 	// Make frame counters to zero for every event type
 	uint8_t list_begin = static_cast<uint8_t>(Events::LVLUP);
 	uint8_t list_end = static_cast<uint8_t>(Events::EVENTS_END);
-	
 	for (uint8_t event = list_begin; event < list_end; ++event)	_frameCounters[event] = 0;
 }
 
@@ -39,19 +40,18 @@ _frame(Frames::CURRENT)
 
 void Display::ShowFrame()
 {
-/*	clear();
+    TCODConsole::root->clear();
 	DrawBattlefield();
 	DrawPlayerInfo();
 	if (_game->GetPlayer()->HaveTarget()) DrawEnemyInfo();
-	refresh();
-	SwitchFrameType();
-	ReduceCounters(); */
+    TCODConsole::flush();
 }
 
 
 
 void Display::DrawBattlefield()
 {
+
 /*	BoldOn();
 	mvprintw(BF_ROW, BF_MARGIN, HORIZ_WALL.c_str());
 	for (uint8_t rowIndex = 0; rowIndex < BF_SIZE; ++rowIndex)
