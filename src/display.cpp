@@ -26,7 +26,7 @@ _game(game),
 _frame(Frames::CURRENT)
 {
     TCODSystem::setFps(MAX_FPS);
-	TCODConsole::initRoot(80,50,"Asciidunge",false);
+	TCODConsole::initRoot(SCREEN_WIDTH,SCREEN_HEIGHT,GAME_TITLE.c_str(),false);
     TCODConsole::credits();
     TCODConsole::root->setDefaultBackground(TCODColor::black);
     TCODConsole::root->setDefaultForeground(TCODColor::red);

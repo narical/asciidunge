@@ -11,3 +11,7 @@ list of babysteps to getting things done
 ## 30/08/2018
 - [x] Full rework of Input class to libtcod
 - [x] Move enums to "enum class" in config.hpp
+
+## 01/09/2018
+- [x] Rework of draw battlefield function
+- [x] Rework of draw player function
