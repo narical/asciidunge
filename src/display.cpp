@@ -67,7 +67,7 @@ void Display::DrawBattlefield()
 
 void Display::DrawPlayerInfo()
 {
-/*	Player * plr_copy = nullptr;
+	Player * plr_copy = nullptr;
 	Monster * enemy_copy = nullptr;
 	
 	Player * plr = _game->GetPlayer();
@@ -85,7 +85,7 @@ void Display::DrawPlayerInfo()
 	Item *grnd = plr->GetPosition()->GetItem();
 	Item *sel_item = plr->GetSelectedItem();
 
-	if (plr_copy != nullptr && _frame == FUTURE)
+	if (plr_copy != nullptr && _frame == Frames::FUTURE)
 		plr = plr_copy;
 	else
 		plr = _game->GetPlayer();
@@ -110,58 +110,63 @@ void Display::DrawPlayerInfo()
 	std::string manaBar = DrawBar(mana, maxMana);
 	std::string expBar = DrawBar(exp, expMax);
 
-	mvprintw(PLAYER_ROW + 0, INFO_MARGIN, "Exp   %u / %u", exp, expMax);
-	CheckEvent(MANA_PWRUP);
-	mvprintw(PLAYER_ROW + 1, INFO_MARGIN, "Mana  %u / %u", mana, maxMana);
-	EndCheck();
+    std::string exp_line = "Exp  "+std::to_string(exp)+" / "+std::to_string(expMax);
+    TCODConsole::root->print(INFO_MARGIN, PLAYER_ROW + 0, exp_line.c_str());
+	//CheckEvent(MANA_PWRUP);
+    std::string mana_line = "Mana  "+std::to_string(mana)+" / "+std::to_string(maxMana);
+    TCODConsole::root->print(INFO_MARGIN, PLAYER_ROW + 1, mana_line.c_str());
+	//EndCheck();
 	
 	if (inv1 == sel_item && sel_item != nullptr)
 	{
-		BoldOn();
+		//BoldOn();
 		str_inv1 += INV;
 	}
-		mvprintw(PLAYER_ROW + 3, INFO_MARGIN, "%s", str_inv1.c_str());
-		BoldOff();
+		TCODConsole::root->print(INFO_MARGIN, PLAYER_ROW + 3, str_inv1.c_str());
+		//BoldOff();
 	
 	if (inv2 == sel_item && sel_item != nullptr)
 	{
-		BoldOn();
+		//BoldOn();
 		str_inv2 += INV;
 	}
-		mvprintw(PLAYER_ROW + 4, INFO_MARGIN, "%s", str_inv2.c_str());
-		BoldOff();
+		TCODConsole::root->print(INFO_MARGIN, PLAYER_ROW + 4, str_inv2.c_str());
+		//BoldOff();
 	
 	if (inv3 == sel_item && sel_item != nullptr)
 	{
-		BoldOn();
+		//BoldOn();
 		str_inv3 += INV;
 	}
-		mvprintw(PLAYER_ROW + 5, INFO_MARGIN, "%s", str_inv3.c_str());
-		BoldOff();
+		TCODConsole::root->print(INFO_MARGIN, PLAYER_ROW + 5, str_inv3.c_str());
+		//BoldOff();
 	
 	if (inv4 == sel_item && sel_item != nullptr)
 	{
-		BoldOn();
+		//BoldOn();
 		str_inv4 += INV;
 	}
-		mvprintw(PLAYER_ROW + 6, INFO_MARGIN, "%s", str_inv4.c_str());
-		BoldOff();
+		TCODConsole::root->print(INFO_MARGIN, PLAYER_ROW + 6, str_inv4.c_str());
+		//BoldOff();
 	
-	if (str_grnd != "")	mvprintw(PLAYER_ROW + 7, INFO_MARGIN, "%s", str_grnd.c_str());
+	if (str_grnd != "")	TCODConsole::root->print(INFO_MARGIN, PLAYER_ROW + 7, str_grnd.c_str());
 	
-	CheckEvent(Events::LVLUP);
-	mvprintw(PLAYER_ROW + 9, INFO_MARGIN, "%s - level %d", name.c_str(), level);
-	EndCheck();
-	CheckEvent(HP_PWRUP);
-	mvprintw(PLAYER_ROW + 11, INFO_MARGIN, " [+]  %d / %d", HP, maxHP);
-	EndCheck();
-	CheckEvent(DMG_PWRUP);
-	mvprintw(PLAYER_ROW + 13, INFO_MARGIN, " [*]    %d   ", damage);
-	EndCheck();
+	//CheckEvent(Events::LVLUP);
+	std::string level_line = name + " - level " + std::to_string(level);
+	TCODConsole::root->print(INFO_MARGIN, PLAYER_ROW + 9, level_line.c_str());
+	//EndCheck();
+	//CheckEvent(HP_PWRUP);
+	std::string health_line = " [+]  " + std::to_string(HP) + " / " + std::to_string(maxHP);
+	TCODConsole::root->print(INFO_MARGIN, PLAYER_ROW + 11, health_line.c_str());
+	//EndCheck();
+	//CheckEvent(DMG_PWRUP);
+	std::string damage_line = " [*]    " + std::to_string(damage);
+	TCODConsole::root->print(INFO_MARGIN, PLAYER_ROW + 13, damage_line.c_str());
+	//EndCheck();
 
-	mvprintw(PLAYER_ROW + 0, BAR_MARGIN, "%s", expBar.c_str());
-	mvprintw(PLAYER_ROW + 1, BAR_MARGIN, "%s", manaBar.c_str());
-	mvprintw(PLAYER_ROW + 11, BAR_MARGIN, "%s", healthBar.c_str());
+	TCODConsole::root->print(BAR_MARGIN, PLAYER_ROW + 0, expBar.c_str());
+	TCODConsole::root->print(BAR_MARGIN, PLAYER_ROW + 1, manaBar.c_str());
+	TCODConsole::root->print(BAR_MARGIN, PLAYER_ROW + 11, healthBar.c_str());
 
 	if (plr_copy != nullptr)
 	{
@@ -169,8 +174,8 @@ void Display::DrawPlayerInfo()
 		if (plr_copy->IsAlive() && enemy_copy->IsAlive()) prediction = "SAFE";
 		else if (plr_copy->IsDead() && enemy_copy->IsAlive()) prediction = "DEATH !!!";
 		else if (plr_copy->IsAlive() && enemy_copy->IsDead()) prediction = "Victory!";
-		mvprintw(PLAYER_ROW + 13, BAR_MARGIN, "%s", prediction.c_str());
-	} */
+		TCODConsole::root->print(BAR_MARGIN, PLAYER_ROW + 13, prediction.c_str());
+	}
 }
 
 
@@ -193,11 +198,11 @@ void Display::DrawEnemyInfo()
 
 		std::string healthBar = DrawBar(HP, maxHP);
 
-		mvprintw(ENEMY_ROW + 0, INFO_MARGIN, "%s - level %d  ", name.c_str(), level);
-		mvprintw(ENEMY_ROW + 2, INFO_MARGIN, " [+]   %d / %d", HP, maxHP);
-		mvprintw(ENEMY_ROW + 4, INFO_MARGIN, " [*]     %d   ", damage);
+		TCODConsole::root->print(ENEMY_ROW + 0, INFO_MARGIN, "%s - level %d  ", name.c_str(), level);
+		TCODConsole::root->print(ENEMY_ROW + 2, INFO_MARGIN, " [+]   %d / %d", HP, maxHP);
+		TCODConsole::root->print(ENEMY_ROW + 4, INFO_MARGIN, " [*]     %d   ", damage);
 
-		mvprintw(ENEMY_ROW + 2, BAR_MARGIN, "%s", healthBar.c_str());
+		TCODConsole::root->print(ENEMY_ROW + 2, BAR_MARGIN, "%s", healthBar.c_str());
 	} */
 }
 
@@ -342,7 +347,7 @@ void Display::CheckEvent(Events event)
 void Display::ShowVictoryScreen()
 {
 /*	clear();
-	mvprintw(2,2,"Victory!");
+	TCODConsole::root->print(2,2,"Victory!");
 	refresh(); */
 }
 
@@ -351,6 +356,6 @@ void Display::ShowVictoryScreen()
 void Display::ShowDefeatScreen()
 {
 /*	clear();
-	mvprintw(2,2,"DEFEAT !");
+	TCODConsole::root->print(2,2,"DEFEAT !");
 s	\nrfresh(); */
 }
