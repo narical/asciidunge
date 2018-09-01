@@ -19,7 +19,8 @@
 #include <cassert>
 
 //horizontal wall
-std::string Display::HORIZ_WALL = "######################";
+//std::string Display::HORIZ_WALL = "######################";
+std::string Display::HORIZ_WALL = "";
 
 Display::Display(Game * game) :
 _game(game),
@@ -30,6 +31,8 @@ _frame(Frames::CURRENT)
     TCODConsole::credits();
     TCODConsole::root->setDefaultBackground(TCODColor::black);
     TCODConsole::root->setDefaultForeground(TCODColor::red);
+
+    for (uint8_t i=0; i<BF_SIZE+2; ++i) HORIZ_WALL+="#";
 
 	// Make frame counters to zero for every event type
 	uint8_t list_begin = static_cast<uint8_t>(Events::LVLUP);
