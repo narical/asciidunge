@@ -9,8 +9,9 @@
 #include "player.hpp"
 #include "display.hpp"
 #include "input.hpp"
-#include <ctime>
 #include <cassert>
+#include <libtcod.hpp>
+#include <ctime>
 
 
 
@@ -78,6 +79,15 @@ void Game::Defeat()
 {
 	Display::ShowDefeatScreen();
 	Input::WaitAnyKey();
+}
+
+
+void Game::Shutdown()
+{
+	//Display::ShowShutdownDialog();
+	//TODO: implement yes/no question
+    if (TCODConsole::isFullscreen()) TCODConsole::setFullscreen(false);
+    exit(EXIT_SUCCESS);
 }
 
 

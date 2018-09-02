@@ -49,8 +49,8 @@ const uint8_t POWERUP_DAMAGE_BONUS = 10; //in percents
 // Display
 const std::string GAME_TITLE = "Ascii Dungeon";
 const uint8_t MAX_FPS = 20;
-const uint8_t SCREEN_WIDTH = 68;
-const uint8_t SCREEN_HEIGHT = 35;
+const uint8_t SCREEN_WIDTH = 80;
+const uint8_t SCREEN_HEIGHT = 50;
 
 
 const uint8_t BARWIDTH = 20;

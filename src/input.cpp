@@ -36,7 +36,7 @@ void Input::GetPlayerInput()
 		case TCODK_2 	 :	player->SelectItem(2);	break;
 		case TCODK_3 	 :	player->SelectItem(3);	break;
 		case TCODK_4 	 :	player->SelectItem(4);	break;
-		case TCODK_ESCAPE:	exit(0);		break;
+		case TCODK_ESCAPE:	_game->Shutdown();	break;
 		case TCODK_CHAR	 :	switch( key.c )
 		{
 			case 't':
@@ -57,10 +57,9 @@ void Input::GetPlayerInput()
 			case 'h':
 				player->Heal();
 				break;
-			case 'q':
-				exit(0);
+			case 'f':
+				TCODConsole::setFullscreen(!TCODConsole::isFullscreen());
 				break;
-
 			default: break;
 		}; break;
 		default: break;

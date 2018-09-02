@@ -24,6 +24,7 @@ class Game
 		bool CheckVictory();
 		void Victory();
 		void Defeat();
+        void Shutdown();
 		static void Run_RNG();
 
 		Battlefield *GetBattlefield() { return _battlefield; }
