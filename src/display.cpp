@@ -28,7 +28,7 @@ _game(game),
 _frame(Frames::CURRENT)
 {
     TCODSystem::setFps(MAX_FPS);
-    TCODConsole::setCustomFont("courier12x12_aa_tc.png",TCOD_FONT_LAYOUT_TCOD);
+//    TCODConsole::setCustomFont("courier12x12_aa_tc.png",TCOD_FONT_LAYOUT_TCOD);
 	TCODConsole::initRoot(SCREEN_WIDTH,SCREEN_HEIGHT,GAME_TITLE.c_str(),false);
     TCOD_renderer_t ren = TCODSystem::getRenderer();
     if (ren == TCOD_RENDERER_SDL) std::cout << "SDL" << std::endl;
