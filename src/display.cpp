@@ -190,8 +190,8 @@ void Display::DrawPlayerInfo()
 
 void Display::DrawEnemyInfo()
 {
-/*	Monster * enemy = nullptr;
-	if (_game->GetBattlefield()->GetEnemyCopy() != nullptr && _frame == FUTURE)
+	Monster * enemy = nullptr;
+	if (_game->GetBattlefield()->GetEnemyCopy() != nullptr && _frame == Frames::FUTURE)
 		enemy = _game->GetBattlefield()->GetEnemyCopy();
 		
 	else enemy = _game->GetPlayer()->GetTargetField()->GetEnemy();
@@ -200,18 +200,22 @@ void Display::DrawEnemyInfo()
 	{
 		std::string name = enemy->GetName();
 		uint8_t level = enemy->GetLevel();
-		uint16_t damage = enemy->GetDamage();
-		uint16_t HP = enemy->GetHP();
-		uint16_t maxHP = enemy->GetMaxHP();
-
+		uint8_t damage = enemy->GetDamage();
+		uint8_t HP = enemy->GetHP();
+		uint8_t maxHP = enemy->GetMaxHP();
 		std::string healthBar = DrawBar(HP, maxHP);
 
-		TCODConsole::root->print(ENEMY_ROW + 0, INFO_MARGIN, "%s - level %d  ", name.c_str(), level);
-		TCODConsole::root->print(ENEMY_ROW + 2, INFO_MARGIN, " [+]   %d / %d", HP, maxHP);
-		TCODConsole::root->print(ENEMY_ROW + 4, INFO_MARGIN, " [*]     %d   ", damage);
+        std::string name_level_line = name + " - level " + std::to_string(level);
+		TCODConsole::root->print(INFO_MARGIN, ENEMY_ROW + 0, name_level_line.c_str());
 
-		TCODConsole::root->print(ENEMY_ROW + 2, BAR_MARGIN, "%s", healthBar.c_str());
-	} */
+        std::string health_line = " [+]   " + std::to_string(HP) + " / " + std::to_string(maxHP);
+		TCODConsole::root->print(INFO_MARGIN, ENEMY_ROW + 2, health_line.c_str());
+
+        std::string damage_line = " [*]     " + std::to_string(damage);
+		TCODConsole::root->print(INFO_MARGIN, ENEMY_ROW + 4, damage_line.c_str());
+
+		TCODConsole::root->print(BAR_MARGIN, ENEMY_ROW + 2, healthBar.c_str());
+	}
 }
 
 
