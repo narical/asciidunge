@@ -18,6 +18,7 @@ class Display
 		explicit Display (Game *);
 		void SendEvent(Events);
 		void ShowFrame();
+        void ToggleFullscreen();
 
 		static void ShowVictoryScreen();
 		static void ShowDefeatScreen();

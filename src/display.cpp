@@ -373,3 +373,8 @@ void Display::ShowDefeatScreen()
 	TCODConsole::root->print(2,2,"DEFEAT !");
 s	\nrfresh(); */
 }
+
+void Display::ToggleFullscreen()
+{
+    TCODConsole::root->setFullscreen(!TCODConsole::root->isFullscreen());
+}

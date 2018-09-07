@@ -58,7 +58,7 @@ void Input::GetPlayerInput()
 				player->Heal();
 				break;
 			case 'f':
-				TCODConsole::setFullscreen(!TCODConsole::isFullscreen());
+				_game->GetDisplay()->ToggleFullscreen();
 				break;
 			default: break;
 		}; break;
