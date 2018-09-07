@@ -26,7 +26,7 @@ const uint8_t CURVE_COEFF[] = {5, 6, 7, 8, 9, 10, 11, 12};
 const uint8_t SUM_COEFF = 68;
 
 // Battlefield
-const uint8_t BF_SIZE = 20;
+const uint8_t BF_SIZE = 40;
 const uint8_t ITEMS_QUANTITY = 5;
 const uint8_t MAX_NEAR_OBJECTS = 1;
 const uint8_t POWERUPS_QUANTITY_BY_TYPE[3] = {5,5,5}; //health, mana, damage
@@ -48,9 +48,9 @@ const uint8_t POWERUP_DAMAGE_BONUS = 10; //in percents
 
 // Display
 const std::string GAME_TITLE = "Ascii Dungeon";
-const uint8_t MAX_FPS = 20;
-const uint8_t SCREEN_WIDTH = 80;
-const uint8_t SCREEN_HEIGHT = 50;
+const int MAX_FPS = 20;
+const uint8_t SCREEN_WIDTH = 90;
+const uint8_t SCREEN_HEIGHT = 45;
 
 
 const uint8_t BARWIDTH = 20;
@@ -58,8 +58,8 @@ const uint8_t BF_ROW = 2;
 const uint8_t PLAYER_ROW = 1;
 const uint8_t ENEMY_ROW = 18;
 const uint8_t BF_MARGIN = 2;
-const uint8_t INFO_MARGIN = 26;
-const uint8_t BAR_MARGIN = 45;
+const uint8_t INFO_MARGIN = BF_SIZE + 6;
+const uint8_t BAR_MARGIN = BF_SIZE + 25;
 
 #endif // _CONFIG_H_
 

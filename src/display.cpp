@@ -34,8 +34,6 @@ _frame(Frames::CURRENT)
     if (ren == TCOD_RENDERER_SDL) std::cout << "SDL" << std::endl;
     
     TCODConsole::credits();
-    TCODConsole::root->setDefaultBackground(TCODColor::black);
-    TCODConsole::root->setDefaultForeground(TCODColor::red);
 
     for (uint8_t i=0; i<BF_SIZE+2; ++i) HORIZ_WALL+="#";
 
@@ -49,6 +47,8 @@ _frame(Frames::CURRENT)
 
 void Display::ShowFrame()
 {
+    TCODConsole::root->setDefaultBackground(TCODColor::black);
+    TCODConsole::root->setDefaultForeground(TCODColor::white);
     TCODConsole::root->clear();
 	DrawBattlefield();
 	DrawPlayerInfo();
@@ -61,11 +61,13 @@ void Display::ShowFrame()
 void Display::DrawBattlefield()
 {
     TCODConsole::root->print(BF_MARGIN, BF_ROW, HORIZ_WALL.c_str());
+
 	for (uint8_t rowIndex = 1; rowIndex <= BF_SIZE; ++rowIndex)
 	{
 		TCODConsole::root->print(BF_MARGIN, BF_ROW + rowIndex, "#\n");
-		for (uint8_t colIndex = 1; colIndex <= BF_SIZE; ++colIndex) 
+		for (uint8_t colIndex = 1; colIndex <= BF_SIZE; ++colIndex) {
     		TCODConsole::root->print(BF_MARGIN + colIndex, BF_ROW + rowIndex, DrawField(rowIndex-1, colIndex-1));
+		}
 		TCODConsole::root->print(BF_MARGIN + BF_SIZE + 1, BF_ROW + rowIndex, "#\n");
 	}
     TCODConsole::root->print(BF_MARGIN, BF_ROW + BF_SIZE + 1, HORIZ_WALL.c_str());
