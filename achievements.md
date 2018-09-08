@@ -15,3 +15,8 @@ list of babysteps to getting things done
 ## 01/09/2018
 - [x] Rework of draw battlefield function
 - [x] Rework of draw player function
+
+*started from scratch*
+
+## 09/09/2018
+- [x] First working build on new architecture
